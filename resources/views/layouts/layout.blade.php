@@ -1,21 +1,5 @@
-<?php
-date_default_timezone_set('Europe/Paris');
+@include('components.Database.connectdb')
 
-try
-{
-// Sous WAMP (Connexion à la base de donnée)
-    $bdd = new PDO('mysql:host=localhost;dbname=ecampus;charset=utf8', 'root', '0000');
-
-}
-catch (Exception $e)
-{
-    // En cas d'erreur, on affiche un message et on arrête tout
-    die('Erreur de connexion : ' . $e->getMessage());
-}
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -25,15 +9,12 @@ catch (Exception $e)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Titre du site -->
     <title>E-Campus - Le site des E-tudiants</title>
-    <base href="http://localhost/E-Campus/"/>
-    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <!-- Summernote usage-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{URL::asset('css/all.css')}}"/>
-    <link rel="stylesheet" href="{{URL::asset('css/app.css')}}"/>
     <link rel="icon" type="image/png" href="{{URL::asset('images/favicon.ico')}}"/>
+    <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
+
 </head>
 <body>
 <header>
@@ -50,20 +31,9 @@ catch (Exception $e)
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <?php
-                        //Lister les differentes categories dans la table categories
-
-                        $reponse = $bdd->query("SELECT * FROM categories WHERE status='1'");
-
-                        // On affiche chaque entrée une à une
-                        while($donnees = $reponse->fetch()){
-                        ?>
-                        <a href="Pages/listing.php?categ=<?= $donnees['nom_categorie'];?>">
-                            <button class="dropdown-item" type="button"><?php echo $donnees['nom_categorie'];?></button>
+                        <a href="Pages/listing.php">
+                            <button class="dropdown-item" type="button"></button>
                         </a>
-                        <?php
-                        }
-                        ?>
                     </div>
                 </div>
             </div>
@@ -101,25 +71,25 @@ catch (Exception $e)
             </div>
             <div class="col-md-4" id="Ecampus_start">
                 <p class="title-footer">Contact</p>
-                <a href="{{URL::asset('/cgu')}}">C.G.U</a>
+                <a href="{{URL::route('front_cgu')}}">C.G.U</a>
                 <br>
-                <a href="{{URL::asset('/aboutus')}}">Qui somme nous ?</a>
+                <a href="{{URL::route('front_aboutus')}}">Qui somme nous ?</a>
                 <br>
-                <a href="{{URL::asset('/contact')}}">Nous contacter</a>
+                <a href="{{URL::route('front_contact')}}">Nous contacter</a>
             </div>
         </div>
     </div>
 </footer>
 
 <!-- SCRIPTS -->
+<script src="{{asset('js/bootstrap.js')}}"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-<script src="{{URL::asset('js/app.js')}}"></script>
 <!-- bootstrap.datepicker en local pour changer anglais vers français -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
-<script type="text/javascript" src="Js/bootstrap.datepicker.js"></script>
 
 
 <!-- *********************************MODAL CONNEXION************************************************* -->
@@ -174,7 +144,7 @@ catch (Exception $e)
                     <input type="button" class="btn btn-primary btn-lg btn-block" id="submit_inscription" value="S'inscrire">
                     <div class="input-group-text mt-2" id="check_cgu">
                         <input type="checkbox" id="checkbox">
-                        <h6>En vous inscrivant, vous acceptez nos <a href="Pages/cgu.php">conditions générales d'utilisation.</a></h6>
+                        <h6>En vous inscrivant, vous acceptez nos <a href="{{URL::route('front_cgu')}}">conditions générales d'utilisation.</a></h6>
                     </div>
                 </form>
                 <!-- FIN DE FORMULAIRE DINSCRIPTION -->

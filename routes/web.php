@@ -15,9 +15,6 @@
   //  return view('welcome');
 //});
 
-Route::get('/', function() {
-    return view( 'index');
-});
 
 
 Auth::routes();
@@ -26,7 +23,7 @@ Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/cgu', 'CguController@cgu');
-Route::get('/aboutus','AboutusController@aboutus');
-Route::get('/contact','ContactController@contact');
+Route::get('/', 'HomeController@index')->name('front_index');
+Route::get('conditions-generales-du-client', 'HomeController@cgu')->name('front_cgu');
+Route::get('aboutus','HomeController@aboutus')->name('front_aboutus');
+Route::get('contact','HomeController@contact')->name('front_contact');

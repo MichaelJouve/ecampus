@@ -1,0 +1,191 @@
+/*FONTS*/
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+/*END FONTS*/
+
+
+#bandeau-article{
+
+	background-color: #222;
+	height:450px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+
+#bandeau-article h1{
+	color:#fff;
+	font-size: 1.9em;
+}
+
+#bandeau-article p{
+	color:#fff;
+}
+
+#bandeau-article .option_article{
+	color:#007791;
+}
+
+#bandeau-article .auteur_article{
+	color:#fff;
+	font-size: 0.8em;
+}
+
+#bandeau-article #achat{
+	position: relative;
+	width: 100%;
+	z-index: 5;
+}
+
+#bandeau-article #achat img{
+	width: 100%;
+	height: 100%;
+	border:2px solid #007791;
+}
+
+#bandeau-article #achat img:hover{
+	cursor: pointer;
+	border:4px solid #007791;
+}
+
+#achat_article a{
+	color:#fff;
+	text-decoration: none;
+}
+
+#achat_article:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/*bandeau article droite*/
+#descriptif_tutoriel_bandeau_droite{
+	margin:20px 0;
+}
+
+#descriptif_tutoriel_bandeau_droite #prix{
+	font-size: 1.5em;
+	color:#2E7D32;
+}
+
+#descriptif_tutoriel_bandeau_droite #achat_article{
+	padding: 10px;
+	font-size: 1.1em;
+	color:#fff;
+	background-color: #2E7D32;
+	border-radius: 5px;
+	width: 50%;
+	margin:0 auto;
+	text-align: center;
+
+}
+
+#contenu_tutoriel_payant{
+	margin:15px 0;
+	padding: 10px 0;
+	font-size: 0.8em;
+	border-right: 1px solid #007791;
+}
+
+
+#contenu_tutoriel_payant .certificated{
+	color:#007791;
+	font-weight: bold;
+}
+/* */
+
+
+
+#learn{
+	margin:25px 0;
+	width: 100%;
+	padding: 30px 0;
+	border: 1px dashed #007791;
+	border-radius: 3px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+#learn ul{
+	list-style-type: none;
+}
+
+#bandeau_horizontal{
+	margin:50px 0;
+}
+
+#connaissance_tutoriel{
+	margin:30px 0;
+	font-family: 'Quicksand', sans-serif;
+}
+#descriptif_tutoriel{
+	margin:30px 0;
+	font-family: 'Quicksand', sans-serif;
+}
+#formateur_app{
+	margin:30px 0;
+	font-family: 'Quicksand', sans-serif;
+}
+
+
+#img_profil_article img{
+	width: 90px;
+	height: 90px;
+	margin:15px 0;
+}
+
+#img_profil_article p{
+	text-align: center;
+	font-size: 0.7em;
+}
+#commentaire_article{
+	font-family: 'Quicksand', sans-serif;
+	margin-top: 80px;
+}
+
+#commentaire_article h3{
+	font-size: 1.1em;
+	text-align: center;
+}
+
+
+#block_commentaire{
+	width: 100%;
+	border-top:1px solid #e5e5e5;
+	padding: 10px 0;
+	margin-top: 5px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+#block_commentaire span{
+	font-size:0.9em;
+}
+
+#block_commentaire p{
+	font-size: 0.8em;
+}
+
+
+
+
+/*ESPACE COMMENTAIRE*/
+
+#espace_commentaire{
+	margin:40px 0;
+	border-top: 1px solid #e5e5e5;
+	padding-top: 40px;
+}
+#espace_commentaire label{
+	font-size: 0.9em;
+}
+
+#espace_commentaire textarea{
+	font-size: 1em;
+}
+
+.btn-primary{
+	margin:8px 0;
+}
+.btn-primary:hover{
+	background-color: #fff;
+	color:#007fff;
+	border:1px solid #007791;
+	cursor: pointer;
+}

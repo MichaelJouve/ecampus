@@ -1,41 +1,8 @@
-@extends('layouts.homepage')
+@extends('layouts.layout')
 
 @section('contenu')
-    <div id="carouselHome" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselHome" data-slide-to="1"></li>
-            <li data-target="#carouselHome" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="carousel-caption">
-                    <p id="title_caroussel">Bienvenue sur {e}Campus</p>
-                    <a href="Pages/listing.php?categ=HTML" id="link_caroussel">Commencez l'exploration !</a>
-                </div>
-            </div>
-            <div class="carousel-item items2">
-                <div class="carousel-caption">
-                    <h5>Super site !!!!</h5>
-                    <p>Site de ouf</p>
-                </div>
-            </div>
-            <div class="carousel-item items3">
-                <div class="carousel-caption">
-                    <h5>Super site !!!!</h5>
-                    <p>Site de ouf</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselHome" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+
+    @include('components.Slide.slide')
 
     <!-- Ici le bandeau des explications sur la page index.php-->
     <div id="explication-bandeau" class="animated fadeIn">
@@ -57,8 +24,35 @@
         </div>
     </div>
 
-    <div class="container text-center mt-5 mb-5">
-        <h1>Je suis dans le container et voila la page d'accueil !</h1>
+    <div class="container content">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+
+
+                <!-- Entete de la catégorie-->
+                <div class="col-md-12 bandeau-titre">
+                    <h1>Derniers tutoriels de nos formateurs..</h1>
+                </div>
+                <div class="row justify-content-center">
+                    @include('components.Publication.tutoriel')
+
+                </div>
+
+                <div class="col-md-12 bandeau-titre">
+                    <h1>Derniers posts de nos utilisateurs..</h1>
+                </div>
+                <div class="row justify-content-center">
+                    @include('components.Publication.post')
+                </div>
+            </div>
+            <div class="col-md-2 bandeau-pub text-center  animated bounceInRight">
+                <div class="JsonConnexion">
+                    <p class="title">Derniers Membres</p>
+                    @include('components.Membres.lastmembre')
+                </div>
+                <img class="img-fluid" style="width: 100%; border:3px solid #e5e5e5; border-radius: 2px; cursor:pointer; " src="{{asset('images/bandeau_vertical.gif')}}" class="Bandeau pub">
+            </div>
+        </div>
     </div>
 
 @endsection

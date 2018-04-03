@@ -1,4 +1,4 @@
-@extends('layouts.homepage')
+@extends('layouts.layout')
 @section('contenu')
     <link rel="stylesheet" href="{{URL::asset('css/contact.css')}}">
 
