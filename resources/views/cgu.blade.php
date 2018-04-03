@@ -1,6 +1,9 @@
-@yield('layout')
+
+
+@extends('layouts.homepage')
 
 @section('contenu')
+    <link rel="stylesheet" href="{{URL::asset('css/cgu.css')}}">
     <div class="container content mt-5 ">
         <div class="row">
             <div class="col-12">

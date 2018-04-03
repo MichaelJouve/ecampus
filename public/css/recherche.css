@@ -1,0 +1,15 @@
+#bandeau_recherche {
+    background-color: #333;
+    padding: 20px;
+}
+
+#bandeau_recherche h1 {
+    margin: 40px 0;
+    color: #fff;
+    font-size: 1.3em;
+}
+
+
+#bandeau_recherche p {
+    color: #fff;
+}

@@ -11,18 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+  //  return view('welcome');
+//});
+
+Route::get('/', function() {
+    return view( 'index');
 });
 
-Route::get('/ecampus', function() {
-    return view( 'ecampus');
-});
-
-Route::get('/cgu', function() {
-    return view( 'cgu');
-});
 
 Auth::routes();
 
+
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/cgu', 'CguController@cgu');
+Route::get('/aboutus','AboutusController@aboutus');
+Route::get('/contact','ContactController@contact');
