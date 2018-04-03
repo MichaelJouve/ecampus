@@ -1,5 +1,21 @@
-<?php $notrepage='';?>
+<?php
+date_default_timezone_set('Europe/Paris');
 
+try
+{
+// Sous WAMP (Connexion à la base de donnée)
+    $bdd = new PDO('mysql:host=localhost;dbname=ecampus;charset=utf8', 'root', '0000');
+
+}
+catch (Exception $e)
+{
+    // En cas d'erreur, on affiche un message et on arrête tout
+    die('Erreur de connexion : ' . $e->getMessage());
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -10,12 +26,13 @@
     <!-- Titre du site -->
     <title>E-Campus - Le site des E-tudiants</title>
     <base href="http://localhost/E-Campus/"/>
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <!-- Summernote usage-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{URL::asset('css/style.css')}}"/>
+    <link rel="stylesheet" href="{{URL::asset('css/all.css')}}"/>
+    <link rel="stylesheet" href="{{URL::asset('css/app.css')}}"/>
     <link rel="icon" type="image/png" href="{{URL::asset('images/favicon.ico')}}"/>
 </head>
 <body>
@@ -33,9 +50,20 @@
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <a href="Pages/listing.php>
-                            <button class="dropdown-item" type="button"></button>
+                        <?php
+                        //Lister les differentes categories dans la table categories
+
+                        $reponse = $bdd->query("SELECT * FROM categories WHERE status='1'");
+
+                        // On affiche chaque entrée une à une
+                        while($donnees = $reponse->fetch()){
+                        ?>
+                        <a href="Pages/listing.php?categ=<?= $donnees['nom_categorie'];?>">
+                            <button class="dropdown-item" type="button"><?php echo $donnees['nom_categorie'];?></button>
                         </a>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -86,10 +114,9 @@
 <!-- SCRIPTS -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="{{URL::asset('js/app.js')}}"></script>
 <!-- bootstrap.datepicker en local pour changer anglais vers français -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
 <script type="text/javascript" src="Js/bootstrap.datepicker.js"></script>
