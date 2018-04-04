@@ -1,4 +1,22 @@
-@include('components.Database.connectdb')
+<?php
+
+date_default_timezone_set('Europe/Paris');
+
+try
+{
+// Sous WAMP (Connexion à la base de donnée)
+    $bdd = new PDO('mysql:host=phpmyadmin.test;dbname=ecampus;charset=utf8', 'root', '090711');
+
+}
+catch (Exception $e)
+{
+    // En cas d'erreur, on affiche un message et on arrête tout
+    die('Erreur de connexion : ' . $e->getMessage());
+}
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,14 +49,25 @@
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <a href="Pages/listing.php">
-                            <button class="dropdown-item" type="button"></button>
+                        <?php
+                        //Lister les differentes categories dans la table categories
+
+                        $reponse = $bdd->query("SELECT * FROM categories WHERE status='1'");
+
+                        // On affiche chaque entrée une à une
+                        while($donnees = $reponse->fetch()){
+                        ?>
+                        <a href="{{URL::route('front_listing')}}">
+                            <button class="dropdown-item" type="button"><?php echo $donnees['nom_categorie'];?></button>
                         </a>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-5 col-md-4 col-sm-12 col-xs-12 ">
-                <form method="get" action="Pages/recherche.php">
+                <form method="get" action="{{URL::route('front_recherche')}}">
                     <input type="text" name="recherche" id="recherche" placeholder="Que recherchez-vous?">
                 </form>
             </div>

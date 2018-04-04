@@ -28,3 +28,6 @@ mix.styles([
     'resources/assets/css/recherche.css',
     'resources/assets/css/style.css'
 ], 'public/css/all.css');
+
+
+mix.copyDirectory('resources/assets/images','public/images');

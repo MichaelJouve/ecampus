@@ -27,3 +27,5 @@ Route::get('/', 'HomeController@index')->name('front_index');
 Route::get('conditions-generales-du-client', 'HomeController@cgu')->name('front_cgu');
 Route::get('aboutus','HomeController@aboutus')->name('front_aboutus');
 Route::get('contact','HomeController@contact')->name('front_contact');
+Route::get('liste-tutoriel-par-categorie','HomeController@listing')->name('front_listing');
+Route::get('votre-recherche','HomeController@recherche')->name('front_recherche');

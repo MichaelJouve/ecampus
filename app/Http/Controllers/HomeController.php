@@ -40,5 +40,13 @@ class HomeController extends Controller
     {
         return view('aboutus');
     }
+    public function listing()
+    {
+        return view('listing');
+    }
+    public function recherche()
+    {
+        return view('recherche');
+    }
 
 }
