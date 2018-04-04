@@ -66,15 +66,6 @@ p {
 }
 
 
-#box-infos-personnel {
-    display: none;
-}
-
-#box-messagerie {
-    display: none;
-}
-
-
 
 /*******************************MESSAGERIE*****************/
 
@@ -216,9 +207,6 @@ p {
 
 /***** PREFERENCES PERSONNEL**/
 
-#box-preferences-personnel {
-    display: none;
-}
 
 #bandeau_naviguation {
     background-color: #333;

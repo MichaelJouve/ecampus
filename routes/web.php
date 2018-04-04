@@ -32,3 +32,7 @@ Route::get('votre-recherche','HomeController@recherche')->name('front_recherche'
 
 Route::get('profil-personnel','IndexController@profil')->name('front_profil');
 Route::get('article-tutoriel','IndexController@article')->name('front_article');
+
+Route::get('configuration-compte-infos','IndexController@configInfos')->name('front-config-infos');
+Route::get('configuration-compte-message', 'IndexController@configMessage')->name('front-config-message');
+Route::get('configuration-compte-preference', 'IndexController@configPref')->name('front-config-preference');

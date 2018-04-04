@@ -32,4 +32,21 @@ class IndexController extends Controller
         return view('article');
     }
 
+    public function configInfos()
+    {
+        return view('configInfos');
+    }
+
+    public function configMessage()
+    {
+        return view('configMessage');
+    }
+
+    public function configPref()
+    {
+        return view('configPref');
+    }
+
+
+
 }
