@@ -47,6 +47,8 @@ class IndexController extends Controller
         return view('configPref');
     }
 
-
-
+    public function panier()
+    {
+        return view('panier');
+    }
 }
