@@ -5,7 +5,7 @@ date_default_timezone_set('Europe/Paris');
 try
 {
 // Sous WAMP (Connexion à la base de donnée)
-    $bdd = new PDO('mysql:host=phpmyadmin.test;dbname=ecampus;charset=utf8', 'root', '0000');
+    $bdd = new PDO('mysql:host=phpmyadmin.test;dbname='.env('DB_DATABASE').';charset=utf8', env('DB_USERNAME'), env('DB_PASSWORD'));
 
 }
 catch (Exception $e)
@@ -13,7 +13,6 @@ catch (Exception $e)
     // En cas d'erreur, on affiche un message et on arrête tout
     die('Erreur de connexion : ' . $e->getMessage());
 }
-
 
 
 ?>
@@ -71,7 +70,6 @@ catch (Exception $e)
                     <input type="text" name="recherche" id="recherche" placeholder="Que recherchez-vous?">
                 </form>
             </div>
-
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 text-center header-link">
                 <div class="panier">
                     <a id="dropdownMenu3" title="Choisir une catégorie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
