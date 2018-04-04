@@ -12,7 +12,7 @@
                         <a href="#"><i class="fas fa-globe" style="font-size: 1.5em; margin:0 5px;"></i></a>
                         <a href="#"><i class="fab fa-facebook-f" style="font-size: 1.5em; margin:0 5px;"></i></a>
                         <a href="#"><i class="fab fa-twitter" style="font-size: 1.5em; margin:0 5px;"></i></a>
-                        <a href="#"><i class="far fa-envelope-open" style="font-size: 1.5em; margin:0 5px;"></i></a>
+                        <a href="{{URL::route('front-config-message')}}"><i class="far fa-envelope-open" style="font-size: 1.5em; margin:0 5px;"></i></a>
 
                     </p>
                 </div>
