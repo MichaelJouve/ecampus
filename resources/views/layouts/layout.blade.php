@@ -1,4 +1,22 @@
-@include('components.Database.connectdb')
+<?php
+
+date_default_timezone_set('Europe/Paris');
+
+try
+{
+// Sous WAMP (Connexion à la base de donnée)
+    $bdd = new PDO('mysql:host=phpmyadmin.test;dbname=ecampus;charset=utf8', 'root', '0000');
+
+}
+catch (Exception $e)
+{
+    // En cas d'erreur, on affiche un message et on arrête tout
+    die('Erreur de connexion : ' . $e->getMessage());
+}
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -14,6 +32,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{URL::asset('images/favicon.ico')}}"/>
     <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
+
 
 </head>
 <body>
