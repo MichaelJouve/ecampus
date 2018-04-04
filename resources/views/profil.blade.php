@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('contenu')
+
     <!-- CONTENU -->
     <div class="container animated bounce content">
         <div class="row">
@@ -55,6 +56,7 @@
                         Publier un Tutoriel
                     </button>
 
+                    @include('components.Membres.ajoutpublication')
                 </div>
 
 
@@ -69,7 +71,7 @@
         </div>
     </div>
 
-
-
     <!-- FIN CONTENU -->
+
+
 @endsection

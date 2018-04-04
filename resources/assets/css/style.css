@@ -129,7 +129,14 @@ header input[type=text] {
     padding-left: 10px;
     color: #777;
 }
+.list-inline a{
+    color:#fff;
+}
 
+.list-inline .active{
+    color:#007fff;
+    border-bottom:5px solid #007fff;
+}
 
 .carousel-item {
     height: 450px;

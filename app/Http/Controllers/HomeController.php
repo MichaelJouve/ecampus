@@ -44,6 +44,10 @@ class HomeController extends Controller
     {
         return view('listing');
     }
+    public function listingall()
+    {
+        return view('listingall');
+    }
     public function recherche()
     {
         return view('recherche');

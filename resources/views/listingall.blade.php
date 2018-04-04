@@ -13,8 +13,8 @@
 
                 <div class="col-md 12">
                     <ul class="list-inline">
-                        <a href="{{URL::route('front_listing_categorie')}}"><li class="list-inline-item active" id="select_cour">Sélection</li></a>
-                        <a href="{{URL::route('front_listing_all')}}"><li class="list-inline-item" id="all_cour">Tous les tutoriels</li></a>
+                        <a href="{{URL::route('front_listing_categorie')}}"><li class="list-inline-item" id="select_cour">Sélection</li></a>
+                        <a href="{{URL::route('front_listing_all')}}"><li class="list-inline-item active" id="all_cour">Tous les tutoriels</li></a>
                     </ul>
                 </div>
             </div>
@@ -22,9 +22,10 @@
     </div>
 
     <div class="container">
-
-      <h1>Je suis dans la section selection catégorie</h1>
+            <h1>Je suis dans la section ALL</h1>
     </div>
+
+
 
     <!-- FIN CONTENU -->
 @endsection

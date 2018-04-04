@@ -15,7 +15,7 @@
         </div>
         <div class="card-footer text-right">
             <span class="float-left">Ecrit le :(Date d'ajout post)</span>
-            <a href="#" class=" float-right">Voir <i class="fa fa-chevron-right"></i></a>
+            <a href="{{URL::route('front_profil')}}" class=" float-right">Voir <i class="fa fa-chevron-right"></i></a>
         </div>
     </div>
 </div>

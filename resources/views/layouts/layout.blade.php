@@ -28,6 +28,7 @@ catch (Exception $e)
     <title>E-Campus - Le site des E-tudiants</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!-- Summernote usage-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{URL::asset('images/favicon.ico')}}"/>
     <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
@@ -56,7 +57,7 @@ catch (Exception $e)
                         // On affiche chaque entrée une à une
                         while($donnees = $reponse->fetch()){
                         ?>
-                        <a href="{{URL::route('front_listing')}}">
+                        <a href="{{URL::route('front_listing_categorie')}}">
                             <button class="dropdown-item" type="button"><?php echo $donnees['nom_categorie'];?></button>
                         </a>
                         <?php
@@ -120,14 +121,7 @@ catch (Exception $e)
 </footer>
 
 <!-- SCRIPTS -->
-<script src="{{asset('js/bootstrap.js')}}"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-<!-- bootstrap.datepicker en local pour changer anglais vers français -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
+
 
 
 <!-- *********************************MODAL CONNEXION************************************************* -->
@@ -195,5 +189,13 @@ catch (Exception $e)
 </div>
 <!-- FIN DE MODAL DINSCRIPTION-->
 
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
+
+<script src="{{asset('js/all.js')}}"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 </body>
 </html>
