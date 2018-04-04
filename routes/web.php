@@ -32,3 +32,4 @@ Route::get('votre-recherche','HomeController@recherche')->name('front_recherche'
 
 Route::get('profil-personnel','IndexController@profil')->name('front_profil');
 Route::get('article-tutoriel','IndexController@article')->name('front_article');
+Route::get('panier', 'IndexController@panier')->name('front_panier');

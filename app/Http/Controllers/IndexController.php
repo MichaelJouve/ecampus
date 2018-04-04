@@ -32,4 +32,9 @@ class IndexController extends Controller
         return view('article');
     }
 
+
+    public function panier()
+    {
+        return view('panier');
+    }
 }
