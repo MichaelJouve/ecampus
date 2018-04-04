@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
 
         try {
-// Sous WAMP (Connexion à la base de donnée)
+            // Sous WAMP (Connexion à la base de donnée)
             $bdd = new \PDO('mysql:host=phpmyadmin.test;dbname=' . env('DB_DATABASE') . ';charset=utf8', env('DB_USERNAME'), env('DB_PASSWORD'));
 
         } catch (\Exception $e) {
