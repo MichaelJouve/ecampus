@@ -29,3 +29,6 @@ Route::get('aboutus','HomeController@aboutus')->name('front_aboutus');
 Route::get('contact','HomeController@contact')->name('front_contact');
 Route::get('liste-tutoriel-par-categorie','HomeController@listing')->name('front_listing');
 Route::get('votre-recherche','HomeController@recherche')->name('front_recherche');
+
+Route::get('profil-personnel','IndexController@profil')->name('front_profil');
+Route::get('article-tutoriel','IndexController@article')->name('front_article');
