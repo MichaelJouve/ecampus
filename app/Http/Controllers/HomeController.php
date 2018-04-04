@@ -23,7 +23,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+
+        try {
+// Sous WAMP (Connexion à la base de donnée)
+            $bdd = new \PDO('mysql:host=phpmyadmin.test;dbname=' . env('DB_DATABASE') . ';charset=utf8', env('DB_USERNAME'), env('DB_PASSWORD'));
+
+        } catch (\Exception $e) {
+            // En cas d'erreur, on affiche un message et on arrête tout
+            die('Erreur de connexion : ' . $e->getMessage());
+        }
+
+
+        $reponse = $bdd->query("SELECT * FROM categories WHERE status='1'");
+        $categories = $reponse->fetchAll();
+        return view('index', ['categories' => $categories]);
     }
 
     public function cgu()
@@ -40,17 +53,23 @@ class HomeController extends Controller
     {
         return view('aboutus');
     }
-    public function listing()
+
+    public function listing($id)
     {
+        //todo : add query to get all post
         return view('listing');
     }
+
     public function listingall()
     {
         return view('listingall');
     }
+
     public function recherche()
     {
+
         return view('recherche');
     }
+
 
 }

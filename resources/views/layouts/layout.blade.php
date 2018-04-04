@@ -1,22 +1,3 @@
-<?php
-
-date_default_timezone_set('Europe/Paris');
-
-try
-{
-// Sous WAMP (Connexion à la base de donnée)
-    $bdd = new PDO('mysql:host=phpmyadmin.test;dbname='.env('DB_DATABASE').';charset=utf8', env('DB_USERNAME'), env('DB_PASSWORD'));
-
-}
-catch (Exception $e)
-{
-    // En cas d'erreur, on affiche un message et on arrête tout
-    die('Erreur de connexion : ' . $e->getMessage());
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -49,20 +30,14 @@ catch (Exception $e)
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <?php
-                        //Lister les differentes categories dans la table categories
+                        @forelse ($categories as $category)
+                            <a href="{{URL::route('front_listing_categorie', ['id'=>$category['id_categorie']])}}">
+                                <button class="dropdown-item" type="button"><?php echo $category['nom_categorie'];?></button>
+                            </a>
+                        @empty
+                            <p>No users</p>
+                        @endforelse
 
-                        $reponse = $bdd->query("SELECT * FROM categories WHERE status='1'");
-
-                        // On affiche chaque entrée une à une
-                        while($donnees = $reponse->fetch()){
-                        ?>
-                        <a href="{{URL::route('front_listing_categorie')}}">
-                            <button class="dropdown-item" type="button"><?php echo $donnees['nom_categorie'];?></button>
-                        </a>
-                        <?php
-                        }
-                        ?>
                     </div>
                 </div>
             </div>
