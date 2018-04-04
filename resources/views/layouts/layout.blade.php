@@ -75,7 +75,7 @@ catch (Exception $e)
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 text-center header-link">
                 <div class="panier">
                     <a id="dropdownMenu3" title="Choisir une catégorie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{asset('images/achat.png')}}" alt="Panier">
+                        <img src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
 
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenu3">
