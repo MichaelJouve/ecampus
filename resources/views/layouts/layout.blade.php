@@ -66,13 +66,24 @@ catch (Exception $e)
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-4 col-sm-12 col-xs-12 ">
+            <div class="col-xl-5 col-lg-5 col-md-4 col-sm-12 col-xs-12 ">
                 <form method="get" action="{{URL::route('front_recherche')}}">
                     <input type="text" name="recherche" id="recherche" placeholder="Que recherchez-vous?">
                 </form>
             </div>
+
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 text-center header-link">
-                <a href="Pages/connexion.html" class="btn btn-light" title="Connectez-vous!" data-toggle="modal" data-target="#ModalConnexion">Se connecter</a>
+                <div class="panier">
+                    <a id="dropdownMenu3" title="Choisir une catégorie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{asset('images/achat.png')}}" alt="Panier">
+                    </a>
+
+                    <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenu3">
+                        <p class="divider_panier">Votre panier est vide</p>
+                        <a class="divider" href="{{URL::route('front_panier')}}">Voir le panier</a>
+                    </div>
+                </div>
+                <a href="Pages/connexion.html" class="btn btn-light" title="Connectez-vous!" data-toggle="modal" data-target="#ModalConnexion">Connexion</a>
                 <a href="Pages/inscription.html" class="btn btn-primary" title="Inscrivez-vous!" data-toggle="modal" data-target="#ModalInscription">S'inscrire</a>
             </div>
         </div>
