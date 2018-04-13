@@ -30,13 +30,7 @@
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        @forelse ($categories as $category)
-                            <a href="{{URL::route('front_listing_categorie', ['id'=>$category['id_categorie']])}}">
-                                <button class="dropdown-item" type="button"><?php echo $category['nom_categorie'];?></button>
-                            </a>
-                        @empty
-                            <p>No users</p>
-                        @endforelse
+
 
                     </div>
                 </div>

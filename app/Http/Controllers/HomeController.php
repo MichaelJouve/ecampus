@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+/*
         try {
 // Sous WAMP (Connexion à la base de donnée)
             $bdd = new \PDO('mysql:host=phpmyadmin.test;dbname=' . env('DB_DATABASE') . ';charset=utf8', env('DB_USERNAME'), env('DB_PASSWORD'));
@@ -35,8 +35,8 @@ class HomeController extends Controller
 
 
         $reponse = $bdd->query("SELECT * FROM categories WHERE status='1'");
-        $categories = $reponse->fetchAll();
-        return view('index', ['categories' => $categories]);
+        $categories = $reponse->fetchAll();*/
+        return view('index');
     }
 
     public function cgu()
