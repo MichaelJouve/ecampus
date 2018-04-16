@@ -20,9 +20,6 @@
 Auth::routes();
 
 
-
-
-
 Route::get('/', 'HomeController@index')->name('front_index');
 Route::get('conditions-generales-du-client', 'HomeController@cgu')->name('front_cgu');
 Route::get('aboutus','HomeController@aboutus')->name('front_aboutus');
