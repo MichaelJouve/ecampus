@@ -19,9 +19,6 @@ class CreateCategoriesTable extends Migration
             $table->boolean('status');
         });
 
-        Schema::table('posts',function (Blueprint $table){
-            $table->foreign('category_id')->references('id')->on('categories');
-        });
 
     }
 
