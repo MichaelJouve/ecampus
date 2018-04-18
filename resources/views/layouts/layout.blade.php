@@ -30,19 +30,24 @@
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        @foreach($categories = \App\Category::all() as $categ)
+                            <a href="{{URL::route('listing_categorie')}}/{{$categ->name}}">
+                                <button class="dropdown-item">{{$categ->name}}</button>
+                            </a>
 
-
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="col-xl-5 col-lg-5 col-md-4 col-sm-12 col-xs-12 ">
-                <form method="get" action="{{URL::route('front_recherche')}}">
+                <form method="get" action="{{URL::route('search')}}">
                     <input type="text" name="recherche" id="recherche" placeholder="Que recherchez-vous?">
                 </form>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 text-center header-link">
                 <div class="panier">
-                    <a href="{{URL::route('front_panier')}}" id="dropdownMenu3" title="Choisir une catégorie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="{{URL::route('front_panier')}}" id="dropdownMenu3" title="Choisir une catégorie"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
 

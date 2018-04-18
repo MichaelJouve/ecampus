@@ -1,3 +1,4 @@
+@foreach($posts as $post)
 <div class="col-sm-6 col-md-4">
     <div class="card" style="min-height: 490px; height: 490px; max-height: 490px;">
         <div class="ribbon"><span>(Nom de la catégorie)</span></div>
@@ -16,3 +17,4 @@
         </div>
     </div>
 </div>
+    @endforeach

@@ -21,18 +21,33 @@ Auth::routes();
 
 
 Route::get('/', 'HomeController@index')->name('front_index');
-Route::get('/','fdfdfd')
-Route::get('conditions-generales-du-client', 'HomeController@cgu')->name('front_cgu');
-Route::get('aboutus','HomeController@aboutus')->name('front_aboutus');
-Route::get('contact','HomeController@contact')->name('front_contact');
-Route::get('liste-tutoriel-par-categorie/{id}','HomeController@listing')->name('front_listing_categorie');
-Route::get('liste-all-tutoriel','HomeController@listingall')->name('front_listing_all');
-Route::get('votre-recherche','HomeController@recherche')->name('front_recherche');
 
-Route::get('profil-personnel','IndexController@profil')->name('front_profil');
-Route::get('article-tutoriel','IndexController@article')->name('front_article');
+Route::get('/categorie','PublicationController@index')->name('listing_categorie');
+Route::get('/categorie/{name}','PublicationController@show');
 
-Route::get('configuration-compte-infos','IndexController@configInfos')->name('front-config-infos');
-Route::get('configuration-compte-message', 'IndexController@configMessage')->name('front-config-message');
-Route::get('configuration-compte-preference', 'IndexController@configPref')->name('front-config-preference');
-Route::get('panier', 'IndexController@panier')->name('front_panier');
+Route::get('/tutoriel','PublicationController@listingTuto')->name('front_listing_all');
+Route::get('/tutoriel/ajout', 'PublicationController@create')->middleware('auth');
+Route::get('/tutoriel/{slug}','PublicationController@ ???')->name('front_listing_all');
+
+Route::get('/post','PublicationController@listingPost')->name('front_listing_all');
+Route::get('/post/ajout', 'PublicationController@create')->middleware('auth');
+//Route::get('/post/{slug}','PublicationController@ ???')->name('front_listing_all');
+
+
+Route::get('/recherche','SearchController@index')->name('search');
+
+
+Route::get('/profil','UserController@index')->name('front_profil');
+Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
+Route::get('/profil/message', 'UserController@message')->name('front-config-message');
+Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
+
+
+Route::get('/panier', 'HomeController@panier')->name('front_panier');
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+// todo changer HomeContoller par ContentController (redirect page fix useless)
+Route::get('/cgu', 'ContentController@cgu')->name('front_cgu');
+Route::get('/aboutus','ContentController@aboutus')->name('front_aboutus');
+Route::get('/contact','ContentController@contact')->name("front_contact");

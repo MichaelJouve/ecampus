@@ -6,16 +6,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Page de recherche</h1>
-                    <p> Vous avez effectuer une recherche sur cet élément : <?php echo "<b>".$_GET['recherche']."</b>"; ?></p>
-
+                    <h1>Liste des catégories {e]Campus </h1>
                 </div>
             </div>
         </div>
     </div>
     <div class="container mt-3" id="resultat_recherche">
-        Votre résultat de recherche
-        <h1>Liste des tutoriels et des posts correspondant...</h1>
+        <ul>
+            @foreach($category = \App\Category::all() as $categ)
+                <a href="{{URL::route('listing_categorie')}}/{{$categ->name}}">
+                    <li>{{$categ->name}}</li>
+                </a>
+            @endforeach
+        </ul>
+
     </div>
 
     <!-- FIN DU CONTENU-->
