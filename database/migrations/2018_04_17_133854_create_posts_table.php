@@ -25,6 +25,8 @@ class CreatePostsTable extends Migration
             $table->string('goals');
             $table->string('required');
             $table->timestamps();
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
 
     }

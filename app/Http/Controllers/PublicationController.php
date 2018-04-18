@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -24,9 +25,40 @@ class PublicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createTuto()
     {
-        //
+        return view('addTuto');
+    }
+
+    public function createPost()
+    {
+        return view('addPost');
+    }
+
+    public function storePost(Request $request)
+    {
+        $validateData = $request->validate([
+            'type' => 'required',
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'content' => 'required',
+        ]);
+
+        Post::created($validateData);
+
+        // views
+
+    }
+
+    public function storeTuto(Request $request)
+    {
+        $validateData = $request->validate([
+            'type' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'goals' => 'required',
+        ]);
     }
 
     /**

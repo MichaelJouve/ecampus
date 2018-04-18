@@ -30,7 +30,10 @@ Route::get('/tutoriel/ajout', 'PublicationController@create')->middleware('auth'
 Route::get('/tutoriel/{slug}','PublicationController@ ???')->name('front_listing_all');
 
 Route::get('/post','PublicationController@listingPost')->name('front_listing_all');
-Route::get('/post/ajout', 'PublicationController@create')->middleware('auth');
+Route::get('/post/ajout', 'PublicationController@createPost')->middleware('auth');
+Route::get('/tuto/ajout', 'PublicationController@createTuto')->middleware('auth');
+Route::post('/tuto/post', 'PublicationController@storePost');
+Route::post('/post/post', 'PublicationController@storeTuto');
 //Route::get('/post/{slug}','PublicationController@ ???')->name('front_listing_all');
 
 

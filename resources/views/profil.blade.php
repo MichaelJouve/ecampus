@@ -49,12 +49,13 @@
 
                 <h4 class="text-center font-weight-light">Ajouter un nouveau post ? Allez y !</h4>
                 <div id="accordion">
-                    <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post" aria-expanded="false" aria-controls="formulaire_ajout_post">
+                    <a href="{{URL::route('/post/ajout')}}"><button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post" aria-expanded="false" aria-controls="formulaire_ajout_post">
                         Publiez un Post
-                    </button>
-                    <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto" aria-expanded="false" aria-controls="formulaire_ajout_tuto">
+                    </button></a>
+                    <a href="{{URL::route('/post/tuto')}}"><button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto" aria-expanded="false" aria-controls="formulaire_ajout_tuto">
                         Publier un Tutoriel
-                    </button>
+                    </button></a>
+
 
                     @include('components.Membres.ajoutpublication')
                 </div>
