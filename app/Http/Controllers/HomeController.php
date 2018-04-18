@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -24,8 +23,41 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $uses = User::all();
 
-        return view('index',['uses'=> $uses]);
+        return view('index');
     }
+
+    public function cgu()
+    {
+        return view('cgu');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function aboutus()
+    {
+        return view('aboutus');
+    }
+
+    public function listing($id)
+    {
+        //todo : add query to get all post
+        return view('listing');
+    }
+
+    public function listingall()
+    {
+        return view('listingall');
+    }
+
+    public function recherche()
+    {
+
+        return view('recherche');
+    }
+
+
 }
