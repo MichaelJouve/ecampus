@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Publication;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -14,9 +15,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-
-        return view('category', ['categories' => $categories]);
+       //
     }
 
     /**
@@ -49,14 +48,24 @@ class PublicationController extends Controller
     public function show($name)
     {
 
-        $category = Category::where('name', $name)->first();
-        if ($category) {
-            return view('listing', ['category' => $category]);
-        } else {
-            abort(404);
-        }
+        $category = Category::with('tutorial, post')->where('name', $name)->firstOrFail();
+
+
+        return view('listing', ['category' => $category]);
+
     }
 
+    public function showTutorial($slug)
+    {
+
+        $tuto = Publication::where('slug',$slug)->first();
+        if ($tuto) {
+            return view('article', ['tuto' => $tuto]);
+        }
+        else{
+            return view('index');
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

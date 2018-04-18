@@ -27,42 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         $uses = User::all();
-        $tutos = Publication::all()->where('type','=','tutorial');
-        $posts = Publication::all()->where('type','=','post');
+        $tutos = Publication::tuto()->latest()->limit(6)->get();
+        $posts = Publication::where('type','=','post')->latest()->limit(4)->get();
 
         return view('index', ['uses' => $uses, 'tutos' => $tutos, 'posts' => $posts]);
-    }
-
-    public function cgu()
-    {
-        return view('cgu');
-    }
-
-    public function contact()
-    {
-        return view('contact');
-    }
-
-    public function aboutus()
-    {
-        return view('aboutus');
-    }
-
-    public function listing($id)
-    {
-        //todo : add query to get all post
-        return view('listing');
-    }
-
-    public function listingall()
-    {
-        return view('listingall');
-    }
-
-    public function recherche()
-    {
-
-        return view('recherche');
     }
 
 

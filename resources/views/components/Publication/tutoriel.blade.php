@@ -7,14 +7,14 @@
             <div class="card-body">
                 <!--Social shares button-->
                 <div class="row">
-                    <h3 class="card-title col-9"> {{$tuto->title}} </h3>
-                    <span class="card-title col-3" style="font-size: 1em;">{{$tuto->price}}€</span>
+                    <h3 class="card-title col-8"> {{$tuto->title}} </h3>
+                    <span class="card-title col-4 text-right" style="font-size: 1em;">{{$tuto->price}}€</span>
                 </div>
                 <p class="card-text">{{$tuto->description}}</p>
             </div>
             <div class="card-footer">
                 <span class="float-left" (Prenom-user) <br>{{$tuto->created_at}}</span>
-                <a href="#" class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                <a href="tutoriel/{{$tuto->slug}}" class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>

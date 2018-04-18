@@ -6,10 +6,10 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-8">
-                    <h1>--Titre du tutoriel--</h1>
-                    <p>--Description du tutoriel-- </p>
-                    <p class="option_article"> <b>--Categorie du tutoriel--</b> - (Note tuto sur 10) - <b>(Nb</b> participants en cours...)</p>
-                    <p class="auteur_article">Créé par --Nom User-- le --Date d'ajout-- - Derniére mise à jour le --Date MAJ--</p>
+                    <h1>{{$tuto->title}}</h1>
+                    <p>{{$tuto->description}}</p>
+                    <p class="option_article"> <b>{{$tuto->Category->name}}</b> - (Note tuto sur 10) - <b>(Nb</b> participants en cours...)</p>
+                    <p class="auteur_article">Créé par --Nom User-- le {{$tuto->created_at}} - Derniére mise à jour le --Date MAJ--</p>
                 </div>
                 <!-- Bandeau d'achat-->
                 <div class="col-md-4">
@@ -30,19 +30,19 @@
                     <div class="row text-center">
 
                         <ul class="col-md-6">
-                            <li> <i class="fas fa-check"></i> --Objectifs tutoriel--</li>
+                            <li> <i class="fas fa-check"></i> {{$tuto->goals}}</li>
                         </ul>
                     </div>
                 </div>
                 <div id="connaissance_tutoriel">
                     <h3>Connaissances obligatoires</h3>
                     <ul>
-                        <li>--Prerequis tutoriel--</li>
+                        <li>{{$tuto->required}}</li>
                     </ul>
                 </div>
                 <div id="descriptif_tutoriel">
-                    <h3>Descriptif du tutoriel :-- Titre du tutoriel--</h3>
-                    <p>-- Description du tutoriel--</p>
+                    <h3>Descriptif du tutoriel :{{$tuto->title}}</h3>
+                    <p>{{$tuto->description}}</p>
                 </div>
                 <div id="bandeau_horizontal">
                     <img class="img-fluid text-center" style="border:3px solid #e5e5e5; border-radius:2px; cursor: pointer;" src="{{asset('images/bandeau_horizontal.gif')}}" alt="Pub Horizontal">
@@ -59,7 +59,7 @@
                             <div class="col-9">
                                 <div class="card-body">
                                     <div class="card-title"><a style="text-decoration: none; color:#007791;" href="#">--Nom et prenom User--</a><span style="font-size: 1.1em;">(Statut d'USERS)</span></div>
-                                    <p class="card-text">--Description tutoriel--</p>
+                                    <p class="card-text">--Description utilisateur--</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
             </div>
             <!-- Descriptif tutoriel bandeau droite-->
             <div class="col-md-4" id="descriptif_tutoriel_bandeau_droite">
-                <p class="text-center" id="prix"> <i class="fas fa-shopping-cart"></i> -- Prix tuto --€</p>
+                <p class="text-center" id="prix"> <i class="fas fa-shopping-cart"></i> {{$tuto->price}}€</p>
                 <div id="achat_article">
                     <a href="#">Acheter le tutoriel</a>
                 </div>
