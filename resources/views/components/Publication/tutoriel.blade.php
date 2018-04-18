@@ -12,7 +12,7 @@
         </div>
         <div class="card-footer">
             <span class="float-left"(Prenom-user) <br>(Date d'ajout)</span>
-            <a href="{{URL::route('front_article')}}" class=" float-right">Lire  <i class="fa fa-chevron-right"></i></a>
+            <a href="#" class=" float-right">Lire  <i class="fa fa-chevron-right"></i></a>
         </div>
     </div>
 </div>
