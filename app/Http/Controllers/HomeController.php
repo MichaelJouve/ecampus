@@ -47,7 +47,7 @@ class HomeController extends Controller
 
     public function listing($id)
     {
-//todo : add query to get all post
+        //todo : add query to get all post
         return view('listing');
     }
 
