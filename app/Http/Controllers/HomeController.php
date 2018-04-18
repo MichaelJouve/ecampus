@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Publication;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         $uses = User::all();
+        $tutos = Publication::all()->where('type','=','tutorial');
+        $posts = Publication::all()->where('type','=','post');
 
-        return view('index', ['uses' => $uses]);
+        return view('index', ['uses' => $uses, 'tutos' => $tutos, 'posts' => $posts]);
     }
 
     public function cgu()

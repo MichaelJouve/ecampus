@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
+class Publication extends Model
 {
     use Sluggable;
 
@@ -21,5 +21,10 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category','category_id');
     }
 }
