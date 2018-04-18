@@ -34,7 +34,7 @@
                     <h1>Derniers tutoriels de nos formateurs..</h1>
                 </div>
                 <div class="row justify-content-center">
-                    @include('components.Publication.tutoriel')
+                    {{--@include('components.Publication.tutoriel')--}}
 
                 </div>
 
@@ -48,7 +48,12 @@
             <div class="col-md-2 bandeau-pub text-center  animated bounceInRight">
                 <div class="JsonConnexion">
                     <p class="title">Derniers Membres</p>
-                    @include('components.Membres.lastmembre')
+                    @foreach($uses as $user)
+                        <p>
+                            <img style="border:1px solid #007791;" class="img-fluid" src="images/Users/{{$user->image}}" alt="Image de profil"><br>
+                            <a style="text-decoration: none; font-size: 0.9em; color:#007791;" href="{{URL::route('front_profil')}}"> {{$user->name}}&nbsp;{{$user->firstname}}</a><br/>
+                        </p>
+                    @endforeach
                 </div>
                 <img class="img-fluid" style="width: 100%; border:3px solid #e5e5e5; border-radius: 2px; cursor:pointer; " src="{{asset('images/bandeau_vertical.gif')}}" class="Bandeau pub">
             </div>
