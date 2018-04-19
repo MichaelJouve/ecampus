@@ -64,7 +64,11 @@
                     <a href="{{URL::route('register')}}" class="btn btn-primary" title="Inscrivez-vous!">S'inscrire</a>
                 @else
                     <a href="{{URL::route('front_profil')}}" class="btn btn-primary" title="Mon Profil">Profil</a>
-                    <a href="{{URL::route('logout')}}" class="btn btn-light" title="Deconnexion">Deconnexion</a>
+                    <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-light" title="Deconnexion">Deconnexion</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @endguest
             </div>
         </div>
