@@ -94,18 +94,20 @@ class UserController extends Controller
     // infos message preference
     public function infos()
     {
-
-        return view('configInfos');
+        $user = Auth::user();
+        return view('configInfos', ['user' => $user]);
 
     }
 
     public function message()
     {
-        return view('configMessage');
+        $user = Auth::user();
+        return view('configMessage', ['user' => $user]);
     }
 
     public function preference()
     {
-        return view('configPref');
+        $user = Auth::user();
+        return view('configPref', ['user' => $user]);
     }
 }
