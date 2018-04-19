@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-info" data-toggle="modal" data-target="#description">
+                                    <button class="btn btn-info">
                                         Modifier
                                     </button>
                                 </div>
