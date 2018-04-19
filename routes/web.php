@@ -25,9 +25,9 @@ Route::get('/', 'HomeController@index')->name('front_index');
 Route::get('/categorie','PublicationController@index')->name('listing_categorie');
 Route::get('/categorie/{name}','PublicationController@show');
 
-Route::get('/tutoriel','PublicationController@listingTuto')->name('front_listing_all');
+Route::get('/tutoriel/','PublicationController@allTutorials')->name('listing_all');
 Route::get('/tutoriel/ajout', 'PublicationController@create')->middleware('auth');
-Route::get('/tutoriel/{slug}','PublicationController@ ???')->name('front_listing_all');
+Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front_tutorial');
 
 Route::get('/post','PublicationController@listingPost')->name('front_listing_all');
 Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
@@ -37,7 +37,7 @@ Route::post('/postPost', 'PublicationController@storeTuto');
 //Route::get('/post/{slug}','PublicationController@ ???')->name('front_listing_all');
 
 
-Route::get('/recherche','SearchController@index')->name('search');
+Route::get('/recherche/','SearchController@index')->name('search');
 
 
 Route::get('/profil','UserController@index')->name('front_profil');

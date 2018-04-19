@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Publication;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -15,8 +16,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-
+        $categories = Category::with('post')->get();
         return view('category', ['categories' => $categories]);
     }
 
@@ -80,13 +80,28 @@ class PublicationController extends Controller
      */
     public function show($name)
     {
+        $category = Category::with('tuto')->where('name', $name)->firstOrFail();
 
-        $category = Category::where('name', $name)->first();
-        if ($category) {
-            return view('listing', ['category' => $category]);
-        } else {
-            abort(404);
-        }
+        $bestTutorial = Category::with('tuto')->where('name', $name)->first();
+
+        $bestTutorials = Category::with('tuto')->where('name', $name)->firstOrFail();
+
+        return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestTutorials' => $bestTutorials]);
+
+    }
+
+    public function showTutorial($slug)
+    {
+        $tuto = Publication::where('slug',$slug)->firstOrFail();
+
+        return view('article', ['tuto' => $tuto]);
+    }
+
+    public function allTutorials(){
+
+        $groupTutorials = Publication::where('type','tutorial')->get();
+
+        return view('listingall', ['groupTutorials' => $groupTutorials]);
     }
 
     /**

@@ -34,8 +34,7 @@
                     <h1>Derniers tutoriels de nos formateurs..</h1>
                 </div>
                 <div class="row justify-content-center">
-                    {{--@include('components.Publication.tutoriel')--}}
-
+                    @include('components.Publication.tutoriel')
                 </div>
 
                 <div class="col-md-12 bandeau-titre">
@@ -50,7 +49,7 @@
                     <p class="title">Derniers Membres</p>
                     @foreach($uses as $user)
                         <p>
-                            <img style="border:1px solid #007791;" class="img-fluid" src="images/Users/{{$user->image_profil}}" alt="Image de profil"><br>
+                            <img style="border:1px solid #007791;" class="img-fluid" src="{{asset('images/Users/default.png')}}" alt="Image de profil"><br>
                             <a style="text-decoration: none; font-size: 0.9em; color:#007791;" href="{{URL::route('front_profil')}}"> {{$user->name}}&nbsp;{{$user->firstname}}</a><br/>
                         </p>
                     @endforeach

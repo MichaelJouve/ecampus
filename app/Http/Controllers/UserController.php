@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('profil',['user'=> $user]);
+        return view('profil', ['user' => $user]);
     }
 
     /**
