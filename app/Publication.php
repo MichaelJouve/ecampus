@@ -9,6 +9,8 @@ class Publication extends Model
 {
     use Sluggable;
 
+    protected $fillable = ['type', 'image', 'price', 'title', 'description ', 'content', 'goals', 'required', 'category_id'];
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -27,6 +29,5 @@ class Publication extends Model
     {
         return $this->belongsTo('App\Category');
     }
-
 
 }
