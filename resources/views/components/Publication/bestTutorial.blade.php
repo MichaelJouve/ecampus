@@ -14,7 +14,7 @@
             <img src="{{ asset('images/Publications/5599.jpg') }}" alt="Image du cour" class="img-fluid">
         </div>
         <div class="col-md-12">
-            <a href="#">Découvrez le cour </a>
+            <a href="/tutoriel/{{ $BestTuto->slug }}">Découvrez le cour </a>
         </div>
     </div>
 </div>
