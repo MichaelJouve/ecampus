@@ -27,4 +27,6 @@ class Publication extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+
 }

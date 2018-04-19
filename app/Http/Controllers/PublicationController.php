@@ -15,7 +15,8 @@ class PublicationController extends Controller
      */
     public function index()
     {
-       //
+        $categories = Category::with('post')->get();
+        return view('category', ['categories' => $categories]);
     }
 
     /**
@@ -47,25 +48,30 @@ class PublicationController extends Controller
      */
     public function show($name)
     {
+        $category = Category::with('tuto')->where('name', $name)->firstOrFail();
 
-        $category = Category::with('tutorial, post')->where('name', $name)->firstOrFail();
+        $bestTutorial = Category::with('tuto')->where('name', $name)->first();
 
+        $bestTutorials = Category::with('tuto')->where('name', $name)->firstOrFail();
 
-        return view('listing', ['category' => $category]);
+        return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestTutorials' => $bestTutorials]);
 
     }
 
     public function showTutorial($slug)
     {
+        $tuto = Publication::where('slug',$slug)->firstOrFail();
 
-        $tuto = Publication::where('slug',$slug)->first();
-        if ($tuto) {
-            return view('article', ['tuto' => $tuto]);
-        }
-        else{
-            return view('index');
-        }
+        return view('article', ['tuto' => $tuto]);
     }
+
+    public function allTutorials(){
+
+        $groupTutorials = Publication::where('type','tutorial')->get();
+
+        return view('listingall', ['groupTutorials' => $groupTutorials]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

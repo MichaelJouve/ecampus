@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $uses = User::all();
-        $tutos = Publication::tuto()->latest()->limit(6)->get();
+        $tutos = Publication::where('type','=','tutorial')->latest()->limit(6)->get();
         $posts = Publication::where('type','=','post')->latest()->limit(4)->get();
 
         return view('index', ['uses' => $uses, 'tutos' => $tutos, 'posts' => $posts]);

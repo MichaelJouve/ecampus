@@ -14,7 +14,7 @@
                 <div class="col-md 12">
                     <ul class="list-inline">
                         <a href="{{URL::route('listing_categorie')}}"><li class="list-inline-item active" id="select_cour">Sélection</li></a>
-                        <a href="{{URL::route('front_listing_all')}}"><li class="list-inline-item" id="all_cour">Tous les tutoriels</li></a>
+                        <a href="{{URL::route('listing_all')}}"><li class="list-inline-item" id="all_cour">Tous les tutoriels</li></a>
                     </ul>
                 </div>
             </div>
@@ -38,7 +38,10 @@
                     </div>
 
                     <!-- On place nos cards -->
-                --Best tutos categorie--
+                    <div class="row">
+                        @include('components.Publication.bestTutorials')
+                    </div>
+
                 <!-- Derniers Posts-->
                     <div class="col-md-10 best-post">
                         <p>Derniers posts de la catégorie : <b>{{ $category->name }}</b></p>
@@ -48,8 +51,9 @@
                     </div>
 
                     <!-- On place nos cards -->
-                -- Last tutos categorie --
-
+                    <div class="row">
+                        @include('components.Publication.lastTutorials')
+                    </div>
 
                 <!-- FIN placement des posts -->
                 </div>
