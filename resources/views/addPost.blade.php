@@ -1,23 +1,43 @@
-<div id="formulaire_ajout_post" class="collapse" data-parent="#accordion">
+@extends('layouts.layout')
 
-    <form method="post" name="post_POST" id="post_POST" action="">
-        <input type="hidden" name="create_post" value="">
-        <i class="fab fa-stack-exchange" style="font-size: 3em; color:#fff;"></i>
-        <p class="large_title">Nouveau Post</p>
-        <p class="minuscule_title">Veuillez ajouter un nouveau post à votre profil.</p>
-        <hr>
-        <div class="input-group mb-3">
-            <select class="custom-select" name="selecteur_post" id="selecteur_post">
-                <option selected disabled>Choisir une categorie.. </option>
+@section('contenu')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Nouveau Post</div>
 
-            </select>
+                    <div class="card-body">
+                        <form method="POST" action="{{URL::route('storePost')}}">
+                            @csrf
+                            <div class="form-group row">
+                                <select class="custom-select" name="category_id" id="selecteur_post">
+                                    <option selected disabled>Choisir une categorie..</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <input type="text" name="title" id="title" placeholder="Titre du post" nb_max="50"
+                                       title="Maximum 50 caractères">
+                            </div>
+
+                            <div class="form-group row">
+                                <textarea name="content" ></textarea>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="reset"  class="btn btn-danger" value="Effacer">Effacer</button>
+                                    <button type="submit" class="btn btn-primary" value="Enregistrer">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="text" name="titre" id="titre_post" placeholder="Titre du post" nb_max="50" title="Maximum 50 caractères">
-        <label class="add_textarea text-left">
-            Ajouter un contenu pour votre post
-        </label>
-        <textarea name="contenu_post" id="summernote_post"></textarea>
-        <input class="btn btn-danger" type="reset" value="Effacer">
-        <input type="submit" id="submit_post" value="Valider le post" class="btn btn-primary">
-    </form>
-</div>
+    </div>
+@endsection

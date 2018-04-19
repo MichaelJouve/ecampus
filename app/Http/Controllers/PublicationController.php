@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Post;
 use App\Publication;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,27 +32,29 @@ class PublicationController extends Controller
      */
     public function createTuto()
     {
-        return view('addTuto');
+        $categories = Category::all();
+        return view('addTuto', ['categories' => $categories]);
     }
 
     public function createPost()
     {
-        return view('addPost');
+        $categories = Category::all();
+        return view('addPost', ['categories' => $categories]);
     }
 
     public function storePost(Request $request)
     {
         $validateData = $request->validate([
-            'type' => 'required',
+            'category_id' => 'required|numeric',
             'title' => 'required|max:255',
-            'description' => 'required',
             'content' => 'required',
         ]);
 
-        Post::created($validateData);
+        return Publication::create($validateData);
 
-        // views
-
+//        $post = new Publication($validateData);
+//        $post->save();
+//        return view('profil');
     }
 
     public function storeTuto(Request $request)

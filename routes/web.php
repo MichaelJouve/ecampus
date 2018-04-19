@@ -32,8 +32,10 @@ Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front
 Route::get('/post','PublicationController@listingPost')->name('front_listing_all');
 Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
 Route::get('/tutoAjout', 'PublicationController@createTuto')->name('tutoAjout');
-Route::post('/tutoPost', 'PublicationController@storePost');
-Route::post('/postPost', 'PublicationController@storeTuto');
+Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
+Route::get('/tutoAjout', 'PublicationController@createTuto')->name('tutoAjout');
+Route::post('/postPost', 'PublicationController@storePost')->name('storePost');
+Route::post('/tutoPost', 'PublicationController@storeTuto')->name('storeTuto');
 //Route::get('/post/{slug}','PublicationController@ ???')->name('front_listing_all');
 
 
