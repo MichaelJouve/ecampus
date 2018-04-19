@@ -6,7 +6,7 @@
     <div class="container animated bounce content">
         <div class="row">
             <div class="col-md-3" id="profil_personnel_infos">
-                <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;" src="{{$user->image}}" alt="Image de profil">
+                <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;" src="{{asset('images/Users')}}/{{$user->image}}" alt="Image de profil">
 
                 <div id="social_profil_infos" class="mt-3">
                     <p class="text-center">
