@@ -6,7 +6,7 @@
     <div class="container animated bounce content">
         <div class="row">
             <div class="col-md-3" id="profil_personnel_infos">
-                <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;" src="{{asset('images/Users/default.png')}}" alt="Image de profil">
+                <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;" src="{{asset('images/Users')}}/{{$user->image_profil}}" alt="Image de profil">
 
                 <div id="social_profil_infos" class="mt-3">
                     <p class="text-center">
@@ -19,7 +19,7 @@
                 </div>
                 <div id="description_profil_infos">
                     <h4 class="font-weight-light">Description</h4>
-                    <p>(Déscription de la publication)</p>
+                    <p>{{$user->description}}</p>
                 </div>
                 <div id="reputation_profil_infos">
                     <h4>Statistiques membre</h4>
@@ -34,11 +34,10 @@
 
 
                     <p>
-                        <strong> Identité </strong>: (Nom + Prenom utilisateur)<br />
-                        <strong> Date de naissance</strong>: (Date d'anniversaire)<br />
-                        <strong> Email </strong>: (Email utilisateur)<br />
-                        <strong> Date d'inscription</strong> : (Date inscription utilisateur)<br />
-
+                        <strong> Identité </strong>: {{ucfirst($user->firstname)}} {{ucfirst($user->name)}}<br />
+                        <strong> Date de naissance</strong>: {{$user->birthdate}}<br />
+                        <strong> Email </strong>: {{$user->email}}<br />
+                        <strong> Date d'inscription</strong> : {{$user->created_at->format('d / m / Y')}}<br />
                     </p>
 
 
@@ -49,14 +48,12 @@
 
                 <h4 class="text-center font-weight-light">Ajouter un nouveau post ? Allez y !</h4>
                 <div id="accordion">
-                    <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post" aria-expanded="false" aria-controls="formulaire_ajout_post">
+                    <a href="{{URL::route('postAjout')}}"><button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post" aria-expanded="false" aria-controls="formulaire_ajout_post">
                         Publiez un Post
-                    </button>
-                    <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto" aria-expanded="false" aria-controls="formulaire_ajout_tuto">
+                    </button></a>
+                    <a href="{{URL::route('tutoAjout')}}"><button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto" aria-expanded="false" aria-controls="formulaire_ajout_tuto">
                         Publier un Tutoriel
-                    </button>
-
-                    @include('components.Membres.ajoutpublication')
+                    </button></a>
                 </div>
 
 

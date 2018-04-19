@@ -62,5 +62,10 @@ class HomeController extends Controller
         return view('recherche');
     }
 
+    public function panier()
+    {
+        return view('panier');
+    }
+
 
 }
