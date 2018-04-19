@@ -44,6 +44,7 @@ Route::get('/profil','UserController@index')->name('front_profil');
 Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::get('/profil/message', 'UserController@message')->name('front-config-message');
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
+Route::get('/profil/{firstname}', 'UserController@show')->name('user_profil');
 
 
 Route::get('/panier', 'HomeController@panier')->name('front_panier');

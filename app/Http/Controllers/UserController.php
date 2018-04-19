@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profil;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -52,9 +53,11 @@ class UserController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($firstname)
     {
-        //
+       $user = User::where('firstname', $firstname)->firstOrFail();
+       return view('profil', ['user' => $user]);
+
     }
 
     /**
