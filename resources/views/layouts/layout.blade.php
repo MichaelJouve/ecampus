@@ -63,13 +63,37 @@
                     <a href="{{URL::route('login')}}" class="btn btn-light" title="Connectez-vous!">Connexion</a>
                     <a href="{{URL::route('register')}}" class="btn btn-primary" title="Inscrivez-vous!">S'inscrire</a>
                 @else
-                    <a href="{{URL::route('front_profil')}}" class="btn btn-primary" title="Mon Profil">Profil</a>
-                    <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-light" title="Deconnexion">Deconnexion</a>
+                    <div class="dropdown">
+                        <div class="btn btn-primary" id="dropdownMenuProfil" title="Profil"
+                             data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
+                             aria-expanded="false">
+                            <span>Profil</span>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
+                            <a href="{{URL::route('front_profil')}}" title="Mon Profil">
+                                <button class="dropdown-item">Profil</button>
+                            </a>
+                            <a href="{{URL::route('front-config-infos')}}">
+                                <button class="dropdown-item">Infos</button>
+                            </a>
+                            <a href="{{URL::route('front-config-message')}}">
+                                <button class="dropdown-item">Messages</button>
+                            </a>
+                            <a href="{{URL::route('front-config-preference')}}">
+                                <button class="dropdown-item">Preferences</button>
+                            </a>
+                        </div>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                @endguest
+                        <a href="{{route('logout')}}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           class="btn btn-light" title="Deconnexion">Deconnexion</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        @endguest
+                    </div>
+
             </div>
         </div>
     </div>
