@@ -68,16 +68,30 @@ class UserController extends Controller
         //
     }
 
+
+
+
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
+     * todo coinfirmation de mot de passe pour changement =)
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'string|max:50',
+            'firstname' => 'string|max:50',
+            'email' => 'string|email|max:255',
+            'paypal' => 'string|max:200',
+            'birthdate' => 'date',
+        ]);
+        Auth::user()->update($validateData);
+
+        $user = Auth::user();
+        return view('configInfos', ['user' => $user]);
     }
 
     /**
