@@ -44,6 +44,7 @@ Route::get('/recherche/','SearchController@index')->name('search');
 
 Route::get('/profil','UserController@index')->name('front_profil');
 Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
+Route::post('/profil/infos/update','UserController@update')->name('update_info');
 Route::get('/profil/message', 'UserController@message')->name('front-config-message');
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
 Route::get('/profil/{firstname}', 'UserController@show')->name('user_profil');
