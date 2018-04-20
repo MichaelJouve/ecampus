@@ -61,41 +61,41 @@
                 </div>
             </div>
 
-                @guest
-                    <a href="{{URL::route('login')}}" class="btn btn-light" title="Connectez-vous!">Connexion</a>
-                    <a href="{{URL::route('register')}}" class="btn btn-primary" title="Inscrivez-vous!">S'inscrire</a>
-                @else
-                    <div class="dropdown">
+            @guest
+                <a href="{{URL::route('login')}}" class="btn btn-light" title="Connectez-vous!">Connexion</a>
+                <a href="{{URL::route('register')}}" class="btn btn-primary" title="Inscrivez-vous!">S'inscrire</a>
+            @else
+                <div class="dropdown">
 
-                        <div class="btn btn-primary" id="dropdownMenuProfil" title="Profil"
-                             data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
-                             aria-expanded="false">
-                            <span>Profil</span>
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                            <a href="{{URL::route('front_profil')}}" title="Mon Profil">
-                                <button class="dropdown-item">Profil</button>
-                            </a>
-                            <a href="{{URL::route('front-config-infos')}}">
-                                <button class="dropdown-item">Infos</button>
-                            </a>
-                            <a href="{{URL::route('front-config-message')}}">
-                                <button class="dropdown-item">Messages</button>
-                            </a>
-                            <a href="{{URL::route('front-config-preference')}}">
-                                <button class="dropdown-item">Preferences</button>
-                            </a>
-                        </div>
-
-                        <a href="{{route('logout')}}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                           class="btn btn-light" title="Deconnexion">Deconnexion</a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                    <div class="btn btn-primary" id="dropdownMenuProfil" title="Profil"
+                         data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
+                         aria-expanded="false">
+                        <span>Profil</span>
                     </div>
-                @endguest
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
+                        <a href="{{URL::route('front_profil')}}" title="Mon Profil">
+                            <button class="dropdown-item">Profil</button>
+                        </a>
+                        <a href="{{URL::route('front-config-infos')}}">
+                            <button class="dropdown-item">Infos</button>
+                        </a>
+                        <a href="{{URL::route('front-config-message')}}">
+                            <button class="dropdown-item">Messages</button>
+                        </a>
+                        <a href="{{URL::route('front-config-preference')}}">
+                            <button class="dropdown-item">Preferences</button>
+                        </a>
+                    </div>
+
+                    <a href="{{route('logout')}}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                       class="btn btn-light" title="Deconnexion">Deconnexion</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            @endguest
 
         </div>
     </div>
@@ -113,14 +113,15 @@
                     aujourd’hui toutes les entreprises !</p>
             </div>
             <div class="col-md-4" id="Ecampus_start">
-                <p class="title-footer">Nos derniers articles ..</p>
-                <a href="#">Initiation CSS</a>
-                <br>
-                <a href="#">Initiation HTML</a>
-                <br>
-                <a href="#">Initiation JAVASCRIPT</a>
-                <br>
-                <a href="#">Initiation PHP</a>
+                <p class="title-footer">Nos derniers articles</p>
+                <!-- todo mettre en place l'url route direction les posts-->
+                @forelse($posts = App\Publication::all()->sortByDesc('created_ad')->take(5) as $post)
+                    <a href="">{{$post->title}}</a>
+                    <br>
+                @empty
+                    <p>Vide</p>
+                    <br>
+                @endforelse
             </div>
             <div class="col-md-4" id="Ecampus_start">
                 <p class="title-footer">Contact</p>
@@ -135,66 +136,6 @@
 </footer>
 
 <!-- SCRIPTS -->
-
-
-<!-- *********************************MODAL CONNEXION************************************************* -->
-<div class="modal fade animated rotateIn" id="ModalConnexion" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Rejoingez l'équipe {e}Campus !</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- FORMULAIRE DE CONNEXION-->
-                <form class="col-sm-12" method="POST" action="Pages/mes_fonctions.php">
-                    <input type="email" id="email" name="email" placeholder="Adresse email">
-                    <input type="password" id="password" name="password" placeholder="Mot de passe">
-                    <input type="submit" id="submit_login" name="submit_login" value="Se connecter">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <p class="pModalfooter">Vous avez oublié votre mot de passe ?</p>
-                <a href="#"><img id="imgcle" src="{{asset('images/passwordforget.png')}}" alt="passwordforget.png"
-                                 width=30></a>
-            </div>
-            <div class="modal-footer">
-                <p class="pModalfooter">Vous n'avez pas de compte ? <a href="#" data-dismiss="modal" data-toggle="modal"
-                                                                       data-target="#ModalInscription">Inscrivez-vous
-                        ! </a></p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- *************************************************************************************************** -->
-
-<!-- *********************************MODAL INSCRIPTION************************************************* -->
-<div class="modal fade animated rotateIn" id="ModalInscription" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Inscrivez-vous et commencez l'apprentissage !</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- FORMULAIRE D'INSCRIPTION-->
-
-                <!-- FIN DE FORMULAIRE DINSCRIPTION -->
-            </div>
-            <div class="modal-footer">
-                <p>Vous avez déja un compte ? <a href="#" data-dismiss="modal" data-toggle="modal"
-                                                 data-target="#ModalConnexion">Connectez-vous </a></p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- FIN DE MODAL DINSCRIPTION-->
 
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>

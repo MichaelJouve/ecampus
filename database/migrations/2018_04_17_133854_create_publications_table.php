@@ -27,6 +27,8 @@ class CreatePublicationsTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
     }

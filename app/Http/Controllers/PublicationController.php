@@ -6,6 +6,7 @@ use App\Category;
 use App\Publication;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -50,11 +51,11 @@ class PublicationController extends Controller
             'content' => 'required',
         ]);
 
-        return Publication::create($validateData);
-
+        Publication::create($validateData);
+        $user = Auth::user();
 //        $post = new Publication($validateData);
 //        $post->save();
-//        return view('profil');
+        return view('profil',['user'=>$user]);
     }
 
     public function storeTuto(Request $request)
