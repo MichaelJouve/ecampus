@@ -11,7 +11,7 @@
                 @auth
                     <a href="{{route('listing_categorie')}}" id="link_caroussel"><button class="btn btn-primary">Commencez l'exploration !</button></a>
                 @else
-                    <a href="{{route('login')}}" id="link_caroussel">Commencez l'exploration !</a>
+                    <a href="{{route('login')}}" id="link_caroussel"><button class="btn btn-primary">Commencez l'exploration !</button></a>
                 @endauth
             </div>
         </div>
