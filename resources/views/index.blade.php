@@ -14,14 +14,14 @@
 
                 <!-- Entete de la catégorie-->
                 <div class="col-md-12 ">
-                    <h1>Derniers tutoriels de nos formateurs..</h1>
+                    <h5><b>Derniers tutoriels de nos formateurs:</b></h5>
                 </div>
                 <div class="row justify-content-center">
                     @include('components.Publication.tutoriel')
                 </div>
 
                 <div class="col-md-12 ">
-                    <h1>Derniers posts de nos utilisateurs..</h1>
+                    <h5><b>Derniers posts de nos utilisateurs:</b></h5>
                 </div>
                 <div class="row justify-content-center">
                     @include('components.Publication.post')
@@ -36,15 +36,15 @@
                                 <a class="btn btn-light" href="/profil/{{ $user->firstname }}">
                                     <img class=" card-img-top img-fluid" src="{{asset('images/Users/default.png')}}"
                                          alt="Image de profil"><br>
-                                {{ucfirst(strtolower($user->firstname))}}
+                                    {{ucfirst(strtolower($user->firstname))}}
                                 </a>
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <img class="img-fluid"
-                     style="width: 100%; border:3px solid #e5e5e5; border-radius: 2px; cursor:pointer; "
-                     src="{{asset('images/bandeau_vertical.gif')}}" class="Bandeau pub">
+                <div class="border border-light rounded">
+                    <img class="img-fluid" style="width: 100%" src="{{asset('images/bandeau_vertical.gif')}}">
+                </div>
             </div>
         </div>
     </div>

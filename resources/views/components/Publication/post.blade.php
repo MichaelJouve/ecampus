@@ -16,9 +16,8 @@
         </div>
         <div class="card-footer text-right">
             <span class="float-left">Ecrit le :{{$post->created_at}}</span>
-            <a href="#" class="btn-light float-right">Voir <i class="fa fa-chevron-right"></i></a>
+            <a href="#" class="btn btn-light ">Voir <i class="fa fa-chevron-right"></i></a>
         </div>
     </div>
-
 
 @endforeach
