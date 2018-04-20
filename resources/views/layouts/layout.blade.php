@@ -13,11 +13,11 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{URL::asset('images/favicon.ico')}}"/>
-    <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
 
 </head>
 <body>
-<header>
+<header class="p-3">
     <div class="container">
         <div class="row align-items-center ">
             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 text-center logo-image">
@@ -28,14 +28,14 @@
             </div>
             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12 text-center">
                 <div class="dropdown">
-                    <button class="btn btn-secondary" type="button" id="dropdownMenu2" title="Choisir une catégorie"
+                    <button class="btn btn-info" type="button" id="dropdownMenu2" title="Choisir une catégorie"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-list"></i>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <div class="dropdown-menu " aria-labelledby="dropdownMenu2">
                         @foreach($categories = \App\Category::all() as $category)
-                            <a href="{{URL::route('listing_categorie')}}/{{$category->name}}">
-                                <button class="dropdown-item">{{$category->name}}</button>
+                            <a class="dropdown-item" href="{{URL::route('listing_categorie')}}/{{$category->name}}">
+                                {{$category->name}}
                             </a>
                         @endforeach
                     </div>
@@ -43,14 +43,15 @@
             </div>
             <div class="col-xl-5 col-lg-5 col-md-4 col-sm-12 col-xs-12 ">
                 <form method="get" action="{{URL::route('search')}}">
-                    <input type="text" name="recherche" id="recherche" placeholder="Que recherchez-vous?">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Que recherchez vous ?">
                 </form>
             </div>
             <div class="col-1 text-center header-link">
                 <div class="panier">
-                    <a href="{{URL::route('front_panier')}}" id="dropdownMenuPanier" title="Choisir une catégorie"
+                    <a href="{{URL::route('front_panier')}}" class="dropdown" id="dropdownMenuPanier"
+                       title="Choisir une catégorie"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{asset('images/panier.png')}}" alt="Panier">
+                        <img class="img-fluid panier-image" src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
                         <p class="divider_panier">Votre panier est vide</p>
@@ -63,23 +64,23 @@
                 <a href="{{URL::route('register')}}" class="btn btn-info" title="Inscrivez-vous!">S'inscrire</a>
             @else
                 <div class="dropdown">
-                    <div class="btn btn-info" id="dropdownMenuProfil" title="Profil"
-                         data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
-                         aria-expanded="false">
-                        <span>Profil</span>
-                    </div>
+                    <button class="btn btn-info dropdown  dropdown-toggle" id="dropdownMenuProfil" title="Profil"
+                            data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
+                            aria-expanded="false">
+                        <span>{{ucfirst(strtolower($user->firstname))}}</span>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                        <a href="{{URL::route('front_profil')}}" title="Mon Profil">
-                            <button class="dropdown-item">Profil</button>
+                        <a class="dropdown-item" href="{{URL::route('front_profil')}}" title="Mon Profil">
+                            Profil
                         </a>
-                        <a href="{{URL::route('front-config-infos')}}">
-                            <button class="dropdown-item">Infos</button>
+                        <a class="dropdown-item" href="{{URL::route('front-config-infos')}}">
+                            Infos
                         </a>
-                        <a href="{{URL::route('front-config-message')}}">
-                            <button class="dropdown-item">Messages</button>
+                        <a class="dropdown-item" href="{{URL::route('front-config-message')}}">
+                            Messages
                         </a>
-                        <a href="{{URL::route('front-config-preference')}}">
-                            <button class="dropdown-item">Preferences</button>
+                        <a class="dropdown-item" href="{{URL::route('front-config-preference')}}">
+                            Preferences
                         </a>
                     </div>
                     <a href="{{route('logout')}}"
@@ -97,28 +98,31 @@
 {{--Zone de contenu--}}
 @yield('contenu')
 {{--Fin zone de contenu--}}
-<footer>
+<footer class="p-4 mt-3">
     <div class="container">
         <div class="row text-center">
-            <div class="col-md-4" id="Ecampus_start">
-                <p class="title-footer">E-Campus, qui sommes nous ? </p>
-                <p>E-Campus, site d’apprentissage communautaire, permet de mettre en relation des apprentis codeurs et
+            <div class="col-md-4">
+                <h5>E-Campus, qui sommes nous ? </h5>
+                <p>E-Campus, site d’apprentissage communautaire, permet de mettre en relation des apprentis codeurs
+                    et
                     des professionnels qui partagent et vendent leur savoir. Devenez ce développeur, que s'arrachent
                     aujourd’hui toutes les entreprises !</p>
             </div>
-            <div class="col-md-4" id="Ecampus_start">
-                <p class="title-footer">Nos derniers articles</p>
+
+            <div class="col-md-4">
+                <h5>Nos derniers articles</h5>
                 <!-- todo mettre en place l'url route direction les posts-->
                 @forelse($publications = App\Publication::all()->sortByDesc('created_ad')->take(5) as $publication)
-                    <a href="">{{$publication->title}}</a>
+                    <a href="###">{{$publication->title}}</a>
                     <br>
                 @empty
                     <p>Vide</p>
                     <br>
                 @endforelse
             </div>
-            <div class="col-md-4" id="Ecampus_start">
-                <p class="title-footer">Contact</p>
+
+            <div class="col-md-4">
+                <h5>Contact</h5>
                 <a href="{{URL::route('front_cgu')}}">C.G.U</a>
                 <br>
                 <a href="{{URL::route('front_aboutus')}}">Qui somme nous ?</a>
@@ -130,7 +134,6 @@
         </div>
     </div>
 </footer>
-
 <!-- SCRIPTS -->
 
 

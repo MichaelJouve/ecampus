@@ -66,25 +66,8 @@ progress::-webkit-progress-value {
 }
 
 
-.logo-image img {
-    margin: 15px 0;
-    width: 80%;
-    height: 80%;
-}
-
-
-
-
-
 .dropdown a {
     text-decoration: none;
-}
-
-#dropdownMenu2 {
-    background-color: #fff;
-    border: none;
-    color: #222;
-    box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dropdown-item:hover {

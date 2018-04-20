@@ -9,9 +9,9 @@
             <div class="carousel-caption">
                 <p id="title_caroussel">Bienvenue sur {e}Campus</p>
                 @auth
-                    <a href="{{URL::route('listing_categorie')}}" id="link_caroussel">Commencez l'exploration !</a>
+                    <a href="{{route('listing_categorie')}}" id="link_caroussel"><button class="btn btn-primary">Commencez l'exploration !</button></a>
                 @else
-                    <a href="{{URL::route('login')}}" id="link_caroussel">Commencez l'exploration !</a>
+                    <a href="{{route('login')}}" id="link_caroussel">Commencez l'exploration !</a>
                 @endauth
             </div>
         </div>
@@ -36,4 +36,25 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+</div>
+<div class="bandeau-explicatif-bg">
+    <div class="container p-5 mb-5">
+        <div class="row text-center">
+            <div class="col-md-4 explain-bandeau"><i style="font-size:2em; color:#007791; margin-bottom: 8px;"
+                                                     class="fab fa-hubspot"></i>
+                <br> Des milliers de tutoriels en ligne
+                <br>Rejoignez vite la communauté E-campus!
+            </div>
+            <div class="col-md-4 explain-bandeau "><i style="font-size:2em;color:#007791; margin-bottom: 8px;"
+                                                      class="fab fa-angellist"></i>
+                <br> Des tutos de qualité par nos Formateurs.
+                <br>Devenez Formateur!
+            </div>
+            <div class="col-md-4  explain-bandeau"><i style="font-size:2em;color:#007791; margin-bottom: 8px;"
+                                                      class="far fa-plus-square"></i>
+                <br>Besoin d'aide sur un sujet ?
+                <br>Envoyez un message privé ou créez un post !
+            </div>
+        </div>
+    </div>
 </div>

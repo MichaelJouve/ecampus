@@ -2,10 +2,9 @@
     <div class="col-sm-6 col-md-4">
         <div class="card" style="min-height: 490px; height: 490px; max-height: 490px;">
             <div class="ribbon"><span>{{$tuto->Category->name}}</span></div>
-            <img class="card-img-top animated jello" src="{{URL::asset('images/Publications/5599.jpg')}}"
-                 alt="Image card top">
+            <img class="card-img-top" src="{{URL::asset('images/Publications/5599.jpg')}}"
+                 alt="{{$tuto->image}}">
             <div class="card-body">
-                <!--Social shares button-->
                 <div class="row">
                     <h3 class="card-title col-8"> {{$tuto->title}} </h3>
                     <span class="card-title col-4 text-right" style="font-size: 1em;">{{$tuto->price}}€</span>
@@ -18,4 +17,5 @@
             </div>
         </div>
     </div>
+
 @endforeach

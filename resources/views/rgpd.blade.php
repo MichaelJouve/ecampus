@@ -7,11 +7,11 @@
             <div class="col-8">
 
                 <div class="card border-primary ">
-                    <div class="card-header">MENTIONS LÉGALES DU SITE</div>
+                    <div class="card-header text-center">
+                        <img class="img-fluid" src="{{URL::asset('images/logo_sans_ombre.png')}}" alt="Logo E-campus">
+                        MENTIONS LÉGALES DU SITE
+                    </div>
                     <div class="card-body text-primary">
-                        <p class="card-text">
-                        <h5 class="text-center">{e}campus.com</h5>
-                        </p>
                         <p><br/>Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin
                             2004 pour a Confiance dans l'économie numérique, dite L.C.E.N., il est porté à la
                             connaissance des utilisateurs et visiteurs du site {e}campus.com les présentes mentions
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card border-primary ">
-                    <div class="card-header">ARTICLE 1 - INFORMATIONS LÉGALES</div>
+                    <div class="card-header text-center">ARTICLE 1 - INFORMATIONS LÉGALES</div>
                     <div class="card-body text-primary">
                         <p class="card-text">
                         <p>En vertu de l'Article 6 de la Loi n° 2004-575 du 21 juin 2004 pour la confiance dans
@@ -59,7 +59,7 @@
 
 
                 <div class="card border-primary ">
-                    <div class="card-header">ARTICLE 2 - ACCESSIBILITÉ</div>
+                    <div class="card-header  text-center">ARTICLE 2 - ACCESSIBILITÉ</div>
                     <div class="card-body text-primary">
                         <p class="card-text">
                         <p>Le Site est par principe accessible aux utilisateurs 24/24h et 7/7j, sauf interruption,
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="card border-primary ">
-                    <div class="card-header">ARTICLE 3 - COLLECTE DE DONNÉES ET LOI INFORMATIQUE ET LIBERTÉS</div>
+                    <div class="card-header text-center">ARTICLE 3 - COLLECTE DE DONNÉES ET LOI INFORMATIQUE ET LIBERTÉS</div>
                     <div class="card-body text-primary">
                         <p class="card-text">
                         <p>Ce site est déclaré à la Commission Nationale Informatique et Libertés (CNIL) sous </p>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="card border-primary ">
-                    <div class="card-header">ARTICLE 4 - POLITIQUE DE COOKIES</div>
+                    <div class="card-header text-center">ARTICLE 4 - POLITIQUE DE COOKIES</div>
                     <div class="card-body text-primary">
                         <p class="card-text">
                         <p>Le site {e}campus.com a
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="card border-primary ">
-                    <div class="card-header">ARTICLE 5 - LOI APPLICABLE ET JURIDICTION</div>
+                    <div class="card-header text-center">ARTICLE 5 - LOI APPLICABLE ET JURIDICTION</div>
                     <div class="card-body text-primary">
                         <p class="card-text">
 
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="card border-primary ">
-                    <div class="card-header">ARTICLE 6 - CONTACT</div>
+                    <div class="card-header text-center">ARTICLE 6 - CONTACT</div>
                     <div class="card-body text-primary">
                         <p class="card-text">
                         <p>Pour tout signalement de contenus ou d'activités illicites, l'Utilisateur peut contacter
