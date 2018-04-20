@@ -26,11 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $uses = User::all();
+        $users = User::all();
         $tutos = Publication::where('type','=','tutorial')->latest()->limit(6)->get();
         $posts = Publication::where('type','=','post')->latest()->limit(4)->get();
 
-        return view('index', ['uses' => $uses, 'tutos' => $tutos, 'posts' => $posts]);
+        return view('index', ['users' => $users, 'tutos' => $tutos, 'posts' => $posts]);
     }
 
     public function panier()

@@ -13,7 +13,7 @@
                 <p class="card-text">{{$tuto->description}}</p>
             </div>
             <div class="card-footer">
-                <span class="float-left" (Prenom-user) <br>{{$tuto->created_at}}</span>
+                <span class="float-left">(Prenom user) <br>{{$tuto->created_at}}</span>
                 <a href="tutoriel/{{$tuto->slug}}" class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
             </div>
         </div>

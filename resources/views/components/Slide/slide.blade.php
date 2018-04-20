@@ -8,7 +8,11 @@
         <div class="carousel-item active">
             <div class="carousel-caption">
                 <p id="title_caroussel">Bienvenue sur {e}Campus</p>
-                <a href="{{URL::route('front_listing_all')}}" id="link_caroussel">Commencez l'exploration !</a>
+                @auth
+                    <a href="{{URL::route('listing_categorie')}}" id="link_caroussel">Commencez l'exploration !</a>
+                @else
+                    <a href="{{URL::route('login')}}" id="link_caroussel">Commencez l'exploration !</a>
+                @endauth
             </div>
         </div>
         <div class="carousel-item items2">

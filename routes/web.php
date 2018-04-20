@@ -58,3 +58,4 @@ Route::get('/panier', 'HomeController@panier')->name('front_panier');
 Route::get('/cgu', 'ContentController@cgu')->name('front_cgu');
 Route::get('/aboutus','ContentController@aboutus')->name('front_aboutus');
 Route::get('/contact','ContentController@contact')->name("front_contact");
+Route::get('/rgpd', 'ContentController@rgpd')->name('front_rgpd');

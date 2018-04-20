@@ -33,11 +33,10 @@
                         <i class="fa fa-list"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        @foreach($categories = \App\Category::all() as $categ)
-                            <a href="{{URL::route('listing_categorie')}}/{{$categ->name}}">
-                                <button class="dropdown-item">{{$categ->name}}</button>
+                        @foreach($categories = \App\Category::all() as $category)
+                            <a href="{{URL::route('listing_categorie')}}/{{$category->name}}">
+                                <button class="dropdown-item">{{$category->name}}</button>
                             </a>
-
                         @endforeach
                     </div>
                 </div>
@@ -53,21 +52,18 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
-
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
                         <p class="divider_panier">Votre panier est vide</p>
                         <a class="divider" href="{{URL::route('front_panier')}}">Voir le panier</a>
                     </div>
                 </div>
             </div>
-
             @guest
                 <a href="{{URL::route('login')}}" class="btn btn-light" title="Connectez-vous!">Connexion</a>
-                <a href="{{URL::route('register')}}" class="btn btn-primary" title="Inscrivez-vous!">S'inscrire</a>
+                <a href="{{URL::route('register')}}" class="btn btn-info" title="Inscrivez-vous!">S'inscrire</a>
             @else
                 <div class="dropdown">
-
-                    <div class="btn btn-primary" id="dropdownMenuProfil" title="Profil"
+                    <div class="btn btn-info" id="dropdownMenuProfil" title="Profil"
                          data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
                          aria-expanded="false">
                         <span>Profil</span>
@@ -86,11 +82,9 @@
                             <button class="dropdown-item">Preferences</button>
                         </a>
                     </div>
-
                     <a href="{{route('logout')}}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                        class="btn btn-light" title="Deconnexion">Deconnexion</a>
-
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -115,8 +109,8 @@
             <div class="col-md-4" id="Ecampus_start">
                 <p class="title-footer">Nos derniers articles</p>
                 <!-- todo mettre en place l'url route direction les posts-->
-                @forelse($posts = App\Publication::all()->sortByDesc('created_ad')->take(5) as $post)
-                    <a href="">{{$post->title}}</a>
+                @forelse($publications = App\Publication::all()->sortByDesc('created_ad')->take(5) as $publication)
+                    <a href="">{{$publication->title}}</a>
                     <br>
                 @empty
                     <p>Vide</p>
@@ -130,6 +124,8 @@
                 <a href="{{URL::route('front_aboutus')}}">Qui somme nous ?</a>
                 <br>
                 <a href="{{URL::route('front_contact')}}">Nous contacter</a>
+                <br>
+                <a href="{{URL::route('front_rgpd')}}">Mentions légales</a>
             </div>
         </div>
     </div>
