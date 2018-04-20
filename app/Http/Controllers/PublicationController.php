@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Publication;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -39,22 +41,27 @@ class PublicationController extends Controller
     public function createPost()
     {
         $categories = Category::all();
-        return view('addPost', ['categories' => $categories]);
+        $user = Auth::user();
+        return view('addPost', ['categories' => $categories, 'user' =>$user]);
     }
 
     public function storePost(Request $request)
     {
-        $validateData = $request->validate([
+
+        $user = Auth::user();
+        $userAuth = $user;
+
+        $request->validate([
             'category_id' => 'required|numeric',
             'title' => 'required|max:255',
-            'content' => 'required',
+            'content' => 'required|min:10',
         ]);
 
-        return Publication::create($validateData);
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
 
-//        $post = new Publication($validateData);
-//        $post->save();
-//        return view('profil');
+        Publication::create($inputs);
+        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     public function storeTuto(Request $request)
@@ -99,14 +106,15 @@ class PublicationController extends Controller
 
     public function showTutorial($slug)
     {
-        $tuto = Publication::where('slug',$slug)->firstOrFail();
+        $tuto = Publication::where('slug', $slug)->firstOrFail();
 
         return view('article', ['tuto' => $tuto]);
     }
 
-    public function allTutorials(){
+    public function allTutorials()
+    {
 
-        $groupTutorials = Publication::where('type','tutorial')->get();
+        $groupTutorials = Publication::where('type', 'tutorial')->get();
 
         return view('listingall', ['groupTutorials' => $groupTutorials]);
     }
@@ -140,8 +148,17 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function upStatus($slug)
     {
-        //
+        $publication = Publication::findBySlugOrFail($slug);
+        $publication->status = 0;
+        $publication->save();
+
+        $userAuth = Auth::user();
+        $firstname = $userAuth->firstname;
+
+        $user = User::with('publication')->where('firstname', $firstname)->firstOrFail();
+        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+
     }
 }

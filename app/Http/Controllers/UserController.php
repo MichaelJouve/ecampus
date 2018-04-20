@@ -55,9 +55,10 @@ class UserController extends Controller
      */
     public function show($firstname)
     {
-       $user = User::where('firstname', $firstname)->firstOrFail();
-       return view('profil', ['user' => $user]);
+        $userAuth = Auth::user();
 
+        $user = User::with('publication')->where('firstname', $firstname)->firstOrFail();
+        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     /**
@@ -70,8 +71,6 @@ class UserController extends Controller
     {
         //
     }
-
-
 
 
     /**

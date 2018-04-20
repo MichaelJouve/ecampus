@@ -46,8 +46,8 @@
             </div>
             <div class="col-md-9 text-center  pt-4">
 
-                @if($user->firstname == Auth::user()->firstname)
-                    <h4 class="text-center">Voilà votre profil actuel <b>{{ $user->firstname }} !</b> </h4>
+                @if($user->id == $userAuth->id)
+                    <h4 class="text-center">Voilà votre profil actuel <b>{{ $user->firstname }} !</b></h4>
                     <div id="accordion">
                         <a href="{{URL::route('postAjout')}}">
                             <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post"
@@ -55,7 +55,7 @@
                                 Publiez un Post
                             </button>
                         </a>
-                        <a href="{{URL::route('tutoAjout')}}">
+                        <a href="{{route('tutoAjout')}}">
                             <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto"
                                     aria-expanded="false" aria-controls="formulaire_ajout_tuto">
                                 Publier un Tutoriel
@@ -69,7 +69,78 @@
 
                 <div class="row justify-content-center">
 
-                    (On affiche les dérnieres publications de l'utilisateur)
+                    @foreach( $user->publication as $publication)
+                        @if ($publication->type = 'post')
+                            <div class="card col-10">
+                                <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+
+                                <div class="card-header" style="padding:0;">
+                                    @if ($user->id == $userAuth->id)
+
+                                        <a href="{{route('publication.delete',['slug' => $publication->slug])}}"
+                                           onclick="event.preventDefault(); document.getElementById('delete-publi').submit();"
+                                           ><span
+                                                    name="delete" style="color:#dc3545;  margin-right: 10px;"><i
+                                                        class="far fa-trash-alt"></i></span></a>
+
+                                        <form id="delete-publi" action="{{ route('publication.delete',['slug' => $publication->slug]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endif
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-3 align-self-center img_profil ">
+                                        <img class="img-fluid rounded-circle" style="margin:20px;"
+                                             src="{{ asset('images/Users/default.png') }}" alt="Image de profil">
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="card-body">
+
+                                            <div class="card-title"
+                                                 id="card-title-post"> {{ $publication->title }}</div>
+                                            <div class="card-text" id="affichage_post">{{ $publication->content }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <span class="float-left">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
+                                    <i class="fab fa-facebook-f"></i>
+                                    <i class="far fa-heart"></i>
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal{{ $publication->id }}"><i
+                                                class="far fa-comment"></i></a>
+                                    <i class="fas fa-share"></i>
+                                </div>
+                            </div>
+                        @else
+                            <div class="card col-10">
+                                <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                <div class="card-header" style="padding:0;">
+                                    @if ($user->id == $userAuth->id)
+                                        <a href="{{URL::route('deletePublication')}}/{{ $publication->slug }}"><span
+                                                    name="delete" style="color:#dc3545;  margin-right: 10px;""><i
+                                                    class="far fa-trash-alt"></i><span></a>
+                                        <a href="#"><span name="edit"
+                                                          style="color:#007791; cursor: pointer; margin-right: 10px;""><i
+                                                    class="far fa-edit"></i><span></a>
+                                    @endif
+                                </div>
+                                <img class="card-img-top img-fluid" src="{{ asset('images/Publications/5599.jpg') }}"
+                                     alt="Image card top" style="height: 220px;">
+                                <div class="card-body">
+                                    <!--Social shares button-->
+                                    <h3 class="card-title">{{ $publication->title }} <span>{{ $publication->price }}
+                                            €</span></h3>
+                                    <p class="card-text" id="affichage_post">{{ $publication->description }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="float-left">{{ $publication->user->firstname }} {{ $publication->user->name }}
+                                        <br> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
+                                    <a href="#" class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
 
                 </div>
             </div>
@@ -77,6 +148,5 @@
     </div>
 
     <!-- FIN CONTENU -->
-
 
 @endsection

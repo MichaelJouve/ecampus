@@ -32,10 +32,9 @@ Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front
 Route::get('/post','PublicationController@listingPost')->name('front_listing_all');
 Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
 Route::get('/tutoAjout', 'PublicationController@createTuto')->name('tutoAjout');
-Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
-Route::get('/tutoAjout', 'PublicationController@createTuto')->name('tutoAjout');
-Route::post('/postPost', 'PublicationController@storePost')->name('storePost');
+Route::post('/profil/', 'PublicationController@storePost')->name('storePost');
 Route::post('/tutoPost', 'PublicationController@storeTuto')->name('storeTuto');
+
 //Route::get('/post/{slug}','PublicationController@ ???')->name('front_listing_all');
 
 
@@ -49,6 +48,7 @@ Route::get('/profil/message', 'UserController@message')->name('front-config-mess
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
 Route::get('/profil/{firstname}', 'UserController@show')->name('user_profil');
 
+Route::post('/profil/publication/delete/{slug}', 'PublicationController@upStatus')->name('publication.delete');
 
 Route::get('/panier', 'HomeController@panier')->name('front_panier');
 

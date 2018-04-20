@@ -24,9 +24,12 @@ class CreatePublicationsTable extends Migration
             $table->text('content');
             $table->string('goals');
             $table->string('required');
+            $table->boolean('status');
             $table->timestamps();
             $table->unsignedInteger('category_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
     }

@@ -2,14 +2,16 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Publication extends Model
 {
     use Sluggable;
+    use SluggableScopeHelpers;
 
-    protected $fillable = ['type', 'image', 'price', 'title', 'description ', 'content', 'goals', 'required', 'category_id'];
+    protected $fillable = ['type', 'image', 'price', 'title', 'description ', 'content', 'goals', 'required', 'category_id', 'user_id'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -30,4 +32,8 @@ class Publication extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
