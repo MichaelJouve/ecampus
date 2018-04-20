@@ -1,6 +1,6 @@
 @foreach($tutos as $tuto)
-    <div class="col-sm-6 col-md-4">
-        <div class="card" style="min-height: 490px; height: 490px; max-height: 490px;">
+    <div class="col-sm-6 col-md-4 mb-3">
+        <div class="card" style="height: 490px;">
             <div class="ribbon"><span>{{$tuto->Category->name}}</span></div>
             <img class="card-img-top" src="{{URL::asset('images/Publications/5599.jpg')}}"
                  alt="{{$tuto->image}}">
@@ -13,7 +13,7 @@
             </div>
             <div class="card-footer">
                 <span class="float-left">(Prenom user) <br>{{$tuto->created_at}}</span>
-                <a href="tutoriel/{{$tuto->slug}}" class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                <a href="tutoriel/{{$tuto->slug}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>

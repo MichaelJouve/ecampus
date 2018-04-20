@@ -13,14 +13,14 @@
 
 
                 <!-- Entete de la catégorie-->
-                <div class="col-md-12 ">
+                <div class="col-md-12 m-5">
                     <h5><b>Derniers tutoriels de nos formateurs:</b></h5>
                 </div>
                 <div class="row justify-content-center">
                     @include('components.Publication.tutoriel')
                 </div>
 
-                <div class="col-md-12 ">
+                <div class="col-md-12 m-5">
                     <h5><b>Derniers posts de nos utilisateurs:</b></h5>
                 </div>
                 <div class="row justify-content-center">

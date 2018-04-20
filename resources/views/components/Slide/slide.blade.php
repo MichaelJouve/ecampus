@@ -38,7 +38,7 @@
     </a>
 </div>
 <div class="bandeau-explicatif-bg">
-    <div class="container p-5 mb-5">
+    <div class="container p-5 ">
         <div class="row text-center">
             <div class="col-md-4 explain-bandeau"><i style="font-size:2em; color:#007791; margin-bottom: 8px;"
                                                      class="fab fa-hubspot"></i>
