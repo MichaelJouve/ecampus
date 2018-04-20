@@ -7,7 +7,6 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="carousel-caption">
-                <p id="title_caroussel">Bienvenue sur {e}Campus</p>
                 @auth
                     <a href="{{route('listing_categorie')}}" id="link_caroussel"><button class="btn btn-primary">Commencez l'exploration !</button></a>
                 @else
@@ -17,14 +16,10 @@
         </div>
         <div class="carousel-item items2">
             <div class="carousel-caption">
-                <h5>Super site !!!!</h5>
-                <p>Site de ouf</p>
             </div>
         </div>
         <div class="carousel-item items3">
             <div class="carousel-caption">
-                <h5>Super site !!!!</h5>
-                <p>Site de ouf</p>
             </div>
         </div>
     </div>
