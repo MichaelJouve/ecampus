@@ -34,8 +34,9 @@ class PublicationController extends Controller
      */
     public function createTuto()
     {
+        $user = Auth::user();
         $categories = Category::all();
-        return view('addTuto', ['categories' => $categories]);
+        return view('addTuto', ['categories' => $categories, 'user' =>$user]);
     }
 
     public function createPost()

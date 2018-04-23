@@ -1,17 +1,25 @@
 @extends('layouts.layout')
 
 @section('contenu')
+
+    <div class="container-fluid pb-4" id="bandeau_top_categorie">
+        <div class="container">
+            <h1> <i class="far fa-file-alt"></i> Formulaire d'ajout de tutoriel</h1>
+            <p><b><u> {{ $user->firstname }}</u></b> vous allez ajouter un nouveau tutoriel à votre profil !</p>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Nouveau Tutoriel</div>
+                    <div class="card-header">Ajouter un nouveau <b>tutoriel</b> à votre profil..</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{URL::route('storeTuto')}}">
                             @csrf
-                            <div class="form-group row">
-                                <select class="custom-select" name="category_id" id="selecteur_post">
+                            <div class="form-group">
+                                <label for="selecteur_tuto">Selectionner une catégorie </label>
+                                <select class="custom-select" name="category_id" id="selecteur_tuto">
                                     <option selected disabled>Choisir une categorie..</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -19,19 +27,41 @@
                                 </select>
                             </div>
 
-                            <div class="form-group row">
-                                <input type="text" name="title" id="title" placeholder="Titre du post" nb_max="50"
+                            <div class="form-group">
+                                <label for="title">Titre de votre tutoriel</label>
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Titre du post" nb_max="50"
                                        title="Maximum 50 caractères">
                             </div>
+                            <div class="form-group">
+                                <label for="description_tuto">Déscription de votre tutoriel</label>
+                                    <input type="text" name="descriptif" class="form-control" placeholder="Un descriptif rapide de votre tutoriel.." nb_max="100" id="description_tuto" title="Maximum 100 caractères">
 
-                            <div class="form-group row">
-                                <textarea name="content" ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Prix de votre tutoriel</label>
+                                <input type="text" name="price" id="price" placeholder="Prix du tutoriel (Si gratuit ne pas remplir)" class="form-control" title="Oui, mais combien ?">
+                            </div>
+                            <div class="form-group">
+                                <label for="prerequis">Prérequis de votre tutoriel</label>
+                                <input type="text" name="prerequis" id="prerequis"  class="form-control" placeholder="Prerequis du tutoriel">
+                            </div>
+                            <div class="form-group">
+                                <label for="objectifs">Objectifs de votre tutoriel</label>
+                                <input type="text" name="objectifs" id="objectifs"   class="form-control" placeholder="Objectifs du tutoriel">
+                            </div>
+                            <div class="form-group">
+                                <label for="liste_fichier">Liste de fichier présent dans le tutoriel</label>
+                                <input type="text" name="liste_fichier" id="liste_fichier"  class="form-control" placeholder="La liste de vos fichiers">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Saisir le contenu de votre tutoriel</label>
+                                <textarea name="content" class="form-control"  class="form-control" placeholder="Contenu de votre tutoriel"></textarea>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="reset" class="btn btn-danger" value="Effacer"></button>
-                                    <button type="submit" class="btn btn-primary" value="Enregistrer"></button>
+                                    <button type="reset" class="btn btn-danger" value="Effacer">Effacer</button>
+                                    <button type="submit" class="btn btn-primary" value="Enregistrer">Enregistrer</button>
                                 </div>
                             </div>
                         </form>
@@ -41,52 +71,3 @@
         </div>
     </div>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="formulaire_ajout_tuto" class="collapse" data-parent="#accordion">
-    <form method="post" name="post_tuto" id="post_tuto" action="{{URL::route('storeTuto')}}">
-        <input type="hidden" name="create_tuto" value="">
-        <i class="far fa-file-code" style="font-size: 3em; color:#fff;"></i>
-        <p class="large_title">Nouveau Tutoriel</p>
-        <p class="minuscule_title">Veuillez ajouter un nouveau tutoriel au E-campus</p>
-        <hr>
-        <div class="input-group mb-3">
-            <select class="custom-select" id="selecteur_tuto" name="selecteur_tuto">
-                <option selected disabled>Choisir une categorie de tutoriel.. </option>
-
-            </select>
-        </div>
-        <label class="add_image_post">
-            <i class="far fa-image" style="color:#fff;"></i>
-Ajouter une image pour ce tutoriel?<br>
-            <input type="file" name="image">
-        </label>
-        <input type="text" name="prix" id="prix" placeholder="Prix du tutoriel (Si gratuit ne pas remplir)" title="Oui, mais combien ?">
-        <input type="text" name="titre" id="titre_tuto" placeholder="Titre du tutoriel" nb_max="50" title="Maximum 50 caractères">
-        <input type="text" name="objectifs" id="objectifs"  placeholder="Objectifs du tutoriel">
-        <input type="text" name="prerequis" id="prerequis" placeholder="Prerequis du tutoriel">
-        <input type="text" name="liste_fichier" id="liste_fichier" placeholder="La liste de vos fichiers">
-        <input type="text" name="descriptif" placeholder="Un descriptif rapide de votre tutoriel.." nb_max="100" id="description_tuto" title="Maximum 100 caractères">
-        <label class="add_textarea text-left">
-Ajouter un contenu pour votre tutoriel
-</label>
-        <textarea id="summernote_tuto" name="contenu_tuto"></textarea>
-        <input class="btn btn-danger" type="reset" value="Effacer">
-        <input type="submit" value="Valider le Tutoriel" class="btn btn-primary" name="submit_tuto" id="submit_tuto">
-    </form>
-</div>
