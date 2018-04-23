@@ -51,7 +51,7 @@
                     <a href="{{URL::route('front-panier')}}" class="dropdown" id="dropdownMenuPanier"
                        title="Choisir une catégorie"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="img-fluid panier-image" src="{{asset('images/panier.png')}}" alt="Panier">
+                        <img class="img-fluid w50" src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
                         <p class="divider_panier">Votre panier est vide</p>
@@ -67,7 +67,7 @@
                     <button class="btn btn-info dropdown  dropdown-toggle" id="dropdownMenuProfil" title="Profil"
                             data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
                             aria-expanded="false">
-                        <span>{{ucfirst(strtolower($user->firstname))}}</span>
+                        <span>{{ Auth::user()->firstname }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
                         <a class="dropdown-item" href="{{URL::route('front-profil')}}" title="Mon Profil">

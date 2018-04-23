@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('contenu')
-    <div class="container-fluid pb-4" id="bandeau_top_categorie">
+    <div class="container-fluid pt-4 pb-4 bandeau-sombre">
         <div class="container">
                 <h1> <i class="far fa-file-alt"></i> Formulaire d'ajout de post</h1>
             <p><b><u> {{ $user->firstname }}</u></b> vous allez ajouter un nouveau post à votre profil !</p>
@@ -14,7 +14,7 @@
                     <div class="card-header">Ajouter un nouveau <b>post</b> à votre profil..</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{URL::route('storePost')}}">
+                        <form method="POST" action="{{URL::route('store-post')}}">
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <div class="form-group">

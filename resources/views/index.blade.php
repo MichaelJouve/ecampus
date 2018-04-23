@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-md-2 text-center">
-                <div class="border rounded border-primary mb-3">
+                <div class="mb-3">
                     <h6 class="m-3"><b>Derniers Membres:</b></h6>
                     @foreach($users as $user)
                         <div class="card-row">

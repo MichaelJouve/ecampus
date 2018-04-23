@@ -33,7 +33,7 @@ Route::get('/post','PublicationController@listingPost')->name('front-listing-all
 Route::get('/post/ajout', 'PublicationController@createPost')->name('post-ajout');
 Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout');
 Route::post('/post/post', 'PublicationController@storePost')->name('store-post');
-Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-puto');
+Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-tuto');
 //Route::get('/post/{slug}','PublicationController@ ???')->name('front-listing-all');
 
 

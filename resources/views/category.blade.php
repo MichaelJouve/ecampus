@@ -2,16 +2,16 @@
 
 @section('contenu')
     <!-- CONTENU -->
-    <div class="container-fluid" id="bandeau_recherche">
-        <div class="container">
+    <div class="container-fluid bandeau-sombre">
+        <div class="container pt-4 pb-4">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Liste des catégories {e]Campus </h1>
+                    <h1>Liste des catégories {e}Campus </h1>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container mt-3" id="resultat_recherche">
+    <div class="container mt-3">
         <ul>
             @foreach($categories as $category)
                 <a href="{{ URL::route('listing-categorie') }}/{{ $category->name }}">

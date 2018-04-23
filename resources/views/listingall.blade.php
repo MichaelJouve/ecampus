@@ -1,25 +1,21 @@
 @extends('layouts.layout')
 
 @section('contenu')
-    <div class="container-fluid" id="bandeau_top_categorie">
-        <div class="container">
+    <div class="container-fluid bandeau-sombre">
+        <div class="container pt-5">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <p><a href="index.php"><i class="fa fa-car" style="color:#fff;"></i></a> /&nbsp; Liste de tous les
                         tutoriels</p>
-
-                </div>
-
-                <div class="col-md-8"></div>
-
-                <div class="col-md 12">
-                    <ul class="list-inline">
-                        <a href="#">
-                            <li class="list-inline-item active" id="all_cour">Tous les tutoriels</li>
-                        </a>
-                    </ul>
                 </div>
             </div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <a href="{{URL::route('listing-categorie')}}"><li class="breadcrumb-item mr-3">Liste des catégories</li></a>
+                        <a href="{{URL::route('listing-all')}}"><li class="breadcrumb-item active" aria-current="page"> Tous les tutoriels</li></a>
+                    </ol>
+                </nav>
+
         </div>
     </div>
 

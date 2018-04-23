@@ -29,7 +29,7 @@ class HomeController extends Controller
         $users = User::all();
         $tutos = Publication::where('type','=','tutorial')->latest()->limit(6)->get();
 
-        $posts = Publication::with('user')->where('type','=','post')->latest()->limit(4)->get();
+        $posts = Publication::with('user')->where('type','=','post')->where('status','=', '1')->latest()->limit(4)->get();
 
         return view('index', ['users' => $users, 'tutos' => $tutos, 'posts' => $posts]);
     }

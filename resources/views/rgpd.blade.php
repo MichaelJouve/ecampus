@@ -2,15 +2,17 @@
 
 @section('contenu')
 
-    <div class="container">
+    <div class="container-fluid pt-4 pb-4 bandeau-sombre">
+        <div class="container">
+            <h4 class="text-center"> Mentions légales du site {e}Campus</h4>
+        </div>
+    </div>
+
+    <div class="container mt-3">
         <div class="row justify-content-center rgdb">
             <div class="col-8">
 
                 <div class="card border-primary ">
-                    <div class="card-header text-center">
-                        <img class="img-fluid" src="{{URL::asset('images/logo_sans_ombre.png')}}" alt="Logo E-campus">
-                        MENTIONS LÉGALES DU SITE
-                    </div>
                     <div class="card-body text-primary">
                         <p><br/>Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin
                             2004 pour a Confiance dans l'économie numérique, dite L.C.E.N., il est porté à la

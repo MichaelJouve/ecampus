@@ -1,6 +1,7 @@
-
 //MODIF DE BOOTSTRAP
 
+//AddPublication
+$enable-shadows: true;
 
 // Body
 $body-bg: #ffffff;
@@ -18,7 +19,15 @@ $dropdown-link-hover-bg: #17a2b8;
 $dropdown-link-hover-color: white;
 
 
-$primary : #FF00FF;
+
+//Listing
+$breadcrumb-padding-y: 0rem;
+$breadcrumb-item-padding: 0rem;
+
+$breadcrumb-margin-bottom: 0rem;
+$breadcrumb-bg: none;
+$breadcrumb-divider: "";
+$breadcrumb-active-color: #e3e3e3;
 
 // Typography
 $font-family-sans-serif: "Quicksand", sans-serif;

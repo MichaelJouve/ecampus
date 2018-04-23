@@ -2,20 +2,20 @@
 
 @section('contenu')
 
-    <div class="container-fluid pb-4" id="bandeau_top_categorie">
+    <div class="container-fluid pt-4 pb-4 bandeau-sombre">
         <div class="container">
             <h1> <i class="far fa-file-alt"></i> Formulaire d'ajout de tutoriel</h1>
             <p><b><u> {{ $user->firstname }}</u></b> vous allez ajouter un nouveau tutoriel à votre profil !</p>
         </div>
     </div>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Ajouter un nouveau <b>tutoriel</b> à votre profil..</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{URL::route('storeTuto')}}">
+                        <form method="POST" action="{{URL::route('store-tuto')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="selecteur_tuto">Selectionner une catégorie </label>
