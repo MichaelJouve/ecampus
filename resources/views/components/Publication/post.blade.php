@@ -1,10 +1,11 @@
 @foreach($posts as $post)
-    <div class="col-sm-6 col-md-6">
-        <div class="card" style="min-height: 300px; height: 300px; max-height: 300px;">
-            <div class="ribbon"><span>{{$post->category->name}}</span></div>
+    <div class="col-sm-6  mb-3">
+        <div class="card">
+
+            <div class="ribbon"><span>{{$post->Category->name}}</span></div>
             <div class="row" style="height: 264px">
                 <div class="col-3 align-self-center img_profil ">
-                    <img class="img-fluid rounded-circle" src="{{URL::asset('images/Users/default.png')}}"
+                    <img class="img-fluid rounded-circle ml-1" src="{{URL::asset('images/Users/default.png')}}"
                          alt="Image de profil">
                 </div>
                 <div class="col-9">
@@ -17,7 +18,7 @@
             </div>
             <div class="card-footer text-right">
                 <span class="float-left">Ecrit à {{$post->created_at->format('h:m \l\e d/m/Y')}}</span>
-                <a href="#" class=" float-right">Voir <i class="fa fa-chevron-right"></i></a>
+                <a href="#" class="btn btn-light ">Voir <i class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>

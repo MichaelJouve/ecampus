@@ -11,7 +11,7 @@
                 <div id="box-messagerie">
                     <div class="row">
                         <div class="col-md-12 text-center" id="bandeau_naviguation">
-                            <h1><img src="{{asset('images/messagerie.png')}}" alt="Bandeau des preferences" class="img-fluid">Votre messagerie : Envoyer/Recevoir des messages</h1>
+                            <h3><img src="{{asset('images/messagerie.png')}}" alt="Bandeau des preferences" class="img-fluid logo-config">Votre messagerie : Envoyer/Recevoir des messages</h3>
                         </div>
                         <div class="col-12 col-lg-9" id="contenu-message">
                             <div id="description-message" class="col-12">

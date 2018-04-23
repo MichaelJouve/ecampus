@@ -23,8 +23,9 @@ class PublicationController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $categories = Category::with('post')->get();
-        return view('category', ['categories' => $categories]);
+        return view('category', ['categories' => $categories, 'user'=>$user]);
     }
 
     /**
