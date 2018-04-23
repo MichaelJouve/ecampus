@@ -77,13 +77,13 @@
                                 <div class="card-header" style="padding:0;">
                                     @if ($user->id == $userAuth->id)
 
-                                        <a href="{{route('publication.delete',['slug' => $publication->slug])}}"
+                                        <a href="{{route('publication-delete',['slug' => $publication->slug])}}"
                                            onclick="event.preventDefault(); document.getElementById('delete-publi').submit();"
                                            ><span
                                                     name="delete" style="color:#dc3545;  margin-right: 10px;"><i
                                                         class="far fa-trash-alt"></i></span></a>
 
-                                        <form id="delete-publi" action="{{ route('publication.delete',['slug' => $publication->slug]) }}" method="POST" style="display: none;">
+                                        <form id="delete-publi" action="{{ route('publication-delete',['slug' => $publication->slug]) }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
@@ -117,7 +117,7 @@
                                 <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
                                 <div class="card-header" style="padding:0;">
                                     @if ($user->id == $userAuth->id)
-                                        <a href="{{URL::route('deletePublication')}}/{{ $publication->slug }}"><span
+                                        <a href="{{URL::route('delete-publication')}}/{{ $publication->slug }}"><span
                                                     name="delete" style="color:#dc3545;  margin-right: 10px;""><i
                                                     class="far fa-trash-alt"></i><span></a>
                                         <a href="#"><span name="edit"

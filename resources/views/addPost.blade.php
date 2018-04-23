@@ -14,7 +14,7 @@
                     <div class="card-header">Ajouter un nouveau <b>post</b> à votre profil..</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{URL::route('storePost')}}">
+                        <form method="POST" action="{{URL::route('store-post')}}">
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <div class="form-group">

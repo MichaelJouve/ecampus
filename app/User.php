@@ -3,15 +3,32 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 
 class User extends Authenticatable
 {
-    protected $fillable = ['name','firstname', 'password', 'email', 'paypal', 'birthdate'];
+    use Sluggable;
+    use SluggableScopeHelpers;
+    use SoftDeletes;
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => ['firstname', 'name'],
+                'separator' => '-'
+            ],
+        ];
+    }
+
+    protected $fillable = ['name','firstname', 'password', 'email', 'paypal', 'birthdate', 'description'];
 
     public function publication()
     {
-        return $this->hasMany('App\Publication')->where('status','1')->orderBy('created_at','desc');
+        return $this->hasMany('App\Publication')->orderBy('created_at','desc');
     }
 
     public function post()

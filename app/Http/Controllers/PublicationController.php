@@ -68,13 +68,25 @@ class PublicationController extends Controller
 
     public function storeTuto(Request $request)
     {
-        $validateData = $request->validate([
-            'type' => 'required',
-            'title' => 'required',
-            'description' => 'required',
-            'content' => 'required',
-            'goals' => 'required',
+
+        $user = Auth::user();
+        $userAuth = $user;
+
+        $request->validate([
+            'category_id' => 'required|numeric',
+            'title' => 'required|max:150',
+            'description' => 'max:255',
+            'price' => 'numeric|between:0,99.99',
+            'required' => 'max:100',
+            'goals' => 'max:100',
+            'content' => 'required|min:10|max:65000',
         ]);
+
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
+
+        Publication::create($inputs);
+        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     /**
@@ -150,16 +162,15 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function upStatus($slug)
+    public function softDelete($slug)
     {
         $publication = Publication::findBySlugOrFail($slug);
-        $publication->status = 0;
-        $publication->save();
+        $publication->delete();
 
         $userAuth = Auth::user();
-        $firstname = $userAuth->firstname;
+        $userSlug = $userAuth->slug;
 
-        $user = User::with('publication')->where('firstname', $firstname)->firstOrFail();
+        $user = User::with('publication')->where('slug', $userSlug)->firstOrFail();
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
 
     }

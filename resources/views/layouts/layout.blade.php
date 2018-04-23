@@ -67,10 +67,10 @@
                     <button class="btn btn-info dropdown  dropdown-toggle" id="dropdownMenuProfil" title="Profil"
                             data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
                             aria-expanded="false">
-                        <span>{{ucfirst(strtolower($user->firstname))}}</span>
+                        <span>{{Auth::user()->firstname}}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                        <a class="dropdown-item" href="{{URL::route('front-profil')}}" title="Mon Profil">
+                        <a class="dropdown-item" href="{{route('user-profil',['slug' => Auth::user()->slug])}}" title="Mon Profil">
                             Profil
                         </a>
                         <a class="dropdown-item" href="{{URL::route('front-config-infos')}}">

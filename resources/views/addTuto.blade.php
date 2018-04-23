@@ -15,7 +15,7 @@
                     <div class="card-header">Ajouter un nouveau <b>tutoriel</b> à votre profil..</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{URL::route('storeTuto')}}">
+                    <form method="POST" action="{{URL::route('store-tuto')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="selecteur_tuto">Selectionner une catégorie </label>
@@ -29,29 +29,29 @@
 
                             <div class="form-group">
                                 <label for="title">Titre de votre tutoriel</label>
-                                <input type="text" name="title" class="form-control" id="title" placeholder="Titre du post" nb_max="50"
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Titre du tutoriel" nb_max="50"
                                        title="Maximum 50 caractères">
                             </div>
                             <div class="form-group">
-                                <label for="description_tuto">Déscription de votre tutoriel</label>
-                                    <input type="text" name="descriptif" class="form-control" placeholder="Un descriptif rapide de votre tutoriel.." nb_max="100" id="description_tuto" title="Maximum 100 caractères">
+                                <label for="description_tuto">Description de votre tutoriel</label>
+                                    <input type="text" name="description" class="form-control" placeholder="Un descriptif rapide de votre tutoriel.." nb_max="150" id="description_tuto" title="Maximum 150 caractères">
 
                             </div>
                             <div class="form-group">
                                 <label for="price">Prix de votre tutoriel</label>
-                                <input type="text" name="price" id="price" placeholder="Prix du tutoriel (Si gratuit ne pas remplir)" class="form-control" title="Oui, mais combien ?">
+                                <input type="number" min="0" max="10000" step="0.01" name="price" id="price" placeholder="Prix du tutoriel (Si gratuit ne pas remplir)" class="form-control" title="Oui, mais combien ?">
                             </div>
                             <div class="form-group">
                                 <label for="prerequis">Prérequis de votre tutoriel</label>
-                                <input type="text" name="prerequis" id="prerequis"  class="form-control" placeholder="Prerequis du tutoriel">
+                                <input type="text" name="required" id="required"  nb_max="100" title="Maximum 100 caractères" class="form-control" placeholder="Prerequis du tutoriel">
                             </div>
                             <div class="form-group">
                                 <label for="objectifs">Objectifs de votre tutoriel</label>
-                                <input type="text" name="objectifs" id="objectifs"   class="form-control" placeholder="Objectifs du tutoriel">
+                                <input type="text" name="goals" id="objectifs"   nb_max="100" title="Maximum 100 caractères" class="form-control" placeholder="Objectifs du tutoriel">
                             </div>
                             <div class="form-group">
                                 <label for="liste_fichier">Liste de fichier présent dans le tutoriel</label>
-                                <input type="text" name="liste_fichier" id="liste_fichier"  class="form-control" placeholder="La liste de vos fichiers">
+                                <input type="text" name="files" id="files"  class="form-control" placeholder="La liste de vos fichiers">
                             </div>
                             <div class="form-group">
                                 <label for="content">Saisir le contenu de votre tutoriel</label>
