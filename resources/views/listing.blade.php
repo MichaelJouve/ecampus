@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p><a href="{{URL::route('front_index')}}"><i class="fa fa-car" style="color:#fff;"></i></a>&nbsp;/&nbsp;{{ $category->name }}</p>
+                    <p><a href="{{URL::route('front-index')}}"><i class="fa fa-car" style="color:#fff;"></i></a>&nbsp;/&nbsp;{{ $category->name }}</p>
                     <h1>TUTORIELS {{ $category->name }}</h1>
                 </div>
 
@@ -13,8 +13,8 @@
 
                 <div class="col-md 12">
                     <ul class="list-inline">
-                        <a href="{{URL::route('listing_categorie')}}"><li class="list-inline-item active" id="select_cour">Sélection</li></a>
-                        <a href="{{URL::route('listing_all')}}"><li class="list-inline-item" id="all_cour">Tous les tutoriels</li></a>
+                        <a href="{{URL::route('listing-categorie')}}"><li class="list-inline-item active" id="select_cour">Sélection</li></a>
+                        <a href="{{URL::route('listing-all')}}"><li class="list-inline-item" id="all_cour">Tous les tutoriels</li></a>
                     </ul>
                 </div>
             </div>

@@ -14,7 +14,7 @@
     <div class="container mt-3" id="resultat_recherche">
         <ul>
             @foreach($categories as $category)
-                <a href="{{ URL::route('listing_categorie') }}/{{ $category->name }}">
+                <a href="{{ URL::route('listing-categorie') }}/{{ $category->name }}">
                     <li>{{$category->name}}</li>
                 </a>
             @endforeach

@@ -15,8 +15,8 @@
 
                     <div class="card-body">
                         <form method="POST" action="{{URL::route('storePost')}}">
-
                             @csrf
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <div class="form-group">
                                 <label for="category_id">
                                     Sélectionner une catégorie pour votre post :

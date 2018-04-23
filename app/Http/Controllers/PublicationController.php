@@ -115,7 +115,7 @@ class PublicationController extends Controller
     public function allTutorials()
     {
 
-        $groupTutorials = Publication::where('type', 'tutorial')->get();
+        $groupTutorials = Publication::where('type','tutorial')->get();
 
         return view('listingall', ['groupTutorials' => $groupTutorials]);
     }

@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12 margedescription">
-                                <form action="{{URL::route('update_info')}}" method="post">
+                                <form action="{{URL::route('update-info')}}" method="post">
                                     @csrf
                                     <div class="card">
                                         <div class="card-header">
@@ -123,7 +123,7 @@
         <!--****************  FIN DE INFORMATIONS PERSONNELS   ************************************************** -->
         <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modif_profil">
             <div class="modal-dialog" role="document">
-                <form class="modal-content" method="POST" action="{{URL::route('update_info')}}">
+                <form class="modal-content" method="POST" action="{{URL::route('update-info')}}">
                     @csrf
                     <div class="modal-header">
 
