@@ -20,41 +20,39 @@
 Auth::routes();
 
 
-Route::get('/', 'HomeController@index')->name('front_index');
+Route::get('/', 'HomeController@index')->name('front-index');
 
-Route::get('/categorie','PublicationController@index')->name('listing_categorie');
+Route::get('/categorie','PublicationController@index')->name('listing-categorie');
 Route::get('/categorie/{name}','PublicationController@show');
 
-Route::get('/tutoriel/','PublicationController@allTutorials')->name('listing_all');
+Route::get('/tutoriel/','PublicationController@allTutorials')->name('listing-all');
 Route::get('/tutoriel/ajout', 'PublicationController@create')->middleware('auth');
-Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front_tutorial');
+Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front-tutorial');
 
-Route::get('/post','PublicationController@listingPost')->name('front_listing_all');
-Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
-Route::get('/tutoAjout', 'PublicationController@createTuto')->name('tutoAjout');
-Route::get('/postAjout', 'PublicationController@createPost')->name('postAjout');
-Route::get('/tutoAjout', 'PublicationController@createTuto')->name('tutoAjout');
-Route::post('/postPost', 'PublicationController@storePost')->name('storePost');
-Route::post('/tutoPost', 'PublicationController@storeTuto')->name('storeTuto');
-//Route::get('/post/{slug}','PublicationController@ ???')->name('front_listing_all');
+Route::get('/post','PublicationController@listingPost')->name('front-listing-all');
+Route::get('/post/ajout', 'PublicationController@createPost')->name('post-ajout');
+Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout');
+Route::post('/post/post', 'PublicationController@storePost')->name('store-post');
+Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-puto');
+//Route::get('/post/{slug}','PublicationController@ ???')->name('front-listing-all');
 
 
 Route::get('/recherche/','SearchController@index')->name('search');
 
 
-Route::get('/profil','UserController@index')->name('front_profil');
+Route::get('/profil','UserController@index')->name('front-profil');
 Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
-Route::post('/profil/infos/update','UserController@update')->name('update_info');
+Route::post('/profil/infos/update','UserController@update')->name('update-info');
 Route::get('/profil/message', 'UserController@message')->name('front-config-message');
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
-Route::get('/profil/{firstname}', 'UserController@show')->name('user_profil');
+Route::get('/profil/{firstname}', 'UserController@show')->name('user-profil');
 
 
-Route::get('/panier', 'HomeController@panier')->name('front_panier');
+Route::get('/panier', 'HomeController@panier')->name('front-panier');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
 // todo changer HomeContoller par ContentController (redirect page fix useless)
-Route::get('/cgu', 'ContentController@cgu')->name('front_cgu');
-Route::get('/aboutus','ContentController@aboutus')->name('front_aboutus');
-Route::get('/contact','ContentController@contact')->name("front_contact");
+Route::get('/cgu', 'ContentController@cgu')->name('front-cgu');
+Route::get('/aboutus','ContentController@aboutus')->name('front-aboutus');
+Route::get('/contact','ContentController@contact')->name("front-contact");

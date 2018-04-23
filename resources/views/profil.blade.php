@@ -49,13 +49,13 @@
                 @if($user->firstname == Auth::user()->firstname)
                     <h4 class="text-center">Voilà votre profil actuel <b>{{ $user->firstname }} !</b> </h4>
                     <div id="accordion">
-                        <a href="{{URL::route('postAjout')}}">
+                        <a href="{{URL::route('post-ajout')}}">
                             <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post"
                                     aria-expanded="false" aria-controls="formulaire_ajout_post">
                                 Publiez un Post
                             </button>
                         </a>
-                        <a href="{{URL::route('tutoAjout')}}">
+                        <a href="{{URL::route('tuto-ajout')}}">
                             <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto"
                                     aria-expanded="false" aria-controls="formulaire_ajout_tuto">
                                 Publier un Tutoriel

@@ -50,11 +50,12 @@ class PublicationController extends Controller
             'content' => 'required',
         ]);
 
-        return Publication::create($validateData);
+        Publication::create($validateData);
 
-//        $post = new Publication($validateData);
-//        $post->save();
-//        return view('profil');
+        $user = Auth::user();
+
+        return view('profil', ['user' => $user]);
+
     }
 
     public function storeTuto(Request $request)

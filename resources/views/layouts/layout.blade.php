@@ -34,7 +34,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         @foreach($categories = \App\Category::all() as $categ)
-                            <a href="{{URL::route('listing_categorie')}}/{{$categ->name}}">
+                            <a href="{{URL::route('listing-categorie')}}/{{$categ->name}}">
                                 <button class="dropdown-item">{{$categ->name}}</button>
                             </a>
 
@@ -49,14 +49,14 @@
             </div>
             <div class="col-1 text-center header-link">
                 <div class="panier">
-                    <a href="{{URL::route('front_panier')}}" id="dropdownMenuPanier" title="Choisir une catégorie"
+                    <a href="{{URL::route('front-panier')}}" id="dropdownMenuPanier" title="Choisir une catégorie"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
 
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
                         <p class="divider_panier">Votre panier est vide</p>
-                        <a class="divider" href="{{URL::route('front_panier')}}">Voir le panier</a>
+                        <a class="divider" href="{{URL::route('front-panier')}}">Voir le panier</a>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                             <span>Profil</span>
                         </div>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                            <a href="{{URL::route('front_profil')}}" title="Mon Profil">
+                            <a href="{{URL::route('front-profil')}}" title="Mon Profil">
                                 <button class="dropdown-item">Profil</button>
                             </a>
                             <a href="{{URL::route('front-config-infos')}}">
@@ -124,11 +124,11 @@
             </div>
             <div class="col-md-4" id="Ecampus_start">
                 <p class="title-footer">Contact</p>
-                <a href="{{URL::route('front_cgu')}}">C.G.U</a>
+                <a href="{{URL::route('front-cgu')}}">C.G.U</a>
                 <br>
-                <a href="{{URL::route('front_aboutus')}}">Qui somme nous ?</a>
+                <a href="{{URL::route('front-aboutus')}}">Qui somme nous ?</a>
                 <br>
-                <a href="{{URL::route('front_contact')}}">Nous contacter</a>
+                <a href="{{URL::route('front-contact')}}">Nous contacter</a>
             </div>
         </div>
     </div>

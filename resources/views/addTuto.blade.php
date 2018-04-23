@@ -19,9 +19,16 @@
                                 </select>
                             </div>
 
-                            <div class="form-group row">
-                                <input type="text" name="title" id="title" placeholder="Titre du post" nb_max="50"
-                                       title="Maximum 50 caractères">
+                            <div class="form-group row justify-content-between">
+                                <input type="text" name="title" id="title" placeholder="Titre du post" nb_max="50" title="Maximum 50 caractères">
+                                <input type="file" name="image" placeholder="Image par défaut">
+                                <input type="text" name="price" placeholder="Prix: si gratuit ne pas remplir">
+                            </div>
+
+                            <div class="form-group row justify-content-between">
+                                <input type="text" placeholder="Description">
+                                <input type="text" placeholder="Buts du tutoriel">
+                                <input type="text" placeholder="Prérequis">
                             </div>
 
                             <div class="form-group row">
@@ -30,8 +37,8 @@
 
                             <div class="form-group row">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="reset" class="btn btn-danger" value="Effacer"></button>
-                                    <button type="submit" class="btn btn-primary" value="Enregistrer"></button>
+                                    <button type="reset" class="btn btn-danger" value="Effacer">Effacer</button>
+                                    <button type="submit" class="btn btn-primary" value="Enregistrer">Enregistrer</button>
                                 </div>
                             </div>
                         </form>

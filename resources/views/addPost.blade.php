@@ -10,6 +10,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{URL::route('storePost')}}">
                             @csrf
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <div class="form-group row">
                                 <select class="custom-select" name="category_id" id="selecteur_post">
                                     <option selected disabled>Choisir une categorie..</option>
@@ -30,7 +31,7 @@
 
                             <div class="form-group row">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="reset"  class="btn btn-danger" value="Effacer">Effacer</button>
+                                    <button type="reset" class="btn btn-danger" value="Effacer">Effacer</button>
                                     <button type="submit" class="btn btn-primary" value="Enregistrer">Envoyer</button>
                                 </div>
                             </div>
