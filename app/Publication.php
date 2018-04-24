@@ -5,9 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
+class Publication extends Model
 {
     use Sluggable;
+
+    protected $fillable = ['type', 'image', 'price', 'title', 'description ', 'content', 'goals', 'required', 'category_id'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -22,4 +24,10 @@ class Post extends Model
             ]
         ];
     }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 }

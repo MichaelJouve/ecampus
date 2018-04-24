@@ -47,30 +47,56 @@
                     <input type="text" name="recherche" id="recherche" placeholder="Que recherchez-vous?">
                 </form>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 text-center header-link">
+            <div class="col-1 text-center header-link">
                 <div class="panier">
-                    <a href="{{URL::route('front_panier')}}" id="dropdownMenu3" title="Choisir une catégorie"
+                    <a href="{{URL::route('front_panier')}}" id="dropdownMenuPanier" title="Choisir une catégorie"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
 
-                    <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenu3">
+                    <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
                         <p class="divider_panier">Votre panier est vide</p>
                         <a class="divider" href="{{URL::route('front_panier')}}">Voir le panier</a>
                     </div>
                 </div>
+            </div>
+
                 @guest
                     <a href="{{URL::route('login')}}" class="btn btn-light" title="Connectez-vous!">Connexion</a>
                     <a href="{{URL::route('register')}}" class="btn btn-primary" title="Inscrivez-vous!">S'inscrire</a>
                 @else
-                    <a href="{{URL::route('front_profil')}}" class="btn btn-primary" title="Mon Profil">Profil</a>
-                    <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-light" title="Deconnexion">Deconnexion</a>
+                    <div class="dropdown">
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                        <div class="btn btn-primary" id="dropdownMenuProfil" title="Profil"
+                             data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
+                             aria-expanded="false">
+                            <span>Profil</span>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
+                            <a href="{{URL::route('front_profil')}}" title="Mon Profil">
+                                <button class="dropdown-item">Profil</button>
+                            </a>
+                            <a href="{{URL::route('front-config-infos')}}">
+                                <button class="dropdown-item">Infos</button>
+                            </a>
+                            <a href="{{URL::route('front-config-message')}}">
+                                <button class="dropdown-item">Messages</button>
+                            </a>
+                            <a href="{{URL::route('front-config-preference')}}">
+                                <button class="dropdown-item">Preferences</button>
+                            </a>
+                        </div>
+
+                        <a href="{{route('logout')}}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           class="btn btn-light" title="Deconnexion">Deconnexion</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 @endguest
-            </div>
+
         </div>
     </div>
 </header>

@@ -13,9 +13,9 @@
     </div>
     <div class="container mt-3" id="resultat_recherche">
         <ul>
-            @foreach($category = \App\Category::all() as $categ)
-                <a href="{{URL::route('listing_categorie')}}/{{$categ->name}}">
-                    <li>{{$categ->name}}</li>
+            @foreach($categories as $category)
+                <a href="{{ URL::route('listing_categorie') }}/{{ $category->name }}">
+                    <li>{{$category->name}}</li>
                 </a>
             @endforeach
         </ul>
