@@ -27,20 +27,20 @@
                     @include('components.Publication.post')
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 text-center mt-5">
                 <div class="mb-3">
-                    <h6 class="m-3"><b>Derniers Membres:</b></h6>
+                    <h6 class="m-3 text-secondary border-bottom"><b>Derniers Membres</b></h6>
+                    <div class="row">
                     @foreach($users as $user)
-                        <div class="card-row">
-                            <div class="card-header m-3">
-                                <a class="btn btn-light" href="/profil/{{ $user->firstname }}">
+                        <div class="row justify-content-center m-2">
+                                <a class="btn btn-light w50" href="{{route('user-profil',['slug' => $user->slug])}}">
                                     <img class=" card-img-top img-fluid" src="{{asset('images/Users/default.png')}}"
                                          alt="Image de profil"><br>
                                     {{ucfirst(strtolower($user->firstname))}}
                                 </a>
-                            </div>
                         </div>
                     @endforeach
+                    </div>
                 </div>
                 <div class="border border-light rounded">
                     <img class="img-fluid" style="width: 100%" src="{{asset('images/bandeau_vertical.gif')}}">

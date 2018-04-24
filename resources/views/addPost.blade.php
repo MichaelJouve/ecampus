@@ -14,7 +14,7 @@
                     <div class="card-header">Ajouter un nouveau <b>post</b> à votre profil..</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{URL::route('store-post')}}">
+                        <form id="ajout-post" method="POST" action="{{URL::route('store-post')}}">
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="type" value="post">
@@ -38,7 +38,8 @@
 
                             <div class="form-group">
                                 <label for="content">Saisir le contenu de votre post : </label>
-                                <textarea name="content" class="form-control" placeholder="Un contenu de votre post..."></textarea>
+                                <input type="hidden"  name="content" class="form-control">
+                                <div id="editor-container"></div>
                             </div>
 
                             <div class="form-group row">

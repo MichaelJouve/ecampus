@@ -1,19 +1,35 @@
 @foreach($tutos as $tuto)
     <div class="col-sm-6 col-md-4 mb-3">
-        <div class="card" style="height: 490px;">
-            <div class="ribbon"><span>{{$tuto->Category->name}}</span></div>
+        <div class="card" style="height:410px;">
+            <div class="ribbon">
+                <span>
+                    {{$tuto->Category->name}}
+                </span>
+            </div>
             <img class="card-img-top" src="{{URL::asset('images/Publications/5599.jpg')}}"
                  alt="{{$tuto->image}}">
             <div class="card-body">
                 <div class="row">
-                    <h3 class="card-title col-8"> {{$tuto->title}} </h3>
-                    <span class="card-title col-4 text-right" style="font-size: 1em;">{{$tuto->price}}€</span>
+                    <p class="card-title font-weight-bold col-8">
+                        {{$tuto->title}}
+                    </p>
+                    <span class="card-title col-4 text-right font-weight-bold text-success">
+                        @if( $tuto->price == '0')
+                            Gratuit
+                        @else
+                            {{ $tuto->price }} €
+                        @endif
+                    </span>
                 </div>
-                <p class="card-text">{{$tuto->description}}</p>
+                <p class="card-text small">
+                    {{ str_limit($tuto->description, $limit = 150, $end = '...') }}
+                </p>
             </div>
             <div class="card-footer">
-                <span class="float-left">(Prenom user) <br>{{$tuto->created_at}}</span>
-                <a href="tutoriel/{{$tuto->slug}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                <span class="float-left small">{{ $tuto->user->name }} {{ $tuto->user->firstname }}
+                    <br>Ecrit à {{ $tuto->created_at->format('h:m \l\e d/m/Y') }}</span>
+                <a href="{{route('front-tutorial',['slug' => $tuto->slug])}}" class="btn btn-light float-right">Lire <i
+                            class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>

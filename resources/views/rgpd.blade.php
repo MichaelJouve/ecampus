@@ -2,13 +2,13 @@
 
 @section('contenu')
 
-        <div class="container-fluid pt-4 pb-4 bandeau-sombre">
-            <div class="container">
-                <h4 class="text-center">
-                    Mentions légales du site
-                </h4>
-            </div>
+    <div class="container-fluid pt-4 pb-4 bandeau-sombre">
+        <div class="container">
+            <h4 class="text-center">
+                Mentions légales du site
+            </h4>
         </div>
+    </div>
     <div class="container">
 
         <div class="row justify-content-center">
@@ -149,12 +149,11 @@
                                 l'adresse suivante : ecampus@ecampus.fr, ou par courrier recommandé avec accusé
                                 de réception
                                 adressé
-                                à l'Éditeur aux coordonnées précisées dans les présentes mentions légales.
-                        </div>
+                                à l'Éditeur aux coordonnées précisées dans les présentes mentions légales.</p></div>
                     </div>
-
-
                 </div>
             </div>
         </div>
+    </div>
+
 @endsection

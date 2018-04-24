@@ -35,8 +35,8 @@
                                        title="Maximum 50 caractères">
                             </div>
                             <div class="form-group">
-                                <label for="description_tuto">Description de votre tutoriel</label>
-                                    <input type="text" name="description" class="form-control" placeholder="Un descriptif rapide de votre tutoriel.." nb_max="150" id="description_tuto" title="Maximum 150 caractères">
+                                <label for="description">Description de votre tutoriel</label>
+                                    <input type="text" name="description" class="form-control" placeholder="Un descriptif rapide de votre tutoriel.." id="description" title="Maximum 150 caractères">
 
                             </div>
                             <div class="form-group">

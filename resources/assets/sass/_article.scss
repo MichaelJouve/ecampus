@@ -55,3 +55,35 @@
   border-top: 3px solid #007791;
 }
 
+//image
+.img_bandeau{
+  width: 100%;
+  height: 100%;
+  border:2px solid #fff;
+  border-radius: 2px;
+}
+
+li{
+  list-style-type: none;
+}
+
+//link
+
+.link_bandeau {
+  color:#fff;
+  text-decoration: none;
+}
+
+.link_bandeau:hover{
+  color:white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link_to_card{
+  text-decoration: none;
+}
+
+button{
+  cursor:pointer;
+}
