@@ -81,16 +81,16 @@
                         <span>{{ Auth::user()->firstname }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                        <a class="dropdown-item" href="{{route('user-profil',['slug' => Auth::user()->slug])}}" title="Mon Profil">
+                        <a class="dropdown-item" href="{{URL::route('user-profil')}}" title="Mon Profil">
                             Profil
                         </a>
-                        <a class="dropdown-item" href="{{URL::route('front-config-infos')}}">
+                        <a class="dropdown-item" href="{{URL::route('user-profil-infos')}}">
                             Infos
                         </a>
-                        <a class="dropdown-item" href="{{URL::route('front-config-message')}}">
+                        <a class="dropdown-item" href="{{URL::route('user-profil-message')}}">
                             Messages
                         </a>
-                        <a class="dropdown-item" href="{{URL::route('front-config-preference')}}">
+                        <a class="dropdown-item" href="{{URL::route('user-profil-preference')}}">
                             Preferences
                         </a>
                     </div>

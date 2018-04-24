@@ -47,17 +47,31 @@ class UserController extends Controller
         //
     }
 
+    public function otherprofil($slug)
+    {
+        $user = Auth::user();
+        $otherUser = User::findBySlugOrFail($slug);
+
+        if ($user == $otherUser)
+        {
+            return redirect()->route('user-profil');
+        }
+
+        return view('profil', ['user' => $otherUser]);
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function myProfil()
     {
         $userAuth = Auth::user();
+        $userAuth->load('publication');
+        $user = $userAuth;
 
-        $user = User::with('publication')->where('slug', $slug)->firstOrFail();
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
@@ -92,8 +106,8 @@ class UserController extends Controller
         ]);
         Auth::user()->update($validateData);
 
-        $user = Auth::user();
-        return view('configInfos', ['user' => $user]);
+        $slug = Auth::user()->slug;
+        return redirect()->route('user-profil-infos', $slug);
     }
 
     /**
@@ -110,20 +124,25 @@ class UserController extends Controller
     // infos message preference
     public function infos()
     {
-        $user = Auth::user();
-        return view('configInfos', ['user' => $user]);
+        $userAuth = Auth::user();
+        $user = $userAuth;
 
+        return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     public function message()
     {
-        $user = Auth::user();
-        return view('configMessage', ['user' => $user]);
+        $userAuth = Auth::user();
+        $user = $userAuth;
+
+        return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     public function preference()
     {
-        $user = Auth::user();
-        return view('configPref', ['user' => $user]);
+        $userAuth = Auth::user();
+        $user = $userAuth;
+
+        return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
     }
 }

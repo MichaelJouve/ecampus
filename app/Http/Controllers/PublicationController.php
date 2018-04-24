@@ -56,7 +56,7 @@ class PublicationController extends Controller
         $request->validate([
             'category_id' => 'required|numeric',
             'title' => 'required|max:255',
-            'content' => 'required|min:10',
+            'content' => 'required',
         ]);
 
         $inputs = $request->all();
@@ -98,17 +98,6 @@ class PublicationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Category $category
@@ -123,7 +112,6 @@ class PublicationController extends Controller
         $bestTutorials = Category::with('tuto')->where('name', $name)->firstOrFail();
 
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestTutorials' => $bestTutorials]);
-
     }
 
     public function showTutorial($slug)
@@ -135,9 +123,7 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-
         $groupTutorials = Publication::where('type','tutorial')->get();
-
         return view('listingall', ['groupTutorials' => $groupTutorials]);
     }
 
@@ -180,6 +166,5 @@ class PublicationController extends Controller
 
         $user = User::with('publication')->where('slug', $userSlug)->firstOrFail();
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
-
     }
 }

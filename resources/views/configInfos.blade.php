@@ -40,7 +40,6 @@
                                         <h3 class="card-title">Mon Profil</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">
                                                     <h5>Nom</h5>
@@ -80,7 +79,6 @@
                                                            name="paypal" value="{{$user->paypal}}">
                                                 </li>
                                             </ul>
-                                        </form>
                                     </div>
                                 </div>
 

@@ -20,18 +20,17 @@ Route::get('/post/ajout', 'PublicationController@createPost')->name('post-ajout'
 Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout');
 Route::post('/post/post', 'PublicationController@storePost')->name('store-post');
 Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-tuto');
-//Route::get('/post/{slug}','PublicationController@ ???')->name('front-listing-all');
 
 
 Route::get('/recherche/','SearchController@index')->name('search');
 
 
-Route::get('/profil','UserController@index')->name('front-profil');
-Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
-Route::get('/profil/message', 'UserController@message')->name('front-config-message');
-Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
-Route::get('/profil/{slug}', 'UserController@show')->name('user-profil');
+Route::get('/profil/infos/','UserController@infos')->name('user-profil-infos');
+Route::get('/profil/message/', 'UserController@message')->name('user-profil-message');
+Route::get('/profil/preference/', 'UserController@preference')->name('user-profil-preference');
+Route::get('/profil/', 'UserController@myProfil')->name('user-profil');
+Route::get('/profil/{slug}', 'UserController@otherProfil')->name('other-profil');
 
 Route::post('/profil/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
 

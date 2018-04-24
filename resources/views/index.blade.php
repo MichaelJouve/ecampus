@@ -33,7 +33,7 @@
                     @foreach($users as $user)
                         <div class="card-row">
                             <div class="card-header m-3">
-                                <a class="btn btn-light" href="{{route('user-profil',['slug' => $user->slug])}}">
+                                <a class="btn btn-light" href="{{route('other-profil',['slug' => $user->slug])}}">
                                     <img class=" card-img-top img-fluid" src="{{asset('images/Users/default.png')}}"
                                          alt="Image de profil"><br>
                                     {{ucfirst(strtolower($user->firstname))}}
