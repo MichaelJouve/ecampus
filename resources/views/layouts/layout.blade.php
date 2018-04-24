@@ -33,7 +33,7 @@
         <div class="row align-items-center ">
             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 text-center logo-image">
                 <a href="{{URL::asset('/')}}">
-                    <img class="img-fluid" src="{{URL::asset('images/logo_sans_ombre.png')}}" alt="Logo E-campus"
+                    <img class="img-fluid" src="{{URL::asset('images/logo_sans_ombre_leger.png')}}" alt="Logo E-campus"
                          title="Logo E-campus">
                 </a>
             </div>
