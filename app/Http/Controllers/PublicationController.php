@@ -51,7 +51,7 @@ class PublicationController extends Controller
     {
 
         $user = Auth::user();
-        $userAuth = $user;
+        $slug = $user->slug;
 
         $request->validate([
             'category_id' => 'required|numeric',
@@ -63,7 +63,7 @@ class PublicationController extends Controller
         $inputs['user_id'] = $user->id;
 
         Publication::create($inputs);
-        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+        return redirect()->route('user-profil', $slug);
     }
 
     public function storeTuto(Request $request)
