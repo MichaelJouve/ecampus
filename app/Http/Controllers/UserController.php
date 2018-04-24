@@ -102,13 +102,14 @@ class UserController extends Controller
     {
         $validateData = $request->validate([
             'description' => 'string|nullable',
-            ]);
+        ]);
 
         Auth::user()->update($validateData);
 
         $slug = Auth::user()->slug;
         return redirect()->route('front-config-infos', $slug);
     }
+
 
     /**
      * Remove the specified resource from storage.
