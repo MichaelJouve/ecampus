@@ -30,6 +30,7 @@ Route::get('/profil','UserController@index')->name('front-profil');
 Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
 Route::post('/profil/infos/update/description','UserController@updateDescription')->name('update-description');
+Route::post('/profil/infos/update/avatar','UserController@updateAvatar')->name('update-avatar');
 Route::get('/profil/message', 'UserController@message')->name('front-config-message');
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
 Route::get('/profil/{slug}', 'UserController@show')->name('user-profil');

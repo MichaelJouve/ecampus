@@ -86,20 +86,21 @@
                         <div class="card-header">
                             <h3 class="card-title">Ma Photo</h3>
                         </div>
-                        <div class="card-body">
-                            <img src="{{asset('images/Users')}}/{{$user->image_profil}}"
+                        <div class="card-body text-center">
+                            <img src="{{asset('images/Users')}}/{{$user->imgprofil}}"
                                  alt="Avatar Romaric"
                                  class="rounded border img-fluid">
                         </div>
-                        <div class="card-footer text-right">
-                            <button class="btn btn-info">Modifier
-                            </button>
+                        <div class="card-footer">
+                            <form action="{{URL::route('update-avatar')}}" method="post">
+                                <input type="file" name="avatar">
+                                <button class="btn btn-info float-right" type="submit">Modifier</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--****************  FIN DE INFORMATIONS PERSONNELS   ************************************************** -->
+        <!--****************  FIN DE INFORMATIONS PERSONNELS   ************************************************** -->
 
 @endsection

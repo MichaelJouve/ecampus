@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -93,8 +94,9 @@ class UserController extends Controller
 
         Auth::user()->update($validateData);
 
-        $slug = Auth::user()->slug;
-        return redirect()->route('front-config-infos', $slug);
+        $user = Auth::user();
+        return view('configInfos', ['user' => $user]);
+
     }
 
 
@@ -106,10 +108,29 @@ class UserController extends Controller
 
         Auth::user()->update($validateData);
 
-        $slug = Auth::user()->slug;
-        return redirect()->route('front-config-infos', $slug);
+        $user = Auth::user();
+        return view('configInfos', ['user' => $user]);
+
     }
 
+
+    public function updateAvatar(Request $request)
+    {
+
+
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('images/users');
+            $file = $request->file('photo');
+
+            $user = Auth::user();
+            $user->imgprofil = $file;
+            return view('configInfos', ['user' => $user]);
+
+        }
+
+
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -117,26 +138,30 @@ class UserController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public
+    function destroy(User $user)
     {
         //
     }
 
-    // infos message preference
-    public function infos()
+// infos message preference
+    public
+    function infos()
     {
         $user = Auth::user();
         return view('configInfos', ['user' => $user]);
 
     }
 
-    public function message()
+    public
+    function message()
     {
         $user = Auth::user();
         return view('configMessage', ['user' => $user]);
     }
 
-    public function preference()
+    public
+    function preference()
     {
         $user = Auth::user();
         return view('configPref', ['user' => $user]);
