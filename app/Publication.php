@@ -13,7 +13,7 @@ class Publication extends Model
     use SluggableScopeHelpers;
     use SoftDeletes;
 
-    protected $fillable = ['type', 'type', 'image', 'price', 'title', 'slug', 'description ', 'content', 'goals', 'required', 'category_id', 'user_id'];
+    protected $fillable = ['type', 'type', 'image', 'price', 'title', 'slug', 'description', 'content', 'goals', 'required', 'category_id', 'user_id'];
 
     /**
      * Return the sluggable configuration array for this model.
