@@ -70,23 +70,23 @@ class PublicationController extends Controller
     {
 
         $user = Auth::user();
-        $userAuth = $user;
+        $slug = $user->slug;
 
         $request->validate([
             'category_id' => 'required|numeric',
             'title' => 'required|max:150',
             'description' => 'max:255',
-            'price' => 'numeric|between:0,99.99',
+            'price' => 'integer',
             'required' => 'max:100',
             'goals' => 'max:100',
-            'content' => 'required|min:10|max:65000',
+            'content' => 'required|max:65000',
         ]);
 
         $inputs = $request->all();
         $inputs['user_id'] = $user->id;
 
         Publication::create($inputs);
-        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+        return redirect()->route('user-profil', $slug);
     }
 
     /**

@@ -17,6 +17,8 @@
                     <div class="card-body">
                     <form method="POST" action="{{URL::route('store-tuto')}}">
                             @csrf
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="type" value="tutorial">
                             <div class="form-group">
                                 <label for="selecteur_tuto">Selectionner une catégorie </label>
                                 <select class="custom-select" name="category_id" id="selecteur_tuto">
@@ -39,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">Prix de votre tutoriel</label>
-                                <input type="number" min="0" max="10000" step="0.01" name="price" id="price" placeholder="Prix du tutoriel (Si gratuit ne pas remplir)" class="form-control" title="Oui, mais combien ?">
+                                <input type="text" name="price" value="0" id="price" placeholder="Prix du tutoriel (Si gratuit ne pas remplir)" class="form-control" title="Oui, mais combien ?">
                             </div>
                             <div class="form-group">
                                 <label for="prerequis">Prérequis de votre tutoriel</label>
@@ -49,10 +51,10 @@
                                 <label for="objectifs">Objectifs de votre tutoriel</label>
                                 <input type="text" name="goals" id="objectifs"   nb_max="100" title="Maximum 100 caractères" class="form-control" placeholder="Objectifs du tutoriel">
                             </div>
-                            <div class="form-group">
-                                <label for="liste_fichier">Liste de fichier présent dans le tutoriel</label>
-                                <input type="text" name="files" id="files"  class="form-control" placeholder="La liste de vos fichiers">
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<label for="liste_fichier">Liste de fichier présent dans le tutoriel</label>--}}
+                                {{--<input type="text" name="files" id="files"  class="form-control" placeholder="La liste de vos fichiers">--}}
+                            {{--</div>--}}
                             <div class="form-group">
                                 <label for="content">Saisir le contenu de votre tutoriel</label>
                                 <textarea name="content" class="form-control"  class="form-control" placeholder="Contenu de votre tutoriel"></textarea>

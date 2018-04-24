@@ -17,6 +17,7 @@
                         <form method="POST" action="{{URL::route('store-post')}}">
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="type" value="post">
                             <div class="form-group">
                                 <label for="category_id">
                                     Sélectionner une catégorie pour votre post :
