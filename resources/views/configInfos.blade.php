@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="card">
-                            <form action="{{URL::route('update_info')}}" method="post">
+                            <form action="{{URL::route('update-info')}}" method="post">
                                 @csrf
                                 <div class="card">
                                     <div class="card-header">
