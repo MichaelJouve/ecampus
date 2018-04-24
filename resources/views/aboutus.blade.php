@@ -50,8 +50,8 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" id="bandeau_information_equipe">
-        <div class="container animated bounceInUp">
+    <div class="container-fluid bandeau-sombre pt-4 pb-4 mt-3 pb-3">
+        <div class="container">
             <div class="col-md-12 text-center">
                 <h2>E-campus en quelque chiffres..</h2>
             </div>
@@ -84,14 +84,8 @@
             </div>
         </div>
     </div>
-    <div class="container text-center mt-5 mb-5">
-    </div>
-    <div class="container-fluid">
-        <div class="col-md-12">
-            <div style="width: 100%">
-                <iframe width="100%" height="420" src="https://maps.google.com/maps?width=100%&amp;height=420&amp;hl=en&amp;q=33%20grande%20rue%2C%20valence+(SAS%20-%20E-Campus)&amp;ie=UTF8&amp;t=&amp;z=18&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/"></a></iframe>
-            </div>
-            <br />
-        </div>
+
+    <div class="container-fluid mt-5">
+            <iframe width="100%" height="420" src="https://maps.google.com/maps?width=100%&amp;height=420&amp;hl=en&amp;q=33%20grande%20rue%2C%20valence+(SAS%20-%20E-Campus)&amp;ie=UTF8&amp;t=&amp;z=18&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/"></a></iframe>
     </div>
 @endsection

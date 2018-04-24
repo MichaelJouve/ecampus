@@ -63,6 +63,10 @@ class PublicationController extends Controller
         $inputs['user_id'] = $user->id;
 
         Publication::create($inputs);
+
+        //Un petit message de succés ...
+        session()->flash('message','Votre post a bien été créé !');
+
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
@@ -75,6 +79,10 @@ class PublicationController extends Controller
             'content' => 'required',
             'goals' => 'required',
         ]);
+
+
+        //Un petit message de succés ...
+        session()->flash('message','Votre tutoriel a bien été créé !');
     }
 
     /**

@@ -3,3 +3,12 @@
 .logo-config{
   width: 25px;
 }
+
+.message_alert{
+  position:absolute;
+  top:0px;
+  left:15px;
+  z-index: 999999;
+  padding:5px;
+  opacity: 0.5;
+}

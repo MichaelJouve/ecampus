@@ -12,7 +12,7 @@
             <div class="row justify-content-center">
                 <div class="col-8">
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card">
                             <div class="card-header font-weight-bold">ARTICLE 1 : Objet</div>
                             <div class="card-body small">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card">
                             <div class="card-header font-weight-bold">ARTICLE 2 : Mentions légales</div>
                             <div class="card-body small">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3 ">
                             <div class="card-header font-weight-bold">ARTICLE 3 : Définitions</div>
                             <div class="card-body small">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 4 : accès aux services</div>
                             <div class="card-body small">
@@ -130,7 +130,7 @@
                     </div>
 
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 5 : Propriété intellectuelle</div>
                             <div class="card-body small">
@@ -162,7 +162,7 @@
                     </div>
 
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 6 : Données personnelles</div>
                             <div class="card-body small">
@@ -193,7 +193,7 @@
                     </div>
 
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 7 : Responsabilité et force majeure</div>
                             <div class="card-body small">
@@ -226,7 +226,7 @@
                     </div>
 
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 8 : Liens hypertextes</div>
                             <div class="card-body small">
@@ -245,7 +245,7 @@
                     </div>
 
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card  mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 9 : Évolution du contrat</div>
                             <div class="card-body small">
@@ -258,7 +258,7 @@
                     </div>
 
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 10 : Durée</div>
                             <div class="card-body small">
@@ -270,7 +270,7 @@
                         </div>
                     </div>
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 11 : Droit applicable et juridiction compétente</div>
                             <div class="card-body small">
@@ -285,7 +285,7 @@
                         </div>
                     </div>
 
-                    <div class="shadow-lg rounded mb-3">
+                    <div class="shadow rounded mb-3">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">ARTICLE 12 : Publication par l’Utilisateur</div>
                             <div class="card-body small">
