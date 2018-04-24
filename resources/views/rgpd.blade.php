@@ -42,7 +42,7 @@
                                 dans le cadre de sa réalisation et de son suivi.</p>
                             <p>Le site {e}campus.com est édité par :</p>
 
-                            <h5>Les Givrés</h5>
+                            <h6>Les Givrés</h6>
                             <p>domicilié à l'adresse suivante : 33, Grande Rue, 26000 Valence.
                             </p>
                             <p>Téléphone : +(33)1 23 45 46 78</p>
@@ -50,11 +50,11 @@
 
                             <p>ci après " l'Éditeur "</p>
                             <p><br/>Le Directeur de publication est :</p>
-                            <h5>Les Givrés</h5>
+                            <h6>Les Givrés</h6>
                             <p>Adresse e-mail de contact : ecampus@ecampus.fr
                             </p>
                             <p>ci après " le Directeur de publication "{e}campus.com est hébergé par :</p>
-                            <h5>OVH</h5>
+                            <h6>OVH</h6>
                             <p>dont le siège est situé à l'adresse suivante : 1 place de la paix, 75000 paris
                             </p>
                             <p>Téléphone : +(33)1 23 45 67 89</p>
