@@ -51,7 +51,7 @@ class PublicationController extends Controller
     {
 
         $user = Auth::user();
-        $userAuth = $user;
+        $slug = $user->slug;
 
         $request->validate([
             'category_id' => 'required|numeric',
@@ -67,22 +67,34 @@ class PublicationController extends Controller
         //Un petit message de succés ...
         session()->flash('message','Votre post a bien été créé !');
 
-        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+        return redirect()->route('user-profil', $slug);
     }
 
     public function storeTuto(Request $request)
     {
-        $validateData = $request->validate([
-            'type' => 'required',
-            'title' => 'required',
-            'description' => 'required',
-            'content' => 'required',
-            'goals' => 'required',
+
+        $user = Auth::user();
+        $slug = $user->slug;
+
+        $request->validate([
+            'category_id' => 'required|numeric',
+            'title' => 'required|max:150',
+            'description' => 'max:255',
+            'price' => 'integer',
+            'required' => 'max:100',
+            'goals' => 'max:100',
+            'content' => 'required|max:65000',
         ]);
+
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
+
+        Publication::create($inputs);
+        session()->flash('message','Votre tutoriel a bien été créé !');
+        return redirect()->route('user-profil', $slug);
 
 
         //Un petit message de succés ...
-        session()->flash('message','Votre tutoriel a bien été créé !');
     }
 
     /**
@@ -158,16 +170,15 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function upStatus($slug)
+    public function softDelete($slug)
     {
         $publication = Publication::findBySlugOrFail($slug);
-        $publication->status = 0;
-        $publication->save();
+        $publication->delete();
 
         $userAuth = Auth::user();
-        $firstname = $userAuth->firstname;
+        $userSlug = $userAuth->slug;
 
-        $user = User::with('publication')->where('firstname', $firstname)->firstOrFail();
+        $user = User::with('publication')->where('slug', $userSlug)->firstOrFail();
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
 
     }

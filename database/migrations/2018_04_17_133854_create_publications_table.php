@@ -16,15 +16,15 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('type',['post','tutorial']);
-            $table->boolean('image');
-            $table->decimal('price', 8,2);
+            $table->boolean('image')->default(0);
+            $table->decimal('price', 8,2)->nullable();
             $table->string('title');
             $table->string('slug');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('content');
-            $table->string('goals');
-            $table->string('required');
-            $table->boolean('status');
+            $table->string('goals')->nullable();
+            $table->string('required')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('user_id');

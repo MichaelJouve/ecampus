@@ -53,11 +53,11 @@ class UserController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function show($firstname)
+    public function show($slug)
     {
         $userAuth = Auth::user();
 
-        $user = User::with('publication')->where('firstname', $firstname)->firstOrFail();
+        $user = User::with('publication')->where('slug', $slug)->firstOrFail();
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 

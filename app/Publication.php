@@ -5,19 +5,22 @@ namespace App;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Publication extends Model
 {
     use Sluggable;
     use SluggableScopeHelpers;
+    use SoftDeletes;
 
-    protected $fillable = ['type', 'image', 'price', 'title', 'description ', 'content', 'goals', 'required', 'category_id', 'user_id'];
+    protected $fillable = ['type', 'type', 'image', 'price', 'title', 'slug', 'description ', 'content', 'goals', 'required', 'category_id', 'user_id'];
 
     /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
      */
+
     public function sluggable()
     {
         return [

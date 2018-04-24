@@ -1,19 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-//Route::get('/', function () {
-  //  return view('welcome');
-//});
 
 
 
@@ -45,13 +31,12 @@ Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
 Route::get('/profil/message', 'UserController@message')->name('front-config-message');
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
-Route::get('/profil/{firstname}', 'UserController@show')->name('user-profil');
+Route::get('/profil/{slug}', 'UserController@show')->name('user-profil');
 
-Route::post('/profil/publication/delete/{slug}', 'PublicationController@upStatus')->name('publication.delete');
+Route::post('/profil/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
 
 Route::get('/panier', 'HomeController@panier')->name('front-panier');
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
 // todo changer HomeContoller par ContentController (redirect page fix useless)
 Route::get('/cgu', 'ContentController@cgu')->name('front-cgu');
