@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <h5 class="font-weight-light">Description</h5>
-                    <p class="small">{{$user->description}}</p>
+                    <p class="small overflow-200">{{$user->description}}</p>
                 </div>
                 <div >
                     <h5>Statistiques membre</h5>
@@ -132,7 +132,7 @@
                                     <!--Social shares button-->
                                     <h3 class="card-title">{{ $publication->title }} <span>{{ $publication->price }}
                                             €</span></h3>
-                                    <p class="card-text" id="affichage_post">{{ $publication->description }}</p>
+                                    <p class="card-text " >{{ $publication->description }}</p>
                                 </div>
                                 <div class="card-footer">
                                     <span class="float-left">{{ $publication->user->firstname }} {{ $publication->user->name }}

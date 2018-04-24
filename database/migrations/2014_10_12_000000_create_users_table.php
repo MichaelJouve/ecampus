@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->boolean('image_profil')->default(0);
             $table->string('firstname');
             $table->string('slug');
-            $table->integer('birthday')->nullable();
+            $table->date('birthday')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('paypal')->nullable();

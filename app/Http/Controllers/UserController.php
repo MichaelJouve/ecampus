@@ -87,13 +87,27 @@ class UserController extends Controller
             'name' => 'string|max:50',
             'firstname' => 'string|max:50',
             'email' => 'string|email|max:255',
-            'paypal' => 'string|max:200',
-            'birthdate' => 'date',
+            'paypal' => 'string|max:200|nullable',
+            'birthday' => 'date|nullable'
         ]);
+
         Auth::user()->update($validateData);
 
-        $user = Auth::user();
-        return view('configInfos', ['user' => $user]);
+        $slug = Auth::user()->slug;
+        return redirect()->route('front-config-infos', $slug);
+    }
+
+
+    public function updateDescription(Request $request)
+    {
+        $validateData = $request->validate([
+            'description' => 'string|nullable',
+            ]);
+
+        Auth::user()->update($validateData);
+
+        $slug = Auth::user()->slug;
+        return redirect()->route('front-config-infos', $slug);
     }
 
     /**
