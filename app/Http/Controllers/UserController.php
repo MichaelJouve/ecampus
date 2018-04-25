@@ -103,7 +103,7 @@ class UserController extends Controller
             'firstname' => 'string|max:50',
             'email' => 'string|email|max:255',
             'paypal' => 'string|max:200|nullable',
-            'birthday' => 'date|nullable'
+            'birthday' => 'date|nullable',
         ]);
 
         Auth::user()->update($validateData);
@@ -124,6 +124,18 @@ class UserController extends Controller
 
         $user = Auth::user();
         return view('configInfos', ['user' => $user]);
+    }
+
+
+    public function updateAvatar(Request $request)
+    {
+            $avatar = $request->avatar->store('imgprofil', 'public');
+
+            $user = Auth::user();
+            $user->imgprofil = $avatar;
+            $user->save();
+
+            return view('configInfos', ['user' => $user]);
     }
 
     /**

@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="text-center">
-                    <img class="img-fluid w50" style="border:2px solid #007791; border-radius: 4px;"
-                         src="{{asset('images/Users/default.png')}}" alt="Image de profil">
+                    <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;"
+                         src="{{asset('storage/'.$user->imgprofil)}}" alt="Image de profil">
                 </div>
                 <div class="mt-3">
                     <p class="text-center small">

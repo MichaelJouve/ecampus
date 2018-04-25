@@ -78,27 +78,29 @@
                             </div>
                         </form>
                     </div>
-                    <!-- PHOTO-->
 
+                    <!-- PHOTO-->
                     <div class="card ">
+                        <form action="{{URL::route('update-avatar')}}" method="post" enctype="multipart/form-data">
+                            @csrf
                         <div class="card-header">
                             <h3 class="card-title">Ma Photo</h3>
                         </div>
                         <div class="card-body text-center">
-                            <img src="{{asset('images/Users')}}/{{$user->imgprofil}}"
+                            <img src="{{asset('storage/'.$user->imgprofil)}}"
                                  alt="Avatar Romaric"
                                  class="rounded border img-fluid">
                         </div>
                         <div class="card-footer">
-                            <form action="#" method="post">
-                                <input type="file" name="avatar">
+                                <input type="file" name="avatar" id="avatar">
                                 <button class="btn btn-info float-right" type="submit">Modifier</button>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
         <!--****************  FIN DE INFORMATIONS PERSONNELS   ************************************************** -->
 
 @endsection

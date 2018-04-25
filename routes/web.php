@@ -33,6 +33,7 @@ Route::get('/profil/', 'UserController@myProfil')->name('user-profil');
 Route::get('/profil/{slug}', 'UserController@otherProfil')->name('other-profil');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
 Route::post('/profil/infos/update/description','UserController@updateDescription')->name('update-description');
+Route::post('/profil/infos/update/imgprofil','UserController@updateAvatar')->name('update-avatar');
 
 Route::post('/profil/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
 
