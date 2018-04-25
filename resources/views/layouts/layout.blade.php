@@ -75,35 +75,37 @@
                 <a href="{{URL::route('login')}}" class="btn btn-light" title="Connectez-vous!">Connexion</a>
                 <a href="{{URL::route('register')}}" class="btn btn-info" title="Inscrivez-vous!">S'inscrire</a>
             @else
-                <div class="dropdown">
-                    <button class="btn btn-info dropdown  dropdown-toggle" id="dropdownMenuProfil" title="Profil"
-                            data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
-                            aria-expanded="false">
-                        <span>{{ Auth::user()->firstname }}</span>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                        <a class="dropdown-item" href="{{URL::route('user-profil')}}" title="Mon Profil">
-                            Profil
-                        </a>
-                        <a class="dropdown-item" href="{{URL::route('user-profil-infos')}}">
-                            Infos
-                        </a>
-                        <a class="dropdown-item" href="{{URL::route('user-profil-message')}}">
-                            Messages
-                        </a>
-                        <a class="dropdown-item" href="{{URL::route('user-profil-preference')}}">
-                            Preferences
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                <div class="col-2 text-right">
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown  dropdown-toggle" id="dropdownMenuProfil" title="Profil"
+                                data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
+                                aria-expanded="false">
+                            <span>{{ Auth::user()->firstname }}</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
+                            <a class="dropdown-item" href="{{URL::route('user-profil')}}" title="Mon Profil">
+                                Profil
+                            </a>
+                            <a class="dropdown-item" href="{{URL::route('user-profil-infos')}}">
+                                Infos
+                            </a>
+                            <a class="dropdown-item" href="{{URL::route('user-profil-message')}}">
+                                Messages
+                            </a>
+                            <a class="dropdown-item" href="{{URL::route('user-profil-preference')}}">
+                                Preferences
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            Déconnexion
-                        </a>
+                                Déconnexion
+                            </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </div>
                 </div>
             @endguest
@@ -170,17 +172,17 @@
     var quill = new Quill('#editor-container', {
         modules: {
             toolbar: [
-                [{ header: [1, 2, 3, false] }],
+                [{header: [1, 2, 3, false]}],
                 ['link', 'blockquote', 'bold', 'italic', 'underline'],
                 ['image', 'code-block'],
-                [{ list: 'ordered' }, { list: 'bullet' }]
+                [{list: 'ordered'}, {list: 'bullet'}]
             ]
         },
         placeholder: 'Le contenu de votre post...',
         theme: 'snow'  // or 'bubble'
     });
 
-    quill.on('text-change', function() {
+    quill.on('text-change', function () {
         var content = document.querySelector('input[name=content]');
         content.value = quill.root.innerHTML;
     });

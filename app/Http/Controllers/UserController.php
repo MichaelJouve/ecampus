@@ -53,8 +53,7 @@ class UserController extends Controller
         $user = Auth::user();
         $otherUser = User::findBySlugOrFail($slug);
 
-        if ($user == $otherUser)
-        {
+        if ($user == $otherUser) {
             return redirect()->route('user-profil');
         }
 
@@ -129,6 +128,7 @@ class UserController extends Controller
 
     public function updateAvatar(Request $request)
     {
+        if ($request->has('avatar')) {
             $avatar = $request->avatar->store('imgprofil', 'public');
 
             $user = Auth::user();
@@ -136,6 +136,11 @@ class UserController extends Controller
             $user->save();
 
             return view('configInfos', ['user' => $user]);
+        } else {
+            $user = Auth::user();
+            return view('configInfos', ['user' => $user]);
+
+        }
     }
 
     /**
