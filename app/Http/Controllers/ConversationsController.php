@@ -11,12 +11,13 @@ class ConversationsController extends Controller
 {
     public function index ()
     {
-//        $user = Auth::user()->get();
+//
         $users = User::select('name','id')->where('id','!=',Auth::user()->id)->get();
-        return view('configMessage', compact('users'));
+
+        return view('conversations.index', compact('users'));
     }
 
-    public function show ()
+    public function show (int $id)
     {
 
     }

@@ -31,10 +31,8 @@ Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
 
 // begin Conversation
-
-Route::get('/profil/message', 'ConversationsController@index')->name('front-config-message');
-Route::get('/profil/message', 'ConversationsController@show')->name('front-config-message');
-
+Route::get('/conversations', 'ConversationsController@index')->name('conversations');
+Route::get('/conversations/{id}', 'ConversationsController@show')->name('conversations.show');
 // end Convesation
 
 
