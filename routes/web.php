@@ -14,6 +14,7 @@ Route::get('/categorie/{name}','PublicationController@show');
 Route::get('/tutoriel/','PublicationController@allTutorials')->name('listing-all');
 Route::get('/tutoriel/ajout', 'PublicationController@create')->middleware('auth');
 Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front-tutorial');
+Route::get('/post/{slug}','PublicationController@showPost')->name('front-post');
 Route::get('/tutoriel/{category}','PublicationController@showTutorialCategory')->name('listing-all-category');
 
 Route::get('/post','PublicationController@listingPost')->name('front-listing-all');

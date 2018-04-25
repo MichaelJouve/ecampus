@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Media;
+use App\Consultation;
 use Illuminate\Http\Request;
 
-class MediaController extends Controller
+class ConsultationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MediaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Media  $media
+     * @param  \App\Consultation  $consultation
      * @return \Illuminate\Http\Response
      */
-    public function show(Media $media)
+    public function show(Consultation $consultation)
     {
         //
     }
@@ -52,10 +52,10 @@ class MediaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Media  $media
+     * @param  \App\Consultation  $consultation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Media $media)
+    public function edit(Consultation $consultation)
     {
         //
     }
@@ -64,10 +64,10 @@ class MediaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Media  $media
+     * @param  \App\Consultation  $consultation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Media $media)
+    public function update(Request $request, Consultation $consultation)
     {
         //
     }
@@ -75,10 +75,10 @@ class MediaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Media  $media
+     * @param  \App\Consultation  $consultation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy(Consultation $consultation)
     {
         //
     }

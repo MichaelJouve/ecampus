@@ -80,10 +80,8 @@
                                         @if ($user->id == $userAuth->id)
 
                                             <a href="{{route('publication-delete',['slug' => $publication->slug])}}"
-                                               onclick="event.preventDefault(); document.getElementById('delete-publi').submit();"
-                                            ><span
-                                                        name="delete" style="color:#dc3545;  margin-right: 10px;"><i
-                                                            class="far fa-trash-alt"></i></span></a>
+                                               onclick="event.preventDefault(); document.getElementById('delete-publi').submit();">
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="far fa-trash-alt"></i></span></a>
 
                                             <form id="delete-publi"
                                                   action="{{ route('publication-delete',['slug' => $publication->slug]) }}"
