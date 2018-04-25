@@ -90,7 +90,7 @@
                                  class="rounded border img-fluid">
                         </div>
                         <div class="card-footer">
-                            <form action="{{URL::route('update-avatar')}}" method="post">
+                            <form action="#" method="post">
                                 <input type="file" name="avatar">
                                 <button class="btn btn-info float-right" type="submit">Modifier</button>
                             </form>
