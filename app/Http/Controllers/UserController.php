@@ -129,6 +129,10 @@ class UserController extends Controller
     public function updateAvatar(Request $request)
     {
         if ($request->has('avatar')) {
+            $request->validate([
+               'avatar' =>'required|mimetypes:image/png,image/jpeg,image/png'
+            ]);
+
             $avatar = $request->avatar->store('imgprofil', 'public');
 
             $user = Auth::user();
@@ -137,6 +141,8 @@ class UserController extends Controller
 
             return view('configInfos', ['user' => $user]);
         } else {
+            session()->flash('message','Vous n\'avez pas inséré d\'image');
+
             $user = Auth::user();
             return view('configInfos', ['user' => $user]);
 
