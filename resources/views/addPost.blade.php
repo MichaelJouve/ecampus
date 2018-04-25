@@ -38,7 +38,8 @@
 
                             <div class="form-group">
                                 <label for="title">Saisir un titre pour votre post :</label>
-                                <input type="text" name="title" class="form-control {{$errors->has('title') ? ' is-invalid' : '' }}" id="title"
+                                <input type="text" name="title"
+                                       class="form-control {{$errors->has('title') ? ' is-invalid' : '' }}" id="title"
                                        placeholder="Titre du post..."
                                        title="Maximum 50 caractères"/>
                                 @if ($errors->has('title'))
@@ -50,7 +51,8 @@
 
                             <div class="form-group">
                                 <label for="content">Saisir le contenu de votre post : </label>
-                                <input type="hidden"  name="content" class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
+                                <input type="hidden" name="content"
+                                       class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
                                 <div id="editor-container"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
@@ -72,3 +74,26 @@
         </div>
     </div>
 @endsection
+@push('scripts_post')
+    <script>
+        //Editor View AddPost
+        var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['blockquote', 'bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ list: 'bullet' }],
+                    [{ 'align': [] }]
+                ]
+            },
+            placeholder: 'Le contenu de votre post...',
+            theme: 'snow'  // or 'bubble'
+        });
+
+        quill.on('text-change', function() {
+            var content = document.querySelector('input[name=content]');
+            content.value = quill.root.innerHTML;
+        });
+    </script>
+@endpush

@@ -39,4 +39,9 @@ class Publication extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function media()
+    {
+        return $this->hasMany('App\Media');
+    }
 }

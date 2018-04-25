@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="card-title" id="card-title-post">{{ $post->user->name }} {{ $post->user->firstname }}
                             <br> <b>{{$post->title}}</b></div>
-                        <div class="card-text small">{{$post->content}}</div>
+                        <div class="card-text small">{!! $post->content !!}</div>
                     </div>
                 </div>
             </div>

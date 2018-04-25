@@ -86,6 +86,8 @@ class PublicationController extends Controller
             'content' => 'required|max:65000',
         ]);
 
+//        $request->files->store('medias');
+
         $inputs = $request->all();
         $inputs['user_id'] = $user->id;
 

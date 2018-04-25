@@ -15,9 +15,13 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('type',['img','video','text']);
-            $table->string('name');
-            $table->softDeletes();
+            $table->string('title');
+            $table->string('type_mime');
+            $table->string('file_path');
+            $table->unsignedInteger('publication_id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('publication_id')->references('id')->on('publications');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

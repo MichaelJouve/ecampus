@@ -36,5 +36,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Publication')->orderBy('created_at','desc');;
     }
 
-
+    public function media()
+    {
+        return $this->hasMany('App\Media');
+    }
 }
