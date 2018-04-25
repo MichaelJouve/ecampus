@@ -13,6 +13,7 @@ Route::get('/categorie/{name}','PublicationController@show');
 
 Route::get('/tutoriel/','PublicationController@allTutorials')->name('listing-all');
 Route::get('/tutoriel/ajout', 'PublicationController@create')->middleware('auth');
+Route::get('/tutoriel/{slug}/consultation','PublicationController@showpublication')->name('affiche-publication');
 Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front-tutorial');
 Route::get('/tutoriel/{category}','PublicationController@showTutorialCategory')->name('listing-all-category');
 

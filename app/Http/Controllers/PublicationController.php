@@ -125,6 +125,14 @@ class PublicationController extends Controller
         return view('article', ['tuto' => $tuto]);
     }
 
+    public function showpublication($slug)
+    {
+        $publication = Publication::where('slug', $slug)->firstOrFail();
+
+        return view('publication.affichepublication', ['publication' => $publication]);
+    }
+
+
     public function allTutorials()
     {
         $groupTutorials = Publication::where('type','tutorial')->get();

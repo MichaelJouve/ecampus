@@ -85,12 +85,21 @@
 
             <!-- Descriptif tutoriel bandeau droite-->
             <div class="col-md-3 text-center">
-                <p class="text-center text-success lead font-weight-bold">
-                    <i class="fas fa-shopping-cart"></i>
-                    {{ $tuto->price }} €
-                </p>
 
-                <button class="btn btn-success" href="#">Acheter le tutoriel</button>
+
+                    @if($tuto->price == '0')
+                    <p class="text-center text-success lead font-weight-bold"> Gratuit </p>
+                    <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}"><button class="btn btn-success">Voir le tutoriel</button></a>
+                    @else
+                    <p class="text-center text-success lead font-weight-bold">
+                    <i class="fas fa-shopping-cart"></i>
+                        {{ $tuto->price }} €
+                    </p>
+                        <button class="btn btn-success" href="#">Acheter le tutoriel</button>
+                    @endif
+
+
+
                 <div class="text-center mt-2">
                     <p class="border">
                         Liste des fichiers<br>

@@ -87,3 +87,20 @@ li{
 button{
   cursor:pointer;
 }
+
+.title_font{
+  font-family: 'Russo One';
+  font-size: 5em;
+}
+
+.by_font{
+  margin-top: -35px;
+  font-family: 'Russo One';
+  font-size: 2em;
+}
+
+hr{
+  width: 254px;
+  height: 5px;
+  background-color:$primary;
+}
