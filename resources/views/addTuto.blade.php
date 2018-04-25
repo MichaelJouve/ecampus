@@ -45,7 +45,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="description_tuto">Description de votre tutoriel</label>
+                                <label for="description">Description de votre tutoriel</label>
                                     <input type="text" name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Un descriptif rapide de votre tutoriel.." nb_max="150" id="description_tuto" title="Maximum 150 caractères">
                                 @if ($errors->has('description'))
                                     <span class="invalid-feedback">

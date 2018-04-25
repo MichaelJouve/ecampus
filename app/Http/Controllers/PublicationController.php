@@ -118,9 +118,11 @@ class PublicationController extends Controller
     {
         $category = Category::with('tuto')->where('name', $name)->firstOrFail();
 
-        $bestTutorial = Category::with('tuto')->where('name', $name)->first();
-
         $bestTutorials = Category::with('tuto')->where('name', $name)->firstOrFail();
+
+        $bestTutorial = Category::with('best')->where('name', $name)->first();
+
+
 
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestTutorials' => $bestTutorials]);
 
@@ -179,6 +181,8 @@ class PublicationController extends Controller
         $userSlug = $userAuth->slug;
 
         $user = User::with('publication')->where('slug', $userSlug)->firstOrFail();
+        session()->flash('message','Votre publication a bien été supprimée !');
+
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
 
     }

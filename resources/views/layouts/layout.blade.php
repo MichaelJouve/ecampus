@@ -7,7 +7,9 @@
     <!-- Titre du site -->
     <title>E-Campus - Le site des E-tudiants</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <!-- Summernote usage-->
+    <!-- Include Quill stylesheet -->
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
@@ -16,16 +18,16 @@
 
 </head>
 <body>
-            @if (session()->has('message'))
-            <div class="message_alert">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{ session()->get('message') }}</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-            @endif
+@if (session()->has('message'))
+    <div class="message_alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('message') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+@endif
 
 <header class="p-3">
     <div class="container">
@@ -56,7 +58,7 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Que recherchez vous ?">
                 </form>
             </div>
-            <div class="col-1 text-center header-link">
+            <div class="col-1 text-right header-link">
                 <div class="panier">
                     <a href="{{URL::route('front-panier')}}" class="dropdown" id="dropdownMenuPanier"
                        title="Choisir une catégorie"
@@ -80,7 +82,8 @@
                         <span>{{ Auth::user()->firstname }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuProfil">
-                        <a class="dropdown-item" href="{{route('user-profil',['slug' => Auth::user()->slug])}}" title="Mon Profil">
+                        <a class="dropdown-item" href="{{route('user-profil',['slug' => Auth::user()->slug])}}"
+                           title="Mon Profil">
                             Profil
                         </a>
                         <a class="dropdown-item" href="{{URL::route('front-config-infos')}}">
@@ -92,13 +95,17 @@
                         <a class="dropdown-item" href="{{URL::route('front-config-preference')}}">
                             Preferences
                         </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            Déconnexion
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
-                    <a href="{{route('logout')}}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                       class="btn btn-light" title="Deconnexion">Deconnexion</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
                 </div>
             @endguest
 
@@ -156,5 +163,29 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+    var quill = new Quill('#editor-container', {
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ['link', 'blockquote', 'bold', 'italic', 'underline'],
+                ['image', 'code-block'],
+                [{ list: 'ordered' }, { list: 'bullet' }]
+            ]
+        },
+        placeholder: 'Le contenu de votre post...',
+        theme: 'snow'  // or 'bubble'
+    });
+
+    quill.on('text-change', function() {
+        var content = document.querySelector('input[name=content]');
+        content.value = quill.root.innerHTML;
+    });
+</script>
+
 </body>
 </html>
