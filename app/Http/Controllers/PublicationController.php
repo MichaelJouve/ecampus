@@ -25,7 +25,7 @@ class PublicationController extends Controller
     {
         $user = Auth::user();
         $categories = Category::with('post')->get();
-        return view('category', ['categories' => $categories, 'user'=>$user]);
+        return view('category', ['categories' => $categories, 'user' => $user]);
     }
 
     /**
@@ -37,19 +37,18 @@ class PublicationController extends Controller
     {
         $user = Auth::user();
         $categories = Category::all();
-        return view('addTuto', ['categories' => $categories, 'user' =>$user]);
+        return view('addTuto', ['categories' => $categories, 'user' => $user]);
     }
 
     public function createPost()
     {
         $categories = Category::all();
         $user = Auth::user();
-        return view('addPost', ['categories' => $categories, 'user' =>$user]);
+        return view('addPost', ['categories' => $categories, 'user' => $user]);
     }
 
     public function storePost(Request $request)
     {
-
         $user = Auth::user();
         $slug = $user->slug;
 
@@ -65,7 +64,7 @@ class PublicationController extends Controller
         Publication::create($inputs);
 
         //Un petit message de succés ...
-        session()->flash('message','Votre post a bien été créé !');
+        session()->flash('message', 'Votre post a bien été créé !');
 
         return redirect()->route('user-profil', $slug);
     }
@@ -90,7 +89,7 @@ class PublicationController extends Controller
         $inputs['user_id'] = $user->id;
 
         Publication::create($inputs);
-        session()->flash('message','Votre tutoriel a bien été créé !');
+        session()->flash('message', 'Votre tutoriel a bien été créé !');
         return redirect()->route('user-profil', $slug);
 
 
@@ -112,7 +111,6 @@ class PublicationController extends Controller
         $bestTutorial = Category::with('best')->where('name', $name)->first();
 
 
-
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestTutorials' => $bestTutorials]);
     }
 
@@ -132,7 +130,7 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        $groupTutorials = Publication::where('type','tutorial')->get();
+        $groupTutorials = Publication::where('type', 'tutorial')->get();
         return view('listingall', ['groupTutorials' => $groupTutorials]);
     }
 
@@ -174,7 +172,7 @@ class PublicationController extends Controller
         $userSlug = $userAuth->slug;
 
         $user = User::with('publication')->where('slug', $userSlug)->firstOrFail();
-        session()->flash('message','Votre publication a bien été supprimée !');
+        session()->flash('message', 'Votre publication a bien été supprimée !');
 
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }

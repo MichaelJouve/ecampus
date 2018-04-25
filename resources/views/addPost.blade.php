@@ -38,7 +38,8 @@
 
                             <div class="form-group">
                                 <label for="title">Saisir un titre pour votre post :</label>
-                                <input type="text" name="title" class="form-control {{$errors->has('title') ? ' is-invalid' : '' }}" id="title"
+                                <input type="text" name="title"
+                                       class="form-control {{$errors->has('title') ? ' is-invalid' : '' }}" id="title"
                                        placeholder="Titre du post..."
                                        title="Maximum 50 caractères"/>
                                 @if ($errors->has('title'))
@@ -50,7 +51,8 @@
 
                             <div class="form-group">
                                 <label for="content">Saisir le contenu de votre post : </label>
-                                <input type="hidden"  name="content" class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
+                                <input type="hidden" name="content"
+                                       class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
                                 <div id="editor-container"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">

@@ -66,7 +66,7 @@
                 @endif
 
 
-                <h2 class="text-center font-weight-light pt-4">Vos dernières publications !</h2>
+                <h2 class="text-center font-weight-light pt-4">Vos dernieres publications !</h2>
 
                 <div class="row justify-content-center mt-5">
 
@@ -156,8 +156,7 @@
                                     </div>
                                     <div class="card-footer small">
                                         <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
-                                           class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
