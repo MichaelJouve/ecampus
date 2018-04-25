@@ -29,7 +29,15 @@ Route::get('/recherche/','SearchController@index')->name('search');
 Route::get('/profil','UserController@index')->name('front-profil');
 Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
-Route::get('/profil/message', 'UserController@message')->name('front-config-message');
+
+// begin Conversation
+
+Route::get('/profil/message', 'ConversationsController@index')->name('front-config-message');
+Route::get('/profil/message', 'ConversationsController@show')->name('front-config-message');
+
+// end Convesation
+
+
 Route::get('/profil/preference', 'UserController@preference')->name('front-config-preference');
 Route::get('/profil/{slug}', 'UserController@show')->name('user-profil');
 
