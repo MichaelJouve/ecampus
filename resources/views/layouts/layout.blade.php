@@ -182,14 +182,10 @@
         theme: 'snow'  // or 'bubble'
     });
 
-    var form = document.querySelector('#ajout-post');
-    form.onsubmit = function() {
-
-        // Populate hidden form on submit
+    quill.on('text-change', function() {
         var content = document.querySelector('input[name=content]');
-        content.value = JSON.stringify(quill.getContents());
-    };
-
+        content.value = quill.root.innerHTML;
+    });
 </script>
 
 </body>

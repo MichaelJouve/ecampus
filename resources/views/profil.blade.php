@@ -100,7 +100,7 @@
                                             <div class="card-body">
 
                                                 <div class="card-title font-weight-bold">{{ $publication->title }}</div>
-                                                <div class="card-text small">{{ $publication->content }}</div>
+                                                <div class="card-text small">{!! $publication->content !!}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                         </h3>
 
 
-                                        <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
+                                        <p class="card-text small">{{ $publication->description }}</p>
                                     </div>
                                     <div class="card-footer small">
                                         <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
