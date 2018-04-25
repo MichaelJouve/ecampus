@@ -15,6 +15,7 @@ class CreateConsultationsTable extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('occurrences')->default(0);
             $table->timestamps();
             $table->unsignedInteger('rating')->nullable();
             $table->unsignedInteger('publication_id');

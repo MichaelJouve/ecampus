@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Consultation;
 use App\Publication;
 use App\Post;
 use App\User;
@@ -116,9 +117,17 @@ class PublicationController extends Controller
 
     public function showTutorial($slug)
     {
-        $tuto = Publication::where('slug', $slug)->firstOrFail();
+        $userId = Auth::user()->id;
+        $tuto = Publication::where('slug', $slug)->withCount('consultation')->firstOrFail();
 
-        return view('article', ['tuto' => $tuto]);
+        if ($userId == $tuto->user->id) {
+            return view('article', ['tuto' => $tuto]);
+        } else {
+
+            $consultation = Consultation::updateOrCreate(['publication_id' => $tuto->id, 'user_id' => $userId]);
+            Consultation::find($consultation->id)->increment('occurrences');
+            return view('article', ['tuto' => $tuto]);
+        }
     }
 
     public function showPost($slug)
