@@ -24,7 +24,7 @@ class User extends Authenticatable
         ];
     }
 
-    protected $fillable = ['name','firstname', 'password', 'email', 'paypal', 'birthday', 'description', 'imgprofil'];
+    protected $fillable = ['name', 'firstname', 'password', 'email', 'paypal', 'birthday', 'description'];
 
     public function publication()
     {

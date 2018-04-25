@@ -3,16 +3,14 @@
 
 @section('contenu')
     <!-- CONTENU -->
-    <div class="container-fluid">
+    <div class="container-fluid conteneur_config">
         <div class="row ">
             @include('navBarConfig')
             <div class="col-lg-9 col-12 ">
                 <div class="row p-5 mb-2 justify-content-center bandeau-sombre">
                     <div class="row">
                         <h3><img src="{{asset('images/infos_perso.png')}}" alt="Bandeau des preferences"
-                                 class="img-fluid logo-config">Vos informations personnelles : Modification de vos
-                            données
-                            personnelles</h3>
+                                 class="img-fluid logo-config">Vos informations personnelles : Modification de vos données personnelles</h3>
                     </div>
                 </div>
 

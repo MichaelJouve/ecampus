@@ -48,17 +48,31 @@ class UserController extends Controller
         //
     }
 
+    public function otherprofil($slug)
+    {
+        $user = Auth::user();
+        $otherUser = User::findBySlugOrFail($slug);
+
+        if ($user == $otherUser)
+        {
+            return redirect()->route('user-profil');
+        }
+
+        return view('profil', ['user' => $otherUser]);
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function myProfil()
     {
         $userAuth = Auth::user();
+        $userAuth->load('publication');
+        $user = $userAuth;
 
-        $user = User::with('publication')->where('slug', $slug)->firstOrFail();
         return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
@@ -110,26 +124,6 @@ class UserController extends Controller
 
         $user = Auth::user();
         return view('configInfos', ['user' => $user]);
-
-    }
-
-
-    public function updateAvatar(Request $request)
-    {
-
-
-
-        if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('images/users');
-            $file = $request->file('photo');
-
-            $user = Auth::user();
-            $user->imgprofil = $file;
-            return view('configInfos', ['user' => $user]);
-
-        }
-
-
     }
 
     /**
@@ -138,32 +132,33 @@ class UserController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy(User $user)
+    public function destroy(User $user)
     {
         //
     }
 
-// infos message preference
-    public
-    function infos()
+    // infos message preference
+    public function infos()
     {
-        $user = Auth::user();
-        return view('configInfos', ['user' => $user]);
+        $userAuth = Auth::user();
+        $user = $userAuth;
 
+        return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-    public
-    function message()
+    public function message()
     {
-        $user = Auth::user();
-        return view('configMessage', ['user' => $user]);
+        $userAuth = Auth::user();
+        $user = $userAuth;
+
+        return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-    public
-    function preference()
+    public function preference()
     {
-        $user = Auth::user();
-        return view('configPref', ['user' => $user]);
+        $userAuth = Auth::user();
+        $user = $userAuth;
+
+        return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
     }
 }
