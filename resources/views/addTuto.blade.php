@@ -15,7 +15,7 @@
                     <div class="card-header">Ajouter un nouveau <b>tutoriel</b> à votre profil</div>
 
                     <div class="card-body">
-                    <form method="POST" action="{{URL::route('store-tuto')}}">
+                    <form method="POST" action="{{URL::route('store-tuto')}}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="type" value="tutorial">
@@ -80,10 +80,10 @@
                                     </span>
                                 @endif
                             </div>
-                            {{--<div class="form-group">--}}
-                                {{--<label for="liste_fichier">Liste de fichier présent dans le tutoriel</label>--}}
-                                {{--<input type="text" name="files" id="files"  class="form-control" placeholder="La liste de vos fichiers">--}}
-                            {{--</div>--}}
+                            <div class="form-group">
+                                <label for="liste_fichier">Liste de fichiers présents dans le tutoriel</label>
+                                <input type="file" name="files" id="files"  class="form-control" placeholder="La liste de vos fichiers">
+                            </div>
                             <div class="form-group">
                                 <label for="content">Saisir le contenu de votre tutoriel</label>
                                 <textarea name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}"  placeholder="Contenu de votre tutoriel"></textarea>
