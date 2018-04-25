@@ -166,25 +166,7 @@
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 
 <!-- Initialize Quill editor -->
-<script>
-    var quill = new Quill('#editor-container', {
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, 3, false] }],
-                ['link', 'blockquote', 'bold', 'italic', 'underline'],
-                ['image', 'code-block'],
-                [{ list: 'ordered' }, { list: 'bullet' }]
-            ]
-        },
-        placeholder: 'Le contenu de votre post...',
-        theme: 'snow'  // or 'bubble'
-    });
-
-    quill.on('text-change', function() {
-        var content = document.querySelector('input[name=content]');
-        content.value = quill.root.innerHTML;
-    });
-</script>
-
+@stack('scripts_tuto')
+@stack('scripts_post')
 </body>
 </html>
