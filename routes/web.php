@@ -30,6 +30,7 @@ Route::get('/profil','UserController@index')->name('front-profil');
 Route::get('/profil/infos','UserController@infos')->name('front-config-infos');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
 
+
 // begin Conversation
 Route::get('/conversations', 'ConversationsController@index')->name('conversations');
 Route::get('/conversations/{id}', 'ConversationsController@show')->name('conversations.show');
