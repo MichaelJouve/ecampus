@@ -52,7 +52,10 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-9">
-
+                <div class="m-2 p-2">
+                    <h3>Descriptif du tutoriel - <b>{{ $tuto->title }}</b></h3>
+                    <p>{{$tuto->description}}</p>
+                </div>
                 <div class="p-2 m-2">
                     <h2>Que vais-je apprendre dans ce tutoriel ?</h2>
                     <ul class="col-md-6">
@@ -66,56 +69,55 @@
                         <li><i class="fas fa-check"></i> {{ $tuto->required }}</li>
                     </ul>
                 </div>
-                <div class="m-2 p-2">
-                    <h3>Descriptif du tutoriel :{{ $tuto->title }}</h3>
-                    <p>{{$tuto->description}}</p>
-                </div>
 
+                <div class="m-2 p-2">
+                    <h3>Liste des fichiers pour ce tutoriel</h3>
+                    <ul class="col-md-6">
+                        <li><i class="fas fa-check"></i> <u>Document.rar</u></li>
+                    </ul>
+                </div>
 
                 <img class="img-fluid text-center border" src="{{asset('images/bandeau_horizontal.gif')}}"
                      alt="Pub Horizontal">
 
-
                 <div class="mt-5">
-                    <h3>A propos du formateur</h3>
-
-                    <div class="card border pt-2">
-                        <div class="row ">
-                            <div class="col-3 text-center">
-                                <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
-                                    <img class="img-fluid rounded-circle w50 shadow"
-                                         src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}"
-                                         alt="Image de profil">
-                                </a>
-                                <p class="small"><i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
-                                    <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--</p>
-                            </div>
-                            <div class="col-9">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
-                                            {{ $tuto->user->name }} {{ $tuto->user->firstname }}
-                                        </a>
-                                    </div>
-                                    <p class="card-text small">
-                                        {{ $tuto->user->description }}
-                                    </p>
+                    <h3 class="border-bottom">Commentaire(s) de l'article</h3>
+                    @foreach($tuto->comment as $comment)
+                        <div class="col-md-12 bg-light rounded p-3 mt-2">
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    <a href="{{route('other-profil', ['slug' =>$comment->user->slug])}}">
+                                        <img class="w-100 rounded shadow" src="{{asset('storage/img-user/'.$comment->user->imgprofil)}}">
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <p class="font-weight-bold">{{ $comment->user->name }}  {{ $comment->user->firstname }}<br>
+                                    <span class="font-weight-light small">{{ $comment->created_at->format('d/m/Y \à\ H:i') }}</span></p>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <p class="small"> {{ $comment->user->email }}</p>
                                 </div>
                             </div>
+                            <div class="row ml-5 mt-2">
+                                <p class="ml-5 small">{{ $comment->content }}</p>
+                            </div>
+
                         </div>
-                    </div>
 
-                </div>
-
-                <div class="mt-4">
-                    <h3>Commentaire(s) de l'article</h3>
-                    -- Liste des commentaires sur le tutoriel--
+                    @endforeach
+                    <form action="{{ route('tutorial-comment', ['slug' => $tuto->slug]) }}" method="post" class="mb-5">
+                        @csrf
+                        <label for="content">Vous aussi donnez votre avis...</label>
+                        <textarea name="content" id="content" class="form-control" rows="5"
+                                  placeholder="Votre commentaire ici"></textarea>
+                        <input type="submit" class="mt-2 btn btn-primary" value="Commenter">
+                    </form>
                 </div>
             </div>
 
             <!-- Descriptif tutoriel bandeau droite-->
             <div class="col-md-3 text-center">
-
+                <p class="text-secondary bg-light p-3">Tutoriel certifié par l'E-Campus</p>
 
                 @if($tuto->price == '0')
                     <p class="text-center text-success lead font-weight-bold"> Gratuit </p>
@@ -130,47 +132,38 @@
                     <button class="btn btn-success" href="#">Acheter le tutoriel</button>
                 @endif
 
+                    <div class="mt-4">
+                        <p class="font-weight-bold border-bottom">A propos du formateur</p>
 
-                <div class="text-center mt-2">
-                    <p class="border">
-                        Liste des fichiers<br>
-                        - lalalalla
-                        - lalaoaoalala
-                        - kfnefknezfez
-                    </p>
-                    <p class="text-secondary bg-light p-3">Tutoriel certifié par l'E-Campus</p>
-                </div>
+                        <div class="card border-0 pt-2">
+                                    <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
+                                        <img class="img-fluid rounded-circle w50 shadow"
+                                             src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}"
+                                             alt="Image de profil">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
+                                                {{ $tuto->user->name }} {{ $tuto->user->firstname }}
+                                            </a>
+                                        </div>
+                                        <p class="card-text small">
+                                            {{ $tuto->user->description }}
+                                        </p>
+                                        <p class="small border-top mb-2">
+                                            <i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
+                                            <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--
+                                        </p>
+                                    </div>
+                        </div>
+                    </div>
             </div>
             <!-- END Descriptif tutoriel bandeau droite-->
 
         </div>
     </div>
 
-                @push('ratingScript')
-                    <script>
-        var $star_rating = $('.star-rating .far');
 
-        var SetRatingStar = function () {
-            return $star_rating.each(function () {
-                if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-                    return $(this).removeClass('far fa-star').addClass('fas fa-star');
-                } else {
-                    return $(this).removeClass('fas fa-star').addClass('far fa-star');
-                }
-            });
-        };
-
-        $star_rating.on('click', function () {
-            $star_rating.siblings('input.rating-value').val($(this).data('rating'));
-            return SetRatingStar();
-        });
-
-        SetRatingStar();
-        $(document).ready(function () {
-
-        });
-                    </script>
-        @endpush
 
     <!-- FIN CONTENU -->
 @endsection

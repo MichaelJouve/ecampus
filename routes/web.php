@@ -37,6 +37,7 @@ Route::get('/profil/publication/delete/{slug}', 'PublicationController@softDelet
 
 Route::get('/panier', 'HomeController@panier')->name('front-panier');
 
+Route::post('/tutoriel/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');
 
 // todo changer HomeContoller par ContentController (redirect page fix useless)
 Route::get('/cgu', 'ContentController@cgu')->name('front-cgu');

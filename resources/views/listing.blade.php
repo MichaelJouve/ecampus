@@ -69,19 +69,21 @@
 
     @endisset
 
-
+@empty($bestTutorial->best)
     <div class="container-fluid bandeau-sombre">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 pt-5 pb-5 text-center">
                     <p>AUCUN TUTORIEL DISPONIBLE POUR LA CATEGORIE : <b> {{ $category->name }} </b></p>
                 </div>
-
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        @include('components.404.waitpage')
+    </div>
+@endempty
 
 
-        <!-- FIN CONTENU -->
 @endsection
 

@@ -4,3 +4,7 @@
 }
 
 .star-rating .fa-star{color: $primary;}
+
+.star-rating .fa-star:hover{
+  cursor: pointer;
+}
