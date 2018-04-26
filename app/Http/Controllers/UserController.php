@@ -164,7 +164,7 @@ class UserController extends Controller
                 Storage::disk('public')->put('img-user/' . $img->filename.'.jpg', $img);
 
                 // MAJ user
-                $user->imgprofil = $img->filename.'.jpg';
+                $user->imgprofil = 'storage/img-user/'.$img->filename.'.jpg';
                 $user->save();
 
                 return redirect()->route('user-profil-infos');
