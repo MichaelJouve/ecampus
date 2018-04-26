@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-md-3 p-0">
                         <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}">
-                            <img src="{{ asset('images/Publications/5599.jpg') }}" alt="Image du tutoriel"
+                            <img src="{{asset('storage/'.$tutorial->imgpublication)}}" alt="Image du tutoriel"
                                  class="img_bandeau">
                         </a>
                     </div>
