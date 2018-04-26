@@ -33,7 +33,7 @@ Route::post('/profil/infos/update/description','UserController@updateDescription
 Route::post('/profil/infos/update/imgprofil','UserController@updateAvatar')->name('update-avatar');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
 
-Route::post('/profil/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
+Route::get('/profil/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
 
 Route::get('/panier', 'HomeController@panier')->name('front-panier');
 
