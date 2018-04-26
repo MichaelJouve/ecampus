@@ -34,7 +34,7 @@
                     @foreach($users as $user)
                         <div class="row justify-content-center m-2">
                                 <a class="btn btn-light w50" href="{{route('other-profil',['slug' => $user->slug])}}">
-                                    <img class=" card-img-top img-fluid rounded-circle" src="{{asset('storage/'.$user->imgprofil)}}"
+                                    <img class=" card-img-top img-fluid rounded-circle" src="{{asset('storage/img-user/'.$user->imgprofil)}}"
                                          alt="Image de profil"><br>
                                     {{ucfirst(strtolower($user->firstname))}}
                                 </a>

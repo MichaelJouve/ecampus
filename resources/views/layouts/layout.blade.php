@@ -78,7 +78,7 @@
             @else
                 <div class="col-2 text-right">
                     <div class="dropdown">
-                        <button class="btn btn-info dropdown  dropdown-toggle" id="dropdownMenuProfil" title="Profil"
+                        <button class="btn btn-info dropdown dropdown-toggle" id="dropdownMenuProfil" title="Profil"
                                 data-toggle="dropdown" aria-label="dropdownMenuProfil" aria-haspopup="true"
                                 aria-expanded="false">
                             <span>{{ Auth::user()->firstname }}</span>
