@@ -2,9 +2,9 @@
 
 @section('contenu')
 
-    <div class="container-fluid pt-4 pb-4 bandeau-sombre">
+    <div class="container-fluid p-4 bandeau-sombre">
         <div class="container">
-            <h4 class="text-center"> Conditions générales d'utilisation du site e-Campus.fr</h4>
+            <h3 class="text-center"> Conditions générales d'utilisation du site e-Campus.fr</h3>
         </div>
     </div>
     <div class="container mt-5 ">

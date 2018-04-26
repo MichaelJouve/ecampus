@@ -3,16 +3,17 @@
 
 @section('contenu')
     <!-- CONTENU -->
+    <div class="container-fluid p-4 bandeau-sombre">
+
+        <h3 class="text-center"><img src="{{asset('images/infos_perso.png')}}" alt="Bandeau des preferences"
+                                     class="img-fluid logo-config">Vos informations personnelles : Modification de vos
+            données
+            personnelles</h3>
+    </div>
     <div class="container-fluid conteneur_config">
         <div class="row ">
             @include('navBarConfig')
             <div class="col-lg-9 col-12 ">
-                <div class="row p-5 mb-2 justify-content-center bandeau-sombre">
-                    <div class="row">
-                        <h3><img src="{{asset('images/infos_perso.png')}}" alt="Bandeau des preferences"
-                                 class="img-fluid logo-config">Vos informations personnelles : Modification de vos données personnelles</h3>
-                    </div>
-                </div>
 
                 <div class="card-columns">
 
@@ -83,24 +84,24 @@
                     <div class="card ">
                         <form action="{{URL::route('update-avatar')}}" method="post" enctype="multipart/form-data">
                             @csrf
-                        <div class="card-header">
-                            <h3 class="card-title">Ma Photo</h3>
-                        </div>
-                        <div class="card-body text-center">
-                            <img src="{{asset($user->imgprofil)}}"
-                                 alt="Avatar Romaric"
-                                 class="rounded border img-fluid">
-                        </div>
-                        <div class="card-footer">
+                            <div class="card-header">
+                                <h3 class="card-title">Ma Photo</h3>
+                            </div>
+                            <div class="card-body text-center">
+                                <img src="{{asset($user->imgprofil)}}"
+                                     alt="Avatar Romaric"
+                                     class="rounded border img-fluid">
+                            </div>
+                            <div class="card-footer">
                                 <input type="file" name="avatar" id="avatar">
                                 <button class="btn btn-info float-right" type="submit">Modifier</button>
-                        </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        <!--****************  FIN DE INFORMATIONS PERSONNELS   ************************************************** -->
+    <!--****************  FIN DE INFORMATIONS PERSONNELS   ************************************************** -->
 
 @endsection

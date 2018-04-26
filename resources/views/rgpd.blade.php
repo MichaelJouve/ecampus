@@ -3,11 +3,9 @@
 @section('contenu')
 
     <div class="container-fluid pt-4 pb-4 bandeau-sombre">
-        <div class="container">
-            <h4 class="text-center">
+            <h3 class="text-center">
                 Mentions légales du site
-            </h4>
-        </div>
+            </h3>
     </div>
     <div class="container mt-5">
 
