@@ -66,7 +66,7 @@
                 @endif
 
 
-                <h2 class="text-center font-weight-light pt-4">Vos dernières publications !</h2>
+                <h2 class="text-center font-weight-light pt-4">Vos dernieres publications !</h2>
 
                 <div class="row justify-content-center mt-5">
 
@@ -80,10 +80,8 @@
                                         @if ($user->id == $userAuth->id)
 
                                             <a href="{{route('publication-delete',['slug' => $publication->slug])}}"
-                                               onclick="event.preventDefault(); document.getElementById('delete-publi').submit();"
-                                            ><span
-                                                        name="delete" style="color:#dc3545;  margin-right: 10px;"><i
-                                                            class="far fa-trash-alt"></i></span></a>
+                                               onclick="event.preventDefault(); document.getElementById('delete-publi').submit();">
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="far fa-trash-alt"></i></span></a>
 
                                             <form id="delete-publi"
                                                   action="{{ route('publication-delete',['slug' => $publication->slug]) }}"
@@ -158,8 +156,7 @@
                                     </div>
                                     <div class="card-footer small">
                                         <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
-                                           class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -235,8 +232,7 @@
                                         </div>
                                         <div class="card-footer small">
                                             <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
-                                               class=" float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

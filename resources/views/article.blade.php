@@ -11,7 +11,15 @@
                     <p><b>{{$tuto->Category->name}}</b> - (Note tuto sur 10) - <b>(Nb</b> participants en cours...)</p>
                     <p class="small">Créé par {{ $tuto->user->name }} {{ $tuto->user->firstname }}
                         le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
-                        Derniére mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}</p>
+                        Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}</p></b>
+                    <p>Ce tutoriel a été visionné {{$tuto->consultation_count}} fois,
+                        (vous {{$tuto->consultation->occurrences}} fois)</p></b>
+                    @if($tuto->consultation->rating == null)
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
+                        Noter ce tutoriel !
+                    </button>
+                    @include('components.Publication.ratingModal')
+                    @endif
                 </div>
                 <div class="col-md-4">
                     <img class="img_bandeau" src="{{asset('images/Publications/5599.jpg')}}" alt="Image de l'article">
@@ -114,5 +122,30 @@
 
         </div>
     </div>
+    <script>
+    @push('ratingScript')
+        var $star_rating = $('.star-rating .fa');
+
+        var SetRatingStar = function() {
+        return $star_rating.each(function() {
+        if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+        return $(this).removeClass('fa-star-o').addClass('fa-star');
+        } else {
+        return $(this).removeClass('fa-star').addClass('fa-star-o');
+        }
+        });
+        };
+
+        $star_rating.on('click', function() {
+        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+        return SetRatingStar();
+        });
+
+        SetRatingStar();
+        $(document).ready(function() {
+
+        });
+    @endpush
+    </script>
     <!-- FIN CONTENU -->
 @endsection

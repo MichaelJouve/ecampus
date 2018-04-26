@@ -40,6 +40,11 @@ class Publication extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function consultation()
+    {
+        return $this->hasOne('App\Consultation');
+    }
+
     public function media()
     {
         return $this->hasMany('App\Media');

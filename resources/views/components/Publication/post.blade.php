@@ -15,9 +15,11 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer text-right">
-                <span class="float-left small">Ecrit à {{$post->created_at->format('h:m \l\e d/m/Y')}}</span>
-                <a href="{{route('user-profil',['slug' => $post->user->slug])}}" class="btn btn-light">Voir <i class="fa fa-chevron-right"></i></a>
+            <div class="card-footer">
+                <a href="{{route('other-profil',['slug' => $post->user->slug])}}"><span class="float-left">{{ $post->user->name }} {{ $post->user->firstname }}</span></a>
+                    <br>
+                <span class="small">Ecrit à {{ $post->created_at->format('h:m \l\e d/m/Y') }}</span>
+                <a href="{{route('other-profil',['slug' => $post->user->slug])}}" class="btn btn-light float-right">Voir le profil <i class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>
