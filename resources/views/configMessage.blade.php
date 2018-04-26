@@ -3,17 +3,17 @@
 
 @section('contenu')
     <!-- CONTENU -->
+    <div class="container-fluid p-4 bandeau-sombre">
+
+        <h3 class="text-center"><img src="{{asset('images/messagerie.png')}}" alt="Bandeau des preferences"
+                                     class="img-fluid logo-config">Votre messagerie : Envoyer/Recevoir des messages</h3>
+    </div>
     <div class="container-fluid conteneur_config">
         <div class="row ">
             @include('navBarConfig')
             <div class="col-lg-9 col-12 contenu_config">
                 <!-- Debut de la messagerie -->
                 <div id="box-messagerie">
-                    <div class="row p-5 mb-2 justify-content-center bandeau-sombre">
-
-                        <h3><img src="{{asset('images/messagerie.png')}}" alt="Bandeau des preferences"
-                                 class="img-fluid logo-config">Votre messagerie : Envoyer/Recevoir des messages</h3>
-                    </div>
                     <div class="row">
                         <div class="col-12 col-lg-9" id="contenu-message">
                             <div id="description-message" class="col-12">
