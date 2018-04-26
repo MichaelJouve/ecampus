@@ -87,7 +87,7 @@
                             <h3 class="card-title">Ma Photo</h3>
                         </div>
                         <div class="card-body text-center">
-                            <img src="{{asset('storage/img-user/'.$user->imgprofil)}}"
+                            <img src="{{asset($user->imgprofil)}}"
                                  alt="Avatar Romaric"
                                  class="rounded border img-fluid">
                         </div>
