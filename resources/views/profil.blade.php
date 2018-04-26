@@ -8,7 +8,7 @@
             <div class="col-md-3">
                 <div class="text-center">
                     <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;"
-                         src="{{asset('storage/img-user/'.$user->imgprofil)}}" alt="Image de profil">
+                         src="{{asset($user->imgprofil)}}" alt="Image de profil">
                 </div>
                 <div class="mt-3">
                     <p class="text-center small">
@@ -89,7 +89,7 @@
                                     <div class="row ">
                                         <div class="col-3 align-self-center img_profil ">
                                             <img class="img-fluid rounded-circle shadow" style="margin:20px;"
-                                                 src="{{asset('storage/img-user/'.$user->imgprofil)}}" alt="Image de profil">
+                                                 src="{{asset($user->imgprofil)}}" alt="Image de profil">
                                         </div>
                                         <div class="col-9">
                                             <div class="card-body">
@@ -169,7 +169,7 @@
                                         <div class="row ">
                                             <div class="col-3 align-self-center img_profil ">
                                                 <img class="img-fluid rounded-circle" style="margin:20px;"
-                                                     src="{{asset('storage/img-user/'.$publication->user->imgprofil)}}" alt="Image de profil">
+                                                     src="{{asset($publication->user->imgprofil)}}" alt="Image de profil">
                                             </div>
                                             <div class="col-9">
                                                 <div class="card-body">
@@ -198,7 +198,7 @@
 
                                         </div>
                                         <img class="card-img-top img-fluid"
-                                             src="{{asset('storage/'.$publication->imgpublication)}}"
+                                             src="{{asset($publication->imgpublication)}}"
                                              alt="Image card top" style="height: 220px;">
                                         <div class="card-body">
                                             <!--Social shares button-->
