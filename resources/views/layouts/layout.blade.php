@@ -167,6 +167,7 @@
 
 <!-- Initialize Quill editor -->
 <script>
+    @stack('ratingScript')
     var quill = new Quill('#editor-container', {
         modules: {
             toolbar: [
