@@ -80,7 +80,7 @@ class PublicationController extends Controller
             'category_id' => 'required|numeric',
             'title' => 'required|max:150',
             'description' => 'max:255',
-            'imgpublication'=>'mimetypes:image/gif,image/jpeg,image/png',
+            'imgpublication' => 'mimetypes:image/gif,image/jpeg,image/png',
             'price' => 'integer',
             'required' => 'max:100',
             'goals' => 'max:100',
@@ -91,23 +91,23 @@ class PublicationController extends Controller
 
         $inputs = $request->all();
 
-        if($request->has('imgpublication')) {
+        if ($request->has('imgpublication')) {
+
             $imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
             $inputs['imgpublication'] = $imgpublication;
+            $inputs['user_id'] = $user->id;
+            Publication::create($inputs);
+
         } else {
 
-            $defaultImg = 'imgdefaultpublication/'.Category::find($request->category_id)->name.'.jpg';
-            $inputs['imgpublication'] = $defaultImg;
+            $p = Publication::create($inputs);
+            $p->imgpublication = 'images/Tutos/'.$p->category->name.'.jpg';
+            $p->save();
+
         }
-
-        $inputs['user_id'] = $user->id;
-
-        Publication::create($inputs);
-        session()->flash('message', 'Votre tutoriel a bien été créé !');
-        return redirect()->route('user-profil', $slug);
-
-
         //Un petit message de succés ...
+            session()->flash('message', 'Votre tutoriel a bien été créé !');
+            return redirect()->route('user-profil', $slug);
     }
 
     /**

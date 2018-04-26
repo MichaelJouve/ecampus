@@ -4,7 +4,7 @@
             <div class="ribbon"><span>{{$post->Category->name}}</span></div>
             <div class="row" style="height: 264px">
                 <div class="col-3 align-self-center img_profil ">
-                    <img class="img-fluid rounded-circle ml-1 shadow" src="{{asset('storage/img-user/'.$post->user->imgprofil)}}"
+                    <img class="img-fluid rounded-circle ml-1 shadow" src="{{asset($post->user->imgprofil)}}"
                          alt="Image de profil">
                 </div>
                 <div class="col-9">
