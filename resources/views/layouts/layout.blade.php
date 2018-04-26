@@ -170,5 +170,6 @@
 <!-- Initialize Quill editor -->
 @stack('scripts_tuto')
 @stack('scripts_post')
+@stack('ratingScript')
 </body>
 </html>

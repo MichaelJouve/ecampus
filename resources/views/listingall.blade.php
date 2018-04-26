@@ -51,7 +51,13 @@
                             </div>
                             <div class="col-md-3">
 
-                                <p class="text-success lead">{{ $tutorial->price }}<b>€</b></p>
+                                <p class="text-success lead">
+                                    @if( $tutorial->price == '0')
+                                        Gratuit
+                                    @else
+                                        {{ $tutorial->price }}<b>€</b>
+                                    @endif
+                                </p>
                                 <p>NOTE TUTO</p>
                                 <p>NB NOTES TUTO</p>
                             </div>

@@ -49,4 +49,8 @@ class Publication extends Model
     {
         return $this->hasMany('App\Media');
     }
+
+    public function comment(){
+        return $this->hasMany('App\Comment')->orderBy('created_at','desc');
+    }
 }
