@@ -30,8 +30,7 @@
                     @isset( $tuto->consultation)
                         <p>
                             Ce tutoriel a été visionné
-                            {{$tuto->consultation_count}} fois,
-                            (vous {{$tuto->consultation->occurrences}} fois)
+                            {{$tuto->consultation_count}} fois
                         </p>
 
                         @if($tuto->consultation->rating == null)

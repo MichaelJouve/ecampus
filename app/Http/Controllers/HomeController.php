@@ -26,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->limit(5)->get();
+
         $tutos = Publication::where('type','=','tutorial')->latest()->limit(6)->get();
 
         $posts = Publication::with('user')->where('type','=','post')->latest()->limit(4)->get();

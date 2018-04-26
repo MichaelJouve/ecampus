@@ -24,7 +24,7 @@
                     <img class="img-fluid" src="{{URL::asset('images/Cards/Romaric.png')}}" alt="Profil de Romaric">
                     <div class="card-body">
                         <h5 class="card-title" style="border-top: 2px solid #e5e5e5; padding-top: 8px;">Romaric Gilson</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">"Ta gueule, c'est magique !" <br>Si je comprend pas, je fais pas.</p>
                     </div>
                 </div>
             </div>
