@@ -21,12 +21,12 @@
             <div class="col-md-12 text-center">
                 <hr/>
                 <p>{{ $publication->description }}</p>
-                <img class="w-75 rounded shadow" src="{{ asset('images/Publications/5599.jpg') }}">
+                <img class="w-50 rounded shadow" src="{{asset('storage/'.$publication->imgpublication)}}">
             </div>
             <div class="col-md-12 mt-5">
                 <div class="row">
                     <div class="col-md-2 text-right">
-                        <img class="rounded w-50 shadow" src="{{asset('storage/'.$publication->user->imgprofil)}}">
+                        <img class="rounded w-50 shadow" src="{{asset('storage/img-user/'.$publication->user->imgprofil)}}">
                     </div>
                     <div class="col-md-7 text-left border-left small">
                         <p>{{ $publication->user->firstname }} {{ $publication->user->name }}<br>

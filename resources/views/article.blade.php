@@ -6,23 +6,42 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-8">
-                    <h1>{{$tuto->title}}</h1>
-                    <p>{{$tuto->description}}</p>
-                    <p><b>{{$tuto->Category->name}}</b> - (Note tuto sur 10) - <b>(Nb</b> participants en cours...)</p>
-                    <p class="small">Créé par {{ $tuto->user->name }} {{ $tuto->user->firstname }}
+                    <h1>
+                        {{$tuto->title}}
+                    </h1>
+                    <p>
+                        {{$tuto->description}}
+                    </p>
+                    <p><b>
+                            {{$tuto->Category->name}}
+                        </b>
+                        - (Note tuto sur 10) -
+                        <b>(Nb</b> participants en cours...)
+                    </p>
+                    <p class="small">
+                        Créé par {{ $tuto->user->name }} {{ $tuto->user->firstname }}
                         le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
-                        Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}</p></b>
-                    <p>Ce tutoriel a été visionné {{$tuto->consultation_count}} fois,
-                        (vous {{$tuto->consultation->occurrences}} fois)</p></b>
+                        Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}
+                    </p>
+                        @empty( $tuto->consultation)
+                            Ce tutoriel n'a jamais été visionné
+                        @endempty
+
+                        @isset( $tuto->consultation)
+                        Ce tutoriel a été visionné
+                        {{$tuto->consultation_count}} fois,
+                        (vous {{$tuto->consultation->occurrences}} fois)
+
                     @if($tuto->consultation->rating == null)
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
-                        Noter ce tutoriel !
-                    </button>
-                    @include('components.Publication.ratingModal')
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
+                            Noter ce tutoriel !
+                        </button>
+                        @include('components.Publication.ratingModal')
                     @endif
+                    @endisset
                 </div>
                 <div class="col-md-4">
-                    <img class="img_bandeau" src="{{asset('images/Publications/5599.jpg')}}" alt="Image de l'article">
+                    <img class="img_bandeau" src="{{asset('storage/'.$tuto->imgpublication)}}" alt="Image de l'article">
                 </div>
             </div>
         </div>
@@ -62,8 +81,8 @@
                         <div class="row ">
                             <div class="col-3 text-center">
                                 <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
-                                    <img class="img-fluid rounded-circle w50"
-                                         src="{{asset('images/Users/default.png')}}" alt="Image de profil">
+                                    <img class="img-fluid rounded-circle w50 shadow"
+                                         src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}" alt="Image de profil">
                                 </a>
                                 <p class="small"><i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
                                     <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--</p>
@@ -95,17 +114,18 @@
             <div class="col-md-3 text-center">
 
 
-                    @if($tuto->price == '0')
+                @if($tuto->price == '0')
                     <p class="text-center text-success lead font-weight-bold"> Gratuit </p>
-                    <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}"><button class="btn btn-success">Voir le tutoriel</button></a>
-                    @else
+                    <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}">
+                        <button class="btn btn-success">Voir le tutoriel</button>
+                    </a>
+                @else
                     <p class="text-center text-success lead font-weight-bold">
-                    <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-shopping-cart"></i>
                         {{ $tuto->price }} €
                     </p>
-                        <button class="btn btn-success" href="#">Acheter le tutoriel</button>
-                    @endif
-
+                    <button class="btn btn-success" href="#">Acheter le tutoriel</button>
+                @endif
 
 
                 <div class="text-center mt-2">
@@ -123,29 +143,29 @@
         </div>
     </div>
     <script>
-    @push('ratingScript')
+                @push('ratingScript')
         var $star_rating = $('.star-rating .fa');
 
-        var SetRatingStar = function() {
-        return $star_rating.each(function() {
-        if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-        return $(this).removeClass('fa-star-o').addClass('fa-star');
-        } else {
-        return $(this).removeClass('fa-star').addClass('fa-star-o');
-        }
-        });
+        var SetRatingStar = function () {
+            return $star_rating.each(function () {
+                if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+                    return $(this).removeClass('fa-star-o').addClass('fa-star');
+                } else {
+                    return $(this).removeClass('fa-star').addClass('fa-star-o');
+                }
+            });
         };
 
-        $star_rating.on('click', function() {
-        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
-        return SetRatingStar();
+        $star_rating.on('click', function () {
+            $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+            return SetRatingStar();
         });
 
         SetRatingStar();
-        $(document).ready(function() {
+        $(document).ready(function () {
 
         });
-    @endpush
+        @endpush
     </script>
     <!-- FIN CONTENU -->
 @endsection
