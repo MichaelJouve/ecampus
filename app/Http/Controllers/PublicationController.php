@@ -95,6 +95,7 @@ class PublicationController extends Controller
             $imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
             $inputs['imgpublication'] = $imgpublication;
         } else {
+
             $defaultImg = 'imgdefaultpublication/'.Category::find($request->category_id)->name.'.jpg';
             $inputs['imgpublication'] = $defaultImg;
         }
