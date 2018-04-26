@@ -44,6 +44,13 @@
 
 
                 </div>
+                @empty($userAuth)
+                    @if($userFollowing->follow->user_id_followed == $user->follow->user_id_followed)
+                <div>
+                    <a href="{{route('follow', ['slug' => $user->slug])}}">
+                    <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                    </a>
+                </div>
             </div>
             <div class="col-md-9 text-center  pt-4">
             @isset($userAuth)
