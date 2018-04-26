@@ -20,3 +20,4 @@ mix.scripts([
 ], 'public/js/all.js');
 
 mix.copyDirectory('resources/assets/images','public/images');
+

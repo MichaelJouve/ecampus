@@ -8,6 +8,7 @@ use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -128,17 +129,52 @@ class UserController extends Controller
 
     public function updateAvatar(Request $request)
     {
-        if ($request->has('avatar')) {
-            $avatar = $request->avatar->store('imgprofil', 'public');
+        $user = Auth::user();
 
-            $user = Auth::user();
-            $user->imgprofil = $avatar;
-            $user->save();
+// logo
+        if ($request->hasFile('avatar')) {
 
+            if ($request->file('avatar')->isValid()) {
+
+                // open an image file
+
+                $img = Image::make($request->avatar->path());
+
+
+
+                // True colors
+
+                $img->limitColors(null);
+
+
+
+                // Resize 300x300
+
+                $img->resize(300, 300, function ($constraint) {
+
+                    $constraint->aspectRatio();
+
+                });
+
+                // Blank background if canvas
+
+                $img->resizeCanvas(300, 300, 'center', false, '17a2b8');
+
+                $img->stream('jpg', 90);
+
+                Storage::disk('public')->put('img-user/' . $user->imgprofil , $img);
+
+                // Update user
+
+                $user->imgprofil = 'img-user/' . $user->imgprofil ;
+
+                return view('configInfos', ['user' => $user]);
+            }
+
+        }else{
+            session()->flash('message','Vous n\'avez pas inséré d\'image');
             return view('configInfos', ['user' => $user]);
-        } else {
-            $user = Auth::user();
-            return view('configInfos', ['user' => $user]);
+
 
         }
     }
@@ -154,7 +190,7 @@ class UserController extends Controller
         //
     }
 
-    // infos message preference
+    // view infos
     public function infos()
     {
         $userAuth = Auth::user();
@@ -162,7 +198,7 @@ class UserController extends Controller
 
         return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
-
+//view message
     public function message()
     {
         $userAuth = Auth::user();
@@ -170,7 +206,7 @@ class UserController extends Controller
 
         return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
-
+//viex preference
     public function preference()
     {
         $userAuth = Auth::user();
