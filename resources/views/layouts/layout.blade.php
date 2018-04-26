@@ -58,7 +58,7 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Que recherchez vous ?">
                 </form>
             </div>
-            <div class="col-1 text-right header-link">
+            <div class="col-1 text-lg-right header-link">
                 <div class="panier">
                     <a href="{{URL::route('front-panier')}}" class="dropdown" id="dropdownMenuPanier"
                        title="Choisir une catégorie"
@@ -66,8 +66,8 @@
                         <img class="img-fluid w50" src="{{asset('images/panier.png')}}" alt="Panier">
                     </a>
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
-                        <p class="divider_panier">Votre panier est vide</p>
-                        <a class="divider" href="{{URL::route('front-panier')}}">Voir le panier</a>
+                        <p class="dropdown-header"> Votre panier est vide</p>
+                        <a class="dropdown-item" href="{{URL::route('front-panier')}}">Voir le panier</a>
                     </div>
                 </div>
             </div>
