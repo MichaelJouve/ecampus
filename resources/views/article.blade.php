@@ -23,21 +23,24 @@
                         le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
                         Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}
                     </p>
-                        @empty( $tuto->consultation)
-                            Ce tutoriel n'a jamais été visionné
-                        @endempty
+                    @empty( $tuto->consultation)
+                        <p>Ce tutoriel n'a jamais été visionné</p>
+                    @endempty
 
-                        @isset( $tuto->consultation)
-                        Ce tutoriel a été visionné
-                        {{$tuto->consultation_count}} fois,
-                        (vous {{$tuto->consultation->occurrences}} fois)
+                    @isset( $tuto->consultation)
+                        <p>
+                            Ce tutoriel a été visionné
+                            {{$tuto->consultation_count}} fois,
+                            (vous {{$tuto->consultation->occurrences}} fois)
+                        </p>
 
-                    @if($tuto->consultation->rating == null)
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
-                            Noter ce tutoriel !
-                        </button>
-                        @include('components.Publication.ratingModal')
-                    @endif
+                        @if($tuto->consultation->rating == null)
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#ratingModal">
+                                Noter ce tutoriel !
+                            </button>
+                            @include('components.Publication.ratingModal')
+                        @endif
                     @endisset
                 </div>
                 <div class="col-md-4">
@@ -82,7 +85,8 @@
                             <div class="col-3 text-center">
                                 <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
                                     <img class="img-fluid rounded-circle w50 shadow"
-                                         src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}" alt="Image de profil">
+                                         src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}"
+                                         alt="Image de profil">
                                 </a>
                                 <p class="small"><i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
                                     <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--</p>
@@ -142,16 +146,17 @@
 
         </div>
     </div>
-    <script>
+
                 @push('ratingScript')
-        var $star_rating = $('.star-rating .fa');
+                    <script>
+        var $star_rating = $('.star-rating .far');
 
         var SetRatingStar = function () {
             return $star_rating.each(function () {
                 if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-                    return $(this).removeClass('fa-star-o').addClass('fa-star');
+                    return $(this).removeClass('far fa-star').addClass('fas fa-star');
                 } else {
-                    return $(this).removeClass('fa-star').addClass('fa-star-o');
+                    return $(this).removeClass('fas fa-star').addClass('far fa-star');
                 }
             });
         };
@@ -165,7 +170,8 @@
         $(document).ready(function () {
 
         });
+                    </script>
         @endpush
-    </script>
+
     <!-- FIN CONTENU -->
 @endsection
