@@ -18,10 +18,10 @@ class CreatePublicationsTable extends Migration
             $table->enum('type',['post','tutorial']);
             $table->string('imgpublication')->nullable();
             $table->decimal('price', 8,2)->nullable();
-            $table->string('title');
+            $table->string('title')->required();
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->text('content');
+            $table->text('content')->required();
             $table->string('goals')->nullable();
             $table->string('required')->nullable();
             $table->softDeletes();

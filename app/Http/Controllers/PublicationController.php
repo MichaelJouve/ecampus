@@ -80,7 +80,7 @@ class PublicationController extends Controller
             'category_id' => 'required|numeric',
             'title' => 'required|max:150',
             'description' => 'max:255',
-            'imgpublication'=>'required|mimetypes:image/gif,image/jpeg,image/png',
+            'imgpublication'=>'mimetypes:image/gif,image/jpeg,image/png',
             'price' => 'integer',
             'required' => 'max:100',
             'goals' => 'max:100',
@@ -88,12 +88,18 @@ class PublicationController extends Controller
         ]);
 
         //Gestion d'image tutoriel
-        $imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
-
 
         $inputs = $request->all();
+
+        if($request->has('imgpublication')) {
+            $imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
+            $inputs['imgpublication'] = $imgpublication;
+        } else {
+            $defaultImg = 'imgdefaultpublication/'.Category::find($request->category_id)->name.'.jpg';
+            $inputs['imgpublication'] = $defaultImg;
+        }
+
         $inputs['user_id'] = $user->id;
-        $inputs['imgpublication'] = $imgpublication;
 
         Publication::create($inputs);
         session()->flash('message', 'Votre tutoriel a bien été créé !');
@@ -191,12 +197,8 @@ class PublicationController extends Controller
         $publication = Publication::findBySlugOrFail($slug);
         $publication->delete();
 
-        $userAuth = Auth::user();
-        $userSlug = $userAuth->slug;
-
-        $user = User::with('publication')->where('slug', $userSlug)->firstOrFail();
         session()->flash('message', 'Votre publication a bien été supprimée !');
 
-        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+        return redirect()->route('user-profil');
     }
 }

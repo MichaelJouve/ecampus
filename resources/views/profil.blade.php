@@ -79,15 +79,10 @@
                                     <div class="card-header text-right" style="padding:0;">
                                         @if ($user->id == $userAuth->id)
 
-                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}"
-                                               onclick="event.preventDefault(); document.getElementById('delete-publi').submit();">
+                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
                                                 <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="far fa-trash-alt"></i></span></a>
 
-                                            <form id="delete-publi"
-                                                  action="{{ route('publication-delete',['slug' => $publication->slug]) }}"
-                                                  method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
+
                                         @endif
                                     </div>
 
@@ -122,17 +117,8 @@
                                     <div class="card-header text-right" style="padding:0;">
                                         @if ($user->id == $userAuth->id)
 
-                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}"
-                                               onclick="event.preventDefault(); document.getElementById('delete-publi').submit();"
-                                            ><span
-                                                        name="delete" style="color:#dc3545;  margin-right: 10px;"><i
-                                                            class="far fa-trash-alt"></i></span></a>
-
-                                            <form id="delete-publi"
-                                                  action="{{ route('publication-delete',['slug' => $publication->slug]) }}"
-                                                  method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
+                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="far fa-trash-alt"></i></span></a>
                                         @endif
                                     </div>
                                     <img class="card-img-top img-fluid"
