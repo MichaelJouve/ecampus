@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <h5 class="font-weight-light border-bottom">Description</h5>
-                    <p class="small overflow-200">{{$user->description}}</p>
+                    <p class="small">{{$user->description}}</p>
                 </div>
                 <div>
                     <h5 class="border-bottom">Statistiques membre</h5>
@@ -93,8 +93,8 @@
 
                                     <div class="row ">
                                         <div class="col-3 align-self-center img_profil ">
-                                            <img class="img-fluid rounded-circle" style="margin:20px;"
-                                                 src="{{ asset('images/Users/default.png') }}" alt="Image de profil">
+                                            <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                                 src="{{asset('storage/img-user/'.$user->imgprofil)}}" alt="Image de profil">
                                         </div>
                                         <div class="col-9">
                                             <div class="card-body">
@@ -183,7 +183,7 @@
                                         <div class="row ">
                                             <div class="col-3 align-self-center img_profil ">
                                                 <img class="img-fluid rounded-circle" style="margin:20px;"
-                                                     src="{{ asset('images/Users/default.png') }}" alt="Image de profil">
+                                                     src="{{asset('storage/img-user/'.$publication->user->imgprofil)}}" alt="Image de profil">
                                             </div>
                                             <div class="col-9">
                                                 <div class="card-body">
@@ -212,7 +212,7 @@
 
                                         </div>
                                         <img class="card-img-top img-fluid"
-                                             src="{{ asset('images/Publications/5599.jpg') }}"
+                                             src="{{asset('storage/'.$publication->imgpublication)}}"
                                              alt="Image card top" style="height: 220px;">
                                         <div class="card-body">
                                             <!--Social shares button-->
