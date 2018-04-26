@@ -158,7 +158,7 @@ class UserController extends Controller
 
                 // Blank background if canvas
 
-                $img->resizeCanvas(300, 300, 'center', false, 'ffffff');
+                $img->resizeCanvas(300, 300, 'center', false, '17a2b8');
 
                 $img->stream('jpg', 90);
 
