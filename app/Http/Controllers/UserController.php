@@ -172,7 +172,7 @@ class UserController extends Controller
             }
 
         } else {
-            session()->flash('message', 'Vous n\'avez pas inséré d\'image');
+
             return redirect()->route('user-profil-infos');
 
 
