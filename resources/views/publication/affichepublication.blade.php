@@ -4,6 +4,16 @@
     <!-- CONTENU -->
     <div class="container mt-5">
         <div class="row">
+            <div class="col-md-12 mt-3 mb-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ '/' }}">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="{{ '/profil/'.$publication->user->slug }}">Profil</a></li>
+                        <li class="breadcrumb-item"><a href="{{ '/tutoriel/'.$publication->slug }}">Tutoriel</a></li>
+                        <li class="breadcrumb-item actived" aria-current="page">{{ $publication->title }}</li>
+                    </ol>
+                </nav>
+            </div>
             <div class="col-md-12">
                 <p class="title_font">{{ $publication->title }}</p>
                 <p class="by_font"> Par {{ $publication->user->firstname }} {{ $publication->user->name }}</p>
@@ -33,7 +43,7 @@
 
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-12  border p-4 mt-2 mb-5 rounded shadow small">
+            <div class="col-md-12  border p-4 mt-2 mb-5 rounded shadow">
                 {!! $publication->content !!}
             </div>
         </div>

@@ -60,6 +60,10 @@
                                 @endif
                             </div>
                             <div class="form-group">
+                                <label for="imgpublication">Image de votre tutoriel</label>
+                                <input type="file" name="imgpublication" class="form-control" id="imgpublication">
+                            </div>
+                            <div class="form-group">
                                 <label for="price">Prix de votre tutoriel</label>
                                 <input type="text" name="price" value="0" id="price"
                                        placeholder="Prix du tutoriel (Si gratuit ne pas remplir)"

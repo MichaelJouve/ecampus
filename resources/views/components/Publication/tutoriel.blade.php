@@ -1,12 +1,12 @@
 @foreach($tutos as $tuto)
     <div class="col-sm-6 col-md-4 mb-3">
-        <div class="card" style="height:410px;">
+        <div class="card shadow" style="height:410px;">
             <div class="ribbon">
                 <span>
                     {{$tuto->Category->name}}
                 </span>
             </div>
-            <img class="card-img-top" src="{{URL::asset('images/Publications/5599.jpg')}}"
+            <img class="card-img-top" src="{{asset('storage/'.$tuto->imgpublication)}}"
                  alt="{{$tuto->image}}">
             <div class="card-body">
                 <div class="row">

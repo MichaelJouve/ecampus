@@ -19,7 +19,7 @@
                 </div>
             </div>
             <a class="link_to_card" href="{{route('front-tutorial',['slug' => $bestTutos->slug])}}">
-                <img class="card-img-top" src="{{ asset('images/Publications/5599.jpg') }}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset('storage/'.$bestTutos->imgpublication)}}" alt="Card image cap">
             </a>
             <div class="card-body small">
                 <p class="card-text small">

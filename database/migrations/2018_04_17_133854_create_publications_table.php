@@ -16,7 +16,7 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('type',['post','tutorial']);
-            $table->boolean('image')->default(0);
+            $table->string('imgpublication')->nullable();
             $table->decimal('price', 8,2)->nullable();
             $table->string('title');
             $table->string('slug');

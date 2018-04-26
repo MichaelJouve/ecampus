@@ -1,10 +1,10 @@
 @foreach($posts as $post)
     <div class="col-sm-6  mb-3">
-        <div class="card">
+        <div class="card shadow" style="height:300px;">
             <div class="ribbon"><span>{{$post->Category->name}}</span></div>
             <div class="row" style="height: 264px">
                 <div class="col-3 align-self-center img_profil ">
-                    <img class="img-fluid rounded-circle ml-1" src="{{URL::asset('images/Users/default.png')}}"
+                    <img class="img-fluid rounded-circle ml-1 shadow" src="{{asset('storage/'.$post->user->imgprofil)}}"
                          alt="Image de profil">
                 </div>
                 <div class="col-9">

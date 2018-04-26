@@ -80,16 +80,20 @@ class PublicationController extends Controller
             'category_id' => 'required|numeric',
             'title' => 'required|max:150',
             'description' => 'max:255',
+            'imgpublication'=>'required|mimetypes:image/gif,image/jpeg,image/png',
             'price' => 'integer',
             'required' => 'max:100',
             'goals' => 'max:100',
             'content' => 'required|max:65000',
         ]);
 
-//        $request->files->store('medias');
+        //Gestion d'image tutoriel
+        $imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
+
 
         $inputs = $request->all();
         $inputs['user_id'] = $user->id;
+        $inputs['imgpublication'] = $imgpublication;
 
         Publication::create($inputs);
         session()->flash('message','Votre tutoriel a bien été créé !');

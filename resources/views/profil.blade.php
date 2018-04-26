@@ -138,7 +138,7 @@
                                         @endif
                                     </div>
                                     <img class="card-img-top img-fluid"
-                                         src="{{ asset('images/Publications/5599.jpg') }}"
+                                         src="{{asset('storage/'.$publication->imgpublication)}}"
                                          alt="Image card top" style="height: 220px;">
                                     <div class="card-body">
                                         <!--Social shares button-->
