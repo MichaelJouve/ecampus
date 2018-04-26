@@ -108,7 +108,6 @@ class UserController extends Controller
 
         Auth::user()->update($validateData);
 
-        $user = Auth::user();
         return redirect()->route('user-profil-infos');
 
     }
@@ -122,7 +121,6 @@ class UserController extends Controller
 
         Auth::user()->update($validateData);
 
-        $user = Auth::user();
         return redirect()->route('user-profil-infos');
 
     }
@@ -130,22 +128,20 @@ class UserController extends Controller
 
     public function updateAvatar(Request $request)
     {
-        $user = Auth::user();
 
 // logo
         if ($request->hasFile('avatar')) {
 
             if ($request->file('avatar')->isValid()) {
+                $user = Auth::user();
 
                 // open an image file
 
                 $img = Image::make($request->avatar->path());
 
-
                 // True colors
 
                 $img->limitColors(null);
-
 
                 // Resize 300x300
 
@@ -159,13 +155,17 @@ class UserController extends Controller
 
                 $img->resizeCanvas(300, 300, 'center', false, '17a2b8');
 
+                // je force la photo en jpg
                 $img->stream('jpg', 90);
 
-                Storage::disk('public')->put('img-user/' . $user->imgprofil, $img);
 
-                // Update user
 
-                $user->imgprofil = 'img-user/' . $user->imgprofil;
+                //je lenregistre dans public / img-user de notre storage
+                Storage::disk('public')->put('img-user/' . $img->filename.'.jpg', $img);
+
+                // MAJ user
+                $user->imgprofil = $img->filename.'.jpg';
+                $user->save();
 
                 return redirect()->route('user-profil-infos');
 
