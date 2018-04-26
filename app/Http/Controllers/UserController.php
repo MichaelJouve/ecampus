@@ -109,7 +109,7 @@ class UserController extends Controller
         Auth::user()->update($validateData);
 
         $user = Auth::user();
-        return view('configInfos', ['user' => $user]);
+        return redirect()->route('user-profil-infos');
 
     }
 
@@ -123,7 +123,8 @@ class UserController extends Controller
         Auth::user()->update($validateData);
 
         $user = Auth::user();
-        return view('configInfos', ['user' => $user]);
+        return redirect()->route('user-profil-infos');
+
     }
 
 
@@ -141,11 +142,9 @@ class UserController extends Controller
                 $img = Image::make($request->avatar->path());
 
 
-
                 // True colors
 
                 $img->limitColors(null);
-
 
 
                 // Resize 300x300
@@ -162,18 +161,19 @@ class UserController extends Controller
 
                 $img->stream('jpg', 90);
 
-                Storage::disk('public')->put('img-user/' . $user->imgprofil , $img);
+                Storage::disk('public')->put('img-user/' . $user->imgprofil, $img);
 
                 // Update user
 
-                $user->imgprofil = 'img-user/' . $user->imgprofil ;
+                $user->imgprofil = 'img-user/' . $user->imgprofil;
 
-                return view('configInfos', ['user' => $user]);
+                return redirect()->route('user-profil-infos');
+
             }
 
-        }else{
-            session()->flash('message','Vous n\'avez pas inséré d\'image');
-            return view('configInfos', ['user' => $user]);
+        } else {
+            session()->flash('message', 'Vous n\'avez pas inséré d\'image');
+            return redirect()->route('user-profil-infos');
 
 
         }
@@ -198,6 +198,7 @@ class UserController extends Controller
 
         return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
+
 //view message
     public function message()
     {
@@ -206,6 +207,7 @@ class UserController extends Controller
 
         return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
+
 //viex preference
     public function preference()
     {
