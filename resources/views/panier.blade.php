@@ -4,9 +4,9 @@
 
 
 
-    <div class="container-fluid" id="conteneur_bandeau_panier">
+    <div class="container" id="conteneur_bandeau_panier">
         <div class="row">
-            <div class="col-md-3 offset-2">
+            <div class="col-md-12">
                 <p>VOTRE PANIER</p>
             </div>
         </div>
