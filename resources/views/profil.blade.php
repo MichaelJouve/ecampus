@@ -51,15 +51,11 @@
                                 <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
                             </a>
                         </div>
-                    @endif
+                    @else
+                        <?php $stop = 'false' ?>
                     @foreach($userFollowing->followings as $following)
-                        @if($following->id !== $user->id)
-                            <div>
-                                <a href="{{route('follow', ['slug' => $user->slug])}}">
-                                    <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
-                                </a>
-                            </div>
-                        @else
+                        @if($following->id == $user->id)
+                            <?php $stop = 'true' ?>
                             <div>
                                 <a href="{{route('unfollow', ['slug' => $user->slug])}}">
                                     <button type="submit" class="btn btn-danger btn-sm">Arrêter de suivre {{$user->firstname}} {{$user->name}}</button>
@@ -67,6 +63,14 @@
                             </div>
                         @endif
                     @endforeach
+                    @if($stop !== 'true')
+                            <div>
+                                <a href="{{route('follow', ['slug' => $user->slug])}}">
+                                    <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                                </a>
+                            </div>
+                        @endif
+                    @endif
                 @endempty
             </div>
             <div class="col-md-9 text-center  pt-4">
