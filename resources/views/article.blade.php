@@ -136,7 +136,7 @@
                         <p class="font-weight-bold border-bottom">A propos du formateur</p>
 
                         <div class="card border-0 pt-2">
-                                    <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
+                                    <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
                                         <img class="img-fluid rounded-circle w50 shadow"
                                              src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}"
                                              alt="Image de profil">
