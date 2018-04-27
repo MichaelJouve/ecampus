@@ -105,8 +105,11 @@ class UserController extends Controller
             'paypal' => 'string|max:200|nullable',
             'birthday' => 'date|nullable',
         ]);
+        $validateData['name'] = strtoupper($validateData['name']);
+        $validateData['firstname'] = ucfirst($validateData['firstname']);
 
         Auth::user()->update($validateData);
+
 
         return redirect()->route('user-profil-infos');
 
