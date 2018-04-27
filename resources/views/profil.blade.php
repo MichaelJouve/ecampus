@@ -122,7 +122,7 @@
                                         @endif
                                     </div>
                                     <img class="card-img-top img-fluid"
-                                         src="{{asset($publication->imgpublication)}}"
+                                         src="{{asset('storage/'.$publication->imgpublication)}}"
                                          alt="Image card top" style="height: 220px;">
                                     <div class="card-body">
                                         <!--Social shares button-->
@@ -198,7 +198,7 @@
 
                                         </div>
                                         <img class="card-img-top img-fluid"
-                                             src="{{asset($publication->imgpublication)}}"
+                                             src="{{asset('storage/'.$publication->imgpublication)}}"
                                              alt="Image card top" style="height: 220px;">
                                         <div class="card-body">
                                             <!--Social shares button-->

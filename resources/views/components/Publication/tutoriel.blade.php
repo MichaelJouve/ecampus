@@ -6,7 +6,7 @@
                     {{$tuto->Category->name}}
                 </span>
             </div>
-            <img class="card-img-top" src="{{asset($tuto->imgpublication)}}"
+            <img class="card-img-top" src="{{asset('storage/'.$tuto->imgpublication)}}"
                  alt="{{$tuto->image}}">
             <div class="card-body">
                 <div class="row">
