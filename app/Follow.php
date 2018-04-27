@@ -8,8 +8,4 @@ class Follow extends Model
 {
     protected $fillable = ['user_id_following', 'user_id_followed'];
 
-    public function follow(){
-
-        $this->hasOne('App\User');
-    }
 }

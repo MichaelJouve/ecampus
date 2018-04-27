@@ -35,15 +35,25 @@ class FollowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($slug)
+    public function followUser($slug)
     {
-        $userFollowed = User::findBySlugOrFail($slug)->id;
-        $userFollowing = Auth::user()->id;
 
-        Follow::updateOrCreate([
-            'user_id_following' => $userFollowing,
-            'user_id_followed' => $userFollowed,
-        ]);
+        $userFollowed = User::findBySlugOrFail($slug);
+        $userFollowing = Auth::user();
+
+        $userFollowed->followers()->attach($userFollowing->id);
+        session()->flash('message', 'Vous suivez maintenant le profil de '.$userFollowed->firstname.' '.$userFollowed->name);
+//
+        return redirect()->route('other-profil', ['slug' => $slug]);
+    }
+
+    public function unFollowUser($slug)
+    {
+        $userFollowed = User::findBySlugOrFail($slug);
+        $userFollowing = Auth::user();
+
+        $userFollowed->followers()->detach($userFollowing->id);
+        session()->flash('message', 'Vous ne suivez plus le profil de '.$userFollowed->firstname.' '.$userFollowed->name);
 
         return redirect()->route('other-profil', ['slug' => $slug]);
     }
