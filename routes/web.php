@@ -26,18 +26,21 @@ Route::get('/recherche/','SearchController@index')->name('search');
 
 Route::get('/profil/infos/','UserController@infos')->name('user-profil-infos');
 Route::get('/profil/message/', 'UserController@message')->name('user-profil-message');
-Route::get('/profil/preference/', 'UserController@preference')->name('user-profil-preference');
 Route::get('/profil/{slug}', 'UserController@otherProfil')->name('other-profil');
-Route::get('/profil/', 'UserController@myProfil')->name('user-profil');
+Route::get('/profil/preference/', 'UserController@preference')->name('user-profil-preference');
+Route::get('/profil/follow/{slug}','FollowController@followUser')->name('follow');
+Route::get('/profil/unfollow/{slug}','FollowController@unFollowUser')->name('unfollow');
 Route::post('/profil/infos/update/description','UserController@updateDescription')->name('update-description');
 Route::post('/profil/infos/update/imgprofil','UserController@updateAvatar')->name('update-avatar');
 Route::post('/profil/infos/update','UserController@update')->name('update-info');
+Route::get('/profil/', 'UserController@myProfil')->name('user-profil');
 
 Route::get('/profil/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
 
 Route::get('/panier', 'HomeController@panier')->name('front-panier');
 
 Route::post('/tutoriel/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');
+
 
 // todo changer HomeContoller par ContentController (redirect page fix useless)
 Route::get('/cgu', 'ContentController@cgu')->name('front-cgu');

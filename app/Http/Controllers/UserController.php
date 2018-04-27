@@ -58,7 +58,7 @@ class UserController extends Controller
             return redirect()->route('user-profil');
         }
 
-        return view('profil', ['user' => $otherUser]);
+        return view('profil', ['user' => $otherUser, 'userFollowing' => $user]);
     }
 
     /**

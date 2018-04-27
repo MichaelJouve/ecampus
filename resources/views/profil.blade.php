@@ -16,7 +16,7 @@
                         <a href="#"><i class="fab fa-facebook-f" style="font-size: 1.5em; margin:0 5px;"></i></a>
                         <a href="#"><i class="fab fa-twitter" style="font-size: 1.5em; margin:0 5px;"></i></a>
                         <a href="{{URL::route('user-profil-message')}}"><i class="far fa-envelope-open"
-                                                                            style="font-size: 1.5em; margin:0 5px;"></i></a>
+                                                                           style="font-size: 1.5em; margin:0 5px;"></i></a>
 
                     </p>
                 </div>
@@ -44,26 +44,52 @@
 
 
                 </div>
+                @empty($userAuth)
+                    @if($userFollowing->followings->isEmpty())
+                        <div>
+                            <a href="{{route('follow', ['slug' => $user->slug])}}">
+                                <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                            </a>
+                        </div>
+                    @endif
+                    @foreach($userFollowing->followings as $following)
+                        @if($following->id !== $user->id)
+                            <div>
+                                <a href="{{route('follow', ['slug' => $user->slug])}}">
+                                    <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                                </a>
+                            </div>
+                        @else
+                            <div>
+                                <a href="{{route('unfollow', ['slug' => $user->slug])}}">
+                                    <button type="submit" class="btn btn-danger btn-sm">Arrêter de suivre {{$user->firstname}} {{$user->name}}</button>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+                @endempty
             </div>
             <div class="col-md-9 text-center  pt-4">
-            @isset($userAuth)
-                @if($user->id == $userAuth->id)
-                    <h5 class="text-center">Voilà votre profil actuel <b>{{ $user->firstname }} !</b></h5>
-                    <div>
-                        <a href="{{URL::route('post-ajout')}}">
-                            <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_post"
-                                    aria-expanded="false" aria-controls="formulaire_ajout_post">
-                                Publiez un Post
-                            </button>
-                        </a>
-                        <a href="{{URL::route('tuto-ajout')}}">
-                            <button class="btn btn-primary" data-toggle="collapse" data-target="#formulaire_ajout_tuto"
-                                    aria-expanded="false" aria-controls="formulaire_ajout_tuto">
-                                Publier un Tutoriel
-                            </button>
-                        </a>
-                    </div>
-                @endif
+                @isset($userAuth)
+                    @if($user->id == $userAuth->id)
+                        <h5 class="text-center">Voilà votre profil actuel <b>{{ $user->firstname }} !</b></h5>
+                        <div>
+                            <a href="{{URL::route('post-ajout')}}">
+                                <button class="btn btn-primary" data-toggle="collapse"
+                                        data-target="#formulaire_ajout_post"
+                                        aria-expanded="false" aria-controls="formulaire_ajout_post">
+                                    Publiez un Post
+                                </button>
+                            </a>
+                            <a href="{{URL::route('tuto-ajout')}}">
+                                <button class="btn btn-primary" data-toggle="collapse"
+                                        data-target="#formulaire_ajout_tuto"
+                                        aria-expanded="false" aria-controls="formulaire_ajout_tuto">
+                                    Publier un Tutoriel
+                                </button>
+                            </a>
+                        </div>
+                    @endif
 
 
                 <h2 class="text-center font-weight-light pt-4">Vos dernieres publications !</h2>
@@ -226,7 +252,7 @@
                         @endforeach
 
                     </div>
-                    @endempty
+                @endempty
             </div>
         </div>
     </div>
