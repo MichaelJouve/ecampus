@@ -53,12 +53,18 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $otherUser = User::findBySlugOrFail($slug);
+        $follow = false;
 
         if ($user == $otherUser) {
             return redirect()->route('user-profil');
+        } else {
+        foreach ($user->followings as $following)
+            if ($following->id == $otherUser->id) {
+                $follow = true;
+            }
         }
 
-        return view('profil', ['user' => $otherUser, 'userFollowing' => $user]);
+        return view('profil', ['user' => $otherUser, 'userFollowing' => $user, 'follow' => $follow]);
     }
 
     /**
@@ -159,12 +165,11 @@ class UserController extends Controller
                 $img->stream('jpg', 90);
 
 
-
                 //je lenregistre dans public / img-user de notre storage
-                Storage::disk('public')->put('img-user/' . $img->filename.'.jpg', $img);
+                Storage::disk('public')->put('img-user/' . $img->filename . '.jpg', $img);
 
                 // MAJ user
-                $user->imgprofil = 'storage/img-user/'.$img->filename.'.jpg';
+                $user->imgprofil = 'storage/img-user/' . $img->filename . '.jpg';
                 $user->save();
 
                 return redirect()->route('user-profil-infos');

@@ -45,31 +45,19 @@
 
                 </div>
                 @empty($userAuth)
-                    @if($userFollowing->followings->isEmpty())
-                        <div>
-                            <a href="{{route('follow', ['slug' => $user->slug])}}">
-                                <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
-                            </a>
-                        </div>
-                    @else
-                        <?php $stop = 'false' ?>
-                    @foreach($userFollowing->followings as $following)
-                        @if($following->id == $user->id)
-                            <?php $stop = 'true' ?>
+                    @if($follow == true)
                             <div>
                                 <a href="{{route('unfollow', ['slug' => $user->slug])}}">
                                     <button type="submit" class="btn btn-danger btn-sm">Arrêter de suivre {{$user->firstname}} {{$user->name}}</button>
                                 </a>
                             </div>
-                        @endif
-                    @endforeach
-                    @if($stop !== 'true')
+                    @elseif($follow == false)
+
                             <div>
                                 <a href="{{route('follow', ['slug' => $user->slug])}}">
                                     <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
                                 </a>
                             </div>
-                        @endif
                     @endif
                 @endempty
             </div>
@@ -152,7 +140,7 @@
                                         @endif
                                     </div>
                                     <img class="card-img-top img-fluid"
-                                         src="{{asset('storage/'.$publication->imgpublication)}}"
+                                         src="{{asset('/'.$publication->imgpublication)}}"
                                          alt="Image card top" style="height: 220px;">
                                     <div class="card-body">
                                         <!--Social shares button-->
