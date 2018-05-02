@@ -138,7 +138,7 @@
                     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
                     ['bold', 'italic', 'underline', 'strike','link'],        // toggled buttons
-                    ['image', 'code-block'],
+                    ['code-block'],
 
                     [{ 'list': 'bullet' }],
 
