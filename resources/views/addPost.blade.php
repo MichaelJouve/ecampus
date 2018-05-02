@@ -53,7 +53,7 @@
                                 <label for="content">Saisir le contenu de votre post : </label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor-container"></div>
+                                <div id="editor-container" style="height: 300px;"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                     <strong>{{ $errors->first('content') }}</strong>
@@ -81,10 +81,11 @@
             modules: {
                 toolbar: [
                     [{ header: [1, 2, 3, false] }],
-                    ['blockquote', 'bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'bold', 'italic', 'underline', 'strike','link'],
                     [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
                     [{ list: 'bullet' }],
-                    [{ 'align': [] }]
+                    [{ 'align': [] }],
+
                 ]
             },
             placeholder: 'Le contenu de votre post...',

@@ -19,7 +19,7 @@
                 <p class="small">
                     Proposé par :
                     <a class="link_bandeau"
-                       href="{{route('user-profil',['slug' => $bestTutorial->best->user->slug])}}">{{ $bestTutorial->best->user->name }} {{ $bestTutorial->best->user->firstname }}</a>
+                       href="{{route('other-profil',['slug' => $bestTutorial->best->user->slug])}}">{{ $bestTutorial->best->user->name }} {{ $bestTutorial->best->user->firstname }}</a>
                 </p>
 
                 <a href="{{route('front-tutorial',['slug' => $bestTutorial->best->slug])}}">

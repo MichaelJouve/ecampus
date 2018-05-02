@@ -53,12 +53,18 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $otherUser = User::findBySlugOrFail($slug);
+        $follow = false;
 
         if ($user == $otherUser) {
             return redirect()->route('user-profil');
+        } else {
+        foreach ($user->followings as $following)
+            if ($following->id == $otherUser->id) {
+                $follow = true;
+            }
         }
 
-        return view('profil', ['user' => $otherUser]);
+        return view('profil', ['user' => $otherUser, 'userFollowing' => $user, 'follow' => $follow]);
     }
 
     /**
@@ -153,18 +159,17 @@ class UserController extends Controller
 
                 // Blank background if canvas
 
-                $img->resizeCanvas(300, 300, 'center', false, '17a2b8');
+                $img->resizeCanvas(300, 300, 'center', false, 'rgba(255, 0, 0, 0.4)');
 
                 // je force la photo en jpg
                 $img->stream('jpg', 90);
 
 
-
                 //je lenregistre dans public / img-user de notre storage
-                Storage::disk('public')->put('img-user/' . $img->filename.'.jpg', $img);
+                Storage::disk('public')->put('img-user/' . $img->filename . '.jpg', $img);
 
                 // MAJ user
-                $user->imgprofil = 'storage/img-user/'.$img->filename.'.jpg';
+                $user->imgprofil = 'storage/img-user/' . $img->filename . '.jpg';
                 $user->save();
 
                 return redirect()->route('user-profil-infos');
