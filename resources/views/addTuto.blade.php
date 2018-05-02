@@ -105,7 +105,7 @@
                                 <label for="editor_tutorial">Saisir le contenu de votre tutoriel</label>
                                 <input type="hidden" name="content">
                                 <div name="editor_tutorial" id="editor_tutorial"
-                                          class="form-control"></div>
+                                          class="form-control" style="height: 300px;"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('content') }}</strong>
@@ -137,7 +137,7 @@
                     [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
                     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['bold', 'italic', 'underline', 'strike','link'],        // toggled buttons
                     ['image', 'code-block'],
 
                     [{ 'list': 'bullet' }],

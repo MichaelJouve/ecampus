@@ -205,7 +205,7 @@
                                                 <div class="card-body">
 
                                                     <div class="card-title font-weight-bold">{{ $publication->title }}</div>
-                                                    <div class="card-text small">{{ $publication->content }}</div>
+                                                    <div class="card-text small">{!! $publication->content !!}</div>
                                                 </div>
                                             </div>
                                         </div>

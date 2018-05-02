@@ -5,6 +5,7 @@ Auth::routes();
 
 
 Route::get('/', 'HomeController@index')->name('front-index');
+Route::get('/test', 'HomeController@test');
 
 Route::get('/categorie','PublicationController@index')->name('listing-categorie');
 Route::get('/categorie/{name}','PublicationController@show');
