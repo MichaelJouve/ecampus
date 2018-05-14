@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Ajouter un nouveau <b>post</b> à votre profil..</div>
+                    <div class="card-header">Ajouter un nouveau <b>post</b> à votre profil</div>
 
                     <div class="card-body">
                         <form id="ajout-post" method="POST" action="{{URL::route('store-post')}}">
@@ -20,11 +20,11 @@
                             <input type="hidden" name="type" value="post">
                             <div class="form-group">
                                 <label for="category_id">
-                                    Sélectionner une catégorie pour votre post :
+                                    Sélectionner une catégorie
                                 </label>
                                 <select class="custom-select {{ $errors->has('category_id') ? ' is-invalid' : '' }}"
                                         name="category_id" id="selecteur_post">
-                                    <option selected disabled>Choisir une categorie..</option>
+                                    <option selected disabled>Choisir une categorie</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
@@ -37,10 +37,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="title">Saisir un titre pour votre post :</label>
+                                <label for="title">Titre</label>
                                 <input type="text" name="title"
                                        class="form-control {{$errors->has('title') ? ' is-invalid' : '' }}" id="title"
-                                       placeholder="Titre du post..."
+                                       placeholder="Titre" value="{{old('title')}}"
                                        title="Maximum 50 caractères"/>
                                 @if ($errors->has('title'))
                                     <span class="invalid-feedback">
@@ -50,10 +50,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="content">Saisir le contenu de votre post : </label>
+                                <label for="content">Contenu</label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor-container" style="height: 300px;"></div>
+                                <div id="editor-container">{!! old('content')!!}</div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                     <strong>{{ $errors->first('content') }}</strong>
@@ -80,19 +80,18 @@
         var quill = new Quill('#editor-container', {
             modules: {
                 toolbar: [
-                    [{ header: [1, 2, 3, false] }],
-                    ['blockquote', 'bold', 'italic', 'underline', 'strike','link'],
-                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-                    [{ list: 'bullet' }],
-                    [{ 'align': [] }],
-
+                    [{header: [1, 2, 3, false]}],
+                    ['blockquote', 'bold', 'italic', 'underline', 'strike'],
+                    [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+                    [{list: 'bullet'}],
+                    [{'align': []}]
                 ]
             },
             placeholder: 'Le contenu de votre post...',
             theme: 'snow'  // or 'bubble'
         });
 
-        quill.on('text-change', function() {
+        quill.on('text-change', function () {
             var content = document.querySelector('input[name=content]');
             content.value = quill.root.innerHTML;
         });

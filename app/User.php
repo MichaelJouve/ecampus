@@ -6,10 +6,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Illuminate\Notifications\Notifiable;
 
 
 class User extends Authenticatable
 {
+    use Notifiable;
     use Sluggable;
     use SluggableScopeHelpers;
     use SoftDeletes;
