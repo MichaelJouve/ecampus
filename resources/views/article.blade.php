@@ -87,7 +87,7 @@
                             <div class="row">
                                 <div class="col-md-1 text-right">
                                     <a href="{{route('other-profil', ['slug' =>$comment->user->slug])}}">
-                                        <img class="w-100 rounded shadow" src="{{asset('storage/img-user/'.$comment->user->imgprofil)}}">
+                                        <img class="w-100 rounded shadow" src="{{asset($comment->user->imgprofil)}}">
                                     </a>
                                 </div>
                                 <div class="col-md-6 text-left">
@@ -136,9 +136,9 @@
                         <p class="font-weight-bold border-bottom">A propos du formateur</p>
 
                         <div class="card border-0 pt-2">
-                                    <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
+                                    <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
                                         <img class="img-fluid rounded-circle w50 shadow"
-                                             src="{{asset('storage/img-user/'.$tuto->user->imgprofil)}}"
+                                             src="{{asset($tuto->user->imgprofil)}}"
                                              alt="Image de profil">
                                     </a>
                                     <div class="card-body">

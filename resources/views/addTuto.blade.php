@@ -109,6 +109,7 @@
                                     </span>
                                 @endif
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="reset" class="btn btn-danger" value="Effacer">Effacer</button>
@@ -133,8 +134,8 @@
                     [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
                     [{'header': [1, 2, 3, 4, 5, 6, false]}],
 
-                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                    ['image', 'code-block'],
+                    ['bold', 'italic', 'underline', 'strike','link'],        // toggled buttons
+                    ['code-block'],
 
                     [{'list': 'bullet'}],
 
