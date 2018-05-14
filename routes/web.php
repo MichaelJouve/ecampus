@@ -5,8 +5,22 @@ Auth::routes();
 
 
 Route::get('/', 'HomeController@index')->name('front-index');
+
+
+//Auth
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback','Auth\LoginController@handleProviderCallback');
+
+// What else ?
 Route::get('/test', 'HomeController@test');
-Route::get('/admin', 'AdminController@index');
+
+//Administration
+Route::get('/admin', 'AdminController@index')->name('administration');
+Route::get('/admin/gestion-membres', 'AdminController@gestionMembres')->name('gestion-membres');
+Route::get('/admin/gestion-posts', 'AdminController@gestionPosts')->name('gestion-posts');
+Route::get('/admin/gestion-tutoriels', 'AdminController@gestionTutoriels')->name('gestion-tutoriels');
+Route::get('/admin/gestion-comments', 'AdminController@gestionComments')->name('gestion-comments');
+
 
 Route::get('/categorie','PublicationController@index')->name('listing-categorie');
 Route::get('/categorie/{name}','PublicationController@show');

@@ -16,62 +16,39 @@
 <body>
 
 <div class="container-fluid">
+    <div class="row bg-dark text-light">
+        <div class="col-2 text-center pt-2 ">
+            <p class="font-weight-bold">Administration {e}Campus</p>
+        </div>
+        <div class="col-4 text-left pt-2">
+            <a href="{{ URL::route('front-index') }}"><i class="fas fa-home"></i></a>
+            <a class="ml-2" href="{{ URL::route('administration') }}"><i class="fas fa-undo-alt"></i></a>
+        </div>
+        <div class="col-6 pt-1">
+            <form class="form-inline justify-content-end">
+                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher.." aria-label="Rechercher..">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
+        </div>
+    </div>
     <div class="row text-light">
-        <div class="col-2 bg-info text-center ">
-            <h1 class="border-bottom mb-4 p-3">Administration</h1>
+        <div class="col-2 bg-dark text-center pt-3">
             <img src="{{ asset($user->imgprofil) }}" alt="Image de profil" class="w-50 rounded-circle shadow">
-            <p class="mt-2">{{ $user->name }}  {{ $user->firstname }}</p>
-
-
-            <div class="accordion" id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Collapsible Group Item #1
-                            </button>
-                        </h5>
-                    </div>
-
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Collapsible Group Item #2
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Collapsible Group Item #3
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="mt-2">{{ $user->name }}  {{ $user->firstname }} | <b> {{ $user->role }}</b></p>
+            
+            <ul class="nav administration pb-4">
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-membres') }}" class="nav-link active">Gestion des membres</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-posts') }}" class="nav-link">Gestion des posts</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-tutoriels') }}" class="nav-link">Gestion des tutoriels</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-comments') }}" class="nav-link">Gestion des commentaires</a></li>
+                <hr style="background: #e3e3e3;">
+                <li class="nav-item bg-light w-100 mt-2"><a href="" class="nav-link">Gestion des CGU</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="" class="nav-link">Gestion mentions légales</a></li>
+            </ul>
         </div>
 
         <div class="col-10 bg-light text-black-50">
-            @yield('content')
+                @yield('content')
         </div>
     </div>
 </div>
