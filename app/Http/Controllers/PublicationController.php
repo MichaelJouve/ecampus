@@ -7,6 +7,7 @@ use App\Consultation;
 use App\Publication;
 use App\Post;
 use App\User;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,7 +54,7 @@ class PublicationController extends Controller
         $user = Auth::user();
         $slug = $user->slug;
 
-        $request->validate([
+        $this->validate($request, [
             'category_id' => 'required|numeric',
             'title' => 'required|max:255',
             'content' => 'required',
@@ -72,7 +73,6 @@ class PublicationController extends Controller
 
     public function storeTuto(Request $request)
     {
-
         $user = Auth::user();
         $slug = $user->slug;
 
@@ -81,7 +81,7 @@ class PublicationController extends Controller
             'title' => 'required|max:150',
             'description' => 'max:255',
             'imgpublication' => 'mimetypes:image/gif,image/jpeg,image/png',
-            'price' => 'integer',
+            'price' => 'integer|nullable',
             'required' => 'max:100',
             'goals' => 'max:100',
             'content' => 'required|max:65000',
@@ -90,6 +90,9 @@ class PublicationController extends Controller
         //Gestion d'image tutoriel
 
         $inputs = $request->all();
+        if ($inputs['price'] == null){
+            $inputs['price'] = 0;
+        }
 
         if ($request->has('imgpublication')) {
 
