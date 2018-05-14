@@ -23,7 +23,7 @@
                                 <label for="selecteur_tuto">Selectionner une catégorie </label>
                                 <select class="custom-select {{ $errors->has('category_id') ? ' is-invalid' : '' }}"
                                         name="category_id" id="selecteur_tuto">
-                                    <option selected disabled>Choisir une categorie..</option>
+                                    <option selected disabled>Choisir une categorie</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="title">Titre de votre tutoriel</label>
+                                <label for="title">Titre</label>
                                 <input type="text" name="title"
                                        class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" id="title"
                                        placeholder="Titre du tutoriel"
@@ -48,7 +48,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="description">Description de votre tutoriel</label>
+                                <label for="description">Description</label>
                                 <input type="text" name="description"
                                        class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                                        placeholder="Un descriptif rapide de votre tutoriel.."
@@ -61,13 +61,13 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="imgpublication">Image de votre tutoriel</label>
+                                <label for="imgpublication">Image</label>
                                 <input type="file" name="imgpublication" class="form-control" id="imgpublication">
                             </div>
                             <div class="form-group">
-                                <label for="price">Prix du tutoriel (Si gratuit ne pas remplir)</label>
+                                <label for="price">Prix</label>
                                 <input type="text" name="price" value="{{old('price')}}" id="price"
-                                       placeholder="Prix du tutoriel (Si gratuit ne pas remplir)"
+                                       placeholder="Si gratuit, ne pas remplir"
                                        class="form-control {{ $errors->has('price') ? ' is-invalid' : '' }}">
                                 @if ($errors->has('price'))
                                     <span class="invalid-feedback">
@@ -76,7 +76,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="required">Prérequis de votre tutoriel</label>
+                                <label for="required">Prérequis</label>
                                 <input type="text" name="required" id="required" title="Maximum 100 caractères"
                                        class="form-control{{ $errors->has('required') ? ' is-invalid' : '' }}"
                                        placeholder="Prerequis du tutoriel" value="{{old('required')}}">
@@ -87,7 +87,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="objectifs">Objectifs de votre tutoriel</label>
+                                <label for="objectifs">Objectifs</label>
                                 <input type="text" name="goals" id="objectifs" title="Maximum 100 caractères"
                                        class="form-control{{ $errors->has('goals') ? ' is-invalid' : '' }}"
                                        placeholder="Objectifs du tutoriel" value="{{old('goals')}}">
@@ -99,7 +99,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="content">Saisir le contenu de votre tutoriel :</label>
+                                <label for="content">Contenu</label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
                                 <div id="editor_tutorial">{!! old('content') !!}</div>
