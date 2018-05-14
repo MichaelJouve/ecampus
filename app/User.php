@@ -54,4 +54,29 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'follows', 'user_id_following', 'user_id_followed');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function authorizeRoles($roles)
+    {
+        if (is_array($roles)) {
+
+            return $this->hasAnyRole($roles) || abort(401, 'Cette action n\'est pas autorisée');
+        }
+
+        return $this->hasRole($roles) || abort(401, 'Cette action n\'est pas autorisée');
+    }
+
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+    public function hasRole($role)
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
 }
