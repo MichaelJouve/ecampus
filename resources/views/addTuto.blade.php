@@ -102,7 +102,7 @@
                                 <label for="content">Saisir le contenu de votre tutoriel :</label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor_tutorial">{{old('content')}}</div>
+                                <div id="editor_tutorial">{!! old('content') !!}</div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('content') }}</strong>

@@ -53,7 +53,7 @@
                                 <label for="content">Saisir le contenu de votre post : </label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor-container">{{old('content')}}</div>
+                                <div id="editor-container">{!! old('content')!!}</div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                     <strong>{{ $errors->first('content') }}</strong>
