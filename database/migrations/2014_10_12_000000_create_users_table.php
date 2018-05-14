@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('paypal')->nullable();
             $table->text('description')->nullable();
+            $table->string('role')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

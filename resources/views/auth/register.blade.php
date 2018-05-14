@@ -3,7 +3,9 @@
 @section('contenu')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 pt-4">
+
+
                 <div class="card">
                     <div class="card-header">{{ __('S\'inscrire') }}</div>
 
@@ -63,6 +65,14 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                </div>
+                            </div>
+
+
                         </form>
                     </div>
 

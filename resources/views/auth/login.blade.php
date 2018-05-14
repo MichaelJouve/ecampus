@@ -48,6 +48,13 @@
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
