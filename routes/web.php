@@ -15,20 +15,25 @@ Route::get('auth/{provider}/callback','Auth\LoginController@handleProviderCallba
 Route::get('/test', 'HomeController@test');
 
 //Administration
-Route::get('/admin', 'AdminController@index')->name('administration');
-Route::get('/admin/gestion-membres', 'AdminController@gestionMembres')->name('gestion-membres');
-Route::get('/admin/gestion-posts', 'AdminController@gestionPosts')->name('gestion-posts');
-Route::get('/admin/gestion-tutoriels', 'AdminController@gestionTutoriels')->name('gestion-tutoriels');
-Route::get('/admin/gestion-comments', 'AdminController@gestionComments')->name('gestion-comments');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('administration');
+    Route::get('/gestion-membres', 'AdminController@gestionMembres')->name('gestion-membres');
+    Route::get('/gestion-posts', 'AdminController@gestionPosts')->name('gestion-posts');
+    Route::get('/gestion-tutoriels', 'AdminController@gestionTutoriels')->name('gestion-tutoriels');
+    Route::get('/gestion-comments', 'AdminController@gestionComments')->name('gestion-comments');
+});
+
 
 
 Route::get('/categorie','PublicationController@index')->name('listing-categorie');
+Route::get('/categorie/{name}/tous','PublicationController@showAll')->name('listing-all-categorie');
 Route::get('/categorie/{name}','PublicationController@show');
 
+
+Route::get('/Alltutoriels/','PublicationController@allTutorials')->name('listing-all');
 Route::get('/tutoriel/{slug}/consultation','PublicationController@showpublication')->name('affiche-publication');
 Route::get('/tutoriel/{slug}','PublicationController@showTutorial')->name('front-tutorial');
-Route::get('/tutoriel/{category}','PublicationController@showTutorialCategory')->name('listing-all-category');
-Route::get('/tutoriel/','PublicationController@allTutorials')->name('listing-all');
+
 
 Route::post('/post/post', 'PublicationController@storePost')->name('store-post');
 Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-tuto');

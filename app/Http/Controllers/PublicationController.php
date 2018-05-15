@@ -119,15 +119,24 @@ class PublicationController extends Controller
     public function show($name)
     {
         $category = Category::with('tuto')->where('name', $name)->firstOrFail();
-        $bestTutorial = Publication::where('category_id', $category->id)->where('type', '=','tutorial')->first();
 
-        $bestsTutorials =  Publication::where('category_id', $category->id)->where('type', '=','tutorial')->limit(4)->get();
+        $bestTutorial = Publication::with('category','user')->tuto()->first();
 
-        $lastTutorials = Publication::where('category_id', $category->id)->where('type', '=','tutorial')->latest()->limit(8)->get();
+        $bestsTutorials =  Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
+
+        $lastTutorials = Publication::where('category_id', $category->id)->tuto()->latest()->limit(8)->get();
 
 
 
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestsTutorials' => $bestsTutorials, 'lastTutorials' => $lastTutorials]);
+    }
+
+    public function showAll($name)
+    {
+        $category = Category::where('name', $name)->firstOrFail();
+        $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->where('category_id', $category->id)->paginate();
+
+        return view('publication.categoryalltutorial', ['category' => $category, 'tutorials' => $tutorials]);
     }
 
     public function showTutorial($slug)
@@ -162,8 +171,9 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        $groupTutorials = Publication::where('type', 'tutorial')->paginate(10);
-        return view('listingall', ['groupTutorials' => $groupTutorials]);
+        $tutorials = Publication::with('category', 'user', 'consultation')->tuto()->paginate();
+
+        return view('listingall', ['tutorials' => $tutorials]);
     }
 
     /**

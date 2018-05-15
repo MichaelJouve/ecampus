@@ -3,7 +3,7 @@
         <div class="card shadow" style="height:410px;">
             <div class="ribbon">
                 <span>
-                    {{$tuto->Category->name}}
+                    {{$tuto->category->name}}
                 </span>
             </div>
             <img class="card-img-top" src="{{asset('storage/'.$tuto->imgpublication)}}"
