@@ -52,6 +52,7 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'user_id_followed', 'user_id_following');
     }
 
+
     public function followings()
     {
         return $this->belongsToMany(User::class, 'follows', 'user_id_following', 'user_id_followed');
@@ -81,4 +82,11 @@ class User extends Authenticatable
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
+
+    public function publiBought()
+    {
+        return $this->belongsToMany(Publication::class, 'boughts', 'user_id', 'publi_id');
+    }
+
+
 }

@@ -216,12 +216,20 @@ class UserController extends Controller
         return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-//viex preference
+//view preference
     public function preference()
     {
         $userAuth = Auth::user();
         $user = $userAuth;
 
         return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
+    }
+//view achats
+    public function bought()
+    {
+        $userAuth = Auth::user();
+        $user = $userAuth;
+
+        return view('bought', ['user' => $user, 'userAuth' => $userAuth]);
     }
 }

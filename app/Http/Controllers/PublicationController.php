@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bought;
 use App\Category;
 use App\Consultation;
 use App\Publication;
@@ -90,7 +91,7 @@ class PublicationController extends Controller
         //Gestion d'image tutoriel
 
         $inputs = $request->all();
-        if ($inputs['price'] == null){
+        if ($inputs['price'] == null) {
             $inputs['price'] = 0;
         }
 
@@ -104,13 +105,13 @@ class PublicationController extends Controller
         } else {
 
             $p = Publication::create($inputs);
-            $p->imgpublication = 'images/Tutos/'.$p->category->name.'.jpg';
+            $p->imgpublication = 'images/Tutos/' . $p->category->name . '.jpg';
             $p->save();
 
         }
         //Un petit message de succés ...
-            session()->flash('message', 'Votre tutoriel a bien été créé !');
-            return redirect()->route('user-profil', $slug);
+        session()->flash('message', 'Votre tutoriel a bien été créé !');
+        return redirect()->route('user-profil', $slug);
     }
 
     /**
@@ -133,17 +134,23 @@ class PublicationController extends Controller
 
     public function showTutorial($slug)
     {
-        $userId = Auth::user()->id;
+        $user = Auth::user();
+        $userId = $user->id;
         $tuto = Publication::where('slug', $slug)->withCount('consultation')->firstOrFail();
 
-        if ($userId == $tuto->user->id) {
-            return view('article', ['tuto' => $tuto]);
-        } else {
+        $bought = false;
 
+        foreach ($user->publiBought as $publiBought) {
+            if ($publiBought->id == $tuto->id) {
+                $bought = true;
+            }
+        }
+
+        if ($userId !== $tuto->user->id) {
             $consultation = Consultation::updateOrCreate(['publication_id' => $tuto->id, 'user_id' => $userId]);
             Consultation::find($consultation->id)->increment('occurrences');
-            return view('article', ['tuto' => $tuto]);
         }
+        return view('article', ['tuto' => $tuto, 'bought' => $bought]);
     }
 
     public function showPost($slug)
@@ -204,5 +211,16 @@ class PublicationController extends Controller
         session()->flash('message', 'Votre publication a bien été supprimée !');
 
         return redirect()->route('user-profil');
+    }
+
+    public function buyTutorial($slug)
+    {
+        $publication = Publication::findBySlugOrFail($slug);
+        $user = Auth::user();
+
+        $publication->userOwner()->attach($user->id);
+
+
+        return back();
     }
 }

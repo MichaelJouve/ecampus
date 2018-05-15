@@ -91,8 +91,10 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6 text-left">
-                                    <p class="font-weight-bold">{{ $comment->user->name }}  {{ $comment->user->firstname }}<br>
-                                    <span class="font-weight-light small">{{ $comment->created_at->format('d/m/Y \à\ H:i') }}</span></p>
+                                    <p class="font-weight-bold">{{ $comment->user->name }}  {{ $comment->user->firstname }}
+                                        <br>
+                                        <span class="font-weight-light small">{{ $comment->created_at->format('d/m/Y \à\ H:i') }}</span>
+                                    </p>
                                 </div>
                                 <div class="col-md-4 text-right">
                                     <p class="small"> {{ $comment->user->email }}</p>
@@ -125,38 +127,48 @@
                         <button class="btn btn-success">Voir le tutoriel</button>
                     </a>
                 @else
-                    <p class="text-center text-success lead font-weight-bold">
-                        <i class="fas fa-shopping-cart"></i>
-                        {{ $tuto->price }} €
-                    </p>
-                    <button class="btn btn-success" href="#">Acheter le tutoriel</button>
+                    @if($bought)
+                        <p class="text-center text-success lead font-weight-bold"> Déjà Acheté </p>
+
+                        <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}">
+                            <button class="btn btn-success">Voir le tutoriel</button>
+                        </a>
+                    @else
+                        <p class="text-center text-success lead font-weight-bold">
+                            <i class="fas fa-shopping-cart"></i>
+                            {{ $tuto->price }} €
+                        </p>
+                        <a href="{{ URL::route('front-buy-tutorial', ['slug' => $tuto->slug]) }}">
+                            <button class="btn btn-success">Acheter le tutoriel</button>
+                        </a>
+                    @endif
                 @endif
 
-                    <div class="mt-4">
-                        <p class="font-weight-bold border-bottom">A propos du formateur</p>
+                <div class="mt-4">
+                    <p class="font-weight-bold border-bottom">A propos du formateur</p>
 
-                        <div class="card border-0 pt-2">
-                                    <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
-                                        <img class="img-fluid rounded-circle w50 shadow"
-                                             src="{{asset($tuto->user->imgprofil)}}"
-                                             alt="Image de profil">
-                                    </a>
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
-                                                {{ $tuto->user->name }} {{ $tuto->user->firstname }}
-                                            </a>
-                                        </div>
-                                        <p class="card-text small">
-                                            {{ $tuto->user->description }}
-                                        </p>
-                                        <p class="small border-top mb-2">
-                                            <i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
-                                            <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--
-                                        </p>
-                                    </div>
+                    <div class="card border-0 pt-2">
+                        <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
+                            <img class="img-fluid rounded-circle w50 shadow"
+                                 src="{{asset($tuto->user->imgprofil)}}"
+                                 alt="Image de profil">
+                        </a>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
+                                    {{ $tuto->user->name }} {{ $tuto->user->firstname }}
+                                </a>
+                            </div>
+                            <p class="card-text small">
+                                {{ $tuto->user->description }}
+                            </p>
+                            <p class="small border-top mb-2">
+                                <i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
+                                <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--
+                            </p>
                         </div>
                     </div>
+                </div>
             </div>
             <!-- END Descriptif tutoriel bandeau droite-->
 
