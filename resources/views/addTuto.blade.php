@@ -102,7 +102,7 @@
                                 <label for="content">Contenu</label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor_tutorial">{!! old('content') !!}</div>
+                                <div id="editor_tutorial"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('content') }}</strong>
@@ -154,5 +154,10 @@
             content.value = quill.root.innerHTML;
             console.log(content);
         });
+        quill.setContents([
+            {insert: "{{ strip_tags(old('content')) }}"}
+
+        ]);
+
     </script>
 @endpush
