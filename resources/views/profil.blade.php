@@ -22,13 +22,19 @@
                 </div>
                 <div>
                     <h5 class="font-weight-light border-bottom">Description</h5>
-                    <p class="small">{{$user->description}}</p>
+                    <p class="small">
+                        @if( $user->description == null)
+                            <em>Aucune description pour l'instant...</em>
+                            @else
+                        {{$user->description}}
+                            @endif
+                    </p>
                 </div>
                 <div>
                     <h5 class="border-bottom">Statistiques membre</h5>
-                    <p class="small">Nombre de commentaire : <b>(0)</b><br>
-                        Nombre de post : <b>(0)</b><br>
-                        Nombre de tutoriel(s) : <b>(0)</b>
+                    <p class="small">Nombre de commentaire : <b>{{ $user->comment->count() }}</b><br>
+                        Nombre de post : <b>{{ $user->post->count() }}</b><br>
+                        Nombre de tutoriel(s) : <b>{{ $user->tutorial->count() }}</b>
                     </p>
                 </div>
                 <div>
@@ -37,8 +43,9 @@
 
                     <p class="small">
                         <strong> Identité </strong>: {{ucfirst($user->firstname)}} {{ucfirst($user->name)}}<br/>
-                        <strong> Date de naissance</strong>: {{$user->birthdate}}<br/>
-                        <strong> Email </strong>: {{$user->email}}<br/>
+                        @if( $user->birthday !== null)
+                        <strong> Date de naissance</strong>: {{$user->birthday->format('d/m/Y')}}<br/>
+                        @endif
                         <strong> Date d'inscription</strong> : {{$user->created_at->format('d/m/Y')}}<br/>
                     </p>
 
@@ -98,7 +105,7 @@
                                         @if ($user->id == $userAuth->id)
 
                                             <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="far fa-trash-alt"></i></span></a>
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
 
 
                                         @endif
@@ -119,12 +126,15 @@
                                     </div>
                                     <div class="card-footer text-right">
                                         <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
-                                        <i class="fab fa-facebook-f"></i>
+
                                         <i class="far fa-heart"></i>
+
                                         <a href="#" data-toggle="modal"
                                            data-target="#exampleModal{{ $publication->id }}"><i
                                                     class="far fa-comment"></i></a>
-                                        <i class="fas fa-share"></i>
+                                        {{ $publication->comment->count() }}
+                                        @include('components.Modal.modalComment')
+
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +146,7 @@
                                         @if ($user->id == $userAuth->id)
 
                                             <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="far fa-trash-alt"></i></span></a>
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
                                         @endif
                                     </div>
                                     <img class="card-img-top img-fluid"
@@ -199,12 +209,15 @@
                                         </div>
                                         <div class="card-footer text-right">
                                             <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
-                                            <i class="fab fa-facebook-f"></i>
+
                                             <i class="far fa-heart"></i>
+
                                             <a href="#" data-toggle="modal"
                                                data-target="#exampleModal{{ $publication->id }}"><i
                                                         class="far fa-comment"></i></a>
-                                            <i class="fas fa-share"></i>
+                                            {{ $publication->comment->count() }}
+                                            @include('components.Modal.modalComment')
+
                                         </div>
                                     </div>
                                 </div>

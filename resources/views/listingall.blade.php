@@ -26,46 +26,57 @@
     <div class="container mt-5 mb-5">
         @foreach ($groupTutorials as $tutorial)
 
-            <div class="col-md-12 rounded mt-5 shadow">
+            <div class="col-md-12 rounded mt-5 mb-5">
                 <div class="ribbon"><span>{{ $tutorial->Category->name }}</span></div>
                 <div class="row">
                     <div class="col-md-3 p-0">
                         <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}">
                             <img src="{{asset('storage/'.$tutorial->imgpublication)}}" alt="Image du tutoriel"
-                                 class="img_bandeau">
+                                 style="width: 280px; height: 170px;" class="shadow">
                         </a>
                     </div>
 
-                    <div class="col-md-9">
+                    <div class="col-md-9 pl-5">
                         <div class="row">
                             <div class="col-md-9 mt-3">
                                 <h2>{{ $tutorial->title }}</h2>
-                                <p>{{ $tutorial->description }}</p>
+                                <p class="font-weight-bold p-2 bg-light">{{ $tutorial->description }}</p>
                                 <p class="small">
                                     Proposé par
                                     <a href="{{ route('user-profil', ['slug' => $tutorial->user->slug ])}}"
                                        class="link_to_card">
                                         {{ $tutorial->user->name }} {{ $tutorial->user->firstname }}
                                     </a>
-                                </p>
+                                    <br>
+                                Partagé le  {{ $tutorial->created_at->format('d.m.Y') }}</p>
                             </div>
-                            <div class="col-md-3">
-
-                                <p class="text-success lead">
+                            <div class="col-md-3 border-left">
+                                <p class="text-light lead">
                                     @if( $tutorial->price == '0')
-                                        Gratuit
+                                        Tutoriel gratuit
                                     @else
                                         {{ $tutorial->price }}<b>€</b>
                                     @endif
                                 </p>
-                                <p>NOTE TUTO</p>
-                                <p>NB NOTES TUTO</p>
+                                <p><i class="far fa-edit"></i> {{ $tutorial->comment->count() }} commentaire(s)</p>
+                                <p><i class="far fa-user-circle"></i>
+                                    @if($tutorial->consultation == null)
+                                        <em>Auncun visionnage</em>
+                                        @else
+                                    {{ $tutorial->consultation->occurrences }} visionnages
+                                        @endif
+                                </p>
+                                <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}" class="btn btn-info">Visionner</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
         @endforeach
+        <div class="row justify-content-center mt-5">
+            {{ $groupTutorials->links() }}
+        </div>
     </div>
 
 

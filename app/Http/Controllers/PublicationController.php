@@ -119,13 +119,15 @@ class PublicationController extends Controller
     public function show($name)
     {
         $category = Category::with('tuto')->where('name', $name)->firstOrFail();
+        $bestTutorial = Publication::where('category_id', $category->id)->where('type', '=','tutorial')->first();
 
-        $bestTutorials = Category::with('tuto')->where('name', $name)->firstOrFail();
+        $bestsTutorials =  Publication::where('category_id', $category->id)->where('type', '=','tutorial')->limit(4)->get();
 
-        $bestTutorial = Category::with('best')->where('name', $name)->first();
+        $lastTutorials = Publication::where('category_id', $category->id)->where('type', '=','tutorial')->latest()->limit(8)->get();
 
 
-        return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestTutorials' => $bestTutorials]);
+
+        return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestsTutorials' => $bestsTutorials, 'lastTutorials' => $lastTutorials]);
     }
 
     public function showTutorial($slug)
@@ -160,7 +162,7 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        $groupTutorials = Publication::where('type', 'tutorial')->get();
+        $groupTutorials = Publication::where('type', 'tutorial')->paginate(10);
         return view('listingall', ['groupTutorials' => $groupTutorials]);
     }
 

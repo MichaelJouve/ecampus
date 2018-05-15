@@ -17,11 +17,6 @@ class Category extends Model
         return $this->hasMany('App\Publication')->where('type','=','tutorial');
     }
 
-    public function best()
-    {
-        return $this->hasOne('App\Publication')->where('type','=','tutorial');
-    }
-
     public function post()
     {
         return $this->hasMany('App\Publication')->where('type','=','post');

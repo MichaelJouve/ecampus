@@ -143,16 +143,19 @@
                                     </a>
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <a href="{{route('user-profil',['slug' => $tuto->user->slug])}}">
+                                            <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
                                                 {{ $tuto->user->name }} {{ $tuto->user->firstname }}
                                             </a>
                                         </div>
                                         <p class="card-text small">
                                             {{ $tuto->user->description }}
                                         </p>
-                                        <p class="small border-top mb-2">
-                                            <i class="fas fa-pencil-alt"></i> &nbsp;--Nb commentaires--<br>
-                                            <i class="far fa-play-circle"></i> &nbsp; --Nb tuto User--
+                                        <p class="small border-top mt-2 pt-2">
+                                            <i class="fas fa-pencil-alt"></i>
+                                                <span class="ml-2"><b>{{ $tuto->user->comment->count() }}</b> Commentaire(s)</span>
+                                            <br>
+                                            <i class="far fa-play-circle"></i>
+                                             <span class="ml-2"><b>{{ $tuto->user->tutorial->count() }}</b> Tutoriel(s)</span>
                                         </p>
                                     </div>
                         </div>

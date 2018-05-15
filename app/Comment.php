@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Comment extends Model
 {
+    use SoftDeletes;
+
     //
     protected $fillable = ['content','user_id', 'publication_id'];
 
@@ -17,4 +20,6 @@ class Comment extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+
 }

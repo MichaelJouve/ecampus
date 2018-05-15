@@ -2,7 +2,7 @@
 
 @section('contenu')
 
-    @isset ($bestTutorial->best)
+    @isset ($bestTutorial)
 
         <div class="container-fluid bandeau-sombre">
             <div class="container">
@@ -34,7 +34,7 @@
 
                 <div class="row mt-5">
                     <div class="col-md-11">
-                        <p class="border-bottom">Meilleurs tutoriels de la catégorie : <b>{{ $category->name }}</b></p>
+                        <h3 class="border-bottom">Meilleurs tutoriels de la catégorie : <b>{{ $category->name }}</b></h3>
                     </div>
                     <div class="col-md-1">
                         <a href="#" class="bg-info text-light p-2 rounded link_bandeau"> Voir tout </a>
@@ -42,7 +42,7 @@
                 </div>
                 <!-- On place nos cards -->
 
-                <div class="row">
+                <div class="row mt-3">
                     @include('components.Publication.bestTutorials')
                 </div>
 
@@ -69,7 +69,7 @@
 
     @endisset
 
-@empty($bestTutorial->best)
+@empty($bestTutorial)
     <div class="container-fluid bandeau-sombre">
         <div class="container">
             <div class="row">

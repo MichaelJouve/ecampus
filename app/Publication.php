@@ -54,4 +54,5 @@ class Publication extends Model
         return $this->hasMany('App\Comment')->orderBy('created_at','desc');
     }
 
+
 }
