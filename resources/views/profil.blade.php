@@ -44,8 +44,8 @@
 
 
                 </div>
-                @isset($otherUser)
-                    @if($otherUser->follow > 0)
+                @empty($userAuth)
+                    @if($user->follow > 0)
 
                             <div>
                                 <a href="{{route('unfollow', ['slug' => $user->slug])}}">
@@ -59,7 +59,7 @@
                                 </a>
                             </div>
                     @endif
-                @endisset
+                @endempty
             </div>
             <div class="col-md-9 text-center  pt-4">
                 @isset($userAuth)
