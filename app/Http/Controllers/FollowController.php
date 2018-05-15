@@ -56,6 +56,11 @@ class FollowController extends Controller
         $userFollowed = User::findBySlugOrFail($slug);
         $userFollowing = Auth::user();
 
+        foreach ($userFollowing->followings as $following)
+            if ($following->id !== $userFollowed->id) {
+                return redirect()->route('other-profil', ['slug' => $slug]);
+            }
+
         $userFollowed->followers()->detach($userFollowing->id);
         session()->flash('message', 'Vous ne suivez plus le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
 

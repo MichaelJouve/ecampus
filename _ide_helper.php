@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.21 on 2018-05-14 13:39:33.
+ * Generated for Laravel 5.6.21 on 2018-05-15 11:21:41.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -5803,6 +5803,304 @@ namespace Illuminate\Support\Facades {
         public static function log($level, $message, $context = array())
         {
             \Illuminate\Log\LogManager::log($level, $message, $context);
+        }
+         
+    }
+
+    class Mail {
+        
+        /**
+         * Set the global from address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */ 
+        public static function alwaysFrom($address, $name = null)
+        {
+            \Illuminate\Mail\Mailer::alwaysFrom($address, $name);
+        }
+        
+        /**
+         * Set the global reply-to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */ 
+        public static function alwaysReplyTo($address, $name = null)
+        {
+            \Illuminate\Mail\Mailer::alwaysReplyTo($address, $name);
+        }
+        
+        /**
+         * Set the global to address and name.
+         *
+         * @param string $address
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */ 
+        public static function alwaysTo($address, $name = null)
+        {
+            \Illuminate\Mail\Mailer::alwaysTo($address, $name);
+        }
+        
+        /**
+         * Begin the process of mailing a mailable class instance.
+         *
+         * @param mixed $users
+         * @return \Illuminate\Mail\PendingMail 
+         * @static 
+         */ 
+        public static function to($users)
+        {
+            return \Illuminate\Mail\Mailer::to($users);
+        }
+        
+        /**
+         * Begin the process of mailing a mailable class instance.
+         *
+         * @param mixed $users
+         * @return \Illuminate\Mail\PendingMail 
+         * @static 
+         */ 
+        public static function bcc($users)
+        {
+            return \Illuminate\Mail\Mailer::bcc($users);
+        }
+        
+        /**
+         * Send a new message with only an HTML part.
+         *
+         * @param string $html
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function html($html, $callback)
+        {
+            \Illuminate\Mail\Mailer::html($html, $callback);
+        }
+        
+        /**
+         * Send a new message when only a raw text part.
+         *
+         * @param string $text
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function raw($text, $callback)
+        {
+            \Illuminate\Mail\Mailer::raw($text, $callback);
+        }
+        
+        /**
+         * Send a new message when only a plain part.
+         *
+         * @param string $view
+         * @param array $data
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function plain($view, $data, $callback)
+        {
+            \Illuminate\Mail\Mailer::plain($view, $data, $callback);
+        }
+        
+        /**
+         * Render the given message as a view.
+         *
+         * @param string|array $view
+         * @param array $data
+         * @return string 
+         * @static 
+         */ 
+        public static function render($view, $data = array())
+        {
+            return \Illuminate\Mail\Mailer::render($view, $data);
+        }
+        
+        /**
+         * Send a new message using a view.
+         *
+         * @param string|array|\Illuminate\Mail\MailableContract $view
+         * @param array $data
+         * @param \Closure|string $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function send($view, $data = array(), $callback = null)
+        {
+            \Illuminate\Mail\Mailer::send($view, $data, $callback);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending.
+         *
+         * @param string|array|\Illuminate\Mail\MailableContract $view
+         * @param string|null $queue
+         * @return mixed 
+         * @static 
+         */ 
+        public static function queue($view, $queue = null)
+        {
+            return \Illuminate\Mail\Mailer::queue($view, $queue);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending on the given queue.
+         *
+         * @param string $queue
+         * @param string|array $view
+         * @return mixed 
+         * @static 
+         */ 
+        public static function onQueue($queue, $view)
+        {
+            return \Illuminate\Mail\Mailer::onQueue($queue, $view);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending on the given queue.
+         * 
+         * This method didn't match rest of framework's "onQueue" phrasing. Added "onQueue".
+         *
+         * @param string $queue
+         * @param string|array $view
+         * @return mixed 
+         * @static 
+         */ 
+        public static function queueOn($queue, $view)
+        {
+            return \Illuminate\Mail\Mailer::queueOn($queue, $view);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending after (n) seconds.
+         *
+         * @param \DateTimeInterface|\DateInterval|int $delay
+         * @param string|array|\Illuminate\Mail\MailableContract $view
+         * @param string|null $queue
+         * @return mixed 
+         * @static 
+         */ 
+        public static function later($delay, $view, $queue = null)
+        {
+            return \Illuminate\Mail\Mailer::later($delay, $view, $queue);
+        }
+        
+        /**
+         * Queue a new e-mail message for sending after (n) seconds on the given queue.
+         *
+         * @param string $queue
+         * @param \DateTimeInterface|\DateInterval|int $delay
+         * @param string|array $view
+         * @return mixed 
+         * @static 
+         */ 
+        public static function laterOn($queue, $delay, $view)
+        {
+            return \Illuminate\Mail\Mailer::laterOn($queue, $delay, $view);
+        }
+        
+        /**
+         * Get the view factory instance.
+         *
+         * @return \Illuminate\Contracts\View\Factory 
+         * @static 
+         */ 
+        public static function getViewFactory()
+        {
+            return \Illuminate\Mail\Mailer::getViewFactory();
+        }
+        
+        /**
+         * Get the Swift Mailer instance.
+         *
+         * @return \Swift_Mailer 
+         * @static 
+         */ 
+        public static function getSwiftMailer()
+        {
+            return \Illuminate\Mail\Mailer::getSwiftMailer();
+        }
+        
+        /**
+         * Get the array of failed recipients.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function failures()
+        {
+            return \Illuminate\Mail\Mailer::failures();
+        }
+        
+        /**
+         * Set the Swift Mailer instance.
+         *
+         * @param \Swift_Mailer $swift
+         * @return void 
+         * @static 
+         */ 
+        public static function setSwiftMailer($swift)
+        {
+            \Illuminate\Mail\Mailer::setSwiftMailer($swift);
+        }
+        
+        /**
+         * Set the queue manager instance.
+         *
+         * @param \Illuminate\Contracts\Queue\Factory $queue
+         * @return $this 
+         * @static 
+         */ 
+        public static function setQueue($queue)
+        {
+            return \Illuminate\Mail\Mailer::setQueue($queue);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Illuminate\Mail\Mailer::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Illuminate\Mail\Mailer::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Illuminate\Mail\Mailer::hasMacro($name);
         }
          
     }
@@ -15118,6 +15416,8 @@ namespace  {
     class Lang extends \Illuminate\Support\Facades\Lang {}
 
     class Log extends \Illuminate\Support\Facades\Log {}
+
+    class Mail extends \Illuminate\Support\Facades\Mail {}
 
     class Notification extends \Illuminate\Support\Facades\Notification {}
 
