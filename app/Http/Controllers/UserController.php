@@ -52,19 +52,16 @@ class UserController extends Controller
     public function otherprofil($slug)
     {
         $user = Auth::user();
-        $otherUser = User::findBySlugOrFail($slug);
-        $follow = false;
+        $userId = $user->id;
+        $otherUser = User::where('slug', $slug)->withCount(['followers as follow' => function($query) use ($userId){
+            $query->where('user_id_following', $userId);
+        }])->firstOrFail();
 
-        if ($user == $otherUser) {
+        if ($userId === $otherUser->id) {
             return redirect()->route('user-profil');
-        } else {
-        foreach ($user->followings as $following)
-            if ($following->id == $otherUser->id) {
-                $follow = true;
-            }
         }
 
-        return view('profil', ['user' => $otherUser, 'userFollowing' => $user, 'follow' => $follow]);
+        return view('profil', ['user' => $user, 'otherUser' => $otherUser]);
     }
 
     /**

@@ -44,22 +44,22 @@
 
 
                 </div>
-                @empty($userAuth)
-                    @if($follow == true)
+                @isset($otherUser)
+                    @if($otherUser->follow > 0)
+
                             <div>
                                 <a href="{{route('unfollow', ['slug' => $user->slug])}}">
                                     <button type="submit" class="btn btn-danger btn-sm">Arrêter de suivre {{$user->firstname}} {{$user->name}}</button>
                                 </a>
                             </div>
-                    @elseif($follow == false)
-
+                    @else
                             <div>
                                 <a href="{{route('follow', ['slug' => $user->slug])}}">
                                     <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
                                 </a>
                             </div>
                     @endif
-                @endempty
+                @endisset
             </div>
             <div class="col-md-9 text-center  pt-4">
                 @isset($userAuth)
