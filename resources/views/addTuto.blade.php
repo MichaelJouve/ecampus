@@ -134,7 +134,7 @@
                     [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
                     [{'header': [1, 2, 3, 4, 5, 6, false]}],
 
-                    ['bold', 'italic', 'underline', 'strike','link'],        // toggled buttons
+                    ['bold', 'italic', 'underline', 'strike','link', 'image'],        // toggled buttons
                     ['code-block'],
 
                     [{'list': 'bullet'}],

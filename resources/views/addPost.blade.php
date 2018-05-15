@@ -81,9 +81,14 @@
             modules: {
                 toolbar: [
                     [{header: [1, 2, 3, false]}],
-                    ['blockquote', 'bold', 'italic', 'underline', 'strike'],
+
+                    ['bold', 'italic', 'underline', 'strike','link', 'image'],        // toggled buttons
+                    ['code-block'],
+
+
                     [{'color': []}, {'background': []}],          // dropdown with defaults from theme
                     [{list: 'bullet'}],
+
                     [{'align': []}]
                 ]
             },

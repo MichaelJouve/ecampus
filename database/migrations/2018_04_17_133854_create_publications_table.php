@@ -21,7 +21,7 @@ class CreatePublicationsTable extends Migration
             $table->string('title')->required();
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->text('content')->required();
+            $table->longText('content')->required();
             $table->string('goals')->nullable();
             $table->string('required')->nullable();
             $table->softDeletes();
