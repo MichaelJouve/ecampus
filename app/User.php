@@ -35,7 +35,7 @@ class User extends Authenticatable
 
     public function post()
     {
-        return $this->belongsTo('App\Publication')->orderBy('created_at','desc');;
+        return $this->belongsTo('App\Publication')->orderBy('created_at','desc');
     }
 
     public function media()

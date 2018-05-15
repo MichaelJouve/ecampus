@@ -32,7 +32,7 @@ class FollowController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function followUser($slug)
@@ -41,9 +41,13 @@ class FollowController extends Controller
         $userFollowed = User::findBySlugOrFail($slug);
         $userFollowing = Auth::user();
 
+        foreach ($userFollowing->followings as $following)
+            if ($following->id == $userFollowed->id) {
+                return redirect()->route('other-profil', ['slug' => $slug]);
+            }
+
         $userFollowed->followers()->attach($userFollowing->id);
-        session()->flash('message', 'Vous suivez maintenant le profil de '.$userFollowed->firstname.' '.$userFollowed->name);
-//
+        session()->flash('message', 'Vous suivez maintenant le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
         return redirect()->route('other-profil', ['slug' => $slug]);
     }
 
@@ -53,7 +57,7 @@ class FollowController extends Controller
         $userFollowing = Auth::user();
 
         $userFollowed->followers()->detach($userFollowing->id);
-        session()->flash('message', 'Vous ne suivez plus le profil de '.$userFollowed->firstname.' '.$userFollowed->name);
+        session()->flash('message', 'Vous ne suivez plus le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
 
         return redirect()->route('other-profil', ['slug' => $slug]);
     }
@@ -61,7 +65,7 @@ class FollowController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Follow  $follow
+     * @param  \App\Follow $follow
      * @return \Illuminate\Http\Response
      */
     public function show(Follow $follow)
@@ -72,7 +76,7 @@ class FollowController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Follow  $follow
+     * @param  \App\Follow $follow
      * @return \Illuminate\Http\Response
      */
     public function edit(Follow $follow)
@@ -83,8 +87,8 @@ class FollowController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Follow  $follow
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Follow $follow
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Follow $follow)
@@ -95,7 +99,7 @@ class FollowController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Follow  $follow
+     * @param  \App\Follow $follow
      * @return \Illuminate\Http\Response
      */
     public function destroy(Follow $follow)
