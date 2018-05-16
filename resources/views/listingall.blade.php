@@ -24,11 +24,18 @@
     </div>
 
     <div class="container bg-light mt-4 p-2">
-        <p>Filtres :
-            <a href="/tutoriel/?prix=asc">Prix croissant</a> |
-            <a href="/tutoriel/?prix=desc">Prix Décroissant</a> |
-            <a href="/tutoriel/?">Reset</a>
-        </p>
+        <div class="row">
+                <div class="col-10">
+                    <h2>Liste de tous les Tutoriels </h2>
+                </div>
+                <div class="col-2 text-center mt-2">
+                    <a class="m-1" href="{{URL::route('listing-all')}}/?price=asc"><i class="fas fa-sort-numeric-down"></i></a>
+                    <a class="m-1" href="{{URL::route('listing-all')}}/?price=desc"><i class="fas fa-sort-numeric-up"></i></a>
+                    <a class="m-1" href="{{URL::route('listing-all')}}/?"><i class="fas fa-history"></i></a>
+                </div>
+        </div>
+
+
     </div>
     <div class="container mt-5 mb-5">
         @foreach ($tutorials as $tutorial)

@@ -171,9 +171,23 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        $tutorials = Publication::with('category', 'user', 'consultation')->tuto()->paginate();
+        if (request()->has('price')){
 
-        return view('listingall', ['tutorials' => $tutorials]);
+            if(request('price') === 'asc'){
+                $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->orderBy('price','asc')->paginate();
+                return view('listingall', ['tutorials' => $tutorials]);
+            }
+            elseif(request('price') === 'desc'){
+
+                $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->orderBy('price','desc')->paginate();
+                return view('listingall', ['tutorials' => $tutorials]);
+            }
+        }
+        else{
+            $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->paginate();
+
+            return view('listingall', ['tutorials' => $tutorials]);
+        }
     }
 
     /**

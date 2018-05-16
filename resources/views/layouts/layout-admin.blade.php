@@ -41,6 +41,7 @@
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-posts') }}" class="nav-link">Gestion des posts</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-tutoriels') }}" class="nav-link">Gestion des tutoriels</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-comments') }}" class="nav-link">Gestion des commentaires</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('gestion-contactRequest') }}" class="nav-link">Gestion des requêtes</a></li>
                 <hr style="background: #e3e3e3;">
                 <li class="nav-item bg-light w-100 mt-2"><a href="" class="nav-link">Gestion des CGU</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="" class="nav-link">Gestion mentions légales</a></li>

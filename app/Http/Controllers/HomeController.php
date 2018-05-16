@@ -40,10 +40,4 @@ class HomeController extends Controller
         return view('panier');
     }
 
-    public function test()
-    {
-        $user = \Auth::user();
-        return view('test',[ 'user' => $user]);
-    }
-
 }

@@ -38,6 +38,7 @@ class ContentController extends Controller
         return view('contact');
     }
 
+
     public function rgpd()
     {
         return view('rgpd');
