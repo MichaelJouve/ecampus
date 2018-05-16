@@ -2,29 +2,24 @@
 @section('contenu')
     <link rel="stylesheet" href="{{URL::asset('css/contact.css')}}">
 
-    <div id="bandeau_contact">
-        <div class="container text-center" id="content_contact">
+    <div id="bandeau_contact" class="shadow">
+        <div class="container text-center text-light" id="content_contact">
             <h1>Contact E-Campus</h1>
             <span>Envoyez nous un message directement</span>
         </div>
     </div>
 
-
     <!-- CONTENU -->
-    <div class="container text-center" id="contact">
-        <div class="col md-12 ">
-            <h3>Envoyer une requête </h3>
+    <div class="container text-center mt-5">
 
-            <form method="POST" name="formulaire_contact" id="formulaire_contact">
-                <div class="form-group">
-                    <input type="text" name="objet" id="objet" class="form-control" placeholder="Objet de votre requête" />
-                </div>
-                <div class="form-group">
+            <h3>Envoyer une requête à notre équipe ...</h3>
 
-                    <textarea class="form-control" id="summernote" placeholder="Contenu de votre requête"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" id="submit_contact">Envoyer ma requête</button>
+            <form action="{{route('contact-request')}}" method="POST" name="formulaire_contact" class="mt-4 mb-5">
+                @csrf
+                    <input class="form-control bg-light" type="text" name="title"  placeholder="Objet de votre requête" />
+                    <textarea class="form-control bg-light mt-2" rows="7" name="content" placeholder="Contenu de votre requête"></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Envoyer ma requête</button>
             </form>
-        </div>
+
     </div>
 @endsection

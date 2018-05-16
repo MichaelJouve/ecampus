@@ -130,8 +130,8 @@
             <div class="col-md-4">
                 <h5>Nos derniers articles</h5>
                 <!-- todo mettre en place l'url route direction les posts-->
-                @forelse($publications = App\Publication::all()->sortByDesc('created_ad')->take(5) as $publication)
-                    <a href="{{route('other-profil',['slug' => $publication->user->slug])}}">{{$publication->title}}</a>
+                @forelse($publications = App\Publication::with('user')->latest()->take(5)->get() as $publication)
+                    <a class="small" href="{{route('other-profil',['slug' => $publication->user->slug])}}">{{$publication->title}}</a>
                     <br>
                 @empty
                     <p>Vide</p>

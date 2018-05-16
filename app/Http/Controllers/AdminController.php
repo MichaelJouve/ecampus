@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Comment;
+use App\ContactRequest;
 use App\Publication;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,10 +24,11 @@ class AdminController extends Controller
         $tutoriels= Publication::where('type','tutorial')->get()->count();
         $posts= Publication::where('type','post')->get()->count();
         $comments = Comment::all()->count();
+        $contactRequest = ContactRequest::all()->count();
 
 
         if ($user->role == "administrateur") {
-            return view('admin.index', ['user' => $user, 'users' =>$users, 'tutoriels' => $tutoriels, 'posts' => $posts, 'comments' => $comments]);
+            return view('admin.index', ['user' => $user, 'users' =>$users, 'tutoriels' => $tutoriels, 'posts' => $posts, 'comments' => $comments, 'contactRequest' => $contactRequest]);
         } else {
             return abort(404);
         }
@@ -58,5 +60,12 @@ class AdminController extends Controller
         $comments = Comment::all();
 
         return view('admin.gestionComment', ['user' => Auth::user(), 'comments' => $comments]);
+    }
+
+    public function gestionContactRequest()
+    {
+        $contactRequests = ContactRequest::all();
+
+        return view('admin.gestionContactRequest', ['user' => Auth::user(), 'contactRequests' => $contactRequests]);
     }
 }

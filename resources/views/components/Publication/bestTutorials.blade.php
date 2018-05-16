@@ -1,6 +1,6 @@
-@foreach( $bestTutorials->tuto as $bestTutos)
+@foreach( $bestsTutorials as $bestTutos)
 
-    <div class="col-md-3">
+    <div class="col-md-3 mt-3">
         <div class="card shadow" style="height: 350px;">
             <div class="card-header">
                 <div class="row">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <a class="link_to_card" href="{{route('front-tutorial',['slug' => $bestTutos->slug])}}">
-                <img class="card-img-top" src="{{asset('storage/'.$bestTutos->imgpublication)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset('storage/'.$bestTutos->imgpublication)}}" alt="Card image cap" style="height: 130px">
             </a>
             <div class="card-body small">
                 <p class="card-text small">

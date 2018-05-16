@@ -14,6 +14,7 @@ class Publication extends Model
     use SoftDeletes;
 
     protected $fillable = ['type', 'imgpublication', 'price', 'title', 'slug', 'description', 'content', 'goals', 'required', 'category_id', 'user_id'];
+    protected $perPage = 10;
 
     /**
      * Return the sluggable configuration array for this model.
@@ -28,6 +29,11 @@ class Publication extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function scopeTuto($query)
+    {
+        return $query->where('type', 'tutorial');
     }
 
     public function category()
@@ -53,5 +59,6 @@ class Publication extends Model
     public function comment(){
         return $this->hasMany('App\Comment')->orderBy('created_at','desc');
     }
+
 
 }

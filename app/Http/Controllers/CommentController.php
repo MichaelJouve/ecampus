@@ -7,6 +7,7 @@ use App\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class CommentController extends Controller
 {
     /**
@@ -58,6 +59,29 @@ class CommentController extends Controller
 
     }
 
+
+    public function storePost(Request $request, $slug)
+    {
+        //
+
+        $user = Auth::user();
+        $publication = Publication::findBySlugOrFail($slug);
+
+        $request->validate([
+            'content' => 'required|max:360',
+        ]);
+
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
+        $inputs['publication_id'] = $publication->id;
+
+        Comment::create($inputs);
+
+        return back()->with('message', 'Votre commentaire a bien été ajouté !');
+
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -102,4 +126,13 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function softDelete($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return back()->with('message', 'Votre commentaire a bien été supprimé !');
+    }
+
 }

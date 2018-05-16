@@ -5,10 +5,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 pt-4">
-                    <p><a href="{{URL::route('front-index')}}"><i class="fas fa-home" style="color:#fff;"></i></a> -
-                        <a href="{{URL::route('listing-categorie')}}">Catégorie</a> /
-                        Liste de tous les tutoriels</p>
-                    <h1 class="mb-5">TOUS LES TUTORIELS DU ECAMPUS</h1>
+                    <p>
+                        <a href="{{URL::route('front-index')}}"><i class="fas fa-home" style="color:#fff;"></i></a> -
+                        <a href="{{URL::route('listing-categorie')}}">Catégorie</a>
+                        / <a href="{{URL::route('listing-categorie')}}/{{$category->name}}">{{ $category->name }}</a>
+                        / Tous
+                    </p>
+                    <h1 class="mb-5">LISTE DES TUTORIELS DE LA CATEGORIE : {{ $category->name }}</h1>
                 </div>
             </div>
             <nav aria-label="breadcrumb">
@@ -16,7 +19,12 @@
                     <a href="{{URL::route('listing-categorie')}}">
                         <li class="breadcrumb-item mr-3">Liste des catégories</li>
                     </a>
-                    <li class="breadcrumb-item mr-3 ml-5 active">Tous les tutoriels</li>
+                    <a href="{{ route('listing-all-categorie', ['name' => $category->name]) }}">
+                        <li class="breadcrumb-item active mr-3">Tous les tutoriels de la catégorie</li>
+                    </a>
+                    <a href="{{URL::route('listing-all')}}">
+                        <li class="breadcrumb-item  mr-3 ml-5" aria-current="page">Tous les tutoriels</li>
+                    </a>
                 </ol>
             </nav>
 
@@ -24,18 +32,7 @@
     </div>
 
     <div class="container bg-light mt-4 p-2">
-        <div class="row">
-                <div class="col-10">
-                    <h2>Liste de tous les Tutoriels </h2>
-                </div>
-                <div class="col-2 text-center mt-2">
-                    <a class="m-1" href="{{URL::route('listing-all')}}/?price=asc"><i class="fas fa-sort-numeric-down"></i></a>
-                    <a class="m-1" href="{{URL::route('listing-all')}}/?price=desc"><i class="fas fa-sort-numeric-up"></i></a>
-                    <a class="m-1" href="{{URL::route('listing-all')}}/?"><i class="fas fa-history"></i></a>
-                </div>
-        </div>
-
-
+        <h2>Tous les tutoriels de la catégorie : {{ $category->name }}</h2>
     </div>
     <div class="container mt-5 mb-5">
         @foreach ($tutorials as $tutorial)
@@ -62,7 +59,7 @@
                                         {{ $tutorial->user->name }} {{ $tutorial->user->firstname }}
                                     </a>
                                     <br>
-                                Partagé le  {{ $tutorial->created_at->format('d.m.Y') }}</p>
+                                    Partagé le  {{ $tutorial->created_at->format('d.m.Y') }}</p>
                             </div>
                             <div class="col-md-3 border-left">
                                 <p class="text-success lead">
@@ -76,9 +73,9 @@
                                 <p><i class="far fa-user-circle"></i>
                                     @if($tutorial->consultation == null)
                                         <em>Auncun visionnage</em>
-                                        @else
-                                    {{ $tutorial->consultation->occurrences }} visionnages
-                                        @endif
+                                    @else
+                                        {{ $tutorial->consultation->occurrences }} visionnages
+                                    @endif
                                 </p>
                                 <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}" class="btn btn-info">Visionner</a>
                             </div>

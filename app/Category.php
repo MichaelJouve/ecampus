@@ -15,17 +15,12 @@ class Category extends Model
 
     public function tuto()
     {
-        return $this->hasMany('App\Publication')->where('type','=','tutorial');
-    }
-
-    public function best()
-    {
-        return $this->hasOne('App\Publication')->where('type','=','tutorial');
+        return $this->hasMany('App\Publication')->where('type','tutorial');
     }
 
     public function post()
     {
-        return $this->hasMany('App\Publication')->where('type','=','post');
+        return $this->hasMany('App\Publication')->where('type','post');
     }
 
 }

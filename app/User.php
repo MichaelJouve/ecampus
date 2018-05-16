@@ -6,15 +6,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use Illuminate\Notifications\Notifiable;
 
 
 class User extends Authenticatable
 {
-    use Notifiable;
     use Sluggable;
     use SluggableScopeHelpers;
     use SoftDeletes;
+
+    protected $dates = ['birthday'];
 
     public function sluggable()
     {
@@ -35,7 +35,12 @@ class User extends Authenticatable
 
     public function post()
     {
-        return $this->belongsTo('App\Publication')->orderBy('created_at','desc');
+        return $this->hasMany('App\Publication')->where('type','=','post')->orderBy('created_at','desc');
+    }
+
+    public function tutorial()
+    {
+        return $this->hasMany('App\Publication')->where('type','=','tutorial')->orderBy('created_at','desc');
     }
 
     public function media()
