@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Publication;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,11 +29,21 @@ class HomeController extends Controller
     {
         $users = User::orderBy('created_at', 'desc')->limit(5)->get();
 
-        $tutos = Publication::where('type','=','tutorial')->latest()->limit(6)->get();
+        $tutos = Publication::where('type', '=', 'tutorial')
+            ->with('user')
+            ->with('Category')
+            ->latest()->limit(6)->get();
 
-        $posts = Publication::with('user')->where('type','=','post')->latest()->limit(4)->get();
+        $posts = Publication::where('type', '=', 'post')
+            ->with('user')
+            ->with('Category')
+            ->latest()->limit(4)->get();
 
-        return view('index', ['users' => $users, 'tutos' => $tutos, 'posts' => $posts]);
+
+        return view('index', ['users' => $users,
+            'tutos' => $tutos,
+            'posts' => $posts
+        ]);
     }
 
     public function panier()
@@ -42,8 +53,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = \Auth::user();
-        return view('test',[ 'user' => $user]);
+        $user = Auth::user();
+        return view('test', ['user' => $user]);
     }
 
 }

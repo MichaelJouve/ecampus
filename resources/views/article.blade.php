@@ -23,10 +23,16 @@
                         le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
                         Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}
                     </p>
-                    @empty( $tuto->consultation)
-                        <p>Ce tutoriel n'a jamais été visionné</p>
-                    @endempty
-
+                    @if($tuto->user_owner_count > 0)
+                        <p>Tutoriel acheté {{$tuto->user_owner_count}} fois.</p>
+                    @else
+                        <p>Ce tutoriel n'a jamais été acheté.</p>
+                    @endif
+                    @if($tuto->seen > 0)
+                        <p>Tutoriel visionné {{$tuto->seen}} fois.</p>
+                    @else
+                        <p>Ce tutoriel n'a jamais été visionné.</p>
+                    @endif
                     @isset( $tuto->consultation)
                         <p>
                             Ce tutoriel a été visionné
@@ -127,7 +133,7 @@
                         <button class="btn btn-success">Voir le tutoriel</button>
                     </a>
                 @else
-                    @if($bought)
+                    @if($tuto->bought > 0)
                         <p class="text-center text-success lead font-weight-bold"> Déjà Acheté </p>
 
                         <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}">

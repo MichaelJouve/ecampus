@@ -26,16 +26,26 @@ class User extends Authenticatable
         ];
     }
 
-    protected $fillable = ['name', 'firstname', 'password', 'email', 'paypal', 'birthday', 'description', 'provider', 'provider_id'];
+    protected $fillable = [
+        'name',
+        'firstname',
+        'password',
+        'email',
+        'paypal',
+        'birthday',
+        'description',
+        'provider',
+        'provider_id'
+    ];
 
     public function publication()
     {
-        return $this->hasMany('App\Publication')->orderBy('created_at','desc');
+        return $this->hasMany('App\Publication')->orderBy('created_at', 'desc');
     }
 
     public function post()
     {
-        return $this->belongsTo('App\Publication')->orderBy('created_at','desc');;
+        return $this->belongsTo('App\Publication')->orderBy('created_at', 'desc');;
     }
 
     public function media()
@@ -43,7 +53,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Media');
     }
 
-    public function comment(){
+    public function comment()
+    {
         return $this->hasMany('App\Comment');
     }
 
@@ -83,7 +94,7 @@ class User extends Authenticatable
         return null !== $this->roles()->where('name', $role)->first();
     }
 
-    public function publiBought()
+    public function postsBought()
     {
         return $this->belongsToMany(Publication::class, 'boughts', 'user_id', 'publi_id');
     }

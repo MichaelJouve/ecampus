@@ -136,21 +136,23 @@ class PublicationController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
-        $tuto = Publication::where('slug', $slug)->withCount('consultation')->firstOrFail();
+        $tuto = Publication::where('slug', $slug)
+            ->withCount('userOwner')
+            ->withCount(['userOwner as bought' => function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }])
+            ->withCount(['consultation as seen' => function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }])
+            ->firstOrFail();
 
-        $bought = false;
-
-        foreach ($user->publiBought as $publiBought) {
-            if ($publiBought->id == $tuto->id) {
-                $bought = true;
-            }
-        }
 
         if ($userId !== $tuto->user->id) {
             $consultation = Consultation::updateOrCreate(['publication_id' => $tuto->id, 'user_id' => $userId]);
             Consultation::find($consultation->id)->increment('occurrences');
         }
-        return view('article', ['tuto' => $tuto, 'bought' => $bought]);
+
+        return view('article', ['tuto' => $tuto]);
     }
 
     public function showPost($slug)
@@ -202,6 +204,7 @@ class PublicationController extends Controller
      *
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function softDelete($slug)
     {

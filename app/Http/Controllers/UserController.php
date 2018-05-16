@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profil;
+use App\Publication;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -58,10 +59,10 @@ class UserController extends Controller
         if ($user == $otherUser) {
             return redirect()->route('user-profil');
         } else {
-        foreach ($user->followings as $following)
-            if ($following->id == $otherUser->id) {
-                $follow = true;
-            }
+            foreach ($user->followings as $following)
+                if ($following->id == $otherUser->id) {
+                    $follow = true;
+                }
         }
 
         return view('profil', ['user' => $otherUser, 'userFollowing' => $user, 'follow' => $follow]);
@@ -77,9 +78,16 @@ class UserController extends Controller
     {
         $userAuth = Auth::user();
         $userAuth->load('publication');
+        $publications = Publication::where('user_id', $userAuth->id)
+            ->with('category')
+            ->get();
         $user = $userAuth;
 
-        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('profil', [
+            'user' => $user,
+            'userAuth' => $userAuth,
+            'publications' => $publications
+        ]);
     }
 
     /**
@@ -162,7 +170,7 @@ class UserController extends Controller
 
                 // Blank background if canvas
 
-                $img->resizeCanvas(300, 300, 'center', false, 'rgba(255, 0, 0, 0.4)');
+                $img->resizeCanvas(300, 300, 'center', false);
 
                 // je force la photo en jpg
                 $img->stream('jpg', 90);
@@ -224,6 +232,7 @@ class UserController extends Controller
 
         return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
     }
+
 //view achats
     public function bought()
     {

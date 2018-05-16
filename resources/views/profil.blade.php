@@ -88,7 +88,8 @@
 
                 <div class="row justify-content-center mt-5">
 
-                    @foreach( $user->publication as $publication)
+
+                    @foreach( $publications as $publication)
                         @if ($publication->type == 'post')
                             <div class="col-10 mt-3 mb-2">
                                 <div class="card shadow">
