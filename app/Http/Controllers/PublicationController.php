@@ -137,6 +137,9 @@ class PublicationController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $tuto = Publication::where('slug', $slug)
+            ->with(['comment' => function ($query){
+                $query->with('user');
+            }])
             ->withCount('userOwner')
             ->withCount(['userOwner as bought' => function($query) use ($userId){
                 $query->where('user_id', $userId);
@@ -164,7 +167,9 @@ class PublicationController extends Controller
 
     public function showpublication($slug)
     {
-        $publication = Publication::where('slug', $slug)->firstOrFail();
+        $publication = Publication::where('slug', $slug)
+            ->with('user')
+            ->firstOrFail();
 
         return view('publication.affichepublication', ['publication' => $publication]);
     }
