@@ -6,16 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Page de recherche</h1>
-                    <p> Vous avez effectuer une recherche sur cet élément : <?php echo "<b>".$_GET['recherche']."</b>"; ?></p>
 
                 </div>
             </div>
         </div>
     </div>
     <div class="container mt-3" id="resultat_recherche">
-        Votre résultat de recherche
-        <h1>Liste des tutoriels et des posts correspondant...</h1>
+        <h1>Resultat correspondant ... </h1>
     </div>
 
     <!-- FIN DU CONTENU-->
