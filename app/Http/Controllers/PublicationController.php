@@ -120,7 +120,7 @@ class PublicationController extends Controller
     {
         $category = Category::with('tuto')->where('name', $name)->firstOrFail();
 
-        $bestTutorial = Publication::with('category','user')->tuto()->first();
+        $bestTutorial = Publication::where('category_id', $category->id)->tuto()->first();
 
         $bestsTutorials =  Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
 
