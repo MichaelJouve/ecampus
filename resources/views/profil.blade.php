@@ -32,7 +32,7 @@
                     </p>
                 </div>
                 <div>
-                    <h5 class="font-weight-light border-bottom">Coordonnées Personnel</h5>
+                    <h5 class="font-weight-light border-bottom">Coordonnées Personnelles</h5>
 
 
                     <p class="small">

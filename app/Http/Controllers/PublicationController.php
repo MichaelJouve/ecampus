@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Consultation;
 use App\Publication;
-use App\Post;
-use App\User;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
