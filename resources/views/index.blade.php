@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="border border-light rounded">
-                    <a href="www.happy-smile.fr">
+                    <a href="http://www.happy-smile.fr">
                         <img class="img-fluid" style="width: 100%" src="{{asset('storage/images/banniere-verticale-happysmile.gif')}}">
                     </a>
                 </div>
