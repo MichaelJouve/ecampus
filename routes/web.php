@@ -13,11 +13,11 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 //Administration
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('administration');
-    Route::get('/gestion-membres', 'AdminController@gestionMembres')->name('gestion-membres');
-    Route::get('/gestion-posts', 'AdminController@gestionPosts')->name('gestion-posts');
-    Route::get('/gestion-tutoriels', 'AdminController@gestionTutoriels')->name('gestion-tutoriels');
-    Route::get('/gestion-comments', 'AdminController@gestionComments')->name('gestion-comments');
-    Route::get('/gestion-contactRequest', 'AdminController@gestionContactRequest')->name('gestion-contactRequest');
+    Route::get('/membres', 'AdminController@gestionMembres')->name('admin-membres');
+    Route::get('/posts', 'AdminController@gestionPosts')->name('admin-posts');
+    Route::get('/tutoriels', 'AdminController@gestionTutoriels')->name('admin.tutoriels');
+    Route::get('/comments', 'AdminController@gestionComments')->name('admin-comments');
+    Route::get('/requests', 'AdminController@gestionContactRequest')->name('admin-request');
 });
 
 //Route for category

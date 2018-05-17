@@ -201,7 +201,7 @@ class UserController extends Controller
         $userAuth = Auth::user();
         $user = $userAuth;
 
-        return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('userConfig.configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
 //view message
@@ -210,7 +210,7 @@ class UserController extends Controller
         $userAuth = Auth::user();
         $user = $userAuth;
 
-        return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('userConfig.configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
 //viex preference
@@ -219,6 +219,6 @@ class UserController extends Controller
         $userAuth = Auth::user();
         $user = $userAuth;
 
-        return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('userConfig.configPref', ['user' => $user, 'userAuth' => $userAuth]);
     }
 }
