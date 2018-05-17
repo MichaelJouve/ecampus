@@ -19,6 +19,7 @@
                         <h1 class="mb-5">LISTE DES TUTORIELS DE LA CATEGORIE : {{ $category->name }}</h1>
                     </div>
                 </div>
+
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <a href="{{URL::route('user-profil-category-bought')}}">
@@ -34,7 +35,22 @@
         </div>
 
         <div class="container bg-light mt-4 p-2">
-            <h2>Tous les tutoriels de la catégorie : {{ $category->name }}</h2>
+            <div class="container bg-light mt-4 p-2">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Tous les tutoriels de la catégorie : {{ $category->name }}</h2>
+                    </div>
+                    <div class="col-2 text-center mt-2">
+                        <a class="m-1" href="{{URL::route('user-profil-all-category-bought', ['name'=> $category->name])}}/?price=asc"><i
+                                    class="fas fa-sort-numeric-down"></i></a>
+                        <a class="m-1" href="{{URL::route('user-profil-all-category-bought', ['name'=> $category->name])}}/?price=desc"><i
+                                    class="fas fa-sort-numeric-up"></i></a>
+                        <a class="m-1" href="{{URL::route('user-profil-all-category-bought', ['name'=> $category->name])}}/?"><i class="fas fa-history"></i></a>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
         <div class="container mt-5 mb-5">
             @foreach ($user->postsBought as $tutorial)

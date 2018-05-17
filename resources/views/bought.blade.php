@@ -110,8 +110,8 @@
             @include('components.404.waitpage')
         </div>
     @endif
-
-
+    <div class="row justify-content-center mt-5">
+    </div>
     <!-- FIN CONTENU -->
 @endsection
 

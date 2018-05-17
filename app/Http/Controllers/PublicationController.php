@@ -212,7 +212,6 @@ class PublicationController extends Controller
                 ->withCount('comment')
                 ->tuto()
                 ->paginate();
-
             return view('listingall', ['tutorials' => $tutorials]);
         }
     }

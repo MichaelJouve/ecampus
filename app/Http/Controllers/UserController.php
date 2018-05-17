@@ -14,6 +14,9 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+    /**
+     * UserController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -51,6 +54,10 @@ class UserController extends Controller
         //
     }
 
+    /**
+     * @param $slug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function otherprofil($slug)
     {
         $user = Auth::user();
@@ -68,10 +75,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function myProfil()
     {
@@ -128,7 +132,10 @@ class UserController extends Controller
 
     }
 
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateDescription(Request $request)
     {
         $validateData = $request->validate([
@@ -141,7 +148,10 @@ class UserController extends Controller
 
     }
 
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateAvatar(Request $request)
     {
 
@@ -205,7 +215,9 @@ class UserController extends Controller
         //
     }
 
-    // view infos
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function infos()
     {
         $userAuth = Auth::user();
@@ -214,7 +226,9 @@ class UserController extends Controller
         return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-//view message
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function message()
     {
         $userAuth = Auth::user();
@@ -223,7 +237,9 @@ class UserController extends Controller
         return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-//view preference
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function preference()
     {
         $userAuth = Auth::user();
@@ -232,7 +248,9 @@ class UserController extends Controller
         return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-//view achats
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function bought()
     {
         if (request()->has('price')) {
@@ -240,35 +258,39 @@ class UserController extends Controller
             if (request('price') === 'asc') {
                 $user = User::where('id', Auth::id())
                     ->with(['postsBought' => function ($query) {
-                    $query->withCount('comment')
-                        ->tuto()
-                        ->orderBy('price', 'asc');
-                }])
+                        $query->withCount('comment')
+                            ->tuto()
+                            ->orderBy('price', 'asc');
+                    }])
                     ->first();
                 return view('bought', ['user' => $user]);
-            } elseif (request('price') === 'desc') {
 
+            } elseif (request('price') === 'desc') {
                 $user = User::where('id', Auth::id())
                     ->with(['postsBought' => function ($query) {
-                    $query->withCount('comment')
-                        ->tuto()
-                        ->orderBy('price', 'desc');
-                }])
+                        $query->withCount('comment')
+                            ->tuto()
+                            ->orderBy('price', 'desc');
+                    }])
                     ->first();
                 return view('bought', ['user' => $user]);
             }
         } else {
             $user = User::where('id', Auth::id())
                 ->with(['postsBought' => function ($query) {
-                $query->withCount('comment')
-                    ->tuto();
-            }])
+                    $query->withCount('comment')
+                        ->tuto();
+                }])
                 ->first();
 
             return view('bought', ['user' => $user]);
+
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function categoryBought()
     {
         $user = Auth::user();
@@ -276,16 +298,50 @@ class UserController extends Controller
         return view('bought.categoryBought', ['categories' => $categories, 'user' => $user]);
     }
 
+    /**
+     * @param $name
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showAllBoughtByCategory($name)
     {
         $category = Category::where('name', $name)->firstOrFail();
 
-        $user = User::with(['postsBought' => function ($query) use ($category) {
-            $query->where('category_id', $category->id)
-                ->withCount('comment')
-                ->tuto();
-        }])
-            ->first();
-        return view('bought.categoryAllBought', ['category' => $category, 'user' => $user]);
+        if (request()->has('price')) {
+
+            if (request('price') === 'asc') {
+                $user = User::where('id', Auth::id())
+                    ->with(['postsBought' => function ($query) use ($category) {
+                        $query->where('category_id', $category->id)
+                            ->withCount('comment')
+                            ->tuto()
+                            ->orderBy('price', 'asc');
+                    }])
+                    ->first();
+                return view('bought.categoryAllBought', ['category' => $category, 'user' => $user]);
+
+            } elseif (request('price') === 'desc') {
+                $user = User::where('id', Auth::id())
+                    ->with(['postsBought' => function ($query) use ($category) {
+                        $query->where('category_id', $category->id)
+                            ->withCount('comment')
+                            ->tuto()
+                            ->orderBy('price', 'desc');
+                    }])
+                    ->first();
+                return view('bought.categoryAllBought', ['category' => $category, 'user' => $user]);
+
+            }
+        } else {
+            $user = User::where('id', Auth::id())
+                ->with(['postsBought' => function ($query) use ($category) {
+                    $query->where('category_id', $category->id)
+                        ->withCount('comment')
+                        ->tuto();
+                }])
+                ->first();
+            return view('bought.categoryAllBought', ['category' => $category, 'user' => $user]);
+
+        }
+
     }
 }
