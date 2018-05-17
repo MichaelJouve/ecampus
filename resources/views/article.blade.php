@@ -76,13 +76,6 @@
                     </ul>
                 </div>
 
-                <div class="m-2 p-2">
-                    <h3>Liste des fichiers pour ce tutoriel</h3>
-                    <ul class="col-md-6">
-                        <li><i class="fas fa-check"></i> <u>Document.rar</u></li>
-                    </ul>
-                </div>
-
                 <img class="img-fluid text-center border" src="{{asset('images/bandeau_horizontal.gif')}}"
                      alt="Pub Horizontal">
 
