@@ -85,7 +85,7 @@ class PublicationController extends Controller
             'price' => 'integer|nullable',
             'required' => 'max:100',
             'goals' => 'max:100',
-            'content' => 'required|max:65000',
+            'content' => 'required',
         ]);
 
         //Gestion d'image tutoriel
