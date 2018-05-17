@@ -95,6 +95,9 @@
                             <a class="dropdown-item" href="{{URL::route('user-profil-preference')}}">
                                 Preferences
                             </a>
+                            <a class="dropdown-item" href="{{URL::route('user-profil-bought')}}">
+                                Tutos achetés
+                            </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

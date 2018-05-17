@@ -23,10 +23,16 @@
                         le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
                         Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}
                     </p>
-                    @empty( $tuto->consultation)
-                        <p>Ce tutoriel n'a jamais été visionné</p>
-                    @endempty
-
+                    @if($tuto->user_owner_count > 0)
+                        <p>Tutoriel acheté {{$tuto->user_owner_count}} fois.</p>
+                    @else
+                        <p>Ce tutoriel n'a jamais été acheté.</p>
+                    @endif
+                    @if($tuto->seen > 0)
+                        <p>Tutoriel visionné {{$tuto->seen}} fois.</p>
+                    @else
+                        <p>Ce tutoriel n'a jamais été visionné.</p>
+                    @endif
                     @isset( $tuto->consultation)
                         <p>
                             Ce tutoriel a été visionné
@@ -91,8 +97,10 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6 text-left">
-                                    <p class="font-weight-bold">{{ $comment->user->name }}  {{ $comment->user->firstname }}<br>
-                                    <span class="font-weight-light small">{{ $comment->created_at->format('d/m/Y \à\ H:i') }}</span></p>
+                                    <p class="font-weight-bold">{{ $comment->user->name }}  {{ $comment->user->firstname }}
+                                        <br>
+                                        <span class="font-weight-light small">{{ $comment->created_at->format('d/m/Y \à\ H:i') }}</span>
+                                    </p>
                                 </div>
                                 <div class="col-md-4 text-right">
                                     <p class="small"> {{ $comment->user->email }}</p>
@@ -125,15 +133,25 @@
                         <button class="btn btn-success">Voir le tutoriel</button>
                     </a>
                 @else
-                    <p class="text-center text-success lead font-weight-bold">
-                        <i class="fas fa-shopping-cart"></i>
-                        {{ $tuto->price }} €
-                    </p>
-                    <button class="btn btn-success" href="#">Acheter le tutoriel</button>
+                    @if($tuto->bought > 0)
+                        <p class="text-center text-success lead font-weight-bold"> Déjà Acheté </p>
+
+                        <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}">
+                            <button class="btn btn-success">Voir le tutoriel</button>
+                        </a>
+                    @else
+                        <p class="text-center text-success lead font-weight-bold">
+                            <i class="fas fa-shopping-cart"></i>
+                            {{ $tuto->price }} €
+                        </p>
+                        <a href="{{ URL::route('front-buy-tutorial', ['slug' => $tuto->slug]) }}">
+                            <button class="btn btn-success">Acheter le tutoriel</button>
+                        </a>
+                    @endif
                 @endif
 
-                    <div class="mt-4">
-                        <p class="font-weight-bold border-bottom">A propos du formateur</p>
+                <div class="mt-4">
+                    <p class="font-weight-bold border-bottom">A propos du formateur</p>
 
                         <div class="card border-0 pt-2">
                                     <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">

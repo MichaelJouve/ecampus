@@ -53,6 +53,7 @@ Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout'
 Route::get('/recherche/', 'SearchController@index')->name('search');
 
 Route::prefix('profil')->group(function () {
+    Route::get('/bought', 'UserController@bought')->name('user-profil-bought');
     Route::get('/infos/', 'UserController@infos')->name('user-profil-infos');
     Route::get('/message/', 'UserController@message')->name('user-profil-message');
     Route::get('/preference/', 'UserController@preference')->name('user-profil-preference');
@@ -74,5 +75,5 @@ Route::get('/panier', 'HomeController@panier')->name('front-panier');
 Route::get('/cgu', 'ContentController@cgu')->name('front-cgu');
 Route::get('/aboutus', 'ContentController@aboutus')->name('front-aboutus');
 Route::get('/contact', 'ContentController@contact')->name('front-contact');
-Route::post('/contact/sendRequest','ContactRequestController@store')->name('contact-request');
+Route::post('/contact/sendRequest', 'ContactRequestController@store')->name('contact-request');
 Route::get('/rgpd', 'ContentController@rgpd')->name('front-rgpd');

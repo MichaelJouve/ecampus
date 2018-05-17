@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profil;
+use App\Publication;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -53,7 +54,8 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
-        $otherUser = User::where('slug', $slug)->withCount(['followers as follow' => function($query) use ($userId){
+        $otherUser = User::where('slug', $slug)
+            ->withCount(['followers as follow' => function($query) use ($userId){
             $query->where('user_id_following', $userId);
         }])->firstOrFail();
 
@@ -74,9 +76,16 @@ class UserController extends Controller
     {
         $userAuth = Auth::user();
         $userAuth->load('publication');
+        $publications = Publication::where('user_id', $userAuth->id)
+            ->with('category')
+            ->get();
         $user = $userAuth;
 
-        return view('profil', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('profil', [
+            'user' => $user,
+            'userAuth' => $userAuth,
+            'publications' => $publications
+        ]);
     }
 
     /**
@@ -213,12 +222,21 @@ class UserController extends Controller
         return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
-//viex preference
+//view preference
     public function preference()
     {
         $userAuth = Auth::user();
         $user = $userAuth;
 
         return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
+    }
+
+//view achats
+    public function bought()
+    {
+        $userAuth = Auth::user();
+        $user = $userAuth;
+
+        return view('bought', ['user' => $user, 'userAuth' => $userAuth]);
     }
 }

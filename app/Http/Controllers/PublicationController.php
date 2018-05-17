@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bought;
 use App\Category;
 use App\Consultation;
 use App\Publication;
@@ -90,7 +91,7 @@ class PublicationController extends Controller
         //Gestion d'image tutoriel
 
         $inputs = $request->all();
-        if ($inputs['price'] == null){
+        if ($inputs['price'] == null) {
             $inputs['price'] = 0;
         }
 
@@ -104,13 +105,13 @@ class PublicationController extends Controller
         } else {
 
             $p = Publication::create($inputs);
-            $p->imgpublication = 'images/Tutos/'.$p->category->name.'.jpg';
+            $p->imgpublication = 'images/Tutos/' . $p->category->name . '.jpg';
             $p->save();
 
         }
         //Un petit message de succés ...
-            session()->flash('message', 'Votre tutoriel a bien été créé !');
-            return redirect()->route('user-profil', $slug);
+        session()->flash('message', 'Votre tutoriel a bien été créé !');
+        return redirect()->route('user-profil', $slug);
     }
 
     /**
@@ -144,17 +145,27 @@ class PublicationController extends Controller
 
     public function showTutorial($slug)
     {
-        $userId = Auth::user()->id;
-        $tuto = Publication::where('slug', $slug)->withCount('consultation')->firstOrFail();
+        $user = Auth::user();
+        $userId = $user->id;
+        $tuto = Publication::where('slug', $slug)
+            ->with(['comment as comment' => function ($query){
+                $query->with('user');
+            }])
+            ->withCount(['userOwner as bought' => function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }])
+            ->withCount(['consultation as seen' => function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }])
+            ->firstOrFail();
 
-        if ($userId == $tuto->user->id) {
-            return view('article', ['tuto' => $tuto]);
-        } else {
 
+        if ($userId !== $tuto->user->id) {
             $consultation = Consultation::updateOrCreate(['publication_id' => $tuto->id, 'user_id' => $userId]);
             Consultation::find($consultation->id)->increment('occurrences');
-            return view('article', ['tuto' => $tuto]);
         }
+
+        return view('article', ['tuto' => $tuto]);
     }
 
     public function showPost($slug)
@@ -166,7 +177,9 @@ class PublicationController extends Controller
 
     public function showpublication($slug)
     {
-        $publication = Publication::where('slug', $slug)->firstOrFail();
+        $publication = Publication::where('slug', $slug)
+            ->with('user')
+            ->firstOrFail();
 
         return view('publication.affichepublication', ['publication' => $publication]);
     }
@@ -221,6 +234,7 @@ class PublicationController extends Controller
      *
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function softDelete($slug)
     {
@@ -230,5 +244,16 @@ class PublicationController extends Controller
         session()->flash('message', 'Votre publication a bien été supprimée !');
 
         return redirect()->route('user-profil');
+    }
+
+    public function buyTutorial($slug)
+    {
+        $publication = Publication::findBySlugOrFail($slug);
+        $user = Auth::user();
+
+        $publication->userOwner()->attach($user->id);
+
+
+        return back();
     }
 }

@@ -53,7 +53,7 @@
                                 <label for="content">Contenu</label>
                                 <input type="hidden" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor-container">{!! old('content')!!}</div>
+                                <div id="editor-container"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                     <strong>{{ $errors->first('content') }}</strong>
@@ -81,9 +81,14 @@
             modules: {
                 toolbar: [
                     [{header: [1, 2, 3, false]}],
-                    ['blockquote', 'bold', 'italic', 'underline', 'strike'],
+
+                    ['bold', 'italic', 'underline', 'strike','link', 'image'],        // toggled buttons
+                    ['code-block'],
+
+
                     [{'color': []}, {'background': []}],          // dropdown with defaults from theme
                     [{list: 'bullet'}],
+
                     [{'align': []}]
                 ]
             },
@@ -95,5 +100,9 @@
             var content = document.querySelector('input[name=content]');
             content.value = quill.root.innerHTML;
         });
+        quill.setContents([
+                {insert: "{{ strip_tags(old('content')) }}"}
+
+        ]);
     </script>
 @endpush

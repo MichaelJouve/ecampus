@@ -56,8 +56,14 @@ class Publication extends Model
         return $this->hasMany('App\Media');
     }
 
-    public function comment(){
-        return $this->hasMany('App\Comment')->orderBy('created_at','desc');
+    public function comment()
+    {
+        return $this->hasMany('App\Comment')->orderBy('created_at', 'desc');
+    }
+
+    public function userOwner()
+    {
+        return $this->belongsToMany(User::class, 'boughts', 'publi_id', 'user_id');
     }
 
 

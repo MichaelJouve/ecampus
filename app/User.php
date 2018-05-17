@@ -6,10 +6,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Illuminate\Notifications\Notifiable;
 
 
 class User extends Authenticatable
 {
+    use Notifiable;
     use Sluggable;
     use SluggableScopeHelpers;
     use SoftDeletes;
@@ -26,7 +28,17 @@ class User extends Authenticatable
         ];
     }
 
-    protected $fillable = ['name', 'firstname', 'password', 'email', 'paypal', 'birthday', 'description', 'provider', 'provider_id'];
+    protected $fillable = [
+        'name',
+        'firstname',
+        'password',
+        'email',
+        'paypal',
+        'birthday',
+        'description',
+        'provider',
+        'provider_id'
+    ];
 
     public function publication()
     {
@@ -48,7 +60,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Media');
     }
 
-    public function comment(){
+    public function comment()
+    {
         return $this->hasMany('App\Comment');
     }
 
@@ -86,4 +99,11 @@ class User extends Authenticatable
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
+
+    public function postsBought()
+    {
+        return $this->belongsToMany(Publication::class, 'boughts', 'user_id', 'publi_id');
+    }
+
+
 }
