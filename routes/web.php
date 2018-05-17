@@ -66,6 +66,11 @@ Route::prefix('profil')->group(function () {
     Route::get('/', 'UserController@myProfil')->name('user-profil');
 });
 
+
+//Route conversation message
+Route::get('/profil/message/conversation/{slug}','MessageController@show')->name('conversation.show');
+Route::post('/profil/message/conversation/{slug}','MessageController@store');
+
 //See this page
 Route::get('/panier', 'HomeController@panier')->name('front-panier');
 

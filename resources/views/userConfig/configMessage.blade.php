@@ -13,9 +13,9 @@
     </div>
     <div class="container-fluid conteneur_config mt-5">
         <div class="row ">
-            <div class="col-lg-9 col-12 contenu_config">
+            <div class="col-md-2 text-center list-group">
                 <!-- Debut de la messagerie -->
-                    ICI VOTRE MESSAGERIE
+                    @include('conversation.users')
                 <!--****************  FIN DE MESSAGERIE   ************************************************** -->
             </div>
         </div>

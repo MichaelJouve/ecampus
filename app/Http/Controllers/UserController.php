@@ -209,8 +209,9 @@ class UserController extends Controller
     {
         $userAuth = Auth::user();
         $user = $userAuth;
+        $users = User::all()->where('id','!=', $userAuth->id);
 
-        return view('userConfig.configMessage', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('userConfig.configMessage', ['user' => $user, 'userAuth' => $userAuth, 'users' => $users]);
     }
 
 //viex preference
