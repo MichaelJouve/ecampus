@@ -137,10 +137,9 @@ class PublicationController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $tuto = Publication::where('slug', $slug)
-            ->with(['comment' => function ($query){
+            ->with(['comment as comment' => function ($query){
                 $query->with('user');
             }])
-            ->withCount('userOwner')
             ->withCount(['userOwner as bought' => function($query) use ($userId){
                 $query->where('user_id', $userId);
             }])
