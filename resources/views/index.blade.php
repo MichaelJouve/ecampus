@@ -19,7 +19,8 @@
                             <h5><b>Derniers tutoriels de nos formateurs:</b></h5>
                         </div>
                         <div class="col-6 text-right pr-5">
-                            <a href="{{route('listing-all')}}" class="btn btn-light"><h5>Voir tous les tutoriels</h5></a>
+                            <a href="{{route('listing-all')}}" class="btn btn-light"><h5>Voir tous les tutoriels</h5>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,9 @@
                     </div>
                 </div>
                 <div class="border border-light rounded">
-                    <img class="img-fluid" style="width: 100%" src="{{asset('images/bandeau_vertical.gif')}}">
+                    <a href="www.happy-smile.fr">
+                        <img class="img-fluid" style="width: 100%" src="{{asset('storage/images/banniere-verticale-happysmile.gif')}}">
+                    </a>
                 </div>
             </div>
         </div>
