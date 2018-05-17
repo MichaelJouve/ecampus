@@ -31,7 +31,7 @@ class HomeController extends Controller
 
         $tutos = Publication::where('type', '=', 'tutorial')
             ->with('user')
-            ->with('Category')
+            ->with('category')
             ->latest()->limit(6)->get();
 
         $posts = Publication::where('type', '=', 'post')
