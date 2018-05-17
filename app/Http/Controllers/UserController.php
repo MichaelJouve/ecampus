@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Profil;
 use App\Publication;
 use Illuminate\Support\Facades\Auth;
@@ -55,9 +56,9 @@ class UserController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $otherUser = User::where('slug', $slug)
-            ->withCount(['followers as follow' => function($query) use ($userId){
-            $query->where('user_id_following', $userId);
-        }])->firstOrFail();
+            ->withCount(['followers as follow' => function ($query) use ($userId) {
+                $query->where('user_id_following', $userId);
+            }])->firstOrFail();
 
         if ($userId === $otherUser->id) {
             return redirect()->route('user-profil');
@@ -234,9 +235,57 @@ class UserController extends Controller
 //view achats
     public function bought()
     {
-        $userAuth = Auth::user();
-        $user = $userAuth;
+        if (request()->has('price')) {
 
-        return view('bought', ['user' => $user, 'userAuth' => $userAuth]);
+            if (request('price') === 'asc') {
+                $user = User::where('id', Auth::id())
+                    ->with(['postsBought' => function ($query) {
+                    $query->withCount('comment')
+                        ->tuto()
+                        ->orderBy('price', 'asc');
+                }])
+                    ->first();
+                return view('bought', ['user' => $user]);
+            } elseif (request('price') === 'desc') {
+
+                $user = User::where('id', Auth::id())
+                    ->with(['postsBought' => function ($query) {
+                    $query->withCount('comment')
+                        ->tuto()
+                        ->orderBy('price', 'desc');
+                }])
+                    ->first();
+                return view('bought', ['user' => $user]);
+            }
+        } else {
+            $user = User::where('id', Auth::id())
+                ->with(['postsBought' => function ($query) {
+                $query->withCount('comment')
+                    ->tuto();
+            }])
+                ->first();
+
+            return view('bought', ['user' => $user]);
+        }
+    }
+
+    public function categoryBought()
+    {
+        $user = Auth::user();
+        $categories = Category::with('post')->get();
+        return view('bought.categoryBought', ['categories' => $categories, 'user' => $user]);
+    }
+
+    public function showAllBoughtByCategory($name)
+    {
+        $category = Category::where('name', $name)->firstOrFail();
+
+        $user = User::with(['postsBought' => function ($query) use ($category) {
+            $query->where('category_id', $category->id)
+                ->withCount('comment')
+                ->tuto();
+        }])
+            ->first();
+        return view('bought.categoryAllBought', ['category' => $category, 'user' => $user]);
     }
 }

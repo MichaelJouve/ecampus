@@ -40,10 +40,12 @@
 
                 <div class="row mt-5">
                     <div class="col-md-11">
-                        <h3 class="border-bottom">Meilleurs tutoriels de la catégorie : <b>{{ $category->name }}</b></h3>
+                        <h3 class="border-bottom">Meilleurs tutoriels de la catégorie : <b>{{ $category->name }}</b>
+                        </h3>
                     </div>
                     <div class="col-md-1">
-                        <a href="{{ route('listing-all-categorie', ['name' => $category->name]) }}" class="bg-info text-light p-2 rounded link_bandeau"> Voir tout </a>
+                        <a href="{{ route('listing-all-categorie', ['name' => $category->name]) }}"
+                           class="bg-info text-light p-2 rounded link_bandeau"> Voir tout </a>
                     </div>
                 </div>
                 <!-- On place nos cards -->
@@ -58,7 +60,8 @@
                         <p class="border-bottom">Derniers posts de la catégorie : <b>{{ $category->name }}</b></p>
                     </div>
                     <div class="col-md-1">
-                        <a href="{{ route('listing-all-categorie', ['name' => $category->name]) }}" class="bg-info text-light p-2 rounded link_bandeau"> Voir tout </a>
+                        <a href="{{ route('listing-all-categorie', ['name' => $category->name]) }}"
+                           class="bg-info text-light p-2 rounded link_bandeau"> Voir tout </a>
                     </div>
                 </div>
                 <!-- On place nos cards -->
@@ -75,20 +78,20 @@
 
     @endisset
 
-@empty($bestTutorial)
-    <div class="container-fluid bandeau-sombre">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 pt-5 pb-5 text-center">
-                    <p>AUCUN TUTORIEL DISPONIBLE POUR LA CATEGORIE : <b> {{ $category->name }} </b></p>
+    @empty($bestTutorial)
+        <div class="container-fluid bandeau-sombre">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 pt-5 pb-5 text-center">
+                        <p>AUCUN TUTORIEL DISPONIBLE POUR LA CATEGORIE : <b> {{ $category->name }} </b></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        @include('components.404.waitpage')
-    </div>
-@endempty
+        <div class="container-fluid">
+            @include('components.404.waitpage')
+        </div>
+    @endempty
 
 
 @endsection

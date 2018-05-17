@@ -25,14 +25,15 @@
 
     <div class="container bg-light mt-4 p-2">
         <div class="row">
-                <div class="col-10">
-                    <h2>Liste de tous les Tutoriels </h2>
-                </div>
-                <div class="col-2 text-center mt-2">
-                    <a class="m-1" href="{{URL::route('listing-all')}}/?price=asc"><i class="fas fa-sort-numeric-down"></i></a>
-                    <a class="m-1" href="{{URL::route('listing-all')}}/?price=desc"><i class="fas fa-sort-numeric-up"></i></a>
-                    <a class="m-1" href="{{URL::route('listing-all')}}/?"><i class="fas fa-history"></i></a>
-                </div>
+            <div class="col-10">
+                <h2>Liste de tous les Tutoriels </h2>
+            </div>
+            <div class="col-2 text-center mt-2">
+                <a class="m-1" href="{{URL::route('listing-all')}}/?price=asc"><i class="fas fa-sort-numeric-down"></i></a>
+                <a class="m-1" href="{{URL::route('listing-all')}}/?price=desc"><i
+                            class="fas fa-sort-numeric-up"></i></a>
+                <a class="m-1" href="{{URL::route('listing-all')}}/?"><i class="fas fa-history"></i></a>
+            </div>
         </div>
 
 
@@ -62,7 +63,7 @@
                                         {{ $tutorial->user->name }} {{ $tutorial->user->firstname }}
                                     </a>
                                     <br>
-                                Partagé le  {{ $tutorial->created_at->format('d.m.Y') }}</p>
+                                    Partagé le {{ $tutorial->created_at->format('d.m.Y') }}</p>
                             </div>
                             <div class="col-md-3 border-left">
                                 <p class="text-success lead">
@@ -76,11 +77,17 @@
                                 <p><i class="far fa-user-circle"></i>
                                     @if($tutorial->consultation == null)
                                         <em>Auncun visionnage</em>
-                                        @else
-                                    {{ $tutorial->consultation->occurrences }} visionnages
-                                        @endif
+                                    @else
+                                        {{ $tutorial->consultation->occurrences }} visionnages
+                                    @endif
                                 </p>
-                                <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}" class="btn btn-info">Visionner</a>
+                                <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}" class="btn btn-info">
+                                    @if($tutorial->price == '0')
+                                        Visionner
+                                    @else
+                                        Acheter
+                                    @endif
+                                </a>
                             </div>
                         </div>
                     </div>

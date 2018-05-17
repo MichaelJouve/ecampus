@@ -54,7 +54,12 @@ Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout'
 Route::get('/recherche/', 'SearchController@index')->name('search');
 
 Route::prefix('profil')->group(function () {
-    Route::get('/bought', 'UserController@bought')->name('user-profil-bought');
+    Route::prefix('bought')->group(function () {
+        Route::get('/', 'UserController@bought')->name('user-profil-bought');
+        Route::get('/category', 'UserController@categoryBought')->name('user-profil-category-bought');
+        Route::get('/category/{name}', 'UserController@showAllBoughtByCategory')
+            ->name('user-profil-all-category-bought');
+    });
     Route::get('/infos/', 'UserController@infos')->name('user-profil-infos');
     Route::get('/message/', 'UserController@message')->name('user-profil-message');
     Route::get('/preference/', 'UserController@preference')->name('user-profil-preference');

@@ -7,10 +7,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-4">
-                        <p><a href="{{URL::route('front-index')}}"><i class="fas fa-home" style="color:#fff;"></i></a> -
-                            <a href="{{URL::route('user-profil-category-bought')}}">Catégorie</a> /
-                            Liste de tous vos tutoriels</p>
-                        <h1 class="mb-5">VOS TUTORIELS</h1>
+                        <p>
+                            <a href="{{URL::route('front-index')}}"><i class="fas fa-home" style="color:#fff;"></i></a>
+                            -
+                            <a href="{{URL::route('user-profil-category-bought')}}">Catégorie</a>
+                            /<a href="{{URL::route('user-profil-all-category-bought', ['name'=> $category->name])}}">
+                                {{ $category->name }}
+                            </a>
+                            / Tous
+                        </p>
+                        <h1 class="mb-5">LISTE DES TUTORIELS DE LA CATEGORIE : {{ $category->name }}</h1>
                     </div>
                 </div>
                 <nav aria-label="breadcrumb">
@@ -18,7 +24,9 @@
                         <a href="{{URL::route('user-profil-category-bought')}}">
                             <li class="breadcrumb-item mr-3">Liste des catégories</li>
                         </a>
-                        <li class="breadcrumb-item mr-3 ml-5 active">Tous les tutoriels</li>
+                        <a href="{{URL::route('user-profil-bought')}}">
+                            <li class="breadcrumb-item  mr-3 ml-5" aria-current="page">Tous les tutoriels</li>
+                        </a>
                     </ol>
                 </nav>
 
@@ -26,20 +34,7 @@
         </div>
 
         <div class="container bg-light mt-4 p-2">
-            <div class="row">
-                <div class="col-10">
-                    <h2>Liste de tous les Tutoriels </h2>
-                </div>
-                <div class="col-2 text-center mt-2">
-                    <a class="m-1" href="{{URL::route('user-profil-bought')}}/?price=asc"><i
-                                class="fas fa-sort-numeric-down"></i></a>
-                    <a class="m-1" href="{{URL::route('user-profil-bought')}}/?price=desc"><i
-                                class="fas fa-sort-numeric-up"></i></a>
-                    <a class="m-1" href="{{URL::route('user-profil-bought')}}/?"><i class="fas fa-history"></i></a>
-                </div>
-            </div>
-
-
+            <h2>Tous les tutoriels de la catégorie : {{ $category->name }}</h2>
         </div>
         <div class="container mt-5 mb-5">
             @foreach ($user->postsBought as $tutorial)
@@ -100,8 +95,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-5 pb-5 text-center">
-                        <p>VOUS N'AVEZ AUCUN TUTORIEL<b></b></p>
-                        <a href="{{route('listing-all')}}">Voir les Tutoriels disponible</a>
+                        <p>VOUS N'AVEZ AUCUN TUTORIEL POUR LA CATEGORIE : <b> {{ $category->name }} </b></p>
                     </div>
                 </div>
             </div>
@@ -110,6 +104,7 @@
             @include('components.404.waitpage')
         </div>
     @endif
+
 
 
     <!-- FIN CONTENU -->
