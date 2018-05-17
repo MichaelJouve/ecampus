@@ -32,6 +32,7 @@ Route::get('/Alltutoriels/', 'PublicationController@allTutorials')->name('listin
 
 //Route for tutoriel
 Route::prefix('tutoriel')->group(function () {
+    Route::get('/{slug}/buy', 'PublicationController@buyTutorial')->name('front-buy-tutorial');
     Route::get('/{slug}/consultation', 'PublicationController@showpublication')->name('affiche-publication');
     Route::get('/{slug}', 'PublicationController@showTutorial')->name('front-tutorial');
     Route::post('/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');

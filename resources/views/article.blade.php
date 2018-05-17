@@ -23,20 +23,10 @@
                         le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
                         Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}
                     </p>
-                    @if($tuto->user_owner_count > 0)
-                        <p>Tutoriel acheté {{$tuto->user_owner_count}} fois.</p>
-                    @else
-                        <p>Ce tutoriel n'a jamais été acheté.</p>
-                    @endif
-                    @if($tuto->seen > 0)
-                        <p>Tutoriel visionné {{$tuto->seen}} fois.</p>
-                    @else
-                        <p>Ce tutoriel n'a jamais été visionné.</p>
-                    @endif
                     @isset( $tuto->consultation)
                         <p>
                             Ce tutoriel a été visionné
-                            {{$tuto->consultation_count}} fois
+                            {{$tuto->consultation->occurrences}} fois
                         </p>
 
                         @if($tuto->consultation->rating == null)
