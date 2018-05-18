@@ -30,12 +30,17 @@
                     </div>
                     <div class="col-md-7 text-left border-left small">
                         <p>{{ $publication->user->firstname }} {{ $publication->user->name }}<br>
-                        <p><i class="fas fa-quote-left"></i>Description : <br> <p class="overflow-200">
+                        <p><i class="fas fa-quote-left"></i>Description : <br>
+                        <p class="overflow-200">
                             {{ $publication->user->description }}
                         </p><i class="fas fa-quote-right"></i></p>
                     </div>
                     <div class="col-md-2 small">
-                        Vos statistiques utilisateur!
+                        <h5 class="border-bottom">Statistiques membre</h5>
+                        <p>Nombre de commentaire : <b>{{ $publication->user->comment->count() }}</b><br>
+                            Nombre de post : <b>{{ $publication->user->post->count() }}</b><br>
+                            Nombre de tutoriels : <b>{{ $publication->user->tutorial->count() }}</b>
+                        </p>
                     </div>
                 </div>
             </div>

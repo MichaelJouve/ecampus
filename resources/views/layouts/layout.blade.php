@@ -60,10 +60,10 @@
             </div>
             <div class="col-1 text-lg-right header-link">
                 <div class="panier">
-                    <a href="{{URL::route('front-panier')}}" class="dropdown" id="dropdownMenuPanier"
+                    <a href="{{URL::route('front-panier')}}" class="btn btn-light dropdown" id="dropdownMenuPanier"
                        title="Choisir une catégorie"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="img-fluid w50" src="{{asset('images/panier.png')}}" alt="Panier">
+                        <i class="fa fa-shopping-basket" style="size:25px; color: #17a2b8 "></i>
                     </a>
                     <div class="dropdown-menu" id="panier_hover" aria-labelledby="dropdownMenuPanier">
                         <p class="dropdown-header"> Votre panier est vide</p>

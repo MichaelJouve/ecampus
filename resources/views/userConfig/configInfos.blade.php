@@ -45,7 +45,7 @@
                                 <h5>Date de Naissance</h5>
                                 <input id="birthday" type="date"
                                        class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
-                                       name="birthday" value="{{$user->birthday->format('Y-m-d')}}">
+                                       name="birthday" value="{{$user->birthday ? $user->birthday->format('Y-m-d') : ''}}">
 
 
                                 <h5>Email</h5>
