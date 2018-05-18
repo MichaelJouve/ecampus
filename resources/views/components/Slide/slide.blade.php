@@ -8,7 +8,7 @@
         <div class="carousel-item active">
             <div class="carousel-caption">
                 @auth
-                    <a href="{{route('listing-all')}}" id="link_caroussel"><button class="btn btn-primary">Commencez l'exploration !</button></a>
+                    <a href="{{route('listing-all')}}" id="link_caroussel"<button class="btn btn-primary">Commencez l'exploration !</button></a>
                 @else
                     <a href="{{route('login')}}" id="link_caroussel"><button class="btn btn-primary">Commencez l'exploration !</button></a>
                 @endauth
