@@ -95,17 +95,17 @@ class User extends Authenticatable
 
     public function publication()
     {
-        return $this->hasMany('App\Publication')->orderBy('created_at','desc');
+        return $this->hasMany('App\Publication')->orderBy('created_at', 'desc');
     }
 
     public function post()
     {
-        return $this->hasMany('App\Publication')->where('type','=','post')->orderBy('created_at','desc');
+        return $this->hasMany('App\Publication')->where('type', '=', 'post')->orderBy('created_at', 'desc');
     }
 
     public function tutorial()
     {
-        return $this->hasMany('App\Publication')->where('type','=','tutorial')->orderBy('created_at','desc');
+        return $this->hasMany('App\Publication')->where('type', '=', 'tutorial')->orderBy('created_at', 'desc');
     }
 
     public function media()
@@ -158,8 +158,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Publication::class, 'boughts', 'user_id', 'publi_id');
     }
 
+    public function unreadMessageByUser()
+    {
+        return $this->hasMany('App\Message', 'from_user_id')
+            ->where('read_at', '=', null);
+    }
+
     public function unreadMessage()
     {
-        return $this->hasMany('App\Message', 'from_user_id', 'id')->where('read_at','=',null);
+        return $this->hasMany('App\Message', 'to_user_id')
+            ->where('read_at', '=', null);
     }
 }

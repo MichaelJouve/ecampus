@@ -233,9 +233,16 @@ class UserController extends Controller
     {
         $userAuth = Auth::user();
         $user = $userAuth;
+        $userId = $user->id;
+
+        $user->load('unreadMessage');
 
 
-        $users = User::where('id','!=', $userAuth->id)->withCount('unreadMessage')->get();
+        $users = User::where('id','!=', $userAuth->id)
+            ->withCount(['unreadMessageByUser' => function ($query) use($userId) {
+                $query->where('to_user_id', $userId);
+            }])->get();
+
         return view('userConfig.configMessage', ['user' => $user, 'userAuth' => $userAuth, 'users' => $users]);
     }
 
