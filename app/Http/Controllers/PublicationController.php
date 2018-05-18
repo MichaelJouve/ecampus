@@ -155,13 +155,13 @@ class PublicationController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $tuto = Publication::where('slug', $slug)
-            ->with(['comment' => function ($query) {
+            ->with(['comment' => function ($query){
                 $query->with('user');
             }])
-            ->withCount(['userOwner as bought' => function ($query) use ($userId) {
+            ->withCount(['userOwner as bought' => function($query) use ($userId){
                 $query->where('user_id', $userId);
             }])
-            ->withCount(['consultation as seen' => function ($query) use ($userId) {
+            ->withCount(['consultation as seen' => function($query) use ($userId){
                 $query->where('user_id', $userId);
             }])
             ->firstOrFail();
@@ -194,31 +194,31 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        if (request()->has('price')) {
+        if (request()->has('price')){
 
-            if (request('price') === 'asc') {
+            if(request('price') === 'asc'){
                 $tutorials = Publication::with('category', 'user', 'consultation')
                     ->withCount('comment')
                     ->tuto()
-                    ->orderBy('price', 'asc')
+                    ->orderBy('price','asc')
                     ->paginate();
-                return view('listingall', ['tutorials' => $tutorials]);
-            } elseif (request('price') === 'desc') {
-
-                $tutorials = Publication::with('category', 'user', 'consultation')
-                    ->withCount('comment')
-                    ->tuto()
-                    ->orderBy('price', 'desc')
-                    ->paginate();
-                return view('listingall', ['tutorials' => $tutorials]);
             }
-        } else {
+            elseif(request('price') === 'desc'){
+
+                $tutorials = Publication::with('category', 'user', 'consultation')
+                    ->withCount('comment')
+                    ->tuto()
+                    ->orderBy('price','desc')
+                    ->paginate();
+            }
+        } else{
             $tutorials = Publication::with('category', 'user', 'consultation')
                 ->withCount('comment')
                 ->tuto()
                 ->paginate();
-            return view('listingall', ['tutorials' => $tutorials]);
         }
+        return view('listingall', ['tutorials' => $tutorials]);
+
     }
 
     /**

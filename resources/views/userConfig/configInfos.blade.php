@@ -2,17 +2,22 @@
 
 
 @section('contenu')
-    <!-- CONTENU -->
-    <div class="container-fluid p-4 bandeau-sombre">
 
-        <h3 class="text-center"><img src="{{asset('images/infos_perso.png')}}" alt="Bandeau des preferences"
-                                     class="img-fluid logo-config">Vos informations personnelles : Modification de vos
-            données
-            personnelles</h3>
+    <!-- Barre de naviguation -->
+    <div class="container-fluid">
+        @include('navBarConfig')
     </div>
-    <div class="container-fluid conteneur_config">
-        <div class="row ">
-            @include('navBarConfig')
+
+    <!-- Bandeau de sous-menu -->
+    <div class="container-fluid p-4 bg-light shadow">
+        <h3 class="text-center">
+            Vos informations personnelles : Modification de vos données personnelles
+        </h3>
+    </div>
+
+    <!-- Contenu de l'onglet -->
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
             <div class="col-lg-9 col-12 ">
 
                 <div class="card-columns">
