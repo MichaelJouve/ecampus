@@ -36,6 +36,7 @@ Route::prefix('tutoriel')->group(function () {
     Route::get('/{slug}/consultation', 'PublicationController@showpublication')->name('affiche-publication');
     Route::get('/{slug}', 'PublicationController@showTutorial')->name('front-tutorial');
     Route::post('/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');
+    Route::post('/{slug}/rating', 'RatingController@store')->name('tutorial.rating');
 });
 
 //Route for post

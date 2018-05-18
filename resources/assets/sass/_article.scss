@@ -1,6 +1,6 @@
 //RUBAN
 
-.ribbon {
+.ribbon-HTML {
   position: absolute;
   left: -5px;
   top: -5px;
@@ -12,7 +12,7 @@
   font-family: 'Quicksand', sans-serif;
 }
 
-.ribbon span {
+.ribbon-HTML span {
   font-size: 0.6em;
   font-weight: bold;
   color: #FFF;
@@ -31,7 +31,7 @@
   left: -21px;
 }
 
-.ribbon span::before {
+.ribbon-HTML span::before {
   content: "";
   position: absolute;
   left: 0px;
@@ -43,7 +43,7 @@
   border-top: 3px solid #007791;
 }
 
-.ribbon span::after {
+.ribbon-HTML span::after {
   content: "";
   position: absolute;
   right: 0px;
@@ -54,6 +54,234 @@
   border-bottom: 3px solid transparent;
   border-top: 3px solid #007791;
 }
+
+/*RIBBON PHP*/
+.ribbon-PHP {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  z-index: 1000;
+  overflow: hidden;
+  width: 75px;
+  height: 70px;
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ribbon-PHP span {
+  font-size: 0.6em;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #D7263D;
+  background: linear-gradient(#D7263D 0%, #D7263D 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px;
+  left: -21px;
+}
+
+.ribbon-PHP span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid #D7263D;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #D7263D;
+}
+
+.ribbon-PHP span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #D7263D;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #D7263D;
+}
+
+
+/*RIBON CSS*/
+.ribbon-CSS{
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  z-index: 1000;
+  overflow: hidden;
+  width: 75px;
+  height: 70px;
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ribbon-CSS span {
+  font-size: 0.6em;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#F46036 0%, #F46036 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px;
+  left: -21px;
+}
+
+.ribbon-CSS span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid #F46036;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #F46036;
+}
+
+.ribbon-CSS span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #F46036;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #F46036;
+}
+
+
+/*RIBON JAVASCRIPT*/
+.ribbon-JAVASCRIPT {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  z-index: 1000;
+  overflow: hidden;
+  width: 75px;
+  height: 70px;
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ribbon-JAVASCRIPT span {
+  font-size: 0.6em;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#2E294E 0%, #2E294E 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px;
+  left: -21px;
+}
+
+.ribbon-JAVASCRIPT span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid #2E294E;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #2E294E;
+}
+
+.ribbon-JAVASCRIPT span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #2E294E;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #2E294E;
+}
+
+/*RIBON WEBMOBILE*/
+.ribbon-WEBMOBILE {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  z-index: 1000;
+  overflow: hidden;
+  width: 75px;
+  height: 70px;
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ribbon-WEBMOBILE span {
+  font-size: 0.6em;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#C5D86D 0%, #C5D86D 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px;
+  left: -21px;
+}
+
+.ribbon-WEBMOBILE span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid #C5D86D;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #C5D86D;
+}
+
+.ribbon-WEBMOBILE span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #C5D86D;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #C5D86D;
+}
+
+
 
 //image
 .img_bandeau{

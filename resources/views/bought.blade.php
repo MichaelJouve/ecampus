@@ -45,7 +45,7 @@
             @foreach ($user->postsBought as $tutorial)
 
                 <div class="col-md-12 rounded mt-5 mb-5">
-                    <div class="ribbon"><span>{{ $tutorial->category->name }}</span></div>
+                    <div class="ribbon-{{ $tutorial->category->name }}"><span>{{ $tutorial->category->name }}</span></div>
                     <div class="row">
                         <div class="col-md-3 p-0">
                             <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}">

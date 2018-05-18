@@ -6,6 +6,7 @@ use App\Bought;
 use App\Category;
 use App\Consultation;
 use App\Publication;
+use App\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -143,17 +144,34 @@ class PublicationController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
+
+
         $tuto = Publication::where('slug', $slug)
-            ->with(['comment' => function ($query){
+            ->with(['comment' => function ($query) {
                 $query->with('user');
             }])
-            ->withCount(['userOwner as bought' => function($query) use ($userId){
+            ->withCount(['userOwner as bought' => function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             }])
-            ->withCount(['consultation as seen' => function($query) use ($userId){
+            ->withCount(['consultation as seen' => function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             }])
             ->firstOrFail();
+
+        $rateUser = Rating::where('publication_id', $tuto->id)->where('user_id', $userId)->first();
+
+        $ratesPublication = Rating::where('publication_id', $tuto->id)->get();
+
+
+        $rateGlobal = 0;
+
+            foreach ($ratesPublication as $rate) {
+                $rateGlobal += $rate->rate;
+            }
+
+            if ($ratesPublication->count() != 0) {
+                $rateGlobal = $rateGlobal / $ratesPublication->count();
+            }
 
 
         if ($userId !== $tuto->user->id) {
@@ -161,7 +179,7 @@ class PublicationController extends Controller
             Consultation::find($consultation->id)->increment('occurrences');
         }
 
-        return view('article', ['tuto' => $tuto]);
+        return view('article', ['tuto' => $tuto, 'rateUser' => $rateUser, 'ratesPublication' => $ratesPublication, 'rateGlobal' => $rateGlobal]);
     }
 
     public function showPost($slug)
@@ -183,24 +201,23 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        if (request()->has('price')){
+        if (request()->has('price')) {
 
-            if(request('price') === 'asc'){
+            if (request('price') === 'asc') {
                 $tutorials = Publication::with('category', 'user', 'consultation')
                     ->withCount('comment')
                     ->tuto()
-                    ->orderBy('price','asc')
+                    ->orderBy('price', 'asc')
                     ->paginate();
-            }
-            elseif(request('price') === 'desc'){
+            } elseif (request('price') === 'desc') {
 
                 $tutorials = Publication::with('category', 'user', 'consultation')
                     ->withCount('comment')
                     ->tuto()
-                    ->orderBy('price','desc')
+                    ->orderBy('price', 'desc')
                     ->paginate();
             }
-        } else{
+        } else {
             $tutorials = Publication::with('category', 'user', 'consultation')
                 ->withCount('comment')
                 ->tuto()

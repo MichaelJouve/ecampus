@@ -11,21 +11,21 @@
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-lg-12">
-                            <div class="star-rating">
-                                <span class="far fa-star" data-rating="1"></span>
-                                <span class="far fa-star" data-rating="2"></span>
-                                <span class="far fa-star" data-rating="3"></span>
-                                <span class="far fa-star" data-rating="4"></span>
-                                <span class="far fa-star" data-rating="5"></span>
-                                <input type="hidden" name="whatever1" class="rating-value" value="2.56">
-                            </div>
+                            <form action="{{ route('tutorial.rating',['slug' =>$tuto->slug] )}}" method="POST" class="form-control">
+                                @csrf
+                                    <input type="radio" name="rate" value="1"> 1 <br>
+                                    <input type="radio" name="rate" value="2"> 2 <br>
+                                    <input type="radio" name="rate" value="3"> 3 <br>
+                                    <input type="radio" name="rate" value="4"> 4 <br>
+                                    <input type="radio" name="rate" value="5"> 5 <br>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-primary">Sauvegarder les changements</button>
+                <button type="submit" class="btn btn-primary">Sauvegarder les changements</button>
+                </form>
             </div>
         </div>
     </div>
@@ -53,8 +53,6 @@
 
         SetRatingStar();
 
-        $(document).ready({
-
-        });
+        $(document).ready({});
     </script>
 @endpush

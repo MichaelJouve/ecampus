@@ -100,7 +100,7 @@
                         @if ($publication->type == 'post')
                             <div class="col-10 mt-3 mb-2">
                                 <div class="card shadow">
-                                    <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                    <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
 
                                     <div class="card-header text-right" style="padding:0;">
                                         @if ($user->id == $userAuth->id)
@@ -142,7 +142,7 @@
                         @else
                             <div class="col-10 mt-3 mb-2">
                                 <div class="card shadow">
-                                    <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                    <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
                                     <div class="card-header text-right" style="padding:0;">
                                         @if ($user->id == $userAuth->id)
 
@@ -189,7 +189,7 @@
                             @if ($publication->type == 'post')
                                 <div class="col-10 mt-3 mb-2">
                                     <div class="card shadow">
-                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
 
                                         <div class="card-header text-right" style="padding:0;">
 
@@ -225,7 +225,7 @@
                             @else
                                 <div class="col-10 mt-3 mb-2">
                                     <div class="card shadow">
-                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
                                         <div class="card-header text-right" style="padding:0;">
 
                                         </div>
