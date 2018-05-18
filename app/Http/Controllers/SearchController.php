@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Publication;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -23,11 +24,14 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $uses = User::all();
+        $posts = Publication::where([['title', 'like', '%'.$request['search'].'%']])
+            ->orWhere([['description', 'like', '%'.$request['search'].'%']])
+            ->get();
 
-        return view('recherche', ['uses' => $uses]);
+
+        return view('recherche', ['tutorials' => $posts]);
     }
 
 

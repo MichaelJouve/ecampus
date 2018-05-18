@@ -51,7 +51,7 @@ Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-tuto')
 Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout');
 
 
-Route::get('/recherche/', 'SearchController@index')->name('search');
+Route::post('/recherche/', 'SearchController@index')->name('search');
 
 Route::prefix('profil')->group(function () {
     Route::prefix('bought')->group(function () {

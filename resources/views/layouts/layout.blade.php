@@ -54,8 +54,9 @@
                 </div>
             </div>
             <div class="col-xl-5 col-lg-5 col-md-4 col-sm-12 col-xs-12 ">
-                <form method="get" action="{{URL::route('search')}}">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Que recherchez vous ?">
+                <form method="post" action="{{URL::route('search')}}">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Que recherchez vous ?">
                 </form>
             </div>
             <div class="col-1 text-lg-right header-link">
