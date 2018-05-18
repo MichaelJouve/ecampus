@@ -7,20 +7,25 @@
             <div class="row ">
                 <div class="col-md-8">
                     <h1>
-                        {{$tuto->title}}
+                        {{$tuto->title}} -
+                        <b>
+                            {{$tuto->Category->name}}
+                        </b>
                     </h1>
                     <p>
                         {{$tuto->description}}
                     </p>
-                    <p><b>
-                            {{$tuto->Category->name}}
-                        </b>
-                        - (Note tuto sur 10) -
-                        <b>(Nb</b> participants en cours...)
+                    <p>
+                        @if($rateGlobal != null)
+                        Note du tutoriel <b>{{ round($rateGlobal,1) }} sur 5 </b>
+                        <span class="small ml-2 bg-warning text-dark p-1"> {{ $ratesPublication->count() }} vote(s) au total</span>
+                            @else
+                            Ce tutoriel n'a jamais été noté
+                        @endif
                     </p>
                     <p class="small">
                         Créé par {{ $tuto->user->name }} {{ $tuto->user->firstname }}
-                        le{{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
+                        le {{ $tuto->created_at->format('d/m/Y \à\ h:m') }} -
                         Derniere mise à jour le {{ $tuto->updated_at->format('d/m/Y') }}
                     </p>
                     @isset( $tuto->consultation)
@@ -28,15 +33,17 @@
                             Ce tutoriel a été visionné
                             {{$tuto->consultation->occurrences}} fois
                         </p>
-
-                        @if($tuto->consultation->rating == null)
+                    @endisset
+                        @if(!$rateUser)
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#ratingModal">
                                 Noter ce tutoriel !
                             </button>
                             @include('components.Publication.ratingModal')
+                        @else
+                            <p class="text-warning">Vous avez déja noté ce tutoriel en lui attribuant la note de : <b>{{ $rateUser->rate}}/5</b></p>
                         @endif
-                    @endisset
+
                 </div>
                 <div class="col-md-4">
                     <img class="img_bandeau" src="{{asset('storage/'.$tuto->imgpublication)}}" alt="Image de l'article">
@@ -136,31 +143,31 @@
                 <div class="mt-4">
                     <p class="font-weight-bold border-bottom">A propos du formateur</p>
 
-                        <div class="card border-0 pt-2">
-                                    <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
-                                        <img class="img-fluid rounded-circle w50 shadow"
-                                             src="{{asset($tuto->user->imgprofil)}}"
-                                             alt="Image de profil">
-                                    </a>
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
-                                                {{ $tuto->user->name }} {{ $tuto->user->firstname }}
-                                            </a>
-                                        </div>
-                                        <p class="card-text small">
-                                            {{ $tuto->user->description }}
-                                        </p>
-                                        <p class="small border-top mt-2 pt-2">
-                                            <i class="fas fa-pencil-alt"></i>
-                                                <span class="ml-2"><b>{{ $tuto->user->comment->count() }}</b> Commentaire(s)</span>
-                                            <br>
-                                            <i class="far fa-play-circle"></i>
-                                             <span class="ml-2"><b>{{ $tuto->user->tutorial->count() }}</b> Tutoriel(s)</span>
-                                        </p>
-                                    </div>
+                    <div class="card border-0 pt-2">
+                        <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
+                            <img class="img-fluid rounded-circle w50 shadow"
+                                 src="{{asset($tuto->user->imgprofil)}}"
+                                 alt="Image de profil">
+                        </a>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
+                                    {{ $tuto->user->name }} {{ $tuto->user->firstname }}
+                                </a>
+                            </div>
+                            <p class="card-text small">
+                                {{ $tuto->user->description }}
+                            </p>
+                            <p class="small border-top mt-2 pt-2">
+                                <i class="fas fa-pencil-alt"></i>
+                                <span class="ml-2"><b>{{ $tuto->user->comment->count() }}</b> Commentaire(s)</span>
+                                <br>
+                                <i class="far fa-play-circle"></i>
+                                <span class="ml-2"><b>{{ $tuto->user->tutorial->count() }}</b> Tutoriel(s)</span>
+                            </p>
                         </div>
                     </div>
+                </div>
             </div>
             <!-- END Descriptif tutoriel bandeau droite-->
 

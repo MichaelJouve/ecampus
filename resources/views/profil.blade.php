@@ -97,94 +97,89 @@
                     <div class="row justify-content-center mt-5">
 
 
-                        @foreach( $publications as $publication)
-                            @if ($publication->type == 'post')
-                                <div class="col-10 mt-3 mb-2">
-                                    <div class="card shadow">
-                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                    @foreach( $publications as $publication)
+                        @if ($publication->type == 'post')
+                            <div class="col-10 mt-3 mb-2">
+                                <div class="card shadow">
+                                    <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
 
-                                        <div class="card-header text-right" style="padding:0;">
-                                            @if ($user->id == $userAuth->id)
+                                    <div class="card-header text-right" style="padding:0;">
+                                        @if ($user->id == $userAuth->id)
 
-                                                <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                    <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
-                                                                class="fas fa-eraser"></i></span></a>
+                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
 
 
-                                            @endif
+                                        @endif
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-3 align-self-center img_profil ">
+                                            <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                                 src="{{asset($user->imgprofil)}}" alt="Image de profil">
                                         </div>
+                                        <div class="col-9">
+                                            <div class="card-body">
 
-                                        <div class="row ">
-                                            <div class="col-3 mt-5 img_profil justify-content-center">
-                                                <img class="img-fluid rounded-circle shadow" style="margin:20px;"
-                                                     src="{{asset($user->imgprofil)}}" alt="Image de profil">
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="card-body">
-
-                                                    <div class="card-title font-weight-bold">{{ $publication->title }}</div>
-                                                    <div class="card-text small">{!! $publication->content !!}</div>
-                                                </div>
+                                                <div class="card-title font-weight-bold">{{ $publication->title }}</div>
+                                                <div class="card-text small">{!! $publication->content !!}</div>
                                             </div>
                                         </div>
-                                        <div class="card-footer text-right">
-                                            <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
 
-                                            <i class="far fa-heart"></i>
+                                        <i class="far fa-heart"></i>
 
-                                            <a href="#" data-toggle="modal"
-                                               data-target="#exampleModal{{ $publication->id }}"><i
-                                                        class="far fa-comment"></i></a>
-                                            {{ $publication->comment->count() }}
-                                            @include('components.Modal.modalComment')
+                                        <a href="#" data-toggle="modal"
+                                           data-target="#exampleModal{{ $publication->id }}"><i
+                                                    class="far fa-comment"></i></a>
+                                        {{ $publication->comment->count() }}
+                                        @include('components.Modal.modalComment')
 
-                                        </div>
                                     </div>
                                 </div>
-                            @else
-                                <div class="col-10 mt-3 mb-2">
-                                    <div class="card shadow">
-                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
-                                        <div class="card-header text-right" style="padding:0;">
-                                            @if ($user->id == $userAuth->id)
+                            </div>
+                        @else
+                            <div class="col-10 mt-3 mb-2">
+                                <div class="card shadow">
+                                    <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
+                                    <div class="card-header text-right" style="padding:0;">
+                                        @if ($user->id == $userAuth->id)
 
-                                                <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                    <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
-                                                                class="fas fa-eraser"></i></span></a>
+                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
+                                        @endif
+                                    </div>
+                                    <img class="card-img-top img-fluid"
+                                         src="{{asset('/storage/'.$publication->imgpublication)}}"
+                                         alt="Image card top" style="height: 220px;">
+                                    <div class="card-body">
+                                        <!--Social shares button-->
+                                        <p class="text-success">
+                                            @if( $publication->price == '0')
+                                                Tutoriel gratuit
+                                            @else
+                                                En vente pour seulement <b>{{ $publication->price }}€</b>
                                             @endif
-                                        </div>
-                                        <img class="card-img-top img-fluid"
-                                             src="{{asset('/storage/'.$publication->imgpublication)}}"
-                                             alt="Image card top" style="height: 220px;">
-                                        <div class="card-body">
-                                            <!--Social shares button-->
-                                            <p class="text-success">
-                                                @if( $publication->price == '0')
-                                                    Tutoriel gratuit
-                                                @else
-                                                    En vente pour seulement <b>{{ $publication->price }}€</b>
-                                                @endif
-                                            </p>
-                                            <h3 class="card-title">
-                                                {{ $publication->title }}
-                                            </h3>
+                                        </p>
+                                        <h3 class="card-title">
+                                            {{ $publication->title }}
+                                        </h3>
 
 
-                                            <p class="card-text small"
-                                               id="affichage_post">{{ $publication->description }}</p>
-                                        </div>
-                                        <div class="card-footer small">
-                                            <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
-                                               class="btn btn-light float-right">Lire <i
-                                                        class="fa fa-chevron-right"></i></a>
-                                        </div>
+                                        <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
+                                    </div>
+                                    <div class="card-footer small">
+                                        <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
+                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
-                            @endif
-                        @endforeach
+                            </div>
+                        @endif
+                    @endforeach
 
-                    </div>
+                </div>
                 @endisset
 
                 @empty($userAuth)
@@ -195,7 +190,7 @@
                             @if ($publication->type == 'post')
                                 <div class="col-10 mt-3 mb-2">
                                     <div class="card shadow">
-                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
 
                                         <div class="card-header text-right" style="padding:0;">
 
@@ -232,7 +227,7 @@
                             @else
                                 <div class="col-10 mt-3 mb-2">
                                     <div class="card shadow">
-                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
                                         <div class="card-header text-right" style="padding:0;">
 
                                         </div>
@@ -253,14 +248,11 @@
                                             </h3>
 
 
-                                            <p class="card-text small"
-                                               id="affichage_post">{{ $publication->description }}</p>
+                                            <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
                                         </div>
                                         <div class="card-footer small">
                                             <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
-                                               class="btn btn-light float-right">Lire <i
-                                                        class="fa fa-chevron-right"></i></a>
+                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

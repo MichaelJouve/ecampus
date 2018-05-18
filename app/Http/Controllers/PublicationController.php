@@ -9,6 +9,7 @@ use App\Publication;
 use App\Post;
 use App\User;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
@@ -168,13 +169,28 @@ class PublicationController extends Controller
             }])
             ->firstOrFail();
 
+        $rateUser = Rating::where('publication_id', $tuto->id)->where('user_id', $userId)->first();
+
+        $ratesPublication = Rating::where('publication_id', $tuto->id)->get();
+
+
+        $rateGlobal = 0;
+
+            foreach ($ratesPublication as $rate) {
+                $rateGlobal += $rate->rate;
+            }
+
+            if ($ratesPublication->count() != 0) {
+                $rateGlobal = $rateGlobal / $ratesPublication->count();
+            }
+
 
         if ($userId !== $tuto->user->id) {
             $consultation = Consultation::updateOrCreate(['publication_id' => $tuto->id, 'user_id' => $userId]);
             Consultation::find($consultation->id)->increment('occurrences');
         }
 
-        return view('article', ['tuto' => $tuto]);
+        return view('article', ['tuto' => $tuto, 'rateUser' => $rateUser, 'ratesPublication' => $ratesPublication, 'rateGlobal' => $rateGlobal]);
     }
 
     public function showPost($slug)
