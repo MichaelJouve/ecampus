@@ -186,11 +186,6 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        if (request()->has('price')) {
-            if (request('price') === 'asc') {
-                $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->orderBy('price', 'asc')->paginate();
-            } else{
-                $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->orderBy('price', 'desc')->paginate();
         if (request()->has('price')){
 
             if(request('price') === 'asc'){
@@ -199,7 +194,6 @@ class PublicationController extends Controller
                     ->tuto()
                     ->orderBy('price','asc')
                     ->paginate();
-                return view('listingall', ['tutorials' => $tutorials]);
             }
             elseif(request('price') === 'desc'){
 
@@ -208,21 +202,15 @@ class PublicationController extends Controller
                     ->tuto()
                     ->orderBy('price','desc')
                     ->paginate();
-                return view('listingall', ['tutorials' => $tutorials]);
             }
-        } else {
-            $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->paginate();
-        }
-
-        return view('listingall', ['tutorials' => $tutorials]);
-        }
-        else{
+        } else{
             $tutorials = Publication::with('category', 'user', 'consultation')
                 ->withCount('comment')
                 ->tuto()
                 ->paginate();
-            return view('listingall', ['tutorials' => $tutorials]);
         }
+        return view('listingall', ['tutorials' => $tutorials]);
+
     }
 
     /**
