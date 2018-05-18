@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class PublicationController extends Controller
 {
@@ -52,6 +53,14 @@ class PublicationController extends Controller
 
     public function storePost(Request $request)
     {
+
+
+        preg_match_all('!(<img[^>]*src="([^"]*)")!', $request['content'], $tableauDImg);
+
+        foreach ($tableauDImg['1'] as $i) {
+            $request['content'] = htmlspecialchars_decode(str_replace($i, $i . ' class="img-fluid"', $request['content']));
+        }
+
         $user = Auth::user();
         $slug = $user->slug;
 
@@ -60,7 +69,6 @@ class PublicationController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
         ]);
-
         $inputs = $request->all();
         $inputs['user_id'] = $user->id;
 
@@ -126,10 +134,9 @@ class PublicationController extends Controller
 
         $bestTutorial = Publication::where('category_id', $category->id)->tuto()->first();
 
-        $bestsTutorials =  Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
+        $bestsTutorials = Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
 
         $lastTutorials = Publication::where('category_id', $category->id)->tuto()->latest()->limit(8)->get();
-
 
 
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestsTutorials' => $bestsTutorials, 'lastTutorials' => $lastTutorials]);
@@ -148,13 +155,13 @@ class PublicationController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $tuto = Publication::where('slug', $slug)
-            ->with(['comment' => function ($query){
+            ->with(['comment' => function ($query) {
                 $query->with('user');
             }])
-            ->withCount(['userOwner as bought' => function($query) use ($userId){
+            ->withCount(['userOwner as bought' => function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             }])
-            ->withCount(['consultation as seen' => function($query) use ($userId){
+            ->withCount(['consultation as seen' => function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             }])
             ->firstOrFail();
@@ -187,27 +194,25 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
-        if (request()->has('price')){
+        if (request()->has('price')) {
 
-            if(request('price') === 'asc'){
+            if (request('price') === 'asc') {
                 $tutorials = Publication::with('category', 'user', 'consultation')
                     ->withCount('comment')
                     ->tuto()
-                    ->orderBy('price','asc')
+                    ->orderBy('price', 'asc')
                     ->paginate();
                 return view('listingall', ['tutorials' => $tutorials]);
-            }
-            elseif(request('price') === 'desc'){
+            } elseif (request('price') === 'desc') {
 
                 $tutorials = Publication::with('category', 'user', 'consultation')
                     ->withCount('comment')
                     ->tuto()
-                    ->orderBy('price','desc')
+                    ->orderBy('price', 'desc')
                     ->paginate();
                 return view('listingall', ['tutorials' => $tutorials]);
             }
-        }
-        else{
+        } else {
             $tutorials = Publication::with('category', 'user', 'consultation')
                 ->withCount('comment')
                 ->tuto()

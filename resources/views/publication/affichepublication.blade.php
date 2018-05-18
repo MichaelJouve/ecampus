@@ -44,7 +44,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12  border p-4 mt-2 mb-5 rounded shadow">
-                {!! $publication->content !!}
+                {!! $publication->content!!}
             </div>
         </div>
     </div>

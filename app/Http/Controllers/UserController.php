@@ -162,7 +162,6 @@ class UserController extends Controller
                 $user = Auth::user();
 
                 // open an image file
-
                 $img = Image::make($request->avatar->path());
 
                 // True colors

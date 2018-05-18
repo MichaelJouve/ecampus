@@ -51,7 +51,7 @@
 
                             <div class="form-group">
                                 <label for="content">Contenu</label>
-                                <input type="hidden" name="content"
+                                <input type="hidden" style="resize: both; overflow: auto" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
                                 <div id="editor-container"></div>
                                 @if ($errors->has('content'))

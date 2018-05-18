@@ -26,10 +26,12 @@
                 </p>
             </div>
             <div class="card-footer">
-                <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}"><span class="float-left">{{ $tuto->user->name }} {{ $tuto->user->firstname }}</span></a>
-                    <br>
+                <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}"><span
+                            class="float-left">{{ $tuto->user->name }} {{ $tuto->user->firstname }}</span></a>
+                <br>
                 <span class="small">Ecrit à {{ $tuto->created_at->format('h:m \l\e d/m/Y') }}</span>
-                <a href="{{route('front-tutorial',['slug' => $tuto->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                <a href="{{route('front-tutorial',['slug' => $tuto->slug])}}" class="btn btn-light float-right">Lire <i
+                            class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>
