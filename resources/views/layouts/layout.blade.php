@@ -62,7 +62,7 @@
             <div class="col-1 text-lg-right header-link">
                 <div class="panier">
                     <a href="{{URL::route('front-panier')}}" class="btn btn-light dropdown" id="dropdownMenuPanier"
-                       title="Choisir une catégorie"
+                       title="Votre Panier"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-shopping-basket" style="size:25px; color: #17a2b8 "></i>
                     </a>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                @if($user->unreadmessage->count() > 0)
+                @if(Auth::user()->unreadmessage->count() > 0)
                 <div class="col-2">
                     <a href="{{URL::route('user-profil-message')}}" class="btn"><i class="far fa-envelope" style="font-size: 1.4em; color:red;"></i>
                         <span style="color:red">{{$user->unreadMessage->count()}}</span></a>
