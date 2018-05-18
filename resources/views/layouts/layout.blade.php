@@ -115,7 +115,7 @@
                 @if(Auth::user()->unreadmessage->count() > 0)
                 <div class="col-2">
                     <a href="{{URL::route('user-profil-message')}}" class="btn"><i class="far fa-envelope" style="font-size: 1.4em; color:red;"></i>
-                        <span style="color:red">{{$user->unreadMessage->count()}}</span></a>
+                        <span style="color:red">{{Auth::user()->unreadMessage->count()}}</span></a>
                 </div>
                 @endif
             @endguest
