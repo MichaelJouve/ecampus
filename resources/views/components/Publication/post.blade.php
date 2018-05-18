@@ -2,7 +2,7 @@
     <div class="col-sm-6  mb-3">
         <div class="card shadow" style="height:300px;">
             <div class="ribbon-{{$post->category->name}}"><span>{{$post->Category->name}}</span></div>
-            <div class="row" style="overflow: hidden; max-height: 264px">
+            <div class="row" style="overflow: hidden; max-height: 264px; height: 264px">
                 <div class="col-3 mt-5 img_profil justify-content-center">
                     <img class="img-fluid rounded-circle ml-1 shadow" src="{{asset($post->user->imgprofil)}}"
                          alt="Image de profil">
