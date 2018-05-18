@@ -83,6 +83,7 @@ class UserController extends Controller
         $userAuth->load('publication');
         $publications = Publication::where('user_id', $userAuth->id)
             ->with('category')
+            ->latest()
             ->get();
         $user = $userAuth;
 

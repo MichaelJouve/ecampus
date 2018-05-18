@@ -30,8 +30,9 @@
                     </div>
                     <div class="col-md-7 text-left border-left small">
                         <p>{{ $publication->user->firstname }} {{ $publication->user->name }}<br>
-                         {{ $publication->user->email }}</p>
-                        <p><i class="fas fa-quote-left"></i>  {{ $publication->user->description }}  <i class="fas fa-quote-right"></i></p>
+                        <p><i class="fas fa-quote-left"></i>Description : <br> <p class="overflow-200">
+                            {{ $publication->user->description }}
+                        </p><i class="fas fa-quote-right"></i></p>
                     </div>
                     <div class="col-md-2 small">
                         Vos statistiques utilisateur!

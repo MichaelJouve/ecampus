@@ -13,7 +13,7 @@
                     <p class="card-title font-weight-bold col-8">
                         {{$tuto->title}}
                     </p>
-                    <span class="card-title col-4 text-right font-weight-bold text-success">
+                    <span class="card-title col-4 text-right font-weight-bold text-success small">
                         @if( $tuto->price == '0')
                             Gratuit
                         @else

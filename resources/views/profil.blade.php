@@ -22,12 +22,12 @@
                 </div>
                 <div>
                     <h5 class="font-weight-light border-bottom">Description</h5>
-                    <p class="small">
+                    <p class="small overflow-200">
                         @if( $user->description == null)
                             <em>Aucune description pour l'instant...</em>
-                            @else
-                        {{$user->description}}
-                            @endif
+                        @else
+                            {{$user->description}}
+                        @endif
                     </p>
                 </div>
                 <div>
@@ -44,7 +44,7 @@
                     <p class="small">
                         <strong> Identité </strong>: {{ucfirst($user->firstname)}} {{ucfirst($user->name)}}<br/>
                         @if( $user->birthday !== null)
-                        <strong> Date de naissance</strong>: {{$user->birthday->format('d/m/Y')}}<br/>
+                            <strong> Date de naissance</strong>: {{$user->birthday->format('d/m/Y')}}<br/>
                         @endif
                         <strong> Date d'inscription</strong> : {{$user->created_at->format('d/m/Y')}}<br/>
                     </p>
@@ -54,17 +54,18 @@
                 @empty($userAuth)
                     @if($user->follow > 0)
 
-                            <div>
-                                <a href="{{route('unfollow', ['slug' => $user->slug])}}">
-                                    <button type="submit" class="btn btn-danger btn-sm">Arrêter de suivre {{$user->firstname}} {{$user->name}}</button>
-                                </a>
-                            </div>
+                        <div>
+                            <a href="{{route('unfollow', ['slug' => $user->slug])}}">
+                                <button type="submit" class="btn btn-danger btn-sm">Arrêter de
+                                    suivre {{$user->firstname}} {{$user->name}}</button>
+                            </a>
+                        </div>
                     @else
-                            <div>
-                                <a href="{{route('follow', ['slug' => $user->slug])}}">
-                                    <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
-                                </a>
-                            </div>
+                        <div>
+                            <a href="{{route('follow', ['slug' => $user->slug])}}">
+                                <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                            </a>
+                        </div>
                     @endif
                 @endempty
             </div>
@@ -91,94 +92,99 @@
                     @endif
 
 
-                <h2 class="text-center font-weight-light pt-4">Vos dernieres publications !</h2>
+                    <h2 class="text-center font-weight-light pt-4">Vos dernieres publications !</h2>
 
-                <div class="row justify-content-center mt-5">
-
-
-                    @foreach( $publications as $publication)
-                        @if ($publication->type == 'post')
-                            <div class="col-10 mt-3 mb-2">
-                                <div class="card shadow">
-                                    <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
-
-                                    <div class="card-header text-right" style="padding:0;">
-                                        @if ($user->id == $userAuth->id)
-
-                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
+                    <div class="row justify-content-center mt-5">
 
 
-                                        @endif
-                                    </div>
+                        @foreach( $publications as $publication)
+                            @if ($publication->type == 'post')
+                                <div class="col-10 mt-3 mb-2">
+                                    <div class="card shadow">
+                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
 
-                                    <div class="row ">
-                                        <div class="col-3 align-self-center img_profil ">
-                                            <img class="img-fluid rounded-circle shadow" style="margin:20px;"
-                                                 src="{{asset($user->imgprofil)}}" alt="Image de profil">
+                                        <div class="card-header text-right" style="padding:0;">
+                                            @if ($user->id == $userAuth->id)
+
+                                                <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                    <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
+                                                                class="fas fa-eraser"></i></span></a>
+
+
+                                            @endif
                                         </div>
-                                        <div class="col-9">
-                                            <div class="card-body">
 
-                                                <div class="card-title font-weight-bold">{{ $publication->title }}</div>
-                                                <div class="card-text small">{!! $publication->content !!}</div>
+                                        <div class="row ">
+                                            <div class="col-3 mt-5 img_profil justify-content-center">
+                                                <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                                     src="{{asset($user->imgprofil)}}" alt="Image de profil">
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="card-body">
+
+                                                    <div class="card-title font-weight-bold">{{ $publication->title }}</div>
+                                                    <div class="card-text small">{!! $publication->content !!}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer text-right">
-                                        <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
+                                        <div class="card-footer text-right">
+                                            <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
 
-                                        <i class="far fa-heart"></i>
+                                            <i class="far fa-heart"></i>
 
-                                        <a href="#" data-toggle="modal"
-                                           data-target="#exampleModal{{ $publication->id }}"><i
-                                                    class="far fa-comment"></i></a>
-                                        {{ $publication->comment->count() }}
-                                        @include('components.Modal.modalComment')
+                                            <a href="#" data-toggle="modal"
+                                               data-target="#exampleModal{{ $publication->id }}"><i
+                                                        class="far fa-comment"></i></a>
+                                            {{ $publication->comment->count() }}
+                                            @include('components.Modal.modalComment')
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="col-10 mt-3 mb-2">
-                                <div class="card shadow">
-                                    <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
-                                    <div class="card-header text-right" style="padding:0;">
-                                        @if ($user->id == $userAuth->id)
+                            @else
+                                <div class="col-10 mt-3 mb-2">
+                                    <div class="card shadow">
+                                        <div class="ribbon"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="card-header text-right" style="padding:0;">
+                                            @if ($user->id == $userAuth->id)
 
-                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
-                                        @endif
-                                    </div>
-                                    <img class="card-img-top img-fluid"
-                                         src="{{asset('/storage/'.$publication->imgpublication)}}"
-                                         alt="Image card top" style="height: 220px;">
-                                    <div class="card-body">
-                                        <!--Social shares button-->
-                                        <p class="text-success">
-                                            @if( $publication->price == '0')
-                                                Tutoriel gratuit
-                                            @else
-                                                En vente pour seulement <b>{{ $publication->price }}€</b>
+                                                <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                    <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
+                                                                class="fas fa-eraser"></i></span></a>
                                             @endif
-                                        </p>
-                                        <h3 class="card-title">
-                                            {{ $publication->title }}
-                                        </h3>
+                                        </div>
+                                        <img class="card-img-top img-fluid"
+                                             src="{{asset('/storage/'.$publication->imgpublication)}}"
+                                             alt="Image card top" style="height: 220px;">
+                                        <div class="card-body">
+                                            <!--Social shares button-->
+                                            <p class="text-success">
+                                                @if( $publication->price == '0')
+                                                    Tutoriel gratuit
+                                                @else
+                                                    En vente pour seulement <b>{{ $publication->price }}€</b>
+                                                @endif
+                                            </p>
+                                            <h3 class="card-title">
+                                                {{ $publication->title }}
+                                            </h3>
 
 
-                                        <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
-                                    </div>
-                                    <div class="card-footer small">
-                                        <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                            <p class="card-text small"
+                                               id="affichage_post">{{ $publication->description }}</p>
+                                        </div>
+                                        <div class="card-footer small">
+                                            <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
+                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
+                                               class="btn btn-light float-right">Lire <i
+                                                        class="fa fa-chevron-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
 
-                </div>
+                    </div>
                 @endisset
 
                 @empty($userAuth)
@@ -198,7 +204,8 @@
                                         <div class="row ">
                                             <div class="col-3 align-self-center img_profil ">
                                                 <img class="img-fluid rounded-circle" style="margin:20px;"
-                                                     src="{{asset($publication->user->imgprofil)}}" alt="Image de profil">
+                                                     src="{{asset($publication->user->imgprofil)}}"
+                                                     alt="Image de profil">
                                             </div>
                                             <div class="col-9">
                                                 <div class="card-body">
@@ -246,11 +253,14 @@
                                             </h3>
 
 
-                                            <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
+                                            <p class="card-text small"
+                                               id="affichage_post">{{ $publication->description }}</p>
                                         </div>
                                         <div class="card-footer small">
                                             <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
+                                               class="btn btn-light float-right">Lire <i
+                                                        class="fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
