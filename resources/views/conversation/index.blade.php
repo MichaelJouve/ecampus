@@ -1,4 +1,3 @@
-
 @extends('layouts.layout')
 
 
@@ -20,15 +19,49 @@
             <!--****************  FIN DE MESSAGERIE   ************************************************** -->
             </div>
             <div class="col-md-10">
-                <div class="card-header">{{ $otherUser->name }} {{ $otherUser->firstname }}</div>
-                <div class="card-body conversations">
-                    <form action="" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="content" placeholder="Votre message.." class="form-control" id=""  rows="4"></textarea>
-                            <button class="btn btn-info m-2" type="submit">Envoyer</button>
-                        </div>
-                    </form>
+                <div class="card">
+                    <div class="card-header">{{ $otherUser->name }} {{ $otherUser->firstname }}</div>
+                    <div class="card-body">
+                        @if($messages->hasMorePages())
+                            <div class="text-center">
+                                <a href="{{ $messages->nextPageUrl() }}" class="btn btn-light"> Voir les messages précédents</a>
+                            </div>
+                        @endif
+                        @foreach($messages as $message)
+                            <div style="overflow: hidden">
+                                @if($message->from_user_id === $user->id)
+                                    <div class="bg-light rounded p-2 m-2 float-left" >
+                                        {!! nl2br(e($message->content)) !!}
+                                        <br>
+                                        <span class="small"><em>{{ $message->created_at->format('d.m.Y') }}</em></span>
+                                    </div>
+                                    <hr class="bg-light">
+                                @else
+                                    <div class="p-2 m-2 text-right bg-info rounded text-light float-right">
+                                        {!! nl2br(e($message->content)) !!}
+                                        <br>
+                                        <span class="small"><em>{{ $message->created_at->format('d.m.Y') }}</em></span>
+                                    </div>
+                                    <hr class="bg-light">
+                                @endif
+                            </div>
+                        @endforeach
+                            @if($messages->previousPageUrl())
+                                <div class="text-center">
+                                    <a href="{{ $messages->previousPageUrl() }}" class="btn btn-light"> Voir les messages suivants</a>
+                                </div>
+                            @endif
+                    </div>
+                    <div class="card-footer">
+                        <form action="" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <textarea name="content" placeholder="Votre message.." class="form-control" id=""
+                                          rows="4"></textarea>
+                                <button class="btn btn-info m-2" type="submit">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

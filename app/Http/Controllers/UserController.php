@@ -209,8 +209,9 @@ class UserController extends Controller
     {
         $userAuth = Auth::user();
         $user = $userAuth;
-        $users = User::all()->where('id','!=', $userAuth->id);
 
+
+        $users = User::where('id','!=', $userAuth->id)->withCount('unreadMessage')->get();
         return view('userConfig.configMessage', ['user' => $user, 'userAuth' => $userAuth, 'users' => $users]);
     }
 

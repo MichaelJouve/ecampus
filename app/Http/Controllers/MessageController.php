@@ -63,17 +63,20 @@ class MessageController extends Controller
     public function show($slug)
     {
         $user = Auth::user();
-        $otherUser = User::findBySlugOrFail($slug);
-        $users = User::where('id','!=', Auth::user()->id)->get();
 
+        $otherUser = User::findBySlugOrFail($slug);
         $otherUserId = $otherUser->id;
         $userId = $user->id;
 
+        Message::findUnreadMessage($userId, $otherUserId)->update(['read_at'=> now()]);
+        $users = User::where('id','<>', Auth::id())->withCount('unreadMessage')->get();
 
-        $messages = Message::findConversation($userId, $otherUserId)->get();
+
+        $messages = Message::findConversation($userId, $otherUserId)->latest()->paginate(20);
 
         return view ('conversation.index', ['users' => $users, 'otherUser' => $otherUser, 'user' => $user, 'messages' => $messages]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

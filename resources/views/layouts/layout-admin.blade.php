@@ -39,7 +39,7 @@
             <ul class="nav administration pb-4">
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-membres') }}" class="nav-link active">Gestion des membres</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-posts') }}" class="nav-link">Gestion des posts</a></li>
-                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-tutoriels') }}" class="nav-link">Gestion des tutoriels</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin.tutoriels') }}" class="nav-link">Gestion des tutoriels</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-comments') }}" class="nav-link">Gestion des commentaires</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-request') }}" class="nav-link">Gestion des requêtes</a></li>
                 <hr style="background: #e3e3e3;">
