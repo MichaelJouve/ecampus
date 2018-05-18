@@ -223,7 +223,7 @@ class UserController extends Controller
         $userAuth = Auth::user();
         $user = $userAuth;
 
-        return view('configInfos', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('userConfig.configInfos', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     /**
@@ -234,7 +234,9 @@ class UserController extends Controller
         $userAuth = Auth::user();
         $user = $userAuth;
 
-        return view('configMessage', ['user' => $user, 'userAuth' => $userAuth]);
+
+        $users = User::where('id','!=', $userAuth->id)->withCount('unreadMessage')->get();
+        return view('userConfig.configMessage', ['user' => $user, 'userAuth' => $userAuth, 'users' => $users]);
     }
 
     /**
@@ -245,7 +247,7 @@ class UserController extends Controller
         $userAuth = Auth::user();
         $user = $userAuth;
 
-        return view('configPref', ['user' => $user, 'userAuth' => $userAuth]);
+        return view('userConfig.configPref', ['user' => $user, 'userAuth' => $userAuth]);
     }
 
     /**

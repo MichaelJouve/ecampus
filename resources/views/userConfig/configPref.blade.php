@@ -2,16 +2,19 @@
 
 
 @section('contenu')
-    <!-- CONTENU -->
-    <div class="container-fluid p-4 bandeau-sombre">
+    <!-- Barre de naviguation -->
+    <div class="container-fluid">
+        @include('navBarConfig')
+    </div>
 
-        <h3 class="text-center"><img src="{{asset('images/preferences.png')}}" alt="Bandeau des preferences"
-                                     class="logo-config img-fluid">Votre compte : Gestion des préférences personnelles
+    <!-- CONTENU -->
+    <div class="container-fluid p-4 bg-light shadow">
+        <h3 class="text-center">
+           Votre compte : Gestion des préférences personnelles
         </h3>
     </div>
-    <div class="container-fluid conteneur_config">
+    <div class="container-fluid conteneur_config mt-5">
         <div class="row ">
-            @include('navBarConfig')
             <div class="col-lg-9 col-12 ">
                 <!-- DEBUT VOS PREFERENCES -->
                 <div class="row">

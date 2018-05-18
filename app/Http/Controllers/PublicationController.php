@@ -126,10 +126,9 @@ class PublicationController extends Controller
 
         $bestTutorial = Publication::where('category_id', $category->id)->tuto()->first();
 
-        $bestsTutorials =  Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
+        $bestsTutorials = Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
 
         $lastTutorials = Publication::where('category_id', $category->id)->tuto()->latest()->limit(8)->get();
-
 
 
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestsTutorials' => $bestsTutorials, 'lastTutorials' => $lastTutorials]);
@@ -187,6 +186,11 @@ class PublicationController extends Controller
 
     public function allTutorials()
     {
+        if (request()->has('price')) {
+            if (request('price') === 'asc') {
+                $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->orderBy('price', 'asc')->paginate();
+            } else{
+                $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->orderBy('price', 'desc')->paginate();
         if (request()->has('price')){
 
             if(request('price') === 'asc'){
@@ -206,6 +210,11 @@ class PublicationController extends Controller
                     ->paginate();
                 return view('listingall', ['tutorials' => $tutorials]);
             }
+        } else {
+            $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->paginate();
+        }
+
+        return view('listingall', ['tutorials' => $tutorials]);
         }
         else{
             $tutorials = Publication::with('category', 'user', 'consultation')
