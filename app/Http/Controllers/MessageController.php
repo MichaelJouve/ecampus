@@ -62,19 +62,24 @@ class MessageController extends Controller
      */
     public function show($slug)
     {
-        $user = Auth::user();
+        $userAuth = Auth::user();
 
         $otherUser = User::findBySlugOrFail($slug);
         $otherUserId = $otherUser->id;
-        $userId = $user->id;
+        $userId = $userAuth->id;
+        $userAuth->load('unreadMessage');
 
         Message::findUnreadMessage($userId, $otherUserId)->update(['read_at'=> now()]);
-        $users = User::where('id','<>', Auth::id())->withCount('unreadMessage')->get();
+
+        $users = User::where('id','!=', $userAuth->id)
+            ->withCount(['unreadMessageByUser' => function ($query) use($userId) {
+                $query->where('to_user_id', $userId);
+            }])->get();
 
 
         $messages = Message::findConversation($userId, $otherUserId)->latest()->paginate(20);
 
-        return view ('conversation.index', ['users' => $users, 'otherUser' => $otherUser, 'user' => $user, 'messages' => $messages]);
+        return view ('conversation.index', ['users' => $users, 'otherUser' => $otherUser, 'user' => $userAuth, 'messages' => $messages]);
     }
 
 
