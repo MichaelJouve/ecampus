@@ -71,6 +71,9 @@ Route::prefix('profil')->group(function () {
     Route::post('/infos/update/imgprofil', 'UserController@updateAvatar')->name('update-avatar');
     Route::post('/infos/update', 'UserController@update')->name('update-info');
     Route::get('/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
+    Route::get('/publication/update/tutorial/{slug}', 'PublicationController@editPublication')->name('update-publication-tutorial');
+    Route::get('/publication/update/post/{slug}', 'PublicationController@editPost')->name('update-publication-post');
+    Route::post('/publication/update/tutorial/{slug}/action', 'PublicationController@update')->name('update-publication');
     Route::get('/', 'UserController@myProfil')->name('user-profil');
 });
 

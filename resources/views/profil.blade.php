@@ -10,17 +10,17 @@
                     <img class="img-fluid" style="border:2px solid #007791; border-radius: 4px;"
                          src="{{asset($user->imgprofil)}}" alt="Image de profil">
                 </div>
+                @if($user->id !== Auth::id())
                 <div class="mt-3">
                     <p class="text-center small">
-                        <a href="#"><i class="fas fa-globe" style="font-size: 1.5em; margin:0 5px;"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f" style="font-size: 1.5em; margin:0 5px;"></i></a>
-                        <a href="#"><i class="fab fa-twitter" style="font-size: 1.5em; margin:0 5px;"></i></a>
                         <a href="{{URL::route('user-profil-message')}}"><i class="far fa-envelope-open"
-                                                                           style="font-size: 1.5em; margin:0 5px;"></i></a>
-
+                                                                           style="font-size: 1.5em; margin:0 5px;"></i>
+                        <span class="text-primary">Contacter {{ $user->firstname }} par message</span>
+                        </a>
                     </p>
                 </div>
-                <div>
+                @endif
+                <div class="mt-4">
                     <h5 class="font-weight-light border-bottom">Description</h5>
                     <p class="small overflow-200">
                         @if( $user->description == null)
@@ -32,10 +32,23 @@
                 </div>
                 <div>
                     <h5 class="border-bottom">Statistiques membre</h5>
-                    <p class="small">Nombre de commentaire : <b>{{ $user->comment->count() }}</b><br>
-                        Nombre de post : <b>{{ $user->post->count() }}</b><br>
-                        Nombre de tutoriel(s) : <b>{{ $user->tutorial->count() }}</b>
-                    </p>
+
+                    <div class="row mt-3 mb-3">
+                        <div class="text-info text-center col-4">
+                            <i class="far fa-comment-alt" style="font-size: 2em;"></i><br>
+                            <span class="small">{{ $user->comment->count() }} com's</span>
+                        </div>
+                        <div class="text-danger text-center col-4">
+                            <i class="far fa-file" style="font-size: 2em;"></i><br>
+                            <span class="small">{{ $user->post->count() }} posts</span>
+                        </div>
+                        <div class="text-success text-center col-4">
+                            <i class="far fa-clipboard" style="font-size: 2em;"></i><br>
+                            <span class="small">{{ $user->tutorial->count() }} tutos</span>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div>
                     <h5 class="font-weight-light border-bottom">Coordonnées Personnelles</h5>
@@ -97,89 +110,102 @@
                     <div class="row justify-content-center mt-5">
 
 
-                    @foreach( $publications as $publication)
-                        @if ($publication->type == 'post')
-                            <div class="col-10 mt-3 mb-2">
-                                <div class="card shadow">
-                                    <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
+                        @foreach( $publications as $publication)
+                            @if ($publication->type == 'post')
+                                <div class="col-10 mt-3 mb-2">
+                                    <div class="card shadow">
+                                        <div class="ribbon-{{ $publication->category->name }}">
+                                            <span>{{ $publication->category->name }}</span></div>
 
-                                    <div class="card-header text-right" style="padding:0;">
-                                        @if ($user->id == $userAuth->id)
+                                        <div class="card-header text-right" style="padding:0;">
+                                            @if ($user->id == $userAuth->id)
 
-                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
+                                                <a href="{{route('update-publication-post',['slug' => $publication->slug])}}">
+                                                    <span name="delete" style="color:#80A1C1;  margin-right: 10px;"><i
+                                                                class="fas fa-pencil-alt"></i></span></a>
+
+                                                <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                    <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
+                                                                class="fas fa-eraser"></i></span></a>
 
 
-                                        @endif
-                                    </div>
-
-                                    <div class="row ">
-                                        <div class="col-3 align-self-center img_profil ">
-                                            <img class="img-fluid rounded-circle shadow" style="margin:20px;"
-                                                 src="{{asset($user->imgprofil)}}" alt="Image de profil">
+                                            @endif
                                         </div>
-                                        <div class="col-9">
-                                            <div class="card-body">
 
-                                                <div class="card-title font-weight-bold">{{ $publication->title }}</div>
-                                                <div class="card-text small">{!! $publication->content !!}</div>
+                                        <div class="row ">
+                                            <div class="col-3 align-self-center img_profil ">
+                                                <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                                     src="{{asset($user->imgprofil)}}" alt="Image de profil">
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="card-body">
+
+                                                    <div class="card-title font-weight-bold">{{ $publication->title }}</div>
+                                                    <div class="card-text small">{!! $publication->content !!}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer text-right">
-                                        <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
+                                        <div class="card-footer text-right">
+                                            <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
 
-                                        <i class="far fa-heart"></i>
+                                            <i class="far fa-heart"></i>
 
-                                        <a href="#" data-toggle="modal"
-                                           data-target="#exampleModal{{ $publication->id }}"><i
-                                                    class="far fa-comment"></i></a>
-                                        {{ $publication->comment->count() }}
-                                        @include('components.Modal.modalComment')
+                                            <a href="#" data-toggle="modal"
+                                               data-target="#exampleModal{{ $publication->id }}"><i
+                                                        class="far fa-comment"></i></a>
+                                            {{ $publication->comment->count() }}
+                                            @include('components.Modal.modalComment')
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="col-10 mt-3 mb-2">
-                                <div class="card shadow">
-                                    <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
-                                    <div class="card-header text-right" style="padding:0;">
-                                        @if ($user->id == $userAuth->id)
-
-                                            <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
-                                                <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i class="fas fa-eraser"></i></span></a>
-                                        @endif
-                                    </div>
-                                    <img class="card-img-top img-fluid"
-                                         src="{{asset('/storage/'.$publication->imgpublication)}}"
-                                         alt="Image card top" style="height: 220px;">
-                                    <div class="card-body">
-                                        <!--Social shares button-->
-                                        <p class="text-success">
-                                            @if( $publication->price == '0')
-                                                Tutoriel gratuit
-                                            @else
-                                                En vente pour seulement <b>{{ $publication->price }}€</b>
+                            @else
+                                <div class="col-10 mt-3 mb-2">
+                                    <div class="card shadow">
+                                        <div class="ribbon-{{ $publication->category->name }}">
+                                            <span>{{ $publication->category->name }}</span></div>
+                                        <div class="card-header text-right" style="padding:0;">
+                                            @if ($user->id == $userAuth->id)
+                                                <a href="{{route('update-publication-tutorial',['slug' => $publication->slug])}}">
+                                                    <span name="delete" style="color:#80A1C1;  margin-right: 10px;"><i
+                                                                class="fas fa-pencil-alt"></i></span></a>
+                                                <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
+                                                    <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
+                                                                class="fas fa-eraser"></i></span></a>
                                             @endif
-                                        </p>
-                                        <h3 class="card-title">
-                                            {{ $publication->title }}
-                                        </h3>
+                                        </div>
+                                        <img class="card-img-top img-fluid"
+                                             src="{{asset('/storage/'.$publication->imgpublication)}}"
+                                             alt="Image card top" style="height: 220px;">
+                                        <div class="card-body">
+                                            <!--Social shares button-->
+                                            <p class="text-success">
+                                                @if( $publication->price == '0')
+                                                    Tutoriel gratuit
+                                                @else
+                                                    En vente pour seulement <b>{{ $publication->price }}€</b>
+                                                @endif
+                                            </p>
+                                            <h3 class="card-title">
+                                                {{ $publication->title }}
+                                            </h3>
 
 
-                                        <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
-                                    </div>
-                                    <div class="card-footer small">
-                                        <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                        <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                            <p class="card-text small"
+                                               id="affichage_post">{{ $publication->description }}</p>
+                                        </div>
+                                        <div class="card-footer small">
+                                            <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
+                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
+                                               class="btn btn-light float-right">Lire <i
+                                                        class="fa fa-chevron-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
 
-                </div>
+                    </div>
                 @endisset
 
                 @empty($userAuth)
@@ -190,7 +216,8 @@
                             @if ($publication->type == 'post')
                                 <div class="col-10 mt-3 mb-2">
                                     <div class="card shadow">
-                                        <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="ribbon-{{ $publication->category->name }}">
+                                            <span>{{ $publication->category->name }}</span></div>
 
                                         <div class="card-header text-right" style="padding:0;">
 
@@ -227,7 +254,8 @@
                             @else
                                 <div class="col-10 mt-3 mb-2">
                                     <div class="card shadow">
-                                        <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
+                                        <div class="ribbon-{{ $publication->category->name }}">
+                                            <span>{{ $publication->category->name }}</span></div>
                                         <div class="card-header text-right" style="padding:0;">
 
                                         </div>
@@ -248,11 +276,14 @@
                                             </h3>
 
 
-                                            <p class="card-text small" id="affichage_post">{{ $publication->description }}</p>
+                                            <p class="card-text small"
+                                               id="affichage_post">{{ $publication->description }}</p>
                                         </div>
                                         <div class="card-footer small">
                                             <span class="float-left"> Ecrit le : {{ $publication->created_at->format('d/m/Y') }}</span>
-                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}" class="btn btn-light float-right">Lire <i class="fa fa-chevron-right"></i></a>
+                                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}"
+                                               class="btn btn-light float-right">Lire <i
+                                                        class="fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

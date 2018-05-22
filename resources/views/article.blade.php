@@ -159,11 +159,20 @@
                                 {{ $tuto->user->description }}
                             </p>
                             <p class="small border-top mt-2 pt-2">
-                                <i class="fas fa-pencil-alt"></i>
-                                <span class="ml-2"><b>{{ $tuto->user->comment->count() }}</b> Commentaire(s)</span>
-                                <br>
-                                <i class="far fa-play-circle"></i>
-                                <span class="ml-2"><b>{{ $tuto->user->tutorial->count() }}</b> Tutoriel(s)</span>
+                            <div class="row mt-3 mb-3">
+                                <div class="text-info text-center col-4">
+                                    <i class="far fa-comment-alt" style="font-size: 2em;"></i><br>
+                                    <span class="small">{{ $tuto->user->comment->count() }} com's</span>
+                                </div>
+                                <div class="text-danger text-center col-4">
+                                    <i class="far fa-file" style="font-size: 2em;"></i><br>
+                                    <span class="small">{{ $tuto->user->post->count() }} posts</span>
+                                </div>
+                                <div class="text-success text-center col-4">
+                                    <i class="far fa-clipboard" style="font-size: 2em;"></i><br>
+                                    <span class="small">{{ $tuto->user->tutorial->count() }} tutos</span>
+                                </div>
+                            </div>
                             </p>
                         </div>
                     </div>
