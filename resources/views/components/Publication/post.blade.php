@@ -13,7 +13,7 @@
                             <h4><b>{{$post->title}}</b></h4>
                         </div>
                         <div class="card-text small">
-                            {{ str_limit($post->content, $limit = 200, $end = '...')}}
+                            {!! str_limit($post->content, $limit = 200, $end = '...') !!}
 
                         </div>
                     </div>
