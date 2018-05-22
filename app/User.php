@@ -162,6 +162,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Message', 'from_user_id')
             ->where('read_at', '=', null);
+
     }
 
     public function unreadMessage()

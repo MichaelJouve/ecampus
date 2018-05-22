@@ -23,9 +23,9 @@
                 <td>{{ $utilisateur->name }}</td>
                 <td>{{ $utilisateur->firstname }}</td>
                 <td>{{ $utilisateur->email }}</td>
-                <td class="font-weight-bold">{{ $utilisateur->role }}</td>
+                <td class="font-weight-bold">{{ $utilisateur->roles[0]->name }}</td>
                 <td>{{ $utilisateur->created_at->format('d.m.Y') }}</td>
-                <td><a href="">Modifier</a></td>
+                <td><a href="{{route('admin-change', ['slug' => $utilisateur->slug])}}">Modifier</a></td>
                 <td><a href="">Supprimer</a></td>
             </tr>
             </tbody>

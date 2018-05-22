@@ -13,6 +13,8 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 //Administration
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('administration');
+    Route::get('/membres/change/{slug}', 'AdminController@changeInfosMembre')->name('admin-change');
+    Route::post('/membres/update/{slug}', 'AdminController@adminUpdate')->name('admin-update');
     Route::get('/membres', 'AdminController@gestionMembres')->name('admin-membres');
     Route::get('/posts', 'AdminController@gestionPosts')->name('admin-posts');
     Route::get('/tutoriels', 'AdminController@gestionTutoriels')->name('admin.tutoriels');
