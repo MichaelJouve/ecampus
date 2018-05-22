@@ -82,7 +82,7 @@
                 toolbar: [
                     [{header: [1, 2, 3, false]}],
 
-                    ['bold', 'italic', 'underline', 'strike','link', 'image'],        // toggled buttons
+                    ['bold', 'italic', 'underline', 'strike','link'],        // toggled buttons
                     ['code-block'],
 
 

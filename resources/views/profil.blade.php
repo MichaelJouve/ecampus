@@ -113,9 +113,10 @@
                                         @endif
                                     </div>
 
-                                    <div class="row ">
-                                        <div class="col-3 align-self-center img_profil ">
-                                            <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                    <div class="row">
+                                        <div class="col-3 img_profil justify-content-center">
+
+                                        <img class="img-fluid rounded-circle shadow" style="margin:20px;"
                                                  src="{{asset($user->imgprofil)}}" alt="Image de profil">
                                         </div>
                                         <div class="col-9">
@@ -192,15 +193,12 @@
                                     <div class="card shadow">
                                         <div class="ribbon-{{ $publication->category->name }}"><span>{{ $publication->category->name }}</span></div>
 
-                                        <div class="card-header text-right" style="padding:0;">
 
-                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 img_profil justify-content-center">
 
-                                        <div class="row ">
-                                            <div class="col-3 align-self-center img_profil ">
-                                                <img class="img-fluid rounded-circle" style="margin:20px;"
-                                                     src="{{asset($publication->user->imgprofil)}}"
-                                                     alt="Image de profil">
+                                                <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                                     src="{{asset($user->imgprofil)}}" alt="Image de profil">
                                             </div>
                                             <div class="col-9">
                                                 <div class="card-body">

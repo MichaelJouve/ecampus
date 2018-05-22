@@ -7,8 +7,11 @@
                     {{$tuto->category->name}}
                 </span>
             </div>
-            <img class="card-img-top" src="{{asset('storage/imgpublication-crop/'.$tuto->imgpublication)}}"
-                 alt="{{$tuto->image}}">
+            <a href="{{route('front-tutorial',['slug' => $tuto->slug])}}">
+
+                <img class="card-img-top" src="{{asset('storage/imgpublication-crop/'.$tuto->imgpublication)}}"
+                     alt="{{$tuto->image}}">
+            </a>
             <div class="card-body">
                 <div class="row">
                     <p class="card-title font-weight-bold col-8">
