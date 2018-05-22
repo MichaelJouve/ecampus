@@ -152,8 +152,8 @@
                                         @endif
                                     </div>
                                     <img class="card-img-top img-fluid"
-                                         src="{{asset('/storage/'.$publication->imgpublication)}}"
-                                         alt="Image card top" style="height: 220px;">
+                                         src="{{asset('/storage/imgpublication-crop/'.$publication->imgpublication)}}"
+                                         alt="Image card top" style="height: 380px;">
                                     <div class="card-body">
                                         <!--Social shares button-->
                                         <p class="text-success">
@@ -232,7 +232,7 @@
 
                                         </div>
                                         <img class="card-img-top img-fluid"
-                                             src="{{asset('/storage/'.$publication->imgpublication)}}"
+                                             src="{{asset('/storage/imgpublication-crop/'.$publication->imgpublication)}}"
                                              alt="Image card top" style="height: 220px;">
                                         <div class="card-body">
                                             <!--Social shares button-->

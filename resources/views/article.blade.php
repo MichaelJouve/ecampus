@@ -46,7 +46,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <img class="img_bandeau" src="{{asset('storage/'.$tuto->imgpublication)}}" alt="Image de l'article">
+                    <img class="img_bandeau" src="{{asset('storage/imgpublication-resize/'.$tuto->imgpublication)}}" alt="Image de l'article">
                 </div>
             </div>
         </div>

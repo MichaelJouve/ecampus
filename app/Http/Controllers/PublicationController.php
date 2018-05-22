@@ -83,6 +83,10 @@ class PublicationController extends Controller
         return redirect()->route('user-profil', $slug);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeTuto(Request $request)
     {
 
@@ -91,7 +95,7 @@ class PublicationController extends Controller
         foreach ($tableauDImg['1'] as $i) {
             $request['content'] = htmlspecialchars_decode(str_replace($i, $i . ' class="img-fluid"', $request['content']));
         }
-
+        
         $user = Auth::user();
         $slug = $user->slug;
 
@@ -113,50 +117,60 @@ class PublicationController extends Controller
             $inputs['price'] = 0;
         }
 
-
         if ($request->hasFile('imgpublication')) {
 
-            if ($request->file('imgpublication')->isValid()) {
+            //$imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
+            //$inputs['imgpublication'] = $imgpublication;
+            $inputs['user_id'] = $user->id;
 
-                // open an image file
-                $img = Image::make($request->imgpublication->path());
+            // open an image file
+            $imgResize = Image::make($request->imgpublication->path());
+            $imgOrigin = Image::make($request->imgpublication->path());
+            $imgCrop = Image::make($request->imgpublication->path());
 
-                // True colors
+            // True colors
 
-                $img->limitColors(null);
+            $imgResize->limitColors(null);
 
-                // Resize 300x300
+            // Resize 300x300
 
-                $img->resize(600, 400, function ($constraint) {
+            $imgResize->resize(680, 380, function ($constraint) {
 
-                    $constraint->aspectRatio();
+                $constraint->aspectRatio();
 
-                });
+            });
 
-                // Blank background if canvas
+            $imgCrop->crop(680, 380);
 
-                $img->resizeCanvas(600, 400, 'center', false, '#ffffff');
+            // Blank background if canvas
 
-                // je force la photo en jpg
-                $img->stream('jpg', 90);
+            $imgResize->resizeCanvas(680, 380, 'center', false, '#fff');
+
+            // je force la photo en jpg
+            $imgResize->stream('jpg', 90);
+            $imgOrigin->stream('jpg', 100);
+            $imgCrop->stream('jpg', 100);
 
 
-                //je lenregistre dans public / img-user de notre storage
-                Storage::disk('public')->put('imgpublication/' . $img->filename . '.jpg', $img);
+            //je lenregistre dans public / img-user de notre storage
+            Storage::disk('public')->put('imgpublication-resize/' . $imgResize->filename . '.jpg', $imgResize);
+            Storage::disk('public')->put('imgpublication-origin/' . $imgOrigin->filename . '.jpg', $imgOrigin);
+            Storage::disk('public')->put('imgpublication-crop/' . $imgCrop->filename . '.jpg', $imgCrop);
 
-                // MAJ user
-                $inputs['imgpublication'] = 'imgpublication/' . $img->filename . '.jpg';
+            // MAJ request
+            $inputs['imgpublication'] = $imgResize->filename . '.jpg';
 
-                $inputs['user_id'] = $user->id;
-                Publication::create($inputs);
 
-            } else {
+            Publication::create($inputs);
 
-                $p = Publication::create($inputs);
-                $p->imgpublication = 'images/Tutos/' . $p->category->name . '.jpg';
-                $p->save();
 
-            }
+
+        } else {
+
+            $p = Publication::create($inputs);
+            $p->imgpublication = 'images/Tutos/' . $p->category->name . '.jpg';
+            $p->save();
+
         }
         //Un petit message de succés ...
         session()->flash('message', 'Votre tutoriel a bien été créé !');
@@ -169,8 +183,7 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public
-    function show($name)
+    public function show($name)
     {
         $category = Category::with('tuto')->where('name', $name)->firstOrFail();
 
@@ -184,8 +197,7 @@ class PublicationController extends Controller
         return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestsTutorials' => $bestsTutorials, 'lastTutorials' => $lastTutorials]);
     }
 
-    public
-    function showAll($name)
+    public function showAll($name)
     {
         $category = Category::where('name', $name)->firstOrFail();
         $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->where('category_id', $category->id)->paginate();
@@ -193,8 +205,7 @@ class PublicationController extends Controller
         return view('publication.categoryalltutorial', ['category' => $category, 'tutorials' => $tutorials]);
     }
 
-    public
-    function showTutorial($slug)
+    public function showTutorial($slug)
     {
         $user = Auth::user();
         $userId = $user->id;
@@ -236,16 +247,14 @@ class PublicationController extends Controller
         return view('article', ['tuto' => $tuto, 'rateUser' => $rateUser, 'ratesPublication' => $ratesPublication, 'rateGlobal' => $rateGlobal]);
     }
 
-    public
-    function showPost($slug)
+    public function showPost($slug)
     {
         $post = Publication::where('slug', $slug)->firstOrFail();
 
         return view('article', ['post' => $post]);
     }
 
-    public
-    function showpublication($slug)
+    public function showpublication($slug)
     {
         $publication = Publication::where('slug', $slug)
             ->with('user')
@@ -255,8 +264,7 @@ class PublicationController extends Controller
     }
 
 
-    public
-    function allTutorials()
+    public function allTutorials()
     {
         if (request()->has('price')) {
 
@@ -290,8 +298,7 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public
-    function edit(Category $category)
+    public function edit(Category $category)
     {
         //
     }
@@ -303,8 +310,7 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public
-    function update(Request $request, Category $category)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -316,8 +322,7 @@ class PublicationController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public
-    function softDelete($slug)
+    public function softDelete($slug)
     {
         $publication = Publication::findBySlugOrFail($slug);
         $publication->delete();
@@ -327,8 +332,7 @@ class PublicationController extends Controller
         return redirect()->route('user-profil');
     }
 
-    public
-    function buyTutorial($slug)
+    public function buyTutorial($slug)
     {
         $publication = Publication::findBySlugOrFail($slug);
         $user = Auth::user();

@@ -21,7 +21,7 @@
             <div class="col-md-12 text-center">
                 <hr/>
                 <p>{{ $publication->description }}</p>
-                <img class="w-50 rounded shadow" src="{{asset('storage/'.$publication->imgpublication)}}">
+                <img class="w-50 rounded shadow" src="{{asset('storage/imgpublication-resize/'.$publication->imgpublication)}}">
             </div>
             <div class="col-md-12 mt-5">
                 <div class="row">
