@@ -100,7 +100,7 @@ class PublicationController extends Controller
         foreach ($tableauDImg['1'] as $i) {
             $request['content'] = htmlspecialchars_decode(str_replace($i, $i . ' class="img-fluid"', $request['content']));
         }
-        
+
         $user = Auth::user();
         $slug = $user->slug;
 
@@ -308,9 +308,28 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function editPublication($slug)
     {
-        //
+        $categories = Category::all();
+        $publication = Publication::where('slug', $slug)
+            ->with('user')
+            ->firstOrFail();
+        $decodeContent = html_entity_decode($publication->content);
+
+
+        return view('publication.update.update-tutorial', ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
+    }
+
+    public function editPost($slug)
+    {
+        $categories = Category::all();
+        $publication = Publication::where('slug', $slug)
+            ->with('user')
+            ->firstOrFail();
+        $decodeContent = html_entity_decode($publication->content);
+
+
+        return view('publication.update.update-post', ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
     }
 
     /**
@@ -320,9 +339,81 @@ class PublicationController extends Controller
      * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $slug)
     {
-        //
+        $publication = Publication::findBySlugOrFail($slug);
+        $inputs['imgpublication'] = $publication->imgpublication;
+        $inputs = $request->all();
+
+        if ($publication->type === 'post') {
+            $validateData = $request->validate([
+                'category_id' => 'integer',
+                'title' => 'string|max:191',
+            ]);
+
+            $publication->update($validateData);
+        } else {
+
+            if ($request->hasFile('imgpublication')) {
+
+                // open an image file
+                $imgResize = Image::make($request->imgpublication->path());
+                $imgOrigin = Image::make($request->imgpublication->path());
+                $imgCrop = Image::make($request->imgpublication->path());
+
+                // True colors
+
+                $imgResize->limitColors(null);
+
+                // Resize 300x300
+
+                $imgResize->resize(680, 380, function ($constraint) {
+
+                    $constraint->aspectRatio();
+
+                });
+
+                $imgCrop->crop(680, 380);
+
+                // Blank background if canvas
+
+                $imgResize->resizeCanvas(680, 380, 'center', false, '#fff');
+
+                // je force la photo en jpg
+                $imgResize->stream('jpg', 90);
+                $imgOrigin->stream('jpg', 100);
+                $imgCrop->stream('jpg', 100);
+
+
+                //je lenregistre dans public / img-user de notre storage
+                Storage::disk('public')->put('imgpublication-resize/' . $imgResize->filename . '.jpg', $imgResize);
+                Storage::disk('public')->put('imgpublication-origin/' . $imgOrigin->filename . '.jpg', $imgOrigin);
+                Storage::disk('public')->put('imgpublication-crop/' . $imgCrop->filename . '.jpg', $imgCrop);
+
+                // MAJ request
+                $inputs['imgpublication'] = $imgResize->filename . '.jpg';
+
+                $publication->update($inputs);
+
+            }else{
+                $validateData['imgpublication'] = $img;
+            }
+
+            $validateData = $request->validate([
+                'category_id' => 'integer',
+                'title' => 'string|max:191',
+                'description' => 'max:255',
+                'price' => 'integer',
+                'required' => 'string|max:191',
+                'goals' => 'string|max:191',
+            ]);
+
+
+            $publication->update($validateData);
+
+        }
+
+        return redirect()->route('user-profil')->with('message', 'Modification éfféctué !');
     }
 
     /**

@@ -30,17 +30,34 @@
                     </div>
                     <div class="col-md-7 text-left border-left small">
                         <p>{{ $publication->user->firstname }} {{ $publication->user->name }}<br>
-                        <p><i class="fas fa-quote-left"></i>Description : <br>
+
                         <p class="overflow-200">
-                            {{ $publication->user->description }}
-                        </p><i class="fas fa-quote-right"></i></p>
+                            @if(!$publication->user->description)
+                                <i class="fas fa-quote-left"></i>
+                                <em>Aucune déscription n'a été ajouté pour cet utilisateur...</em>
+                                <i class="fas fa-quote-right"></i>
+                            @else
+                                <i class="fas fa-quote-left"></i>
+                                {{ $publication->user->description }}
+                                <i class="fas fa-quote-right"></i>
+                            @endif
+                        </p>
                     </div>
                     <div class="col-md-2 small">
-                        <h5 class="border-bottom">Statistiques membre</h5>
-                        <p>Nombre de commentaire : <b>{{ $publication->user->comment->count() }}</b><br>
-                            Nombre de post : <b>{{ $publication->user->post->count() }}</b><br>
-                            Nombre de tutoriels : <b>{{ $publication->user->tutorial->count() }}</b>
-                        </p>
+                        <div class="row mt-3 mb-3">
+                            <div class="text-info text-center col-4">
+                                <i class="far fa-comment-alt" style="font-size: 2em;"></i><br>
+                                <span class="small">{{ $publication->user->comment->count() }} com's</span>
+                            </div>
+                            <div class="text-danger text-center col-4">
+                                <i class="far fa-file" style="font-size: 2em;"></i><br>
+                                <span class="small">{{ $publication->user->post->count() }} posts</span>
+                            </div>
+                            <div class="text-success text-center col-4">
+                                <i class="far fa-clipboard" style="font-size: 2em;"></i><br>
+                                <span class="small">{{ $publication->user->tutorial->count() }} tutos</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
