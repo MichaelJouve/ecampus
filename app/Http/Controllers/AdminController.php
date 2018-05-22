@@ -95,6 +95,7 @@ class AdminController extends Controller
             'paypal' => 'string|max:200|nullable',
             'birthday' => 'date|nullable',
         ]);
+
         $validateData['name'] = strtoupper($validateData['name']);
         $validateData['firstname'] = ucfirst($validateData['firstname']);
 
