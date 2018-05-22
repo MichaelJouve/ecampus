@@ -34,12 +34,12 @@
 
                                 <input id="name" type="text"
                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                       name="name" value="{{strtoupper($user->name)}}">
+                                       name="name" value="{{$user->name}}">
 
                                 <h5>Prenom</h5>
                                 <input id="firstname" type="text"
                                        class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}"
-                                       name="firstname" value="{{ucfirst($user->firstname)}}">
+                                       name="firstname" value="{{$user->firstname}}">
 
 
                                 <h5>Date de Naissance</h5>
@@ -99,7 +99,7 @@
                             </div>
                             <div class="card-footer">
                                 <input type="file" name="avatar" id="avatar">
-                                <button class="btn btn-info float-right" type="submit">Modifier</button>
+                                <button class="btn btn-info float-right" value="{{public_path($user->imgprofil)}}" type="submit">Modifier</button>
                             </div>
                         </form>
                     </div>
