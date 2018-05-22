@@ -123,7 +123,7 @@ class UserController extends Controller
             'paypal' => 'string|max:200|nullable',
             'birthday' => 'date|nullable',
         ]);
-        $validateData['name'] = strtoupper($validateData['name']);
+        $validateData['name'] = ucfirst($validateData['name']);
         $validateData['firstname'] = ucfirst($validateData['firstname']);
 
         Auth::user()->update($validateData);

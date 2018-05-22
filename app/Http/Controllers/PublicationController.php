@@ -54,6 +54,11 @@ class PublicationController extends Controller
         return view('addPost', ['categories' => $categories, 'user' => $user]);
     }
 
+    /**
+     * store post into publication
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storePost(Request $request)
     {
 
@@ -254,6 +259,11 @@ class PublicationController extends Controller
         return view('article', ['post' => $post]);
     }
 
+    /**
+     * Show publication page
+     * @param $slug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showpublication($slug)
     {
         $publication = Publication::where('slug', $slug)
