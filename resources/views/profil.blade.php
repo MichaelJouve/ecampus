@@ -67,17 +67,9 @@
 
                 @isset($userAuth)
                     @if($userAuth->subscription !== 1)
-                        <div>
-                            <a href="{{route('user-sub')}}">
-                                <button type="submit" class="btn btn-dark">Abonnez-vous ! C'est gratuit pour le moment </button>
-                            </a>
-                        </div>
+                            <a href="{{route('user-sub')}}" class="form-control btn btn-dark">Abonnez-vous !</a>
                     @else
-                        <div>
-                            <a href="{{route('user-unsub')}}">
-                                <button type="submit" class="btn btn-outline-dark">Désabonnez-vous :(</button>
-                            </a>
-                        </div>
+                            <a href="{{route('user-unsub')}}" class="form-control btn btn-outline-dark">Désabonnez-vous :(</a>
                     @endif
                 @endisset
                 @empty($userAuth)
