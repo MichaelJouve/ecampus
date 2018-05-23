@@ -12,10 +12,10 @@
                 </div>
                 @if($user->id !== Auth::id())
                 <div class="mt-3">
-                    <p class="text-center small">
-                        <a href="{{URL::route('user-profil-message')}}"><i class="far fa-envelope-open"
+                    <p class="text-center">
+                        <a class="btn" href="{{URL::route('user-profil-message')}}"><i class="far fa-envelope-open"
                                                                            style="font-size: 1.5em; margin:0 5px;"></i>
-                        <span class="text-primary">Contacter {{ $user->firstname }} par message</span>
+                        <span class="small text-primary">Contactez {{ $user->firstname }} par message</span>
                         </a>
                     </p>
                 </div>
