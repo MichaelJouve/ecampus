@@ -43,6 +43,8 @@
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-comments') }}" class="nav-link">Gestion des commentaires</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="{{ URL::route('admin-request') }}" class="nav-link">Gestion des requêtes</a></li>
                 <hr style="background: #e3e3e3;">
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{route('admin-marketing')}}" class="nav-link">Gestion marketing</a></li>
+                <li class="nav-item bg-light w-100 mt-2"><a href="{{route('admin-comptable')}}" class="nav-link">Gestion comptable</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="" class="nav-link">Gestion des CGU</a></li>
                 <li class="nav-item bg-light w-100 mt-2"><a href="" class="nav-link">Gestion mentions légales</a></li>
             </ul>

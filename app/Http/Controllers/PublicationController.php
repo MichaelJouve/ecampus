@@ -205,7 +205,11 @@ class PublicationController extends Controller
     public function showAll($name)
     {
         $category = Category::where('name', $name)->firstOrFail();
-        $tutorials = Publication::with('category', 'user', 'consultation')->withCount('comment')->tuto()->where('category_id', $category->id)->paginate();
+        $tutorials = Publication::with('category', 'user', 'consultation')
+            ->withCount('comment')
+            ->tuto()
+            ->where('category_id', $category->id)
+            ->paginate();
 
         return view('publication.categoryalltutorial', ['category' => $category, 'tutorials' => $tutorials]);
     }
@@ -228,7 +232,9 @@ class PublicationController extends Controller
             }])
             ->firstOrFail();
 
-        $rateUser = Rating::where('publication_id', $tuto->id)->where('user_id', $userId)->first();
+        $rateUser = Rating::where('publication_id', $tuto->id)
+            ->where('user_id', $userId)
+            ->first();
 
         $ratesPublication = Rating::where('publication_id', $tuto->id)->get();
 
@@ -249,7 +255,14 @@ class PublicationController extends Controller
             Consultation::find($consultation->id)->increment('occurrences');
         }
 
-        return view('article', ['tuto' => $tuto, 'rateUser' => $rateUser, 'ratesPublication' => $ratesPublication, 'rateGlobal' => $rateGlobal]);
+        return view('article',
+        [
+            'user' => $user,
+            'tuto' => $tuto,
+            'rateUser' => $rateUser,
+            'ratesPublication' => $ratesPublication,
+            'rateGlobal' => $rateGlobal
+        ]);
     }
 
     public function showPost($slug)
@@ -436,10 +449,11 @@ class PublicationController extends Controller
     public function buyTutorial($slug)
     {
         $publication = Publication::findBySlugOrFail($slug);
-        $user = Auth::user();
+        $publicationId = $publication->id;
+        $price = $publication->price;
+        $userId = Auth::id();
 
-        $publication->userOwner()->attach($user->id);
-
+        Bought::updateOrCreate(['user_id' => $userId, 'publi_id' => $publicationId, 'price' => $price]);
 
         return back();
     }

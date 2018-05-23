@@ -12,16 +12,47 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $role_writer = new Role();
-        $role_writer->name = 'writer';
-        $role_writer->save();
 
-        $role_admin = new Role();
-        $role_admin->name = 'admin';
-        $role_admin->save();
+        /**
+         * Basic role, read, buy and comment publication
+         */
+        $role = new Role();
+        $role->name = 'writer';
+        $role->save();
 
-        $role_admin = new Role();
-        $role_admin->name = 'superAdmin';
-        $role_admin->save();
+        /**
+         * Subscriber role, 19,00 €, full access
+         */
+        $role = new Role();
+        $role->name = 'subscriber';
+        $role->save();
+
+        /**
+         * Publication, comments mannager
+         */
+        $role = new Role();
+        $role->name = 'admin';
+        $role->save();
+
+        /**
+         * Bought mannager
+         */
+        $role = new Role();
+        $role->name = 'admin accounting';
+        $role->save();
+
+        /**
+         * Pictures, pub mannager
+         */
+        $role = new Role();
+        $role->name = 'admin marketing';
+        $role->save();
+
+        /**
+         * Role mannager and all rights
+         */
+        $role = new Role();
+        $role->name = 'superAdmin';
+        $role->save();
     }
 }

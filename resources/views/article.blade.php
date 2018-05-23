@@ -129,6 +129,12 @@
                         <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}">
                             <button class="btn btn-success">Voir le tutoriel</button>
                         </a>
+                    @elseif($user->subscription === 1)
+                        <p class="text-center text-success lead font-weight-bold"> Compte abonné ! </p>
+
+                        <a href="{{ URL::route('affiche-publication', ['slug' => $tuto->slug]) }}">
+                            <button class="btn btn-success">Voir le tutoriel</button>
+                        </a>
                     @else
                         <p class="text-center text-success lead font-weight-bold">
                             <i class="fas fa-shopping-cart"></i>

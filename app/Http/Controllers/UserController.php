@@ -238,8 +238,8 @@ class UserController extends Controller
         $user->load('unreadMessage');
 
 
-        $users = User::where('id','!=', $userAuth->id)
-            ->withCount(['unreadMessageByUser' => function ($query) use($userId) {
+        $users = User::where('id', '!=', $userAuth->id)
+            ->withCount(['unreadMessageByUser' => function ($query) use ($userId) {
                 $query->where('to_user_id', $userId);
             }])->get();
 
@@ -351,6 +351,26 @@ class UserController extends Controller
             return view('bought.categoryAllBought', ['category' => $category, 'user' => $user]);
 
         }
+    }
 
+    public function subscription()
+    {
+        $user = Auth::user();
+        $user->subscription = 1;
+        $user->save();
+
+
+        session()->flash('message', 'Bravo, Vous êtes maintenant abonné');
+        return redirect()->route('user-profil');
+    }
+
+    public function unsubscription()
+    {
+        $user = Auth::user();
+        $user->subscription = 0;
+        $user->save();
+
+        session()->flash('message', 'Votre abonnement a été désactivé');
+        return redirect()->route('user-profil');
     }
 }
