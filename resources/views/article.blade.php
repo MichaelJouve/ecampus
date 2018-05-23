@@ -92,8 +92,14 @@
                                         <span class="font-weight-light small">{{ $comment->created_at->format('d/m/Y \à\ H:i') }}</span>
                                     </p>
                                 </div>
-                                <div class="col-md-4 text-right">
-                                    <p class="small"> {{ $comment->user->email }}</p>
+                                <div class="col-md-5 text-right">
+                                    <p>
+                                    @if($comment->user->id == Auth::user()->id)
+                                            <a href="{{ URL::route('comment-delete', [ 'id' => $comment->id]) }}">
+                                                <i class="fas fa-eraser text-danger"></i>
+                                            </a>
+                                    @endif
+                                    </p>
                                 </div>
                             </div>
                             <div class="row ml-5 mt-2">
