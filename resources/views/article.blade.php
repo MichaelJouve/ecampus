@@ -151,7 +151,7 @@
                         </a>
                         <div class="card-body">
                             <div class="card-title">
-                                <a href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
+                                <a class="btn" href="{{route('other-profil',['slug' => $tuto->user->slug])}}">
                                     {{ $tuto->user->name }} {{ $tuto->user->firstname }}
                                 </a>
                             </div>

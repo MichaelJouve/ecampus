@@ -396,8 +396,6 @@ class PublicationController extends Controller
 
                 $publication->update($inputs);
 
-            }else{
-                $validateData['imgpublication'] = $img;
             }
 
             $validateData = $request->validate([
@@ -415,7 +413,7 @@ class PublicationController extends Controller
 
         }
 
-        return redirect()->route('user-profil')->with('message', 'Modification éfféctué !');
+        return redirect()->route('user-profil')->with('message', 'Modification effectuée !');
     }
 
     /**

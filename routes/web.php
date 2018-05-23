@@ -17,7 +17,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/membres/update/{slug}', 'AdminController@adminUpdate')->name('admin-update');
     Route::get('/membres', 'AdminController@gestionMembres')->name('admin-membres');
     Route::get('/posts', 'AdminController@gestionPosts')->name('admin-posts');
+    Route::get('/posts/delete/{slug}', 'AdminController@softDeletePost')->name('admin-delete-post');
+    Route::get('/posts/change/{slug}', 'AdminController@viewChangePost')->name('admin-view-change-post');
+    Route::post('/posts/change/{slug}', 'AdminController@updatePost')->name('admin-update-publication');
     Route::get('/tutoriels', 'AdminController@gestionTutoriels')->name('admin.tutoriels');
+    Route::get('/tutoriels/{slug}', 'AdminController@viewChangeTuto')->name('admin-view-change-tuto');
+    Route::post('/tutoriels/{slug}', 'AdminController@updatePost')->name('admin-update-tutoriel');
     Route::get('/comments', 'AdminController@gestionComments')->name('admin-comments');
     Route::get('/requests', 'AdminController@gestionContactRequest')->name('admin-request');
 });

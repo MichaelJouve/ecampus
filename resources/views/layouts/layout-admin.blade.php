@@ -8,13 +8,24 @@
     <title>Administration</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!-- Include Quill stylesheet -->
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <link rel="icon" type="image/png" href="{{URL::asset('images/favicon.ico')}}"/>
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
 </head>
 <body>
-
+@if (session()->has('message'))
+    <div class="message_alert text-center">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('message') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+@endif
 <div class="container-fluid">
     <div class="row bg-dark text-light">
         <div class="col-2 text-center pt-2 ">
@@ -55,15 +66,23 @@
 </div>
 
 
-<!-- SCRIPTS -->
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="{{asset('js/app.js')}}"></script>
 
 <script src="{{asset('js/all.js')}}"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+@stack('scripts_tuto')
+@stack('scripts_post_admin')
+@stack('ratingScript')
 </body>
 </html>

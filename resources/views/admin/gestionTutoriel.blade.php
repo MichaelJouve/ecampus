@@ -33,8 +33,8 @@
                 <td>{{ $tutorial->goals }}</td>
                 <td>{{ $tutorial->required }}</td>
                 <td>{{ $tutorial->created_at->format('d.m.Y') }}</td>
-                <td><a href="">Modifier</a></td>
-                <td><a href="">Supprimer</a></td>
+                <td><a href="{{route('admin-view-change-tuto', ['slug' => $tutorial->slug])}}">Modifier</a></td>
+                <td><a href="{{route('admin-delete-post', ['slug'=>$tutorial->slug])}}">Supprimer</a></td>
             </tr>
             </tbody>
         @endforeach
