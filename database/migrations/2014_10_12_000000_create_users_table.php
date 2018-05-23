@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->text('description')->nullable();
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
+            $table->boolean('subscription')->default(0);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

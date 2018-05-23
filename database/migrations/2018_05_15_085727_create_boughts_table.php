@@ -19,6 +19,7 @@ class CreateBoughtsTable extends Migration
             $table->unsignedInteger('publi_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('publi_id')->references('id')->on('publications');
+            $table->decimal('price', 8,2);
             $table->timestamps();
         });
     }

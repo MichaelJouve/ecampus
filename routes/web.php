@@ -20,6 +20,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/tutoriels', 'AdminController@gestionTutoriels')->name('admin.tutoriels');
     Route::get('/comments', 'AdminController@gestionComments')->name('admin-comments');
     Route::get('/requests', 'AdminController@gestionContactRequest')->name('admin-request');
+    Route::get('/comptable', 'AdminController@gestionComptable')->name('admin-comptable');
+    Route::get('/marketing', 'AdminController@gestionMarketing')->name('admin-marketing');
 });
 
 //Route for category
@@ -66,6 +68,8 @@ Route::prefix('profil')->group(function () {
     Route::get('/infos/', 'UserController@infos')->name('user-profil-infos');
     Route::get('/message/', 'UserController@message')->name('user-profil-message');
     Route::get('/preference/', 'UserController@preference')->name('user-profil-preference');
+    Route::get('/subscription', 'UserController@subscription')->name('user-sub');
+    Route::get('/unsubscription', 'UserController@unsubscription')->name('user-unsub');
     Route::get('/{slug}', 'UserController@otherProfil')->name('other-profil');
     Route::get('/follow/{slug}', 'FollowController@followUser')->name('follow');
     Route::get('/unfollow/{slug}', 'FollowController@unFollowUser')->name('unfollow');
