@@ -2,7 +2,7 @@
 
 @section('contenu')
     <!-- CONTENU -->
-    <div class="container-fluid bandeau-sombre pt-5 pb-5">
+    <div class="container-fluid bandeau-sombre pt-5 pb-5 shadow">
         <div class="container">
             <div class="row ">
                 <div class="col-md-8">
@@ -55,29 +55,29 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-9">
-                <div class="m-2 p-2">
-                    <h3>Descriptif du tutoriel - <b>{{ $tuto->title }}</b></h3>
-                    <p>{{$tuto->description}}</p>
+                <div class="p-2">
+                    <h3 class="text-secondary bg-light p-3">Descriptif du tutoriel - <b>{{ $tuto->title }}</b></h3>
+                    <p class="border-left p-2">{{$tuto->description}}</p>
                 </div>
-                <div class="p-2 m-2">
-                    <h2>Que vais-je apprendre dans ce tutoriel ?</h2>
-                    <ul class="col-md-6">
+                <div class="m-2">
+                    <h3 class="text-secondary bg-light p-3">Que vais-je apprendre dans ce tutoriel ?</h3>
+                    <ul class="col-md-6 border-left p-2">
                         <li><i class="fas fa-check"></i> {{ $tuto->goals }}</li>
                     </ul>
                 </div>
 
-                <div class="m-2 p-2">
-                    <h3>Connaissances obligatoires</h3>
-                    <ul class="col-md-6">
+                <div class="m-2">
+                    <h3 class="text-secondary bg-light p-3">Connaissances obligatoires</h3>
+                    <ul class="col-md-6 border-left p-2">
                         <li><i class="fas fa-check"></i> {{ $tuto->required }}</li>
                     </ul>
                 </div>
 
-                <img class="img-fluid text-center border" src="{{asset('images/bandeau_horizontal.gif')}}"
+                <img class="img-fluid border mt-4" src="{{asset('images/bandeau_horizontal.gif')}}"
                      alt="Pub Horizontal">
 
                 <div class="mt-5">
-                    <h3 class="border-bottom">Commentaire(s) de l'article</h3>
+                    <h3 class="border-bottom text-center">Commentaire(s) de l'article</h3>
                     @foreach($tuto->comment as $comment)
                         <div class="col-md-12 bg-light rounded p-3 mt-2">
                             <div class="row">
@@ -111,8 +111,7 @@
                     @endforeach
                     <form action="{{ route('tutorial-comment', ['slug' => $tuto->slug]) }}" method="post" class="mb-5">
                         @csrf
-                        <label for="content">Vous aussi donnez votre avis...</label>
-                        <textarea name="content" id="content" class="form-control" rows="5"
+                        <textarea name="content" id="content" class="form-control mt-2" rows="5"
                                   placeholder="Votre commentaire ici"></textarea>
                         <input type="submit" class="mt-2 btn btn-primary" value="Commenter">
                     </form>
@@ -121,7 +120,7 @@
 
             <!-- Descriptif tutoriel bandeau droite-->
             <div class="col-md-3 text-center">
-                <p class="text-secondary bg-light p-3">Tutoriel certifié par l'E-Campus</p>
+                <p class="text-secondary bg-light p-3 ">Tutoriel certifié par l'E-Campus</p>
 
                 @if($tuto->price == '0')
                     <p class="text-center text-success lead font-weight-bold"> Gratuit </p>

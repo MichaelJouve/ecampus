@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-md-3 p-0">
                         <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}">
-                            <img src="{{asset('storage/'.$tutorial->imgpublication)}}" alt="Image du tutoriel"
+                            <img src="{{asset('storage/imgpublication-resize/'.$tutorial->imgpublication)}}" alt="Image du tutoriel"
                                  style="width: 280px; height: 170px;" class="shadow">
                         </a>
                     </div>

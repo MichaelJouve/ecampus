@@ -19,8 +19,7 @@
                 </div>
             </div>
             <a class="link_to_card" href="{{route('front-tutorial',['slug' => $bestTutos->slug])}}">
-                <img class="card-img-top" src="{{asset('storage/'.$bestTutos->imgpublication)}}" alt="Card image cap" style="height: 130px">
-            </a>
+                <img class="img_bandeau" src="{{asset('storage/imgpublication-resize/'.$bestTutos->imgpublication)}}" alt="Image de l'article">            </a>
             <div class="card-body small">
                 <p class="card-text small">
                     {{ str_limit($bestTutos->description, $limit = 150, $end = '...') }}

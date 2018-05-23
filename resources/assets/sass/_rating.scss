@@ -1,10 +1,23 @@
-.star-rating {
-  line-height:32px;
-  font-size:1.25em;
+
+.star_rating input[type="radio"] {
+  display: none;
 }
 
-.star-rating .fa-star{color: $primary;}
+.star_rating  label {
+  color: grey;
+  font-size: 2.2em;
+}
 
-.star-rating .fa-star:hover{
-  cursor: pointer;
+.star_rating  .clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.star_rating label:hover,
+.star_rating label:hover ~ label {
+  color: orange;
+}
+
+.star_rating input[type="radio"]:checked ~ label {
+  color: orange;
 }

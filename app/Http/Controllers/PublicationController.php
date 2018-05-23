@@ -314,7 +314,8 @@ class PublicationController extends Controller
         $publication = Publication::where('slug', $slug)
             ->with('user')
             ->firstOrFail();
-        $decodeContent = html_entity_decode($publication->content);
+        $decodeContent = $publication->content ;
+
 
 
         return view('publication.update.update-tutorial', ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
@@ -326,7 +327,7 @@ class PublicationController extends Controller
         $publication = Publication::where('slug', $slug)
             ->with('user')
             ->firstOrFail();
-        $decodeContent = html_entity_decode($publication->content);
+        $decodeContent = $publication->content;
 
 
         return view('publication.update.update-post', ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
@@ -349,9 +350,12 @@ class PublicationController extends Controller
             $validateData = $request->validate([
                 'category_id' => 'integer',
                 'title' => 'string|max:191',
+                'content' => 'required'
             ]);
 
             $publication->update($validateData);
+
+
         } else {
 
             if ($request->hasFile('imgpublication')) {
@@ -395,8 +399,6 @@ class PublicationController extends Controller
 
                 $publication->update($inputs);
 
-            }else{
-                $validateData['imgpublication'] = $img;
             }
 
             $validateData = $request->validate([
@@ -404,8 +406,9 @@ class PublicationController extends Controller
                 'title' => 'string|max:191',
                 'description' => 'max:255',
                 'price' => 'integer',
-                'required' => 'string|max:191',
-                'goals' => 'string|max:191',
+                'required' => 'string|nullable|max:191',
+                'goals' => 'string|nullable|max:191',
+                'content' => 'required'
             ]);
 
 

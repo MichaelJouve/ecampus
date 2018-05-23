@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-md-4 text-right">
-                <img src="{{asset('storage/'.$bestTutorial->imgpublication)}}" alt="Image du cour" class="img_bandeau w-75">
+                <img class="img_bandeau" src="{{asset('storage/imgpublication-resize/'.$bestTutorial->imgpublication)}}" alt="Image de l'article">
             </div>
 
         </div>

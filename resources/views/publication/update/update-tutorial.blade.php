@@ -70,7 +70,7 @@
                         <label for="imgpublication">Image</label>
                             <div class="img-fluid text-center">
                                 <p>Votre image existante</p>
-                                <img class="img_bandeau w-50 border-dark mb-3" src="{{asset('storage/'.$publication->imgpublication)}}" alt="Image de l'article">
+                                <img class="img_bandeau w-50 border-dark mb-3" src="{{asset('storage/imgpublication-resize/'.$publication->imgpublication)}}" alt="Image de l'article">
                             </div>
                             <input type="file" name="imgpublication" class="form-control" id="imgpublication">
                         </div>
@@ -112,7 +112,9 @@
                             <label for="content">Contenu</label>
                             <input type="hidden" name="content"
                                    class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                            <div id="editor_tutorial"></div>
+                            <div id="editor_tutorial">
+                                {!! old('content') ? old('content') : $decodeContent !!}
+                            </div>
                             @if ($errors->has('content'))
                             <span class="invalid-feedback">
                                         <strong>{{ $errors->first('content') }}</strong>
@@ -159,8 +161,6 @@
         content.value = quill.root.innerHTML;
         console.log(content);
     });
-    quill.setContents([
-        {insert: "{{ strip_tags(old('content') ? old('content') : $decodeContent) }}"}
-    ]);
+
 </script>
 @endpush

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.21 on 2018-05-18 09:11:28.
+ * Generated for Laravel 5.6.23 on 2018-05-23 07:06:10.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1248,7 +1248,7 @@ namespace Illuminate\Support\Facades {
          * Set the shared instance of the container.
          *
          * @param \Illuminate\Contracts\Container\Container|null $container
-         * @return static 
+         * @return \Illuminate\Contracts\Container\Container|static 
          * @static 
          */ 
         public static function setInstance($container = null)
@@ -7923,7 +7923,7 @@ namespace Illuminate\Support\Facades {
          * Gets the mime type associated with the format.
          *
          * @param string $format The format
-         * @return string The associated mime type (null if not found)
+         * @return string|null The associated mime type (null if not found)
          * @static 
          */ 
         public static function getMimeType($format)
@@ -13270,7 +13270,7 @@ namespace  {
              * Add a basic where clause to the query.
              *
              * @param string|array|\Closure $column
-             * @param string $operator
+             * @param mixed $operator
              * @param mixed $value
              * @param string $boolean
              * @return $this 
@@ -13285,7 +13285,7 @@ namespace  {
              * Add an "or where" clause to the query.
              *
              * @param \Closure|array|string $column
-             * @param string $operator
+             * @param mixed $operator
              * @param mixed $value
              * @return \Illuminate\Database\Eloquent\Builder|static 
              * @static 

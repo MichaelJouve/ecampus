@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 
 @section('contenu')
+
+
     <div class="container-fluid pt-4 pb-4 bandeau-sombre">
         <div class="container">
             <h1 class="text-success"><i class="far fa-file-alt"></i> Modification de votre Post</h1>
@@ -57,7 +59,9 @@
                                 <label for="content">Contenu</label>
                                 <input type="hidden" style="resize: both; overflow: auto" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor-container"></div>
+                                <div id="editor-container">
+                                    {!! old('content') ? old('content') : $decodeContent !!}
+                                </div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                     <strong>{{ $errors->first('content') }}</strong>
@@ -104,9 +108,6 @@
             var content = document.querySelector('input[name=content]');
             content.value = quill.root.innerHTML;
         });
-        quill.setContents([
-            {insert: "{{ strip_tags(old('content') ? old('content') : $decodeContent) }}"}
 
-        ]);
     </script>
 @endpush
