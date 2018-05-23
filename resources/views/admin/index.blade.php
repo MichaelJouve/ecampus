@@ -6,26 +6,26 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-3 text-center bg-primary p-3 m-1 rounded">
+        <a href="{{route('admin-membres')}}" class="col-3 text-center bg-primary p-3 m-1 rounded">
             <p><i class="fas fa-users" style="color:#fff;font-size:4em;"></i></p>
             <p class="text-light font-weight-bold">{{ $users }} Utilisateurs</p>
-        </div>
-        <div class="col-2 text-center bg-primary p-3 m-1 rounded">
+        </a>
+        <a href="{{route('admin.tutoriels')}}" class="col-2 text-center bg-primary p-3 m-1 rounded">
             <p><i class="fas fa-file-alt" style="color:#fff;font-size:4em;"></i></p>
             <p class="text-light font-weight-bold">{{ $tutoriels }} Tutoriels</p>
-        </div>
-        <div class="col-2 text-center bg-primary p-3 m-1 rounded">
+        </a>
+        <a href="{{route('admin-posts')}}" class="col-2 text-center bg-primary p-3 m-1 rounded">
             <p><i class="far fa-clipboard" style="color:#fff;font-size:4em;"></i></p>
             <p class="text-light font-weight-bold">{{ $posts }} Posts</p>
-        </div>
-        <div class="col-2 text-center bg-primary p-3 m-1 rounded">
+        </a>
+        <a href="{{route('admin-comments')}}" class="col-2 text-center bg-primary p-3 m-1 rounded">
             <p><i class="far fa-comment" style="color:#fff;font-size:4em;"></i></p>
             <p class="text-light font-weight-bold">{{ $comments }} Commentaires</p>
-        </div>
-        <div class="col-2 text-center bg-primary p-3 m-1 rounded">
+        </a>
+        <a href="{{route('admin-request')}}" class="col-2 text-center bg-primary p-3 m-1 rounded">
             <p><i class="far fa-comment" style="color:#fff;font-size:4em;"></i></p>
             <p class="text-light font-weight-bold">{{ $contactRequest }} Requêtes</p>
-        </div>
+        </a>
     </div>
 
 
