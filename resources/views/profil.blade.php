@@ -2,7 +2,7 @@
 
 @section('contenu')
 
-    <!-- CONTENU -->
+
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-3">
@@ -29,8 +29,15 @@
                             {{$user->description}}
                         @endif
                     </p>
+                    <p class="small">
+                        <strong> Identité </strong>: {{ucfirst($user->firstname)}} {{ucfirst($user->name)}}<br/>
+                        @if( $user->birthday !== null)
+                            <strong> Date de naissance</strong>: {{$user->birthday->format('d/m/Y')}}<br/>
+                        @endif
+                        <strong> Date d'inscription</strong> : {{$user->created_at->format('d/m/Y')}}<br/>
+                    </p>
                 </div>
-                <div>
+                <div class="mt-4">
                     <h5 class="border-bottom">Statistiques membre</h5>
 
                     <div class="row mt-3 mb-3">
@@ -47,21 +54,6 @@
                             <span class="small">{{ $user->tutorial->count() }} tutos</span>
                         </div>
                     </div>
-
-
-                </div>
-                <div>
-                    <h5 class="font-weight-light border-bottom">Coordonnées Personnelles</h5>
-
-
-                    <p class="small">
-                        <strong> Identité </strong>: {{ucfirst($user->firstname)}} {{ucfirst($user->name)}}<br/>
-                        @if( $user->birthday !== null)
-                            <strong> Date de naissance</strong>: {{$user->birthday->format('d/m/Y')}}<br/>
-                        @endif
-                        <strong> Date d'inscription</strong> : {{$user->created_at->format('d/m/Y')}}<br/>
-                    </p>
-
 
                 </div>
 
@@ -302,7 +294,7 @@
         </div>
     </div>
 
-    <!-- FIN CONTENU -->
+
 
 
 @endsection

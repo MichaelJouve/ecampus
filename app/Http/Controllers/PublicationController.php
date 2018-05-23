@@ -327,7 +327,8 @@ class PublicationController extends Controller
         $publication = Publication::where('slug', $slug)
             ->with('user')
             ->firstOrFail();
-        $decodeContent = html_entity_decode($publication->content);
+        $decodeContent = $publication->content ;
+
 
 
         return view('publication.update.update-tutorial', ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
@@ -339,7 +340,7 @@ class PublicationController extends Controller
         $publication = Publication::where('slug', $slug)
             ->with('user')
             ->firstOrFail();
-        $decodeContent = html_entity_decode($publication->content);
+        $decodeContent = $publication->content;
 
 
         return view('publication.update.update-post', ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
@@ -416,8 +417,8 @@ class PublicationController extends Controller
                 'title' => 'string|max:191',
                 'description' => 'max:255',
                 'price' => 'integer',
-                'required' => 'string|max:191',
-                'goals' => 'string|max:191',
+                'required' => 'string|nullable|max:191',
+                'goals' => 'string|nullable|max:191',
                 'content' => 'required'
             ]);
 

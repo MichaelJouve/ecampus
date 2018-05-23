@@ -338,6 +338,63 @@
 }
 
 
+/*RIBON GRAPHISME*/
+.ribbon-GRAPHISME {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  z-index: 1000;
+  overflow: hidden;
+  width: 75px;
+  height: 70px;
+  text-align: right;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ribbon-GRAPHISME span {
+  font-size: 0.6em;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #654236;
+  background: linear-gradient(#654236 0%, #654236 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px;
+  left: -21px;
+}
+
+.ribbon-GRAPHISME span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid #654236;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #654236;
+}
+
+.ribbon-GRAPHISME span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #654236;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #654236;
+}
+
+
 
 //image
 .img_bandeau{

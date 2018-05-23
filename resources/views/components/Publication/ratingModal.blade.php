@@ -10,15 +10,23 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row text-center">
-                        <div class="col-lg-12">
-                            <form action="{{ route('tutorial.rating',['slug' =>$tuto->slug] )}}" method="POST" class="form-control">
+                        <div class="col-lg-12 ">
+                            <p>Notez le tutoriel</p>
+                            <form action="{{ route('tutorial.rating',['slug' =>$tuto->slug] )}}" method="POST"
+                                  class="star_rating">
                                 @csrf
-                                    <input type="radio" name="rate" value="1"> 1 <br>
-                                    <input type="radio" name="rate" value="2"> 2 <br>
-                                    <input type="radio" name="rate" value="3"> 3 <br>
-                                    <input type="radio" name="rate" value="4"> 4 <br>
-                                    <input type="radio" name="rate" value="5"> 5 <br>
-
+                                <p class="clasificacion">
+                                    <input type="radio" id="radio1" name="rate" value="5">
+                                    <label for="radio1">&#9733;</label>
+                                    <input type="radio" id="radio2" name="rate" value="4">
+                                    <label for="radio2">&#9733;</label>
+                                    <input type="radio" id="radio3" name="rate" value="3">
+                                    <label for="radio3">&#9733;</label>
+                                    <input type="radio" id="radio4" name="rate" value="2">
+                                    <label for="radio4">&#9733;</label>
+                                    <input type="radio" id="radio5" name="rate" value="1">
+                                    <label for="radio5">&#9733;</label>
+                                </p>
                         </div>
                     </div>
                 </div>

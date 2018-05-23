@@ -53,7 +53,7 @@
                 </div>
                 <div class="border border-light rounded">
                     <a href="http://www.happy-smile.fr">
-                        <img class="img-fluid" style="width: 100%" src="{{asset('storage/images/banniere-verticale-happysmile.gif')}}">
+                        <img class="shadow img-fluid" style="width: 100%" src="{{asset('images/banniere-verticale-happysmile.gif')}}">
                     </a>
                 </div>
             </div>
