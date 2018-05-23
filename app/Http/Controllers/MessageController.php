@@ -77,7 +77,7 @@ class MessageController extends Controller
             }])->get();
 
 
-        $messages = Message::findConversation($userId, $otherUserId)->latest()->paginate(20);
+        $messages = Message::findConversation($userId, $otherUserId)->paginate(20);
 
         return view ('conversation.index', ['users' => $users, 'otherUser' => $otherUser, 'user' => $userAuth, 'messages' => $messages]);
     }

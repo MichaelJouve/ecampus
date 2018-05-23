@@ -30,17 +30,17 @@
                         @foreach($messages as $message)
                             <div style="overflow: hidden">
                                 @if($message->from_user_id === $user->id)
-                                    <div class="bg-light rounded p-2 m-2 float-left" >
-                                        {!! nl2br(e($message->content)) !!}
-                                        <br>
-                                        <span class="small"><em>{{ $message->created_at->format('d.m.Y') }}</em></span>
-                                    </div>
-                                    <hr class="bg-light">
-                                @else
                                     <div class="p-2 m-2 text-right bg-info rounded text-light float-right">
                                         {!! nl2br(e($message->content)) !!}
                                         <br>
-                                        <span class="small"><em>{{ $message->created_at->format('d.m.Y') }}</em></span>
+                                        <span class="small"><em>{{ $message->created_at->format('d.m.Y à H:i') }}</em></span>
+                                    </div>
+                                    <hr class="bg-light">
+                                @else
+                                    <div class="bg-light rounded p-2 m-2 float-left" >
+                                        {!! nl2br(e($message->content)) !!}
+                                        <br>
+                                        <span class="small"><em>{{ $message->created_at->format('d.m.Y à H:i') }}</em></span>
                                     </div>
                                     <hr class="bg-light">
                                 @endif
