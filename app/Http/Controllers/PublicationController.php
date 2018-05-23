@@ -349,6 +349,7 @@ class PublicationController extends Controller
             $validateData = $request->validate([
                 'category_id' => 'integer',
                 'title' => 'string|max:191',
+                'content' => 'required'
             ]);
 
             $publication->update($validateData);
@@ -406,6 +407,7 @@ class PublicationController extends Controller
                 'price' => 'integer',
                 'required' => 'string|max:191',
                 'goals' => 'string|max:191',
+                'content' => 'required'
             ]);
 
 
