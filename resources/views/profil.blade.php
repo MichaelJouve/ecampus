@@ -69,14 +69,14 @@
 
                         <div>
                             <a href="{{route('unfollow', ['slug' => $user->slug])}}">
-                                <button type="submit" class="btn btn-danger btn-sm">Arrêter de
+                                <button type="submit" class="form-control btn btn-danger btn-sm">Arrêter de
                                     suivre {{$user->firstname}} {{$user->name}}</button>
                             </a>
                         </div>
                     @else
                         <div>
                             <a href="{{route('follow', ['slug' => $user->slug])}}">
-                                <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                                <button type="submit" class="form-control btn btn-sm btn-success">FOLLOW ME !!!!</button>
                             </a>
                         </div>
                     @endif
