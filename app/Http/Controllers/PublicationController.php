@@ -172,9 +172,9 @@ class PublicationController extends Controller
 
         } else {
 
-            $p = Publication::create($inputs);
-            $p->imgpublication = $p->category->name . '.jpg';
-            $p->save();
+            $img = Publication::create($inputs);
+            $img->imgpublication = $img->category->name . '.jpg';
+            $img->save();
 
         }
         //Un petit message de succés ...
