@@ -20,4 +20,7 @@ mix.scripts([
 ], 'public/js/all.js');
 
 mix.copyDirectory('resources/assets/images','public/images');
+mix.copyDirectory('resources/assets/images/Tutos','public/storage/imgpublication-crop');
+mix.copyDirectory('resources/assets/images/Tutos','public/storage/imgpublication-resize');
+mix.copyDirectory('resources/assets/images/Tutos','public/storage/imgpublication-origin');
 

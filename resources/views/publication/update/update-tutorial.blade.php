@@ -70,7 +70,7 @@
                         <label for="imgpublication">Image</label>
                             <div class="img-fluid text-center">
                                 <p>Votre image existante</p>
-                                <img class="img_bandeau w-50 border-dark mb-3" src="{{asset('storage/'.$publication->imgpublication)}}" alt="Image de l'article">
+                                <img class="img_bandeau w-50 border-dark mb-3" src="{{asset('storage/imgpublication-crop/'.$publication->imgpublication)}}" alt="Image de l'article">
                             </div>
                             <input type="file" name="imgpublication" class="form-control" id="imgpublication">
                         </div>
@@ -90,22 +90,13 @@
                             <input type="text" name="required" id="required" title="Maximum 100 caractères"
                                    class="form-control{{ $errors->has('required') ? ' is-invalid' : '' }}"
                                    placeholder="Prerequis du tutoriel" value="{{old('required') ? old('required') : $publication->required}}">
-                            @if ($errors->has('required'))
-                            <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('required') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
+
                         <div class="form-group">
                             <label for="objectifs">Objectifs</label>
                             <input type="text" name="goals" id="objectifs" title="Maximum 100 caractères"
                                    class="form-control{{ $errors->has('goals') ? ' is-invalid' : '' }}"
                                    placeholder="Objectifs du tutoriel" value="{{old('goals') ? old('goals') : $publication->goals}}">
-                            @if ($errors->has('goals'))
-                            <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('goals') }}</strong>
-                                    </span>
-                            @endif
+
                         </div>
 
                         <div class="form-group">

@@ -11,14 +11,14 @@
                          src="{{asset($user->imgprofil)}}" alt="Image de profil">
                 </div>
                 @if($user->id !== Auth::id())
-                    <div class="mt-3">
-                        <p class="text-center small">
-                            <a href="{{URL::route('user-profil-message')}}"><i class="far fa-envelope-open"
-                                                                               style="font-size: 1.5em; margin:0 5px;"></i>
-                                <span class="text-primary">Contacter {{ $user->firstname }} par message</span>
-                            </a>
-                        </p>
-                    </div>
+                <div class="mt-3">
+                    <p class="text-center">
+                        <a class="btn" href="{{URL::route('user-profil-message')}}"><i class="far fa-envelope-open"
+                                                                           style="font-size: 1.5em; margin:0 5px;"></i>
+                        <span class="small text-primary">Contactez {{ $user->firstname }} par message</span>
+                        </a>
+                    </p>
+                </div>
                 @endif
                 <div class="mt-4">
                     <h5 class="font-weight-light border-bottom">Description</h5>
@@ -85,14 +85,14 @@
 
                         <div>
                             <a href="{{route('unfollow', ['slug' => $user->slug])}}">
-                                <button type="submit" class="btn btn-danger btn-sm">Arrêter de
+                                <button type="submit" class="form-control btn btn-danger btn-sm">Arrêter de
                                     suivre {{$user->firstname}} {{$user->name}}</button>
                             </a>
                         </div>
                     @else
                         <div>
                             <a href="{{route('follow', ['slug' => $user->slug])}}">
-                                <button type="submit" class="btn btn-success">FOLLOW ME !!!!</button>
+                                <button type="submit" class="form-control btn btn-sm btn-success">FOLLOW ME !!!!</button>
                             </a>
                         </div>
                     @endif
@@ -148,14 +148,14 @@
                                             @endif
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-3 img_profil justify-content-center">
+                                    <div class="row">
+                                        <div class="col-3 img_profil justify-content-center">
 
-                                                <img class="img-fluid rounded-circle shadow" style="margin:20px;"
-                                                     src="{{asset($user->imgprofil)}}" alt="Image de profil">
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="card-body">
+                                        <img class="img-fluid rounded-circle shadow" style="margin:20px;"
+                                                 src="{{asset($user->imgprofil)}}" alt="Image de profil">
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="card-body">
 
                                                     <div class="card-title font-weight-bold">{{ $publication->title }}</div>
                                                     <div class="card-text small">{!! $publication->content !!}</div>

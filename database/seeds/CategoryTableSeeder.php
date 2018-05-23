@@ -33,7 +33,7 @@ class CategoryTableSeeder extends Seeder
         $category->save();
 
         $category = new Category();
-        $category->name = 'Recette';
+        $category->name = 'RECETTE';
         $category->save();
     }
 }

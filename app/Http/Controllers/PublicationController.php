@@ -172,9 +172,9 @@ class PublicationController extends Controller
 
         } else {
 
-            $p = Publication::create($inputs);
-            $p->imgpublication = 'images/Tutos/' . $p->category->name . '.jpg';
-            $p->save();
+            $img = Publication::create($inputs);
+            $img->imgpublication = $img->category->name . '.jpg';
+            $img->save();
 
         }
         //Un petit message de succés ...
@@ -362,6 +362,7 @@ class PublicationController extends Controller
             $validateData = $request->validate([
                 'category_id' => 'integer',
                 'title' => 'string|max:191',
+                'content' => 'required'
             ]);
 
             $publication->update($validateData);
@@ -408,8 +409,6 @@ class PublicationController extends Controller
 
                 $publication->update($inputs);
 
-            }else{
-                $validateData['imgpublication'] = $img;
             }
 
             $validateData = $request->validate([
@@ -419,6 +418,7 @@ class PublicationController extends Controller
                 'price' => 'integer',
                 'required' => 'string|max:191',
                 'goals' => 'string|max:191',
+                'content' => 'required'
             ]);
 
 
@@ -426,7 +426,7 @@ class PublicationController extends Controller
 
         }
 
-        return redirect()->route('user-profil')->with('message', 'Modification éfféctué !');
+        return redirect()->route('user-profil')->with('message', 'Modification effectuée !');
     }
 
     /**
