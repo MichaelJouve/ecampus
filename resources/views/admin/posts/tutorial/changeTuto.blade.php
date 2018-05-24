@@ -4,8 +4,8 @@
 
     <div class="container-fluid pt-4 pb-4 bandeau-sombre">
         <div class="container">
-            <h1 class="text-success"><i class="far fa-file-alt"></i> Modification de votre Tutoriel</h1>
-            <p><b>{{ $publication->user->firstname }}</b>, vous allez modifier le tutoriel : <b><u>{{ $publication->title }} </u></b>!</p>
+            <h1 class="text-success"><i class="far fa-file-alt"></i> Modification du Tutoriel de <b>{{ $publication->user->firstname }}</b></h1>
+            <p><b><u>{{ $publication->title }}</u></b></p>
         </div>
     </div>
     <div class="container mt-5">

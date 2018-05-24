@@ -13,20 +13,34 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 //Administration
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('administration');
-    Route::get('/membres/change/{slug}', 'AdminController@changeInfosMembre')->name('admin-change');
-    Route::post('/membres/update/{slug}', 'AdminController@adminUpdate')->name('admin-update');
-    Route::get('/membres', 'AdminController@gestionMembres')->name('admin-membres');
-    Route::get('/posts', 'AdminController@gestionPosts')->name('admin-posts');
-    Route::get('/posts/delete/{slug}', 'AdminController@softDeletePost')->name('admin-delete-post');
-    Route::get('/posts/change/{slug}', 'AdminController@viewChangePost')->name('admin-view-change-post');
-    Route::post('/posts/change/{slug}', 'AdminController@updatePost')->name('admin-update-publication');
-    Route::get('/tutoriels', 'AdminController@gestionTutoriels')->name('admin.tutoriels');
-    Route::get('/tutoriels/{slug}', 'AdminController@viewChangeTuto')->name('admin-view-change-tuto');
-    Route::post('/tutoriels/{slug}', 'AdminController@updatePost')->name('admin-update-tutoriel');
-    Route::get('/comments', 'AdminController@gestionComments')->name('admin-comments');
-    Route::get('/requests', 'AdminController@gestionContactRequest')->name('admin-request');
-    Route::get('/comptable', 'AdminController@gestionComptable')->name('admin-comptable');
-    Route::get('/marketing', 'AdminController@gestionMarketing')->name('admin-marketing');
+    Route::prefix('membres')->group(function () {
+        Route::get('/change/{slug}', 'Admin\AdminMembersController@changeInfosMember')->name('admin-change');
+        Route::post('/update/{slug}', 'Admin\AdminMembersController@adminUpdate')->name('admin-update');
+        Route::get('/', 'Admin\AdminMembersController@index')->name('admin-membres');
+    });
+    Route::prefix('posts')->group(function () {
+        Route::get('/', 'Admin\AdminPostController@index')->name('admin-posts');
+        Route::get('/delete/{slug}', 'Admin\AdminPostController@softDeletePost')->name('admin-delete-post');
+        Route::get('/change/{slug}', 'Admin\AdminPostController@viewChangePost')->name('admin-view-change-post');
+        Route::post('/change/{slug}', 'Admin\AdminPostController@updatePost')->name('admin-update-publication');
+    });
+    Route::prefix('tutoriels')->group(function () {
+        Route::get('/', 'Admin\AdminTutorielController@index')->name('admin.tutoriels');
+        Route::get('/{slug}', 'Admin\AdminTutorielController@viewChangeTuto')->name('admin-view-change-tuto');
+        Route::post('/{slug}', 'Admin\AdminPostController@updatePost')->name('admin-update-tutoriel');
+    });
+    Route::prefix('comments')->group(function () {
+        Route::get('/', 'Admin\AdminCommentController@index')->name('admin-comments');
+    });
+    Route::prefix('requests')->group(function () {
+        Route::get('/', 'Admin\AdminRequestController@index')->name('admin-request');
+    });
+    Route::prefix('comptable')->group(function () {
+        Route::get('/', 'Admin\AdminComptableController@index')->name('admin-comptable');
+    });
+    Route::prefix('marketing')->group(function () {
+        Route::get('/', 'Admin\AdminMarketingController@index')->name('admin-marketing');
+    });
 });
 
 //Route for category
@@ -90,8 +104,8 @@ Route::prefix('profil')->group(function () {
 
 
 //Route conversation message
-Route::get('/profil/message/conversation/{slug}','MessageController@show')->name('conversation.show');
-Route::post('/profil/message/conversation/{slug}','MessageController@store');
+Route::get('/profil/message/conversation/{slug}', 'MessageController@show')->name('conversation.show');
+Route::post('/profil/message/conversation/{slug}', 'MessageController@store');
 
 //See this page
 Route::get('/panier', 'HomeController@panier')->name('front-panier');

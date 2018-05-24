@@ -18,10 +18,20 @@
         @foreach( $comments as $comment)
             <tbody>
             <tr>
-                <th scope="row">{{ $comment->id }}</th>
-                <td class="small">{{ $comment->content }}</td>
-                <td>{{ $comment->user->firstname }}</td>
-                <td>{{ $comment->publication->title }}</td>
+                <th scope="row">
+                    {{ $comment->id }}
+                </th>
+                <td class="small">
+                    {{ $comment->content }}
+                </td>
+                <td>
+                    <a href="{{route('other-profil', ['slug' => $comment->user->slug])}}">
+                        {{ $comment->user->firstname }}
+                    </a>
+                </td>
+                <td>
+                    {{ $comment->publication->title }}
+                </td>
 
                 <td><a href="">Modifier</a></td>
                 <td><a href="">Supprimer</a></td>

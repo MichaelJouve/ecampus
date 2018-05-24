@@ -211,7 +211,7 @@ class PublicationController extends Controller
             ->where('category_id', $category->id)
             ->paginate();
 
-        return view('publication.categoryalltutorial', ['category' => $category, 'tutorials' => $tutorials]);
+        return view('publication.categoryalltutorial', ['category' => $category, 'tutorial' => $tutorials]);
     }
 
     public function showTutorial($slug)
@@ -311,7 +311,7 @@ class PublicationController extends Controller
                 ->tuto()
                 ->paginate();
         }
-        return view('listingall', ['tutorials' => $tutorials]);
+        return view('listingall', ['tutorial' => $tutorials]);
 
     }
 
