@@ -11,35 +11,52 @@ Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 //Administration
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('role:admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('administration');
-    Route::prefix('membres')->group(function () {
-        Route::get('/change/{slug}', 'Admin\AdminMembersController@changeInfosMember')->name('admin-change');
-        Route::post('/update/{slug}', 'Admin\AdminMembersController@adminUpdate')->name('admin-update');
-        Route::get('/', 'Admin\AdminMembersController@index')->name('admin-membres');
+
+    //manage members
+    Route::prefix('members')->group(function () {
+        Route::get('/', 'Admin\MemberController@index')->name('admin.members.index');
+        Route::get('/{user}', 'Admin\MemberController@edit')->name('admin.member.edit');
+        Route::post('/{user}', 'Admin\MemberController@update')->name('admin.member.update');
+        Route::get('/{user}/delete', 'Admin\MemberController@destroy')->name('admin.member.delete');
     });
+
+    // Manage Posts
     Route::prefix('posts')->group(function () {
-        Route::get('/', 'Admin\AdminPostController@index')->name('admin-posts');
-        Route::get('/delete/{slug}', 'Admin\AdminPostController@softDeletePost')->name('admin-delete-post');
-        Route::get('/change/{slug}', 'Admin\AdminPostController@viewChangePost')->name('admin-view-change-post');
-        Route::post('/change/{slug}', 'Admin\AdminPostController@updatePost')->name('admin-update-publication');
+        Route::get('/', 'Admin\PostController@index')->name('admin.posts.index');
+        Route::get('/{publication}', 'Admin\PostController@edit')->name('admin.post.edit');
+        Route::post('/{publication}', 'Admin\PostController@update')->name('admin.post.update');
+        Route::get('/{publication}/delete', 'Admin\PostController@destroy')->name('admin.post.delete');
     });
-    Route::prefix('tutoriels')->group(function () {
-        Route::get('/', 'Admin\AdminTutorielController@index')->name('admin.tutoriels');
-        Route::get('/{slug}', 'Admin\AdminTutorielController@viewChangeTuto')->name('admin-view-change-tuto');
-        Route::post('/{slug}', 'Admin\AdminPostController@updatePost')->name('admin-update-tutoriel');
+
+    //Manage Tutorials
+    Route::prefix('tutorials')->group(function () {
+        Route::get('/', 'Admin\TutorialController@index')->name('admin.tutorials.index');
+        Route::get('/{publication}', 'Admin\TutorialController@edit')->name('admin.tutorial.edit');
+        Route::post('/{publication}', 'Admin\TutorialController@update')->name('admin.tutorial.update');
+        Route::get('/{publication}/delete', 'Admin\TutorialController@destroy')->name('admin.tutorial.delete');
     });
+
+    //Manage COmments
     Route::prefix('comments')->group(function () {
-        Route::get('/', 'Admin\AdminCommentController@index')->name('admin-comments');
+        Route::get('/', 'Admin\CommentController@index')->name('admin.comments.index');
+        Route::get('/{comment}', 'Admin\CommentController@edit')->name('admin.comment.edit');
+        Route::post('/{comment}', 'Admin\CommentController@update')->name('admin.comment.update');
+        Route::post('/{comment}/delete', 'Admin\TutorialController@destroy')->name('admin.comment.delete');
     });
+
+    //Manage Requestes
     Route::prefix('requests')->group(function () {
-        Route::get('/', 'Admin\AdminRequestController@index')->name('admin-request');
+        Route::get('/', 'Admin\RequestController@index')->name('admin.request.index');
     });
-    Route::prefix('comptable')->group(function () {
-        Route::get('/', 'Admin\AdminComptableController@index')->name('admin-comptable');
+
+    //
+    Route::prefix('comptable')->middleware('role:adminMarketing')->group(function () {
+        Route::get('/', 'Admin\ComptableController@index')->name('admin.comptable.index');
     });
-    Route::prefix('marketing')->group(function () {
-        Route::get('/', 'Admin\AdminMarketingController@index')->name('admin-marketing');
+    Route::prefix('marketing')->middleware('role:adminAccounting')->group(function () {
+        Route::get('/', 'Admin\MarketingController@index')->name('admin.marketing.index');
     });
 });
 

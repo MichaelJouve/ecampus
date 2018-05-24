@@ -15,7 +15,7 @@
                     <div class="card-header">Modification du tutoriel suivant : <b>{{ $publication->title }}</b></div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{URL::route('admin-update-tutoriel', ['slug' => $publication->slug])}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{URL::route('admin.tutorial.update', ['publication' => $publication])}}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="type" value="tutorial">

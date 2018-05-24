@@ -30,14 +30,13 @@
                     </a>
                 </td>
                 <td>
-                    {{ $comment->publication->title }}
                 </td>
 
-                <td><a href="">Modifier</a></td>
-                <td><a href="">Supprimer</a></td>
+                <td><a href="{{route('admin.comment.edit')}}">Modifier</a></td>
+                <td><a href="{{route('admin.comment.delete')}}">Supprimer</a></td>
             </tr>
             </tbody>
         @endforeach
     </table>
-
+{{$comments->links()}}
 @endsection

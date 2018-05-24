@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                         <form id="ajout-post" method="POST"
-                              action="{{URL::route('admin-update-publication', ['slug' => $publication->slug])}}">
+                              action="{{URL::route('admin.post.update', ['publication' => $publication])}}">
                             @csrf
                             <input type="hidden" name="user_id" value="{{$publication->user->id}}">
                             <input type="hidden" name="type" value="post">

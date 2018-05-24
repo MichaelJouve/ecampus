@@ -7,7 +7,7 @@
 
     <!-- MON PROFIL-->
     <div class="card">
-        <form action="{{URL::route('admin-update', ['slug' => $otherUser->slug])}}" method="post">
+        <form action="{{URL::route('admin.member.update', ['user' => $otherUser] )}}" method="post">
             @csrf
             <div class="card-header">
                 <h3 class="card-title">Mon Profil</h3>

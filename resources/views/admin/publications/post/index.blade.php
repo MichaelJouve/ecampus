@@ -29,8 +29,8 @@
                 <td>{{ $post->user->name }} {{ $post->user->firstname }}</td>
                 <td>{!! str_limit($post->content, $limit = 300) !!}</td>
                 <td>{{ $post->created_at->format('d.m.Y') }}</td>
-                <td><a href="{{route('admin-view-change-post', ['slug' => $post->slug])}}">Modifier</a></td>
-                <td><a href="{{route('admin-delete-post', ['slug' => $post->slug])}}">Supprimer</a></td>
+                <td><a href="{{route('admin.post.edit', ['publication' => $post])}}">Modifier</a></td>
+                <td><a href="{{route('admin.post.delete', ['publication' => $post])}}">Suprimer</a></td>
             </tr>
             </tbody>
         @endforeach

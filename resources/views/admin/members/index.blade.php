@@ -1,7 +1,7 @@
 @extends('layouts.layout-admin')
 
 @section('content')
-    <p class="m-4 font-weight-bold">Administration / Gestion des pubs et des images</p>
+    <p class="m-4 font-weight-bold">Administration / Gestion des membres</p>
 
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -16,16 +16,16 @@
             <th scope="col">Supprimer</th>
         </tr>
         </thead>
-        @foreach( $users as $utilisateur)
+        @foreach( $users as $user)
             <tbody>
             <tr>
-                <th scope="row">{{ $utilisateur->id }}</th>
-                <td>{{ $utilisateur->name }}</td>
-                <td>{{ $utilisateur->firstname }}</td>
-                <td>{{ $utilisateur->email }}</td>
-                <td class="font-weight-bold">{{ $utilisateur->roles[0]->name }}</td>
-                <td>{{ $utilisateur->created_at->format('d.m.Y') }}</td>
-                <td><a href="{{route('admin-change', ['slug' => $utilisateur->slug])}}">Modifier</a></td>
+                <th scope="row">{{ $user->id }}</th>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->firstname }}</td>
+                <td>{{ $user->email }}</td>
+                <td class="font-weight-bold">{{ $user->roles[0]->name }}</td>
+                <td>{{ $user->created_at->format('d.m.Y') }}</td>
+                <td><a href="{{route('admin.member.edit', ['user' => $user])}}">Modifier</a></td>
                 <td><a href="">Supprimer</a></td>
             </tr>
             </tbody>

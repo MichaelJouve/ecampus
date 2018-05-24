@@ -38,14 +38,14 @@ class RoleTableSeeder extends Seeder
          * Bought mannager
          */
         $role = new Role();
-        $role->name = 'admin accounting';
+        $role->name = 'adminAccounting';
         $role->save();
 
         /**
          * Pictures, pub mannager
          */
         $role = new Role();
-        $role->name = 'admin marketing';
+        $role->name = 'adminMarketing';
         $role->save();
 
         /**

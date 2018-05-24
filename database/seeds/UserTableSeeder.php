@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $role_superAdmin = Role::where('name', 'superAdmin')->first();
+        $role_admin = Role::where('name', 'admin')->first();
 
         $boss = new User();
         $boss->name = 'Logan';
@@ -23,5 +24,6 @@ class UserTableSeeder extends Seeder
         $boss->birthday = '1984-01-31';
         $boss->save();
         $boss->roles()->attach($role_superAdmin);
+        $boss->roles()->attach($role_admin);
     }
 }
