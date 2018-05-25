@@ -181,7 +181,7 @@ class TutorialController extends Controller
             Consultation::find($consultation->id)->increment('occurrences');
         }
 
-        return view('tutorial.summary',
+        return view('publication.tutorial.summary',
             [
                 'user' => $user,
                 'tuto' => $tuto,

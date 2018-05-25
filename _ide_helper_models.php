@@ -10,52 +10,55 @@
 
 namespace App{
 /**
- * App\Category
+ * App\Publication
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $post
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $publication
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $tuto
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
- */
-	class Category extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\ContactRequest
- *
+ * @property-read \App\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comment
+ * @property-read \App\Consultation $consultation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Media[] $media
  * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication findSimilarSlugs($attribute, $config, $slug)
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Publication onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication tuto()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereSlug($slug)
+ * @method static \Illuminate\Database\Query\Builder|\App\Publication withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Publication withoutTrashed()
  * @mixin \Eloquent
  * @property int $id
+ * @property string $type
+ * @property string|null $imgpublication
+ * @property float|null $price
  * @property string $title
+ * @property string $slug
+ * @property string|null $description
  * @property string $content
- * @property int $user_id
+ * @property string|null $goals
+ * @property string|null $required
+ * @property string|null $deleted_at
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereUserId($value)
+ * @property int $category_id
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereGoals($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereImgpublication($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereRequired($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $userOwner
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication post()
  */
-	class ContactRequest extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Bought
- *
- * @property-read \App\Publication $publi
- * @property-read \App\User $user
- */
-	class Bought extends \Eloquent {}
+	class Publication extends \Eloquent {}
 }
 
 namespace App{
@@ -81,6 +84,28 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Consultation whereUserId($value)
  */
 	class Consultation extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\ContactRequest
+ *
+ * @property-read \App\User $user
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $title
+ * @property string $content
+ * @property int $user_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ContactRequest whereUserId($value)
+ */
+	class ContactRequest extends \Eloquent {}
 }
 
 namespace App{
@@ -136,73 +161,48 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
+ * @property int $subscription
+ * @property string|null $api_token
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $postsBought
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Message[] $unreadMessage
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Message[] $unreadMessageByUser
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereApiToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSubscription($value)
  */
 	class User extends \Eloquent {}
 }
 
 namespace App{
 /**
- * App\Rating
+ * App\Comment
  *
- */
-	class Rating extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Publication
- *
- * @property-read \App\Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comment
- * @property-read \App\Consultation $consultation
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Media[] $media
+ * @property-read \App\Publication $publication
  * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication findSimilarSlugs($attribute, $config, $slug)
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Publication onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication tuto()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereSlug($slug)
- * @method static \Illuminate\Database\Query\Builder|\App\Publication withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Publication withoutTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment withoutTrashed()
  * @mixin \Eloquent
  * @property int $id
- * @property string $type
- * @property string|null $imgpublication
- * @property float|null $price
- * @property string $title
- * @property string $slug
- * @property string|null $description
  * @property string $content
- * @property string|null $goals
- * @property string|null $required
+ * @property int $user_id
+ * @property int $publication_id
  * @property string|null $deleted_at
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property int $category_id
- * @property int $user_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereGoals($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereImgpublication($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereRequired($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication whereUserId($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $userOwner
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Publication post()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment wherePublicationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereUserId($value)
  */
-	class Publication extends \Eloquent {}
+	class Comment extends \Eloquent {}
 }
 
 namespace App{
@@ -216,58 +216,40 @@ namespace App{
 
 namespace App{
 /**
- * App\Message
+ * App\Category
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message findConversation($userId, $otherUserId)
- * @mixin \Eloquent
- * @property int $id
- * @property int $from_user_id
- * @property int $to_user_id
- * @property string $content
- * @property string|null $read_at
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereFromUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereReadAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereToUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Message findUnreadMessage($userId, $otherUserId)
- */
-	class Message extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Follow
- *
- * @mixin \Eloquent
- * @property int $user_id_following
- * @property int $user_id_followed
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Follow whereUserIdFollowed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Follow whereUserIdFollowing($value)
- */
-	class Follow extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Role
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $post
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $publication
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Publication[] $tuto
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
+ */
+	class Category extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Rating
+ *
+ * @property int $id
+ * @property int $rate
+ * @property int $publication_id
+ * @property int $user_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Rating whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Rating whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Rating wherePublicationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Rating whereRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Rating whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Rating whereUserId($value)
  */
-	class Role extends \Eloquent {}
+	class Rating extends \Eloquent {}
 }
 
 namespace App{
@@ -299,31 +281,79 @@ namespace App{
 
 namespace App{
 /**
- * App\Comment
+ * App\Bought
  *
- * @property-read \App\Publication $publication
- * @property-read \App\User $user
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Comment onlyTrashed()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Query\Builder|\App\Comment withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Comment withoutTrashed()
- * @mixin \Eloquent
  * @property int $id
- * @property string $content
  * @property int $user_id
- * @property int $publication_id
- * @property string|null $deleted_at
+ * @property int $publi_id
+ * @property float $price
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment wherePublicationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereUserId($value)
+ * @property-read \App\Publication $publi
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bought whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bought whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bought wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bought wherePubliId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bought whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bought whereUserId($value)
  */
-	class Comment extends \Eloquent {}
+	class Bought extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Follow
+ *
+ * @mixin \Eloquent
+ * @property int $user_id_following
+ * @property int $user_id_followed
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Follow whereUserIdFollowed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Follow whereUserIdFollowing($value)
+ */
+	class Follow extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Message
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message findConversation($userId, $otherUserId)
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $from_user_id
+ * @property int $to_user_id
+ * @property string $content
+ * @property string|null $read_at
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereFromUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereReadAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereToUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Message findUnreadMessage($userId, $otherUserId)
+ */
+	class Message extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Role
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereUpdatedAt($value)
+ */
+	class Role extends \Eloquent {}
 }
 
