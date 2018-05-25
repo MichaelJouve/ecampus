@@ -15,16 +15,36 @@ class UserController extends Controller
     public function index()
     {
 
-        return User::all();
+        return User::with('publication',
+            'post',
+            'tutorial',
+            'comment',
+            'followers',
+            'followings',
+            'roles',
+            'postsBought',
+            'unreadMessageByUser',
+            'unreadMessage')->get();
+
     }
 
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function edit(User $user)
     {
-        //
+        return $user;
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Comment $comment
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, User $user)
     {
         $validateData = $request->validate([
@@ -44,7 +64,7 @@ class UserController extends Controller
         $user->roles()->detach();
         $user->roles()->attach($role);
 
-        if ($request['role_id'] == 4 OR $request['role_id'] == 5){
+        if ($request['role_id'] == 4 OR $request['role_id'] == 5) {
 
             $admin = Role::where('name', 'admin')->first();
             $user->roles()->attach($admin);
@@ -61,13 +81,24 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $data)
+    public function create(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $user = User::create([
-            'name' => ucfirst($data['name']),
-            'firstname' => ucfirst($data['firstname']),
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name' => ucfirst($request['name']),
+            'firstname' => ucfirst($request['firstname']),
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
         $user->roles()->attach(Role::where('name', 'writer')->first());
 
@@ -75,24 +106,14 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Comment $comment
      * @return User|\Illuminate\Database\Eloquent\Builder
      */
     public function show(User $user)
     {
+
         return $user->with('publication',
             'post',
             'tutorial',
@@ -102,24 +123,17 @@ class UserController extends Controller
             'roles',
             'postsBought',
             'unreadMessageByUser',
-            'unreadMessage')
-            ->first();
+            'unreadMessage')->find($user->id);
 
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

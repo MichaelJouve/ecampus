@@ -29,14 +29,14 @@ class HomeController extends Controller
     {
         $users = User::orderBy('created_at', 'desc')->limit(5)->get();
 
-        $tutos = Publication::where('type', '=', 'tutorial')
+        $tutos = Publication::tuto()
             ->with('user')
             ->with('category')
             ->latest()->limit(6)->get();
 
-        $posts = Publication::where('type', '=', 'post')
+        $posts = Publication::post()
             ->with('user')
-            ->with('Category')
+            ->with('category')
             ->latest()->limit(4)->get();
 
 

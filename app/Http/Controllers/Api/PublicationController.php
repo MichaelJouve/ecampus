@@ -19,16 +19,27 @@ use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class PublicationController extends Controller
 {
+    /**
+     * @return Publication[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function index()
     {
         return Publication::all();
     }
 
+    /**
+     * @param Publication $publication
+     * @return Publication|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
     public function show(Publication $publication)
     {
-        return $publication->with('category', 'user', 'consultation', 'comment', 'userOwner' )->first();
+        return $publication->with('category', 'user', 'consultation', 'comment', 'userOwner')->find($publication->id);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(Request $request)
     {
         $publication = Publication::create($request->all());
@@ -36,6 +47,11 @@ class PublicationController extends Controller
         return response()->json($publication, 201);
     }
 
+    /**
+     * @param Request $request
+     * @param Publication $publication
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, Publication $publication)
     {
         $publication->update($request->all());
@@ -43,10 +59,20 @@ class PublicationController extends Controller
         return response()->json($publication, 200);
     }
 
+    /**
+     * @param Publication $publication
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
     public function delete(Publication $publication)
     {
         $publication->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function store(Request $request)
+    {
+
     }
 }

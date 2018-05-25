@@ -78,26 +78,39 @@ Route::prefix('categorie')->group(function () {
 //Show list all tutoriels
 Route::get('/Alltutoriels/', 'PublicationController@allTutorials')->name('listing-all');
 
+
+//PUBLCIATIONS
+Route::prefix('publication')->group(function () {
+
+    //POSTS
+    Route::get('/post', 'FrontEnd\PostController@create')->name('post-ajout');
+    Route::post('/post', 'FrontEnd\PostController@store')->name('store-post');
+    Route::get('/post/{slug}', 'FrontEnd\PostController@edit')->name('update-publication-post');
+    Route::post('/post/{slug}', 'FrontEnd\PostController@update')->name('update-publication');
+    Route::get('/post/{slug}/delete', 'PublicationController@softDelete')->name('publication-delete');
+
+    // TUTORIELS
 //Route for tutoriel
-Route::prefix('tutoriel')->group(function () {
-    Route::get('/{slug}/buy', 'PublicationController@buyTutorial')->name('front-buy-tutorial');
-    Route::get('/{slug}/consultation', 'PublicationController@showpublication')->name('affiche-publication');
-    Route::get('/{slug}', 'PublicationController@showTutorial')->name('front-tutorial');
-    Route::post('/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');
-    Route::post('/{slug}/rating', 'RatingController@store')->name('tutorial.rating');
-});
+    Route::prefix('tutoriel')->group(function () {
+        Route::get('/{slug}/buy', 'FrontEnd\TutorialController@buy')->name('front-buy-tutorial');
+        Route::get('/{slug}/summary', 'FrontEnd\TutorialController@summary')->name('front-tutorial');
+        Route::get('/{slug}/consultation', 'FrontEnd\TutorialController@show')->name('affiche-publication');
 
-//Route for post
-Route::prefix('post')->group(function () {
-    Route::post('/post', 'PublicationController@storePost')->name('store-post');
-    Route::get('/ajout', 'PublicationController@createPost')->name('post-ajout');
+        Route::post('/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');
+        Route::post('/{slug}/rating', 'RatingController@store')->name('tutorial.rating');
+
+        Route::get('/create', 'FrontEnd\TutorialController@create')->name('tuto-ajout');
+        Route::post('/store', 'FrontEnd\TutorialController@store')->name('store-tuto');
+        Route::get('/{slug}/edit', 'FrontEnd\TutorialController@edit')->name('update-publication-tutorial');
+        Route::post('/{slug}/update', 'FrontEnd\TutorialController@update')->name('update-publication');
+        Route::get('/{slug}/delete', 'PublicationController@softDelete')->name('publication-delete');
+    });
+
     Route::get('/comment/delete/{id}', 'CommentController@softDelete')->name('comment-delete');
-    Route::post('/{slug}/comment/', 'CommentController@storePost')->name('post-comment');
-});
+    Route::post('/{slug}/comment/', 'CommentController@store')->name('post-comment');
 
-//Route for tuto
-Route::post('/tuto/post', 'PublicationController@storeTuto')->name('store-tuto');
-Route::get('/tuto/ajout', 'PublicationController@createTuto')->name('tuto-ajout');
+
+});
 
 
 Route::post('/recherche/', 'SearchController@index')->name('search');
@@ -120,10 +133,6 @@ Route::prefix('profil')->group(function () {
     Route::post('/infos/update/description', 'UserController@updateDescription')->name('update-description');
     Route::post('/infos/update/imgprofil', 'UserController@updateAvatar')->name('update-avatar');
     Route::post('/infos/update', 'UserController@update')->name('update-info');
-    Route::get('/publication/delete/{slug}', 'PublicationController@softDelete')->name('publication-delete');
-    Route::get('/publication/update/tutorial/{slug}', 'PublicationController@editPublication')->name('update-publication-tutorial');
-    Route::get('/publication/update/post/{slug}', 'PublicationController@editPost')->name('update-publication-post');
-    Route::post('/publication/update/tutorial/{slug}/action', 'PublicationController@update')->name('update-publication');
     Route::get('/', 'UserController@myProfil')->name('user-profil');
 });
 

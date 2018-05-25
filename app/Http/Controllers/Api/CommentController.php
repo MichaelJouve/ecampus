@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Comment;
-use App\Publication;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Comment[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        //
+        return Comment::all();
     }
 
     /**
@@ -34,42 +32,30 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Comment|\Illuminate\Database\Eloquent\Model
      */
-
-
-
-    public function store(Request $request, $slug)
+    public function store(Request $request)
     {
-        //
-
-        $user = Auth::user();
-        $publication = Publication::findBySlugOrFail($slug);
 
         $request->validate([
             'content' => 'required|max:360',
         ]);
 
-        $inputs = $request->all();
-        $inputs['user_id'] = $user->id;
-        $inputs['publication_id'] = $publication->id;
+        $comment = Comment::create($request->all());
 
-        Comment::create($inputs);
 
-        return back()->with('message', 'Votre commentaire a bien été ajouté !');
-
+        return $comment;
     }
-
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @return Comment
      */
     public function show(Comment $comment)
     {
-        //
+        return $comment;
     }
 
     /**
@@ -80,7 +66,13 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        $user = \Auth::user();
+        $user->load('roles');
+
+        return view('admin.comments.edit', [
+            'user' => $user,
+            'comment' => $comment
+        ]);
     }
 
     /**
@@ -92,26 +84,20 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $comment->update($request->all());
+        return redirect()->route('admin.comments.index')->with('message', 'Modification effectuée');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Comment $comment)
     {
-        //
-    }
-
-    public function softDelete($id)
-    {
-        $comment = Comment::findOrFail($id);
         $comment->delete();
-
-        return back()->with('message', 'Votre commentaire a bien été supprimé !');
+        return redirect()->route('admin.comments.index')->with('message', 'Suppression effectuée');
     }
-
 }

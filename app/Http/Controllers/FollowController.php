@@ -47,7 +47,8 @@ class FollowController extends Controller
             }
 
         $userFollowed->followers()->attach($userFollowing->id);
-        session()->flash('message', 'Vous suivez maintenant le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
+        session()->flash('message',
+            'Vous suivez maintenant le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
         return redirect()->route('other-profil', ['slug' => $slug]);
     }
 
@@ -62,7 +63,8 @@ class FollowController extends Controller
             }
 
         $userFollowed->followers()->detach($userFollowing->id);
-        session()->flash('message', 'Vous ne suivez plus le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
+        session()->flash('message',
+            'Vous ne suivez plus le profil de ' . $userFollowed->firstname . ' ' . $userFollowed->name);
 
         return redirect()->route('other-profil', ['slug' => $slug]);
     }

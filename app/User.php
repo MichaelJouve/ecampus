@@ -93,6 +93,8 @@ class User extends Authenticatable
         'provider_id'
     ];
 
+    protected $hidden = ['password'];
+
     public function publication()
     {
         return $this->hasMany('App\Publication')->orderBy('created_at', 'desc');
