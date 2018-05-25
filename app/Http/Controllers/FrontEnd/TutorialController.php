@@ -34,7 +34,7 @@ class TutorialController extends Controller
     {
         $user = Auth::user();
         $categories = Category::all();
-        return view('addTuto', ['categories' => $categories, 'user' => $user]);
+        return view('publication.tutorial.create', ['categories' => $categories, 'user' => $user]);
     }
 
     /**
@@ -181,7 +181,7 @@ class TutorialController extends Controller
             Consultation::find($consultation->id)->increment('occurrences');
         }
 
-        return view('article',
+        return view('tutorial.summary',
             [
                 'user' => $user,
                 'tuto' => $tuto,
@@ -201,7 +201,7 @@ class TutorialController extends Controller
             ->with('user')
             ->firstOrFail();
 
-        return view('publication.affichepublication', ['publication' => $publication]);
+        return view('publication.tutorial.show', ['publication' => $publication]);
     }
 
     /**
@@ -220,7 +220,7 @@ class TutorialController extends Controller
 
 
 
-        return view('publication.update.update-tutorial',
+        return view('publication.tutorial.edit',
             ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
     }
 
@@ -231,8 +231,10 @@ class TutorialController extends Controller
      * @param  \App\Publication $publication
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Publication $publication)
+    public function update(Request $request, $slug)
     {
+        $publication = Publication::where('slug', $slug);
+
         if ($request->hasFile('imgpublication')) {
 
             // open an image file

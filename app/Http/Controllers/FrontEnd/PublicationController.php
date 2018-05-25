@@ -1,20 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
-use App\Bought;
 use App\Category;
-use App\Consultation;
+use App\Http\Controllers\Controller;
 use App\Publication;
 use App\Post;
-use App\User;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use App\Rating;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class PublicationController extends Controller
 {
@@ -28,27 +20,12 @@ class PublicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function categoriesList()
     {
         $user = Auth::user();
         $categories = Category::with('post')->get();
-        return view('category', ['categories' => $categories, 'user' => $user]);
+        return view('publication.categoryList', ['categories' => $categories, 'user' => $user]);
     }
-
-
-
-    /**
-     * store post into publication
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
 
 
     /**
@@ -68,10 +45,15 @@ class PublicationController extends Controller
         $lastTutorials = Publication::where('category_id', $category->id)->tuto()->latest()->limit(8)->get();
 
 
-        return view('listing', ['category' => $category, 'bestTutorial' => $bestTutorial, 'bestsTutorials' => $bestsTutorials, 'lastTutorials' => $lastTutorials]);
+        return view('publication.show', [
+            'category' => $category,
+            'bestTutorial' => $bestTutorial,
+            'bestsTutorials' => $bestsTutorials,
+            'lastTutorials' => $lastTutorials
+        ]);
     }
 
-    public function showAll($name)
+    public function showByCategory($name)
     {
         $category = Category::where('name', $name)->firstOrFail();
         $tutorials = Publication::with('category', 'user', 'consultation')
@@ -80,16 +62,12 @@ class PublicationController extends Controller
             ->where('category_id', $category->id)
             ->paginate();
 
-        return view('publication.categoryalltutorial', ['category' => $category, 'tutorial' => $tutorials]);
+        return view('publication.showByCategory', [
+            'category' => $category,
+            'tutorials' => $tutorials
+        ]);
     }
 
-
-    public function showPost($slug)
-    {
-        $post = Publication::where('slug', $slug)->firstOrFail();
-
-        return view('article', ['post' => $post]);
-    }
 
     /**
      * Show publication page
@@ -98,7 +76,7 @@ class PublicationController extends Controller
      */
 
 
-    public function allTutorials()
+    public function index()
     {
         if (request()->has('price')) {
 
@@ -122,7 +100,7 @@ class PublicationController extends Controller
                 ->tuto()
                 ->paginate();
         }
-        return view('listingall', ['tutorials' => $tutorials]);
+        return view('publication.index', ['tutorials' => $tutorials]);
 
     }
 

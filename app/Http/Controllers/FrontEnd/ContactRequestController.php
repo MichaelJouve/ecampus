@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
-use App\Bought;
+use App\ContactRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class BoughtController extends Controller
+
+class ContactRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,15 +39,32 @@ class BoughtController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = Auth::user();
+
+        $request->validate([
+            'title' => 'required|max:160',
+            'content' => 'required|max:360'
+        ]);
+
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
+
+
+        ContactRequest::create($inputs);
+
+        session()->flash('message', 'Votre requête a bien été soumise à notre équipe !');
+        return redirect()->route('front-index');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Bought  $bought
+     * @param  \App\ContactRequest  $contactRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(Bought $bought)
+    public function show(ContactRequest $contactRequest)
     {
         //
     }
@@ -52,10 +72,10 @@ class BoughtController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Bought  $bought
+     * @param  \App\ContactRequest  $contactRequest
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bought $bought)
+    public function edit(ContactRequest $contactRequest)
     {
         //
     }
@@ -64,10 +84,10 @@ class BoughtController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Bought  $bought
+     * @param  \App\ContactRequest  $contactRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bought $bought)
+    public function update(Request $request, ContactRequest $contactRequest)
     {
         //
     }
@@ -75,10 +95,10 @@ class BoughtController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Bought  $bought
+     * @param  \App\ContactRequest  $contactRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bought $bought)
+    public function destroy(ContactRequest $contactRequest)
     {
         //
     }

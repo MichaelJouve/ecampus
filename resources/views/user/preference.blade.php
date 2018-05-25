@@ -4,7 +4,7 @@
 @section('contenu')
     <!-- Barre de naviguation -->
     <div class="container-fluid">
-        @include('navBarConfig')
+        @include('components.navBarConfig')
     </div>
 
     <!-- CONTENU -->

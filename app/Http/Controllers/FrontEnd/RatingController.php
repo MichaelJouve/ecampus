@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
+use App\Http\Controllers\Controller;
 use App\Publication;
 use App\Rating;
 use Illuminate\Http\Request;
