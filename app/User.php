@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Notifications\Notifiable;
-
+use Laravel\Passport\HasApiTokens;
 
 /**
  * App\User
@@ -68,6 +68,7 @@ class User extends Authenticatable
     use Sluggable;
     use SluggableScopeHelpers;
     use SoftDeletes;
+    use hasApiTokens;
 
     protected $dates = ['birthday'];
 
