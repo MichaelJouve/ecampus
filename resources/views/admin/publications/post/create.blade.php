@@ -1,22 +1,21 @@
 @extends('layouts.layout-admin')
 
 @section('content')
-    <div class="container text-center">
-        <h1 class="text-success"><i class="far fa-file-alt"></i> Modification du Post de
-            <b>{{ $publication->user->firstname }}</b></h1>
-        <h3><u><b>{{ $publication->title }}</b></u></h3>
+    <div class="container-fluid pt-4 pb-4 bandeau-sombre">
+        <div class="container">
+            <h1><i class="far fa-file-alt"></i> Formulaire d'ajout de post</h1>
+        </div>
     </div>
     <div class="container mt-3 mb-5">
         <div class="row justify-content-center">
-            <div class="col-12">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Modification du post : <b>{{ $publication->title }}</b></div>
+                    <div class="card-header">Ajouter un nouveau <b>post</b> à votre profil</div>
 
                     <div class="card-body">
-                        <form id="ajout-post" method="POST"
-                              action="{{URL::route('admin.post.update', ['publication' => $publication])}}">
+                        <form id="ajout-post" method="POST" action="{{URL::route('admin.post.store')}}">
                             @csrf
-                            <input type="hidden" name="user_id" value="{{$publication->user->id}}">
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="type" value="post">
                             <div class="form-group">
                                 <label for="category_id">
@@ -24,12 +23,7 @@
                                 </label>
                                 <select class="custom-select {{ $errors->has('category_id') ? ' is-invalid' : '' }}"
                                         name="category_id" id="selecteur_post">
-                                    @if($publication->category_id)
-                                        <option selected
-                                                value="{{$publication->category_id}}">{{$publication->category->name}}</option>
-                                    @else
-                                        <option selected disabled>Choisir une categorie</option>
-                                    @endif
+                                    <option selected disabled>Choisir une categorie</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
@@ -45,7 +39,7 @@
                                 <label for="title">Titre</label>
                                 <input type="text" name="title"
                                        class="form-control {{$errors->has('title') ? ' is-invalid' : '' }}" id="title"
-                                       placeholder="Titre" value="{{old('title') ? old('title') : $publication->title}}"
+                                       placeholder="Titre" value="{{old('title')}}"
                                        title="Maximum 50 caractères"/>
                                 @if ($errors->has('title'))
                                     <span class="invalid-feedback">
@@ -58,9 +52,7 @@
                                 <label for="content">Contenu</label>
                                 <input type="hidden" style="resize: both; overflow: auto" name="content"
                                        class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}">
-                                <div id="editor-container">
-                                    {!! old('content') ? old('content') : $publication->content !!}
-                                </div>
+                                <div id="editor-container"></div>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback">
                                     <strong>{{ $errors->first('content') }}</strong>
@@ -89,7 +81,7 @@
                 toolbar: [
                     [{header: [1, 2, 3, false]}],
 
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image'],        // toggled buttons
+                    ['bold', 'italic', 'underline', 'strike','link'],        // toggled buttons
                     ['code-block'],
 
 
@@ -107,6 +99,9 @@
             var content = document.querySelector('input[name=content]');
             content.value = quill.root.innerHTML;
         });
+        quill.setContents([
+                {insert: "{{ strip_tags(old('content')) }}"}
 
+        ]);
     </script>
 @endpush

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use App\Role;
 use App\User;
@@ -9,25 +9,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class MemberController extends Controller
+class UserController extends Controller
 {
 
     public function index()
     {
-        $user = Auth::user();
-        $users = User::with('roles')->get();
 
-        return view('admin.members.index', ['user' => $user, 'users' => $users]);
+        return User::all();
     }
 
 
     public function edit(User $user)
     {
-        $userAuth = Auth::user();
-        $userAuth->load('roles');
-        $roles = Role::all();
-
-        return view('admin.members.edit', ['user' => $userAuth, 'otherUser' => $user, 'roles' => $roles]);
+        //
     }
 
 
@@ -57,7 +51,8 @@ class MemberController extends Controller
         }
 
 
-        return redirect()->route('admin.members.index');
+        return response()->json($user, 200);
+
     }
 
 
@@ -66,18 +61,7 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.members.auth.register');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return User|\Illuminate\Database\Eloquent\Model
-     */
-    public function store(Request $data)
+    public function create(Request $data)
     {
         $user = User::create([
             'name' => ucfirst($data['name']),
@@ -87,18 +71,40 @@ class MemberController extends Controller
         ]);
         $user->roles()->attach(Role::where('name', 'writer')->first());
 
-        return redirect()->route('admin.members.index');
+        return $user;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @return User|\Illuminate\Database\Eloquent\Builder
      */
     public function show(User $user)
     {
-        //
+        return $user->with('publication',
+            'post',
+            'tutorial',
+            'comment',
+            'followers',
+            'followings',
+            'roles',
+            'postsBought',
+            'unreadMessageByUser',
+            'unreadMessage')
+            ->first();
+
     }
 
 
@@ -118,7 +124,9 @@ class MemberController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json(null, 204);
+
     }
 }
 

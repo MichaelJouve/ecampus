@@ -1,8 +1,14 @@
 @extends('layouts.layout-admin')
 
 @section('content')
-    <p class="m-4 font-weight-bold">Administration / Gestion des tutoriels</p>
-
+    <div class="row m-3">
+        <div class="col-10">
+            <p class="font-weight-bold">Administration / Gestion des tutoriels</p>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success form-control" href="{{route('admin.tutorial.create')}}">Ajouter</a>
+        </div>
+    </div>
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>

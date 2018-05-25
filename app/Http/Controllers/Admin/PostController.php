@@ -29,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.publications.post.create', ['categories' => $categories]);
     }
 
     /**
@@ -40,7 +41,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        preg_match_all('!(<img[^>]*src="([^"]*)")!', $request['content'], $tableauDImg);
+
+        foreach ($tableauDImg['1'] as $i) {
+            $request['content'] = htmlspecialchars_decode(str_replace($i, $i . ' class="img-fluid"', $request['content']));
+        }
+
+        $user = Auth::user();
+
+        $this->validate($request, [
+            'category_id' => 'required|numeric',
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
+
+        Publication::create($inputs);
+
+        //Un petit message de succés ...
+        session()->flash('message', 'Votre post a bien été créé !');
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**

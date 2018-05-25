@@ -44,8 +44,8 @@
     </div>
     <div class="row text-dark">
         <div class="col-2 bg-light text-center pt-3 shadow">
-            <img src="{{ asset($user->imgprofil) }}" alt="Image de profil" class="w-50 rounded-circle shadow">
-            <p class="mt-2 font-weight-bold">{{ $user->name }}  {{ $user->firstname }} </p>
+            <img src="{{ asset(Auth::user()->imgprofil) }}" alt="Image de profil" class="w-50 rounded-circle shadow">
+            <p class="mt-2 font-weight-bold">{{ Auth::user()->name }}  {{ Auth::user()->firstname }} </p>
 
             <ul class="nav administration mt-5 pb-4 text-left pl-3">
                 <li class="nav-item  w-100 mt-2">
@@ -95,7 +95,7 @@
 
 <!-- Initialize Quill editor -->
 @stack('scripts_tuto')
-@stack('scripts_post_admin')
+@stack('scripts_post')
 @stack('ratingScript')
 </body>
 </html>

@@ -65,7 +65,7 @@ class CommentController extends Controller
 
         return view('admin.comments.edit', [
             'user' => $user,
-            'commment' => $comment
+            'comment' => $comment
         ]);
     }
 
@@ -78,17 +78,20 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $comment->update($request->all());
+        return redirect()->route('admin.comments.index')->with('message', 'Modification effectuée');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect()->route('admin.comments.index')->with('message', 'Suppression effectuée');
     }
 }

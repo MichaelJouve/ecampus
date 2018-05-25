@@ -17,6 +17,8 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
     //manage members
     Route::prefix('members')->group(function () {
         Route::get('/', 'Admin\MemberController@index')->name('admin.members.index');
+        Route::get('/create', 'Admin\MemberController@create')->name('admin.member.create');
+        Route::post('/create', 'Admin\MemberController@store')->name('admin.member.store');
         Route::get('/{user}', 'Admin\MemberController@edit')->name('admin.member.edit');
         Route::post('/{user}', 'Admin\MemberController@update')->name('admin.member.update');
         Route::get('/{user}/delete', 'Admin\MemberController@destroy')->name('admin.member.delete');
@@ -25,6 +27,8 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
     // Manage Posts
     Route::prefix('posts')->group(function () {
         Route::get('/', 'Admin\PostController@index')->name('admin.posts.index');
+        Route::get('/create', 'Admin\PostController@create')->name('admin.post.create');
+        Route::post('/create', 'Admin\PostController@store')->name('admin.post.store');
         Route::get('/{publication}', 'Admin\PostController@edit')->name('admin.post.edit');
         Route::post('/{publication}', 'Admin\PostController@update')->name('admin.post.update');
         Route::get('/{publication}/delete', 'Admin\PostController@destroy')->name('admin.post.delete');
@@ -33,6 +37,8 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
     //Manage Tutorials
     Route::prefix('tutorials')->group(function () {
         Route::get('/', 'Admin\TutorialController@index')->name('admin.tutorials.index');
+        Route::get('/create', 'Admin\TutorialController@create')->name('admin.tutorial.create');
+        Route::post('/create', 'Admin\TutorialController@store')->name('admin.tutorial.store');
         Route::get('/{publication}', 'Admin\TutorialController@edit')->name('admin.tutorial.edit');
         Route::post('/{publication}', 'Admin\TutorialController@update')->name('admin.tutorial.update');
         Route::get('/{publication}/delete', 'Admin\TutorialController@destroy')->name('admin.tutorial.delete');
@@ -43,7 +49,7 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
         Route::get('/', 'Admin\CommentController@index')->name('admin.comments.index');
         Route::get('/{comment}', 'Admin\CommentController@edit')->name('admin.comment.edit');
         Route::post('/{comment}', 'Admin\CommentController@update')->name('admin.comment.update');
-        Route::post('/{comment}/delete', 'Admin\TutorialController@destroy')->name('admin.comment.delete');
+        Route::get('/{comment}/delete', 'Admin\CommentController@destroy')->name('admin.comment.delete');
     });
 
     //Manage Requestes
@@ -51,10 +57,12 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
         Route::get('/', 'Admin\RequestController@index')->name('admin.request.index');
     });
 
-    //
+    //Manage Comptable
     Route::prefix('comptable')->middleware('role:adminMarketing')->group(function () {
         Route::get('/', 'Admin\ComptableController@index')->name('admin.comptable.index');
     });
+
+    //Manage Marketing
     Route::prefix('marketing')->middleware('role:adminAccounting')->group(function () {
         Route::get('/', 'Admin\MarketingController@index')->name('admin.marketing.index');
     });

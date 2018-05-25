@@ -1,8 +1,15 @@
 @extends('layouts.layout-admin')
 
 @section('content')
-    <p class="m-4 font-weight-bold">Administration / Gestion des membres</p>
+    <div class="m-3 row">
+        <div class="col-10">
+            <p class="font-weight-bold">Administration / Gestion des membres</p>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success form-control" href="{{route('admin.member.create')}}">Ajouter</a>
+        </div>
 
+    </div>
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
@@ -23,7 +30,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->firstname }}</td>
                 <td>{{ $user->email }}</td>
-                <td class="font-weight-bold">{{ $user->roles[0]->name }}</td>
+                <td class="font-weight-bold"></td>
                 <td>{{ $user->created_at->format('d.m.Y') }}</td>
                 <td><a href="{{route('admin.member.edit', ['user' => $user])}}">Modifier</a></td>
                 <td><a href="">Supprimer</a></td>
