@@ -3,14 +3,14 @@
 
 Auth::routes();
 
-
+//NOTHING BETTER THAN HOME
 Route::get('/', 'HomeController@index')->name('front-index');
 
-//Auth
+//AUTH
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-//Administration
+//ADMIN
 Route::prefix('admin')->middleware('role:admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('administration');
 
@@ -68,86 +68,110 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
     });
 });
 
-//Route for category
-Route::prefix('categorie')->group(function () {
-    Route::get('/', 'PublicationController@index')->name('listing-categorie');
-    Route::get('/{name}/All', 'PublicationController@showAll')->name('listing-all-categorie');
-    Route::get('/{name}', 'PublicationController@show');
+
+
+
+//SEARCH
+Route::post('/recherche', 'FrontEnd\SearchController@index')->name('search');
+
+
+//TRAVEL OVER EVERY TUTORIALS
+Route::prefix('travel')->group(function () {
+    Route::get('/all/', 'FrontEnd\PublicationController@index')->name('listing-all');
+
+    Route::prefix('byCategory')->group(function () {
+        Route::get('/', 'FrontEnd\PublicationController@categoriesList')->name('listing-categorie');
+        Route::get('/{name}', 'FrontEnd\PublicationController@show');
+        Route::get('/{name}/all', 'FrontEnd\PublicationController@showByCategory')->name('listing-all-categorie');
+    });
 });
-
-//Show list all tutoriels
-Route::get('/Alltutoriels/', 'PublicationController@allTutorials')->name('listing-all');
-
 
 //PUBLCIATIONS
 Route::prefix('publication')->group(function () {
 
     //POSTS
-    Route::get('/post', 'FrontEnd\PostController@create')->name('post-ajout');
-    Route::post('/post', 'FrontEnd\PostController@store')->name('store-post');
-    Route::get('/post/{slug}', 'FrontEnd\PostController@edit')->name('update-publication-post');
-    Route::post('/post/{slug}', 'FrontEnd\PostController@update')->name('update-publication');
-    Route::get('/post/{slug}/delete', 'PublicationController@softDelete')->name('publication-delete');
+    Route::prefix('post')->group(function () {
+        //MANAGE
+        Route::get('/create', 'FrontEnd\PostController@create')->name('post-ajout');
+        Route::post('/store', 'FrontEnd\PostController@store')->name('store-post');
+        Route::get('/{slug}/edit', 'FrontEnd\PostController@edit')->name('update-publication-post');
+        Route::post('/{slug}/update', 'FrontEnd\PostController@update')->name('update-publication');
+        Route::get('/{slug}/delete', 'FrontEnd\PublicationController@softDelete')->name('publication-delete');
+
+        //COMMENT
+        Route::post('/{slug}/comment/', 'FrontEnd\CommentController@store')->name('post-comment');
+    });
 
     // TUTORIELS
-//Route for tutoriel
-    Route::prefix('tutoriel')->group(function () {
+    Route::prefix('tutorial')->group(function () {
+        //VIEW
         Route::get('/{slug}/buy', 'FrontEnd\TutorialController@buy')->name('front-buy-tutorial');
         Route::get('/{slug}/summary', 'FrontEnd\TutorialController@summary')->name('front-tutorial');
-        Route::get('/{slug}/consultation', 'FrontEnd\TutorialController@show')->name('affiche-publication');
+        Route::get('/{slug}/show', 'FrontEnd\TutorialController@show')->name('affiche-publication');
 
-        Route::post('/{slug}/comment/', 'CommentController@store')->name('tutorial-comment');
-        Route::post('/{slug}/rating', 'RatingController@store')->name('tutorial.rating');
-
+        //MANAGE
         Route::get('/create', 'FrontEnd\TutorialController@create')->name('tuto-ajout');
         Route::post('/store', 'FrontEnd\TutorialController@store')->name('store-tuto');
         Route::get('/{slug}/edit', 'FrontEnd\TutorialController@edit')->name('update-publication-tutorial');
         Route::post('/{slug}/update', 'FrontEnd\TutorialController@update')->name('update-publication');
-        Route::get('/{slug}/delete', 'PublicationController@softDelete')->name('publication-delete');
+        Route::get('/{slug}/delete', 'FrontEnd\PublicationController@softDelete')->name('publication-delete');
+
+        //COMMENT
+        Route::post('/{slug}/comment/', 'FrontEnd\CommentController@store')->name('tutorial-comment');
+        Route::post('/{slug}/rating', 'FrontEnd\RatingController@store')->name('tutorial.rating');
+
+        Route::prefix('bought')->group(function () {
+            Route::get('/', 'FrontEnd\BoughtController@index')->name('user-profil-bought');
+            Route::get('/category', 'FrontEnd\BoughtController@categoryList')
+                ->name('user-profil-category-bought');
+            Route::get('/category/{name}', 'FrontEnd\BoughtController@show')
+                ->name('user-profil-all-category-bought');
+        });
     });
 
-    Route::get('/comment/delete/{id}', 'CommentController@softDelete')->name('comment-delete');
-    Route::post('/{slug}/comment/', 'CommentController@store')->name('post-comment');
-
-
+    //COMMENT DELETE
+    Route::get('/comment/delete/{id}', 'FrontEnd\CommentController@softDelete')->name('comment-delete');
 });
 
 
-Route::post('/recherche/', 'SearchController@index')->name('search');
-
+//PROFILE
 Route::prefix('profil')->group(function () {
-    Route::prefix('bought')->group(function () {
-        Route::get('/', 'UserController@bought')->name('user-profil-bought');
-        Route::get('/category', 'UserController@categoryBought')->name('user-profil-category-bought');
-        Route::get('/category/{name}', 'UserController@showAllBoughtByCategory')
-            ->name('user-profil-all-category-bought');
+    //MANAGE
+    Route::get('/', 'FrontEnd\UserController@index')->name('user-profil');
+    Route::get('/edit', 'FrontEnd\UserController@edit')->name('user-profil-infos');
+    Route::post('/update', 'FrontEnd\UserController@update')->name('user.update');
+
+    //MANAGE PREFERENCE
+    Route::get('/preference/', 'FrontEnd\UserController@preference')->name('user-profil-preference');
+
+    //VIEW OTHER
+    Route::get('/{slug}/visit', 'FrontEnd\UserController@otherProfil')->name('other-profil');
+
+    //MESSAGERIE (je sais pas comment lecrire en anglais (lol))
+    Route::prefix('message')->group(function () {
+        Route::get('/', 'FrontEnd\MessageController@index')->name('user-profil-message');
+        Route::get('/{slug}', 'FrontEnd\MessageController@show')->name('conversation.show');
+        Route::post('/{slug}', 'FrontEnd\MessageController@store');
     });
-    Route::get('/infos/', 'UserController@infos')->name('user-profil-infos');
-    Route::get('/message/', 'UserController@message')->name('user-profil-message');
-    Route::get('/preference/', 'UserController@preference')->name('user-profil-preference');
-    Route::get('/subscription', 'UserController@subscription')->name('user-sub');
-    Route::get('/unsubscription', 'UserController@unsubscription')->name('user-unsub');
-    Route::get('/{slug}', 'UserController@otherProfil')->name('other-profil');
-    Route::get('/follow/{slug}', 'FollowController@followUser')->name('follow');
-    Route::get('/unfollow/{slug}', 'FollowController@unFollowUser')->name('unfollow');
-    Route::post('/infos/update/description', 'UserController@updateDescription')->name('update-description');
-    Route::post('/infos/update/imgprofil', 'UserController@updateAvatar')->name('update-avatar');
-    Route::post('/infos/update', 'UserController@update')->name('update-info');
-    Route::get('/', 'UserController@myProfil')->name('user-profil');
+
+    //SUBSCRIBE
+    Route::get('/subscription', 'FrontEnd\UserController@subscription')->name('user-sub');
+    Route::get('/unsubscription', 'FrontEnd\UserController@unsubscription')->name('user-unsub');
+
+    //FOLLOW
+    Route::get('/follow/{slug}', 'FrontEnd\FollowController@followUser')->name('follow');
+    Route::get('/unfollow/{slug}', 'FrontEnd\FollowController@unFollowUser')->name('unfollow');
+
 });
 
-
-//Route conversation message
-Route::get('/profil/message/conversation/{slug}', 'MessageController@show')->name('conversation.show');
-Route::post('/profil/message/conversation/{slug}', 'MessageController@store');
 
 //See this page
 Route::get('/panier', 'HomeController@panier')->name('front-panier');
 
 
-// Route for the statics pages
-Route::get('/cgu', 'ContentController@cgu')->name('front-cgu');
-Route::get('/aboutus', 'ContentController@aboutus')->name('front-aboutus');
-Route::get('/contact', 'ContentController@contact')->name('front-contact');
-Route::post('/contact/sendRequest', 'ContactRequestController@store')->name('contact-request');
-Route::get('/rgpd', 'ContentController@rgpd')->name('front-rgpd');
+// USELESS
+Route::get('/cgu', 'FrontEnd\ContentController@cgu')->name('front-cgu');
+Route::get('/aboutus', 'FrontEnd\ContentController@aboutus')->name('front-aboutus');
+Route::get('/contact', 'FrontEnd\ContentController@contact')->name('front-contact');
+Route::post('/contact/sendRequest', 'FrontEnd\ContactRequestController@store')->name('contact-request');
+Route::get('/rgpd', 'FrontEnd\ContentController@rgpd')->name('front-rgpd');

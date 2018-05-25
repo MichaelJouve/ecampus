@@ -29,7 +29,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $user = Auth::user();
-        return view('addPost', ['categories' => $categories, 'user' => $user]);
+        return view('publication.post.create', ['categories' => $categories, 'user' => $user]);
     }
 
     /**
@@ -93,7 +93,7 @@ class PostController extends Controller
         $decodeContent = $publication->content;
 
 
-        return view('publication.update.update-post',
+        return view('publication.post.edit',
             ['publication' => $publication, 'categories' => $categories, 'decodeContent' => $decodeContent]);
     }
     /**
@@ -103,8 +103,9 @@ class PostController extends Controller
      * @param  \App\Publication  $publication
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Publication $publication)
+    public function update(Request $request, $slug)
     {
+        $publication = Publication::where('slug', $slug);
         $validateData = $request->validate([
             'category_id' => 'integer',
             'title' => 'string|max:191',

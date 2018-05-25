@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Publication;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class SearchController extends Controller
             ->get();
 
 
-        return view('recherche', ['tutorial' => $posts]);
+        return view('search', ['tutorial' => $posts]);
     }
 
 

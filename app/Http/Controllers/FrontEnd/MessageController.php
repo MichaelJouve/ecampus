@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
+use App\Http\Controllers\Controller;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,8 +17,21 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $userAuth = Auth::user();
+        $user = $userAuth;
+        $userId = $user->id;
+
+        $user->load('unreadMessage');
+
+
+        $users = User::where('id', '!=', $userAuth->id)
+            ->withCount(['unreadMessageByUser' => function ($query) use ($userId) {
+                $query->where('to_user_id', $userId);
+            }])->get();
+
+        return view('conversation.index', ['user' => $user, 'userAuth' => $userAuth, 'users' => $users]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -79,7 +93,7 @@ class MessageController extends Controller
 
         $messages = Message::findConversation($userId, $otherUserId)->paginate(20);
 
-        return view ('conversation.index', ['users' => $users, 'otherUser' => $otherUser, 'user' => $userAuth, 'messages' => $messages]);
+        return view ('conversation.show', ['users' => $users, 'otherUser' => $otherUser, 'user' => $userAuth, 'messages' => $messages]);
     }
 
 

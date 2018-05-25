@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
 use App\Content;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
@@ -14,7 +15,7 @@ class ContentController extends Controller
      */
     public function cgu()
     {
-        return view('cgu');
+        return view('content.cgu');
     }
 
     /**
@@ -24,7 +25,7 @@ class ContentController extends Controller
      */
     public function aboutus()
     {
-        return view('aboutus');
+        return view('content.aboutus');
     }
 
     /**
@@ -35,13 +36,13 @@ class ContentController extends Controller
      */
     public function contact()
     {
-        return view('contact');
+        return view('content.contact');
     }
 
 
     public function rgpd()
     {
-        return view('rgpd');
+        return view('content.rgpd');
     }
 
 }

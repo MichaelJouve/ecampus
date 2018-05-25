@@ -5,7 +5,7 @@
 
     <!-- Barre de naviguation -->
     <div class="container-fluid">
-        @include('navBarConfig')
+        @include('components.navBarConfig')
     </div>
 
     <!-- Bandeau de sous-menu -->
@@ -24,7 +24,7 @@
 
                     <!-- MON PROFIL-->
                     <div class="card">
-                        <form action="{{URL::route('update-info')}}" method="post">
+                        <form action="{{URL::route('user.update')}}" method="post">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Mon Profil</h3>
@@ -70,7 +70,7 @@
 
                     <!-- DESCRIPTION-->
                     <div class="card">
-                        <form action="{{URL::route('update-description')}}" method="post">
+                        <form action="{{URL::route('user.update')}}" method="post">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Ma description</h3>
@@ -87,7 +87,7 @@
 
                     <!-- PHOTO-->
                     <div class="card ">
-                        <form action="{{URL::route('update-avatar')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{URL::route('user.update')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Ma Photo</h3>
