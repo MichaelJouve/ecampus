@@ -147,9 +147,9 @@ Route::prefix('profil')->group(function () {
 
     //MESSAGERIE (je sais pas comment lecrire en anglais (lol))
     Route::prefix('message')->group(function () {
-        Route::get('/', 'FrontEnd\MessageController@index')->name('user-profil-message');
         Route::get('/{slug}', 'FrontEnd\MessageController@show')->name('conversation.show');
         Route::post('/{slug}', 'FrontEnd\MessageController@store');
+        Route::get('/', 'FrontEnd\MessageController@index')->name('user-profil-message');
     });
 
     //SUBSCRIBE

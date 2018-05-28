@@ -69,6 +69,8 @@ class User extends Authenticatable
     use SluggableScopeHelpers;
     use SoftDeletes;
     use hasApiTokens;
+    use SluggableScopeHelpers;
+
 
     protected $dates = ['birthday'];
 

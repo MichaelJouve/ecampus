@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Follow;
 use App\Http\Controllers\Controller;
 use App\Message;
 use App\User;
@@ -24,12 +25,26 @@ class MessageController extends Controller
         $user->load('unreadMessage');
 
 
-        $users = User::where('id', '!=', $userAuth->id)
-            ->withCount(['unreadMessageByUser' => function ($query) use ($userId) {
-                $query->where('to_user_id', $userId);
+        $followings = Follow::Where('user_id_followed', $userId)
+            ->with(['followers' => function ($query) use ($userId) {
+                $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
+                    $query->where('to_user_id', $userId);
+                }]);
+            }])
+            ->get();
+        $followers = Follow::where('user_id_following', $userId)
+            ->with(['followings' => function ($query) use ($userId) {
+                $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
+                    $query->where('to_user_id', $userId);
+                }]);
             }])->get();
 
-        return view('conversation.index', ['user' => $user, 'userAuth' => $userAuth, 'users' => $users]);
+        return view('conversation.index', [
+            'user' => $user,
+            'userAuth' => $userAuth,
+            'followings' => $followings,
+            'followers' => $followers
+        ]);
     }
 
 
@@ -46,7 +61,7 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $slug)
@@ -71,7 +86,7 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Message  $message
+     * @param  \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
@@ -83,24 +98,39 @@ class MessageController extends Controller
         $userId = $userAuth->id;
         $userAuth->load('unreadMessage');
 
-        Message::findUnreadMessage($userId, $otherUserId)->update(['read_at'=> now()]);
+        Message::findUnreadMessage($userId, $otherUserId)
+            ->update(['read_at' => now()]);
 
-        $users = User::where('id','!=', $userAuth->id)
-            ->withCount(['unreadMessageByUser' => function ($query) use($userId) {
-                $query->where('to_user_id', $userId);
+        $followings = Follow::Where('user_id_followed', $userId)
+            ->with(['followers' => function ($query) use ($userId) {
+                $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
+                    $query->where('to_user_id', $userId);
+                }]);
+            }])
+            ->get();
+        $followers = Follow::where('user_id_following', $userId)
+            ->with(['followings' => function ($query) use ($userId) {
+                $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
+                    $query->where('to_user_id', $userId);
+                }]);
             }])->get();
-
 
         $messages = Message::findConversation($userId, $otherUserId)->paginate(20);
 
-        return view ('conversation.show', ['users' => $users, 'otherUser' => $otherUser, 'user' => $userAuth, 'messages' => $messages]);
+        return view('conversation.show', [
+            'followers' => $followers,
+            'followings' => $followings,
+            'otherUser' => $otherUser,
+            'user' => $userAuth,
+            'messages' => $messages
+        ]);
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Message  $message
+     * @param  \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function edit(Message $message)
@@ -111,8 +141,8 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Message $message)
@@ -123,7 +153,7 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Message  $message
+     * @param  \App\Message $message
      * @return \Illuminate\Http\Response
      */
     public function destroy(Message $message)
