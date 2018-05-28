@@ -23,7 +23,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{publication}', 'Api\PublicationController@show');
         Route::post('/', 'Api\PublicationController@store');
         Route::put('/{publication}', 'Api\PublicationController@update');
-        Route::delete('/{publication}', 'Api\PublicationController@delete');
+        Route::delete('/{publication}', 'Api\PublicationController@destroy');
     });
 
 //  USERS

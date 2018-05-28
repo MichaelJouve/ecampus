@@ -36,13 +36,14 @@ class PublicationController extends Controller
      */
     public function show($name)
     {
-        $category = Category::with('tuto')->where('name', $name)->firstOrFail();
 
-        $bestTutorial = Publication::where('category_id', $category->id)->tuto()->first();
+        $category = Category::where('name', $name)->firstOrFail();
 
-        $bestsTutorials = Publication::where('category_id', $category->id)->tuto()->limit(4)->get();
+        $bestTutorial = Publication::tuto()->where('category_id', $category->id)->first();
 
-        $lastTutorials = Publication::where('category_id', $category->id)->tuto()->latest()->limit(8)->get();
+        $bestsTutorials = Publication::tuto()->where('category_id', $category->id)->limit(4)->get();
+
+        $lastTutorials = Publication::tuto()->where('category_id', $category->id)->latest()->limit(8)->get();
 
 
         return view('publication.show', [
