@@ -19,7 +19,9 @@ class CreateContactRequestsTable extends Migration
             $table->text('content')->required();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
+
         });
     }
 

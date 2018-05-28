@@ -12,14 +12,14 @@
                     <div class="card-header">Modification du Commentaire</div>
 
                     <div class="card">
-                        <form action="" method="post">
+                        <form action="{{route('admin.comment.update', ['comment' => $comment])}}" method="post">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Ma description</h3>
                             </div>
                             <div class="card-body">
-                                <textarea name="description" rows="15"
-                                          class="form-control">{{$user->comment}}</textarea>
+                                <textarea name="content" rows="15"
+                                          class="form-control">{{$comment->content}}</textarea>
                             </div>
                             <div class="card-footer text-right">
                                 <button type="submit" class="btn btn-info">Modifier</button>

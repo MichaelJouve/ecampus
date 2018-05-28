@@ -2,8 +2,8 @@
 
 @section('content')
     <p class="m-4 font-weight-bold">Administration / Gestion des membres</p>
-
-    <table class="table table-hover">
+    <a class="btn btn-success ml-5 shadow" href="{{ route('admin.member.store') }}">Ajouter un membre</a>
+    <table class="table table-hover mt-4">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>

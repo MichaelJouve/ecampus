@@ -14,11 +14,11 @@
         @foreach ($tutorials as $tutorial)
 
             <div class="col-md-12 rounded mt-5 mb-5">
-                <div class="ribbon"><span>{{ $tutorial->category->name }}</span></div>
+                <div class="ribbon-{{ $tutorial->category->name }}"><span>{{ $tutorial->category->name }}</span></div>
                 <div class="row">
                     <div class="col-md-3 p-0">
                         <a href="{{route('front-tutorial',['slug' => $tutorial->slug])}}">
-                            <img src="{{asset('storage/'.$tutorial->imgpublication)}}" alt="Image du tutoriel"
+                            <img src="{{asset('storage/imgpublication-resize/'.$tutorial->imgpublication)}}" alt="Image du tutoriel"
                                  style="width: 280px; height: 170px;" class="shadow">
                         </a>
                     </div>

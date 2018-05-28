@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+
 class MemberController extends Controller
 {
 
@@ -76,9 +77,10 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $user = Auth::user();
+        return view('admin.members.add', [ 'user' => $user]);
     }
 
     /**

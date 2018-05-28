@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\ContactRequest
@@ -24,7 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContactRequest extends Model
 {
-    //
+
+    use SoftDeletes;
 
     protected $fillable = ['title','content','user_id'];
 

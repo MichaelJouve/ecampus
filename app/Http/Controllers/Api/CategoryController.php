@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
-use App\Comment;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CommentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $user = \Auth::user();
-        $comments = Comment::with('publication', 'user')->paginate();
-        return view('admin.comments.index', ['user' => $user, 'comments' => $comments]);
+        return Category::all();
     }
 
     /**
@@ -38,61 +36,59 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->all());
+
+        return response()->json($category, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Category $category)
     {
-        //
+        return $category;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($id)
     {
-        $user = \Auth::user();
-        $user->load('roles');
-
-        return view('admin.comments.edit', [
-            'user' => $user,
-            'comment' => $comment
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Category $category)
     {
+        $category->update($request->all());
 
-        $comment->update($request->all());
-        return redirect()->route('administration');
+        return response()->json($category, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Category $category)
     {
-        $comment->delete();
-        return redirect()->route('administration');
+        $category->delete();
 
+        return response()->json($category, 204);
     }
+
+
 }

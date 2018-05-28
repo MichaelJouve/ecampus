@@ -17,6 +17,7 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
     //manage members
     Route::prefix('members')->group(function () {
         Route::get('/', 'Admin\MemberController@index')->name('admin.members.index');
+        Route::get('/add/', 'Admin\MemberController@store')->name('admin.member.store');
         Route::get('/{user}', 'Admin\MemberController@edit')->name('admin.member.edit');
         Route::post('/{user}', 'Admin\MemberController@update')->name('admin.member.update');
         Route::get('/{user}/delete', 'Admin\MemberController@destroy')->name('admin.member.delete');
@@ -49,6 +50,7 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
     //Manage Requestes
     Route::prefix('requests')->group(function () {
         Route::get('/', 'Admin\RequestController@index')->name('admin.request.index');
+        Route::get('/email/{user}', 'Admin\RequestController@email')->name('admin.request.email');
     });
 
     //

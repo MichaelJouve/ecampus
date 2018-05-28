@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
-use App\Comment;
+use App\Publication;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CommentController extends Controller
+class PublicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $user = \Auth::user();
-        $comments = Comment::with('publication', 'user')->paginate();
-        return view('admin.comments.index', ['user' => $user, 'comments' => $comments]);
+        return Publication::all();
     }
 
     /**
@@ -38,61 +36,59 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $publication = Publication::create($request->all());
+
+        return response()->json($publication, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Publication $publication)
     {
-        //
+        return $publication;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($id)
     {
-        $user = \Auth::user();
-        $user->load('roles');
-
-        return view('admin.comments.edit', [
-            'user' => $user,
-            'comment' => $comment
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Publication $publication)
     {
+        $publication->update($request->all());
 
-        $comment->update($request->all());
-        return redirect()->route('administration');
+        return response()->json($publication, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Publication $publication)
     {
-        $comment->delete();
-        return redirect()->route('administration');
+        $publication->delete();
 
+        return response()->json($publication, 204);
     }
+
+
 }
