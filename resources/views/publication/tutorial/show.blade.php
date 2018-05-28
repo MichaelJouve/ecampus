@@ -8,8 +8,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ '/' }}">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="{{ '/profil/'.$publication->user->slug }}">Profil</a></li>
-                        <li class="breadcrumb-item"><a href="{{ '/tutoriel/'.$publication->slug }}">Tutoriel</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('other-profil', $publication->user->slug) }}">Profil</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('front-tutorial',['slug' => $publication->slug])}}">Tutoriel</a></li>
                         <li class="breadcrumb-item actived" aria-current="page">{{ $publication->title }}</li>
                     </ol>
                 </nav>
