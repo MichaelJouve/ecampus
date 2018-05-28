@@ -5,7 +5,7 @@
 
     <!-- Barre de naviguation -->
     <div class="container-fluid">
-        @include('components.navBarConfig')
+        @include('components.navBar.config')
     </div>
 
     <!-- Bandeau de sous-menu -->

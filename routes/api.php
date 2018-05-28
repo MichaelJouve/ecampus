@@ -12,11 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
-
-
 Route::middleware('auth:api')->group(function () {
+
     //  PUBLICATIONS
     Route::prefix('publications')->group(function () {
         Route::get('/', 'Api\PublicationController@index');
@@ -50,5 +47,6 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{comment}', 'Api\CommentController@destroy');
     });
 });
+
 
     Route::post('register', 'Auth\RegisterController@register');

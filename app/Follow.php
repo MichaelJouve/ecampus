@@ -17,4 +17,14 @@ class Follow extends Model
 {
     protected $fillable = ['user_id_following', 'user_id_followed'];
 
+
+    public function followings()
+    {
+        return $this->hasMany(User::class,'id', 'user_id_followed');
+    }
+
+    public function followers()
+    {
+        return $this->hasMany(User::class,'id', 'user_id_following');
+    }
 }

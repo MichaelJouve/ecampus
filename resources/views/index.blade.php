@@ -25,14 +25,14 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    @include('components.Publication.tutoriel')
+                    @include('components.CardsList.tutoriel')
                 </div>
 
                 <div class="col-md-12 m-5">
                     <h5><b>Derniers posts de nos utilisateurs:</b></h5>
                 </div>
                 <div class="row justify-content-center">
-                    @include('components.Publication.post')
+                    @include('components.CardsList.post')
                 </div>
             </div>
             <div class="col-md-2 text-center mt-5">
