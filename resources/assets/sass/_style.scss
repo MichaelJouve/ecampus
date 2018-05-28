@@ -19,4 +19,16 @@ li .actived{
 }
 
 
-//Like button
+//Link No Decoration
+
+a:link .none-text-decoration{
+  text-decoration: none;
+}
+
+a:visited .none-text-decoration{
+  text-decoration: none;
+}
+
+a:hover .none-text-decoration{
+  text-decoration: none;
+}

@@ -131,5 +131,10 @@ class Publication extends Model
         return $this->belongsToMany(User::class, 'boughts', 'publi_id', 'user_id');
     }
 
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
 
 }

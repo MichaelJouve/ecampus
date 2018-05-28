@@ -30,7 +30,7 @@ class SearchController extends Controller
             ->get();
 
 
-        return view('search', ['tutorial' => $posts]);
+        return view('search', ['tutorials' => $posts]);
     }
 
 

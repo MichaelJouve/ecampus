@@ -47,35 +47,61 @@
             <img src="{{ asset(Auth::user()->imgprofil) }}" alt="Image de profil" class="w-50 rounded-circle shadow">
             <p class="mt-2 font-weight-bold">{{ Auth::user()->name }}  {{ Auth::user()->firstname }} </p>
 
+            <a class="btn btn-danger" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                Se déconnecter
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
             <ul class="nav administration mt-5 pb-4 text-left pl-3">
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{ URL::route('admin.members.index') }}" class="nav-link active"> <i class="fas fa-users" style="font-size: 1.5em; margin-right: 8px;"></i> Gestion des membres</a>
+                    <a href="{{ URL::route('admin.members.index') }}" class="nav-link active"> <i class="fas fa-users"
+                                                                                                  style="font-size: 1.5em; margin-right: 8px;"></i>
+                        Gestion des membres</a>
                 </li>
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{ URL::route('admin.posts.index') }}" class="nav-link"><i class="fas fa-file-alt" style="font-size: 1.5em; margin-right: 8px;"></i>Gestion des posts</a>
+                    <a href="{{ URL::route('admin.posts.index') }}" class="nav-link"><i class="fas fa-file-alt"
+                                                                                        style="font-size: 1.5em; margin-right: 8px;"></i>Gestion
+                        des posts</a>
                 </li>
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{ URL::route('admin.tutorials.index') }}" class="nav-link"><i class="far fa-clipboard" style="font-size: 1.5em; margin-right: 8px;"></i>Gestion des tutoriels</a>
+                    <a href="{{ URL::route('admin.tutorials.index') }}" class="nav-link"><i class="far fa-clipboard"
+                                                                                            style="font-size: 1.5em; margin-right: 8px;"></i>Gestion
+                        des tutoriels</a>
                 </li>
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{ URL::route('admin.comments.index') }}" class="nav-link"><i class="far fa-comment" style="font-size: 1.5em; margin-right: 8px;"></i>Gestion des commentaires</a>
+                    <a href="{{ URL::route('admin.comments.index') }}" class="nav-link"><i class="far fa-comment"
+                                                                                           style="font-size: 1.5em; margin-right: 8px;"></i>Gestion
+                        des commentaires</a>
                 </li>
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{ URL::route('admin.request.index') }}" class="nav-link"><i class="fas fa-envelope-open" style="font-size: 1.5em; margin-right: 8px;"></i>Gestion des requêtes</a>
+                    <a href="{{ URL::route('admin.request.index') }}" class="nav-link"><i class="fas fa-envelope-open"
+                                                                                          style="font-size: 1.5em; margin-right: 8px;"></i>Gestion
+                        des requêtes</a>
                 </li>
                 <hr style="background: #e3e3e3;">
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{route('admin.marketing.index')}}" class="nav-link"><i class="fas fa-cart-arrow-down" style="font-size: 1.5em; margin-right: 8px;"></i>Gestion marketing</a>
+                    <a href="{{route('admin.marketing.index')}}" class="nav-link"><i class="fas fa-cart-arrow-down"
+                                                                                     style="font-size: 1.5em; margin-right: 8px;"></i>Gestion
+                        marketing</a>
                 </li>
                 <li class="nav-item  w-100 mt-2">
-                    <a href="{{route('admin.comptable.index')}}" class="nav-link"><i class="fas fa-calculator" style="font-size: 1.5em; margin-right: 8px;"></i>Gestion comptable</a>
+                    <a href="{{route('admin.comptable.index')}}" class="nav-link"><i class="fas fa-calculator"
+                                                                                     style="font-size: 1.5em; margin-right: 8px;"></i>Gestion
+                        comptable</a>
                 </li>
+
+                <hr style="background: #e3e3e3;">
+
 
             </ul>
         </div>
 
         <div class="col-10 text-black-50">
-                @yield('content')
+            @yield('content')
         </div>
     </div>
 </div>

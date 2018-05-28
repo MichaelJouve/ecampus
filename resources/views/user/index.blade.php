@@ -101,6 +101,8 @@
         @isset($userAuth)
             @foreach( $publications as $publication)
                 @if ($publication->type == 'post')
+
+
                     <div class="col-md-8 offset-md-2 mt-4 mb-2">
                         <div class="card shadow">
                             <div class="ribbon-{{ $publication->category->name }}">
@@ -116,7 +118,6 @@
                                     <a href="{{route('publication-delete',['slug' => $publication->slug])}}">
         <span name="delete" style="color:#dc3545;  margin-right: 10px;"><i
                     class="fas fa-eraser"></i></span></a>
-
                                 @endif
                             </div>
 
@@ -136,8 +137,31 @@
                             </div>
                             <div class="card-footer text-right">
                                 <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
+                                <!-- List of members like this post -->
 
-                                <i class="far fa-heart"></i>
+
+
+
+                                @if($publication->like == 0)
+                                    <a href="{{ route('like',['slug' => $publication->slug]) }}"
+                                       class="none-text-decoration" title="
+                                    @foreach($publication->likes as $like)
+                                    {{$like->user->firstname}}
+                                    @endforeach
+                                            ">
+                                        <i class="far fa-heart"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('dislike', ['slug' => $publication->slug]) }}"
+                                       class="none-text-decoration" title="
+                                    @foreach($publication->likes as $like)
+                                    {{$like->user->firstname}}
+                                    @endforeach">
+                                        <i class="fas fa-heart" style="color:red;"></i>
+                                    </a>
+                                @endif
+                                    {{$publication->likes->count() }}
+                                    &nbsp;&nbsp;
 
                                 <a href="#" data-toggle="modal"
                                    data-target="#exampleModal{{ $publication->id }}"><i
@@ -197,8 +221,10 @@
 
     <!-- AFFICHAGE POUR UN PROFIL DIFFERENT DE L'UTILISATEUR IDENTIFIE-->
         @empty($userAuth)
-            @foreach( $user->publication as $publication)
+            @foreach( $publications as $publication)
                 @if ($publication->type == 'post')
+
+
                     <div class="col-md-8 offset-md-2 mt-3 mb-2">
                         <div class="card shadow">
                             <div class="ribbon-{{ $publication->category->name }}">
@@ -222,8 +248,26 @@
                             <div class="card-footer text-right">
                                 <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
 
-                                <i class="far fa-heart"></i>
 
+                                @if($publication->like == 0)
+                                    <a href="{{ route('like',['slug' => $publication->slug]) }}"
+                                       class="none-text-decoration"
+                                       title="
+                                    @foreach($publication->likes as $like)
+                                       {{$like->user->firstname}}
+                                       @endforeach">
+                                        <i class="far fa-heart"></i>
+                                    </a>
+
+                                @else
+                                    <a href="{{ route('dislike', ['slug' => $publication->slug]) }}"
+                                       class="none-text-decoration">
+                                        <i class="fas fa-heart" style="color:red;"></i>
+                                    </a>
+                                @endif
+
+                                    {{ $publication->likes_count }}
+                                    &nbsp;&nbsp;
                                 <a href="#" data-toggle="modal"
                                    data-target="#exampleModal{{ $publication->id }}"><i
                                             class="far fa-comment"></i></a>
