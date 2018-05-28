@@ -24,7 +24,7 @@
                 </p>
                 <p class="text-secondary">
                     @if($user->description ==null)
-                        L'utilisateur n'a pas ajouté de déscription pour l'instant...
+                        L'utilisateur n'a pas ajouté de description pour l'instant...
                     @else
                         {{ $user->description }}
                     @endif
