@@ -143,7 +143,7 @@
                                    data-target="#exampleModal{{ $publication->id }}"><i
                                             class="far fa-comment"></i></a>
                                 {{ $publication->comment->count() }}
-                                @include('components.Modal.modalComment')
+                                @include('components.Modal.comment')
 
                             </div>
                         </div>
@@ -163,9 +163,13 @@
                     class="fas fa-eraser"></i></span></a>
                                 @endif
                             </div>
-                            <img class="card-img-top img-fluid"
-                                 src="{{asset('/storage/imgpublication-crop/'.$publication->imgpublication)}}"
-                                 alt="Image card top" style="height: 220px;">
+                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}">
+
+                                <img class="card-img-top img-fluid"
+                                     src="{{asset('/storage/imgpublication-crop/'.$publication->imgpublication)}}"
+                                     alt="Image card top" style="height: 220px;">
+                            </a>
+
                             <div class="card-body">
                                 <!--Social shares button-->
                                 <p class="text-success">
@@ -228,7 +232,7 @@
                                    data-target="#exampleModal{{ $publication->id }}"><i
                                             class="far fa-comment"></i></a>
                                 {{ $publication->comment->count() }}
-                                @include('components.Modal.modalComment')
+                                @include('components.Modal.comment')
 
                             </div>
                         </div>
@@ -238,9 +242,11 @@
                         <div class="card shadow">
                             <div class="ribbon-{{ $publication->category->name }}">
                                 <span>{{ $publication->category->name }}</span></div>
-                            <img class="card-img-top img-fluid"
-                                 src="{{asset('/storage/imgpublication-crop/'.$publication->imgpublication)}}"
-                                 alt="Image card top" style="height: 220px;">
+                            <a href="{{route('front-tutorial',['slug' => $publication->slug])}}">
+                                <img class="card-img-top img-fluid"
+                                     src="{{asset('/storage/imgpublication-crop/'.$publication->imgpublication)}}"
+                                     alt="Image card top" style="height: 220px;">
+                            </a>
                             <div class="card-body">
                                 <!--Social shares button-->
                                 <p class="text-success">

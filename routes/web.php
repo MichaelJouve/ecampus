@@ -69,8 +69,6 @@ Route::prefix('admin')->middleware('role:admin')->group(function () {
 });
 
 
-
-
 //SEARCH
 Route::post('/recherche', 'FrontEnd\SearchController@index')->name('search');
 

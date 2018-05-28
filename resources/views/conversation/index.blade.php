@@ -1,7 +1,7 @@
 @extends('layouts.layout')@section('contenu')
     <!-- CONTENU -->
     <div class="container-fluid">
-        @include('components.navBarConfig')
+        @include('components.navBar.config')
     </div>
     <div class="container-fluid p-4 bg-light shadow">
         <h3 class="text-center">
