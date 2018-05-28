@@ -12,7 +12,7 @@
                     <div class="card-header">Modification du Commentaire</div>
 
                     <div class="card">
-                        <form action="{{route('admin.comment.update',['comment' => $comment])}}" method="post">
+                        <form action="{{route('admin.comment.update', ['comment' => $comment])}}" method="post">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Ma description</h3>

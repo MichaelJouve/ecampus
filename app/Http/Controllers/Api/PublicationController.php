@@ -64,7 +64,7 @@ class PublicationController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function delete(Publication $publication)
+    public function destroy(Publication $publication)
     {
         $publication->delete();
 
@@ -75,4 +75,5 @@ class PublicationController extends Controller
     {
 
     }
+
 }

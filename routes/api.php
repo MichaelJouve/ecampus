@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
+
 Route::middleware('auth:api')->group(function () {
     //  PUBLICATIONS
     Route::prefix('publications')->group(function () {
@@ -46,5 +49,6 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{comment}', 'Api\CommentController@update');
         Route::delete('/{comment}', 'Api\CommentController@destroy');
     });
-
 });
+
+    Route::post('register', 'Auth\RegisterController@register');

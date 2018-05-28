@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Category;
 use App\Http\Controllers\Controller;
 use App\Publication;
-use App\User;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller

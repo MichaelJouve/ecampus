@@ -30,6 +30,7 @@
                     </a>
                 </td>
                 <td>
+                    {{$comment->publication->title}}
                 </td>
 
                 <td><a href="{{route('admin.comment.edit',['comment' => $comment])}}">Modifier</a></td>

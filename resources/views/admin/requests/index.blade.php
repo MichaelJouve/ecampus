@@ -15,14 +15,14 @@
 
         </tr>
         </thead>
-        @foreach( $contactRequests as $request)
+        @foreach( $contactRequests as $contactRequest)
             <tbody>
             <tr>
-                <th scope="row">{{ $request->id }}</th>
-                <td>{{ $request->title }}</td>
-                <td>{{ $request->content}}</td>
-                <td>{{ $request->user->name }} {{ $request->user->firstname }}</td>
-                <td><a href="">Répondre</a></td>
+                <th scope="row">{{ $contactRequest->id }}</th>
+                <td>{{ $contactRequest->title }}</td>
+                <td>{{ $contactRequest->content}}</td>
+                <td>{{ $contactRequest->user->name }} {{ $contactRequest->user->firstname }}</td>
+                <td><a href="{{ route('admin.request.email', [ 'contactRequest' => $contactRequest->id ]) }}">Répondre</a></td>
                 <td><a href="">Supprimer</a></td>
             </tr>
             </tbody>
