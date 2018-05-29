@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class MessageController extends Controller
 {
@@ -40,11 +42,21 @@ class MessageController extends Controller
             }])
             ->get();
 
+        $friends = collect();
+        foreach ($followings as $following) {
+            $friends->push($following->followers->first());
+        }
+        foreach ($followers as $follower) {
+            $friends->push($follower->followings->first());
+        }
+        $friends = $friends->unique('id');
+
+
+
         return view('conversation.index', [
             'user' => $user,
             'userAuth' => $userAuth,
-            'followings' => $followings,
-            'followers' => $followers
+            'friends' => $friends
         ]);
     }
 
@@ -109,6 +121,7 @@ class MessageController extends Controller
                 }]);
             }])
             ->get();
+
         $followers = Follow::where('user_id_following', $userId)
             ->with(['followings' => function ($query) use ($userId) {
                 $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
@@ -117,11 +130,19 @@ class MessageController extends Controller
             }])
             ->get();
 
+        $friends = collect();
+        foreach ($followings as $following) {
+            $friends->push($following->followers->first());
+        }
+        foreach ($followers as $follower) {
+            $friends->push($follower->followings->first());
+        }
+        $friends = $friends->unique('id');
+
         $messages = Message::findConversation($userId, $otherUserId)->paginate(20);
 
         return view('conversation.show', [
-            'followers' => $followers,
-            'followings' => $followings,
+            'friends' => $friends,
             'otherUser' => $otherUser,
             'user' => $userAuth,
             'messages' => $messages
