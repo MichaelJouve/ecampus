@@ -161,6 +161,9 @@ Route::prefix('profil')->group(function () {
     Route::get('/follow/{slug}', 'FrontEnd\FollowController@followUser')->name('follow');
     Route::get('/unfollow/{slug}', 'FrontEnd\FollowController@unFollowUser')->name('unfollow');
 
+    //LIKE
+    Route::get('/like/{slug}', 'FrontEnd\LikeController@store')->name('like');
+    Route::get('/dislike/{slug}', 'FrontEnd\LikeController@destroy')->name('dislike');
 });
 
 

@@ -8,7 +8,7 @@ use App\Profil;
 use App\Publication;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-
+use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -30,14 +30,23 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $userAuth = Auth::user();
+        $userId = Auth::id();
         $userAuth->load('publication');
         $publications = Publication::where('user_id', $userAuth->id)
             ->with('category')
+            ->with(['likes' => function ($query){
+                $query->with('user');
+            }])
+            ->withCount(['likes as like' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            }])
             ->latest()
             ->get();
-        $user = $userAuth;
 
+
+        $user = $userAuth;
         return view('user.index', [
             'user' => $user,
             'userAuth' => $userAuth,
@@ -74,6 +83,18 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
+
+        $otherId = User::findBySlugOrFail($slug)->id;
+        $publications = Publication::where('user_id', $otherId)
+            ->with('category')
+            ->withCount(['likes as like' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            }])
+            ->withCount('likes')
+            ->latest()
+            ->get();
+
+
         $otherUser = User::where('slug', $slug)
             ->withCount(['followers as follow' => function ($query) use ($userId) {
                 $query->where('user_id_following', $userId);
@@ -83,7 +104,7 @@ class UserController extends Controller
             return redirect()->route('user-profil');
         }
 
-        return view('user.index', ['user' => $otherUser, 'userFollowing' => $user]);
+        return view('user.index', ['user' => $otherUser, 'userFollowing' => $user, 'publications' => $publications]);
     }
 
 

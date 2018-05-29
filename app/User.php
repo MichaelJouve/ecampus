@@ -154,10 +154,14 @@ class User extends Authenticatable
             ->where('read_at', '=', null);
 
     }
-
     public function unreadMessage()
     {
         return $this->hasMany('App\Message', 'to_user_id')
             ->where('read_at', '=', null);
+    }
+
+    public function like()
+    {
+        return $this->hasMany('App\Like');
     }
 }

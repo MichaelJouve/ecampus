@@ -5,6 +5,10 @@
         <p>Vous êtes connécté à l'espace <b>Administration</b> du {e}Campus</p>
     </div>
 
+    <p class="small ml-3 p-3 bg-light font-weight-bold">
+        Bienvenue sur le dashboard {e}Campus !
+    </p>
+
     <div class="row justify-content-center">
         <a href="{{route('admin.members.index')}}" class="col-3 text-center bg-primary p-3 m-1 rounded">
             <p><i class="fas fa-users" style="color:#fff;font-size:4em;"></i></p>
@@ -27,6 +31,7 @@
             <p class="text-light font-weight-bold">{{ $contactRequest }} Requêtes</p>
         </a>
     </div>
+
 
 
 @endsection
