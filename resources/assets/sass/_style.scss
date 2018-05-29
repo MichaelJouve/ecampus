@@ -20,15 +20,9 @@ li .actived{
 
 
 //Link No Decoration
-
-a:link .none-text-decoration{
-  text-decoration: none;
-}
-
-a:visited .none-text-decoration{
-  text-decoration: none;
-}
-
-a:hover .none-text-decoration{
-  text-decoration: none;
+#list-liker{
+  position: relative;
+  padding: 0.6em;
+  background-color: #f8f9fa;
+  color:#555555;
 }

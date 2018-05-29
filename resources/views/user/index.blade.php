@@ -104,6 +104,12 @@
 
 
                     <div class="col-md-8 offset-md-2 mt-4 mb-2">
+                        <div id="list-liker" class="small rounded-top">
+                            Like :
+                            @foreach($publication->likes as $like)
+                                <a href="{{ route('other-profil', [ 'slug' => $like->user->slug]) }}">{{$like->user->firstname}}</a> /
+                            @endforeach
+                        </div>
                         <div class="card shadow">
                             <div class="ribbon-{{ $publication->category->name }}">
                                 <span>{{ $publication->category->name }}</span></div>
@@ -139,24 +145,14 @@
                                 <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
                                 <!-- List of members like this post -->
 
-
-
-
                                 @if($publication->like == 0)
                                     <a href="{{ route('like',['slug' => $publication->slug]) }}"
-                                       class="none-text-decoration" title="
-                                    @foreach($publication->likes as $like)
-                                    {{$like->user->firstname}}
-                                    @endforeach
-                                            ">
+                                       class="none-text-decoration" id="like-heart">
                                         <i class="far fa-heart"></i>
                                     </a>
                                 @else
                                     <a href="{{ route('dislike', ['slug' => $publication->slug]) }}"
-                                       class="none-text-decoration" title="
-                                    @foreach($publication->likes as $like)
-                                    {{$like->user->firstname}}
-                                    @endforeach">
+                                       class="none-text-decoration">
                                         <i class="fas fa-heart" style="color:red;"></i>
                                     </a>
                                 @endif
@@ -226,6 +222,13 @@
 
 
                     <div class="col-md-8 offset-md-2 mt-3 mb-2">
+                        <div id="list-liker" class="small rounded-top">
+                            Like :
+                            @foreach($publication->likes as $like)
+                                <a href="{{ route('other-profil', [ 'slug' => $like->user->slug]) }}">{{$like->user->firstname}}</a> /
+                            @endforeach
+                        </div>
+
                         <div class="card shadow">
                             <div class="ribbon-{{ $publication->category->name }}">
                                 <span>{{ $publication->category->name }}</span></div>
@@ -248,14 +251,10 @@
                             <div class="card-footer text-right">
                                 <span class="float-left small">Ecrit le : {{ $publication->created_at->format('d/m/Y')}}</span>
 
-
                                 @if($publication->like == 0)
                                     <a href="{{ route('like',['slug' => $publication->slug]) }}"
-                                       class="none-text-decoration"
-                                       title="
-                                    @foreach($publication->likes as $like)
-                                       {{$like->user->firstname}}
-                                       @endforeach">
+                                       class="none-text-decoration" id="like-heart">
+
                                         <i class="far fa-heart"></i>
                                     </a>
 
