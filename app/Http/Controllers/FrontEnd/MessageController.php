@@ -37,7 +37,8 @@ class MessageController extends Controller
                 $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
                     $query->where('to_user_id', $userId);
                 }]);
-            }])->get();
+            }])
+            ->get();
 
         return view('conversation.index', [
             'user' => $user,
@@ -113,7 +114,8 @@ class MessageController extends Controller
                 $query->with(['unreadMessageByUser' => function ($query) use ($userId) {
                     $query->where('to_user_id', $userId);
                 }]);
-            }])->get();
+            }])
+            ->get();
 
         $messages = Message::findConversation($userId, $otherUserId)->paginate(20);
 
