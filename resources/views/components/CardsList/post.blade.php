@@ -1,6 +1,6 @@
 @foreach($posts as $post)
     <div class="col-sm-6  mb-3">
-        <div class="card shadow" style="height:300px;">
+        <div class="card shadow" style="height:320px;">
             <div class="ribbon-{{$post->category->name}}"><span>{{$post->category->name}}</span></div>
             <div class="row" style="max-height: 264px; height: 264px">
                 <div class="col-3 mt-5 img_profil justify-content-center">
@@ -12,8 +12,8 @@
                         <div class="card-title" id="card-title-post">
                             <h4><b>{{$post->title}}</b></h4>
                         </div>
-                        <div class="card-text small">
-                            {!! str_limit($post->content, $limit = 200, $end = '...') !!}
+                        <div class="card-text small overflow-150">
+                            {!! $post->content !!}
 
                         </div>
                     </div>
