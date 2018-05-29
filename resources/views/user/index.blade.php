@@ -228,7 +228,7 @@
                                    data-target="#exampleModal{{ $publication->id }}"><i
                                             class="far fa-comment"></i></a>
                                 {{ $publication->comment->count() }}
-                                @include('components.Modal.Comment')
+                                @include('components.Modal.comment')
 
                             </div>
                         </div>
