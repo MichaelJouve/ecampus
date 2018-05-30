@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Publication;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +27,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::orderBy('created_at', 'desc')->limit(5)->get();
+
+        $tutos = Publication::tuto()
+            ->with('user')
+            ->with('category')
+            ->latest()->limit(6)->get();
+
+        $posts = Publication::post()
+            ->with('user')
+            ->with('category')
+            ->latest()->limit(4)->get();
+
+
+        return view('index', ['users' => $users,
+            'tutos' => $tutos,
+            'posts' => $posts
+        ]);
     }
+
+    public function panier()
+    {
+        return view('panier');
+    }
+
 }

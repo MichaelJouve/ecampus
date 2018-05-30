@@ -27,6 +27,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+        'role'=>[
+            \App\Http\Middleware\CheckRole::class,
+
+        ],
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -59,5 +63,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'role' => \App\Http\Middleware\CheckRole::class,
+
     ];
 }

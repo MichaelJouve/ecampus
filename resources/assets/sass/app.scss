@@ -1,14 +1,18 @@
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
+@import "header";
+@import "footer";
+@import "article";
+@import "font";
+@import "carousel";
+@import "style";
+@import "listing";
+@import "profil";
+@import "rating";
+@import "modal";
+@import "admin";
+@import "contact";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}

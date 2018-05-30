@@ -105,6 +105,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'category' =>'Le champ :attribute ne peut pas etre vide.',
 
     /*
     |--------------------------------------------------------------------------
