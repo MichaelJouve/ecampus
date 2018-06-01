@@ -31,9 +31,9 @@ class PublicationController extends Controller
      * @param Publication $publication
      * @return Publication|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
      */
-    public function show(Publication $publication)
+    public function show($id)
     {
-        $publi = Publication::find($publication)->with('category', 'user', 'consultation', 'comment', 'userOwner')->find($publication->id)
+        $publi = Publication::find($id)->with('category', 'user', 'consultation', 'comment', 'userOwner')->find($publication->id)
         return response()->json($publi);
     }
 
