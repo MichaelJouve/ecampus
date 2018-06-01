@@ -33,7 +33,7 @@ class PublicationController extends Controller
      */
     public function show($id)
     {
-        dd(response()->json(Publication::find($id)->with('category', 'user', 'consultation', 'comment', 'userOwner')));
+        response()->json(Publication::find($id)->with('category', 'user', 'consultation', 'comment', 'userOwner'));
     }
 
     /**
