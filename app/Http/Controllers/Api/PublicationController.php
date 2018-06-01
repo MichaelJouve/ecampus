@@ -24,8 +24,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $publications = Publication::all();
-        return response()->json($publications);
+        return response()->json(Publication::all());
     }
 
     /**
