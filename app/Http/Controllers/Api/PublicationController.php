@@ -15,7 +15,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $publis = Publication::with('user')->get();
+        $publis = Publication::with('user')->();
         return response()->json($publis);
     }
 
@@ -25,7 +25,7 @@ class PublicationController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Publication::find($id));
+        return response()->json(Publication::find($id)->with('user'));
     }
 
     /**
