@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Bought;
-use App\Category;
-use App\Consultation;
+
 use App\Http\Controllers\Controller;
 use App\Publication;
 use App\Post;
-use App\User;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use App\Rating;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class PublicationController extends Controller
 {
@@ -24,7 +15,8 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        return response()->json(Publication::all()->with('user'));
+        $publis = Publication::with('user')->get();
+        return response()->json($publis);
     }
 
     /**
