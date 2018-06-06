@@ -21,7 +21,8 @@ class PublicationController extends Controller
 
     public function showFree()
     {
-        return response()->json(Publication::where('type', 'tutorial')->where('price', 0)->with('user')->get());
+        $publis = Publication::where('type', 'tutorial')->where('price', 0)->with('user')->get();
+        return response()->json($publis);
     }
 
     /**
