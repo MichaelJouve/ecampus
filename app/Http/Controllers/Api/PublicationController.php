@@ -19,6 +19,11 @@ class PublicationController extends Controller
         return response()->json($publis);
     }
 
+    public function showFree()
+    {
+        return response()->json(Publication::where('type', 'tutorial')->where('price', 0)->with('user')->get());
+    }
+
     /**
      * @param Publication $publication
      * @return Publication|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object

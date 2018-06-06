@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
     Route::prefix('publications')->group(function () {
         Route::get('/', 'Api\PublicationController@index');
         Route::get('/{id}', 'Api\PublicationController@show');
+        Route::get('/freePubli', 'Api\PublicationController@showFree');
         Route::post('/', 'Api\PublicationController@store');
         Route::put('/{publication}', 'Api\PublicationController@update');
         Route::delete('/{publication}', 'Api\PublicationController@destroy');
