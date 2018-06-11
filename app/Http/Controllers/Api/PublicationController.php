@@ -16,7 +16,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $publis = Publication::where('type', 'tutorial')->with('user')->get();
+        $publis = Publication::where('type', 'tutorial')->with('user')->latest()->get();
         return response()->json($publis);
     }
 
