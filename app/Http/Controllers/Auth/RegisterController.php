@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -75,6 +77,15 @@ class RegisterController extends Controller
         $user->roles()->attach(Role::where('name', 'writer')->first());
 
         return $user;
+    }
+
+    public function registerApi(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return response()->json($user, 200);
     }
 
 //    public function register(Request $request)
