@@ -49,4 +49,4 @@ Route::middleware('auth:api')->group(function () {
     });
 });
 
-    Route::post('register', 'Auth\RegisterController@registerApi');
+    Route::post('register', 'Auth\RegisterController@registerMobil');
