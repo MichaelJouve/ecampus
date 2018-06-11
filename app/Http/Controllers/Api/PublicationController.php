@@ -22,7 +22,7 @@ class PublicationController extends Controller
 
     public function showFree()
     {
-        $publis = Publication::where('type', 'tutorial')->where('price', 0)->with('user')->get();
+        $publis = Publication::where('type', 'tutorial')->where('price', 0)->with('user')->latest()->get();
         return response()->json($publis);
     }
 
