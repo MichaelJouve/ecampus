@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 */
 Route::middleware('auth:api')->group(function () {
 
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
     //  PUBLICATIONS
     Route::prefix('publications')->group(function () {
         Route::get('/', 'Api\PublicationController@index');

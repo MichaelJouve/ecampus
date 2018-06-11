@@ -124,7 +124,7 @@ class UserController extends Controller
 
     }
 
-    public function showMe()
+    public function showMe(Request $request)
     {
         $user = Auth::user();
         return response()->json($user);
