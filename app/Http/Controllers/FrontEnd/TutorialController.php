@@ -74,12 +74,12 @@ class TutorialController extends Controller
         if ($inputs['price'] == null) {
             $inputs['price'] = 0;
         }
+        $inputs['user_id'] = $user->id;
 
         if ($request->hasFile('imgpublication')) {
 
             //$imgpublication = $request->file('imgpublication')->storePublicly('imgpublication', 'public');
             //$inputs['imgpublication'] = $imgpublication;
-            $inputs['user_id'] = $user->id;
 
             // open an image file
             $imgResize = Image::make($request->imgpublication->path());

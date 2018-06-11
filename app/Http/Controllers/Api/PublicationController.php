@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Publication;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -72,6 +73,38 @@ class PublicationController extends Controller
 
     public function store(Request $request)
     {
+        preg_match_all('!(<img[^>]*src="([^"]*)")!', $request['content'], $tableauDImg);
+
+        foreach ($tableauDImg['1'] as $i) {
+            $request['content'] = htmlspecialchars_decode(str_replace($i,
+                $i . ' class="img-fluid"',
+                $request['content']));
+        }
+
+        $user = Auth::find($request['user_id']);
+        $inputs['user_id'] = $user->id;
+        $slug = $user->slug;
+
+        $request->validate([
+            'category_id' => 'required|numeric',
+            'title' => 'required|max:150',
+            'description' => 'max:255',
+            'imgpublication' => 'mimetypes:image/gif,image/jpeg,image/png',
+            'price' => 'integer|nullable',
+            'required' => 'max:100',
+            'goals' => 'max:100',
+            'content' => 'required',
+        ]);
+
+        $inputs = $request->all();
+        if ($inputs['price'] == null) {
+            $inputs['price'] = 0;
+        }
+
+
+        $img = Publication::create($inputs);
+        $img->imgpublication = $img->category->name . '.jpg';
+        $img->save();
 
     }
 

@@ -19,7 +19,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', 'Api\PublicationController@index');
         Route::get('/freePubli', 'Api\PublicationController@showFree');
         Route::get('/{id}', 'Api\PublicationController@show');
-        Route::post('/', 'Api\PublicationController@store');
+        Route::post('/addPubli', 'Api\PublicationController@store');
         Route::put('/{publication}', 'Api\PublicationController@update');
         Route::delete('/{publication}', 'Api\PublicationController@destroy');
     });

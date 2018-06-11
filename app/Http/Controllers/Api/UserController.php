@@ -113,17 +113,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
-        return $user->with('publication',
+        $toto = $user->with('publication',
             'post',
             'tutorial',
             'comment',
             'followers',
-            'followings',
-            'roles',
-            'postsBought',
-            'unreadMessageByUser',
-            'unreadMessage')->find($user->id);
+            'followings')->find($user->id);
+
+        return response()->json($toto);
 
     }
 
