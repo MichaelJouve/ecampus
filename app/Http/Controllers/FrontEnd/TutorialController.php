@@ -68,13 +68,11 @@ class TutorialController extends Controller
             'content' => 'required',
         ]);
 
-        //Gestion d'image tutoriel
 
         $inputs = $request->all();
         if ($inputs['price'] == null) {
             $inputs['price'] = 0;
         }
-        $inputs['user_id'] = $user->id;
 
         if ($request->hasFile('imgpublication')) {
 
