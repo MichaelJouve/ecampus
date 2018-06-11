@@ -79,15 +79,6 @@ class RegisterController extends Controller
         return $user;
     }
 
-    public function registerApi(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        return response()->json($user, 200);
-    }
-
 //    public function register(Request $request)
 //    {
 //        // Here the request is validated. The validator method is located
