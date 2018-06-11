@@ -81,10 +81,6 @@ class PublicationController extends Controller
                 $request['content']));
         }
 
-        $user = Auth::find($request['user_id']);
-        $inputs['user_id'] = $user->id;
-        $slug = $user->slug;
-
         $request->validate([
             'category_id' => 'required|numeric',
             'title' => 'required|max:150',
