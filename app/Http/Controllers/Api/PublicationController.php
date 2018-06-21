@@ -104,4 +104,12 @@ class PublicationController extends Controller
 
     }
 
+    public function testJavaGet()
+    {
+        $publis = Publication::where('type', 'tutorial')->with('user')->latest()->get();
+        return response()->json($publis);
+    }
+
+    public function testjavaPost(){}
+
 }

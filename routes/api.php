@@ -55,3 +55,5 @@ Route::middleware('auth:api')->group(function () {
 });
 
     Route::post('register', 'Auth\RegisterController@registerMobil');
+    Route::get('testJavaGet', 'Api\PublicationController@testJavaGet');
+    Route::post('testJavaPost', 'Api\PublicationController@testJavaPost');
